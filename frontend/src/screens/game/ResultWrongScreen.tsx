@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Mood, GirlP } from "../../types";
 import { ROUNDS } from "../../data/rounds";
 import { EI } from "../../data/emotions";
@@ -6,11 +6,25 @@ import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 import { HeatmapOverlay } from "../../components/common/HeatmapOverlay";
 import { CharacterImage } from "../../components/character/CharacterImage";
+import { playSound } from "../../lib/sounds";
+
+const NEXT_BUTTON_DELAY_MS = 2500;
 
 export function ResultWrongScreen({round,score,selectedIdx,images,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [showHeat,setShowHeat]=useState(true);
+  const [canProceed,setCanProceed]=useState(false);
   const r=ROUNDS[round];
   const correctEmotion=r.opts[r.correct] as Mood;
+  const isLastRound=round===ROUNDS.length-1;
+
+  useEffect(()=>{
+    playSound("chime",soundOn);
+    setCanProceed(false);
+    const t=setTimeout(()=>setCanProceed(true),NEXT_BUTTON_DELAY_MS);
+    return ()=>clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[round]);
+
   return(
     <div className="min-h-screen w-full relative" style={{background:"#FFF8F0"}}>
       <BgDeco items={["💛","❤️","✨","💕","💛","⭐","💕"]} opacity={.28}/>
@@ -20,12 +34,10 @@ export function ResultWrongScreen({round,score,selectedIdx,images,onNext,onHome,
           style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
           ⭐ {score}/{ROUNDS.length}
         </div>
-        {/* Banner */}
         <div className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
           style={{background:"#FF9800",fontSize:"clamp(18px,2.5vw,32px)",boxShadow:"0 6px 25px rgba(255,152,0,.4)",width:"90%",maxWidth:"700px"}}>
           💛 Good try! Let us learn together!
         </div>
-        {/* Two columns */}
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
           <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{width:"300px",height:"380px",border:`3px solid ${EI[correctEmotion].border}`,boxShadow:`0 0 0 3px ${EI[correctEmotion].border}44`}}>
             <div className="flex items-center justify-center h-full bg-white">
@@ -40,9 +52,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,onNext,onHome,
               <div className="afb flex-shrink-0"><EmoRobot expression="caring" width={100}/></div>
               <div>
                 <div className="ff text-xs mb-2" style={{color:"#FF9800",letterSpacing:"1px"}}>THE AI NOTICED:</div>
-                <div className="ff" style={{fontSize:"22px",color:"#004D40",lineHeight:1.4}}>
-                  This character has {r.ai}
-                </div>
+                <div className="ff" style={{fontSize:"22px",color:"#004D40",lineHeight:1.4}}>{r.ai}</div>
               </div>
             </div>
             <div className="fn font-bold mt-2" style={{fontSize:"18px",color:"#E91E63"}}>You are getting better! Keep going! 💪</div>
@@ -53,7 +63,12 @@ export function ResultWrongScreen({round,score,selectedIdx,images,onNext,onHome,
                 {showHeat?"Hide AI Vision":"Show AI Vision 🔍"}
               </button>
             </div>
-            <Btn ch="Next Round →" onClick={onNext} className="mt-auto"/>
+            <Btn
+              ch={canProceed?(isLastRound?"See My Results! 🏆":"Next Round →"):"Reading..."}
+              onClick={onNext}
+              disabled={!canProceed}
+              className="mt-auto"
+            />
           </div>
         </div>
       </div>
