@@ -139,16 +139,6 @@ node_modules/
 .vite/
 dist/
 
-ඔව්, root .gitignore file එකටම add කරන්න පුළුවන් — Monorepo (option A) එකේදී, root .gitignore එකක් ඇතුළේ frontend සහ backend දෙකේම patterns එකට තියෙන එක සම්පූර්ණයෙන් normal practice එකක්. වෙනම backend/.gitignore file එකක් හදන්න ඕන නැහැ.
-
-කරන්න ඕන දේ
-
-දැනට open කරලා තියෙන .gitignore file එකේ (line 140 dist/ එකට පහළින්), මේ lines add කරන්න:
-
-node_modules/
-.vite/
-dist/
-
 # Backend
 backend/venv/
 backend/__pycache__/
