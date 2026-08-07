@@ -10,6 +10,7 @@ export const GLOBAL_STYLES = `
   @keyframes twinkle{0%,100%{opacity:0.25;transform:scale(0.75)}50%{opacity:1;transform:scale(1.3)}}
   @keyframes arcFill{0%{stroke-dasharray:0 283}100%{stroke-dasharray:283 0}}
   @keyframes blink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
+  @keyframes breathePulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.45);opacity:1}}
   .af{animation:float 3s ease-in-out infinite}
   .afb{animation:floatB 4s ease-in-out infinite}
   .asr{animation:spinRing 10s linear infinite}
@@ -19,6 +20,7 @@ export const GLOBAL_STYLES = `
   .asu{animation:slideUp .5s ease-out forwards}
   .atw{animation:twinkle 2.5s ease-in-out infinite}
   .aaf{animation:arcFill 2.2s ease-out forwards}
+  .abr{animation:breathePulse 4s ease-in-out infinite}
   .ff{font-family:'Fredoka One',cursive!important}
   .fn{font-family:'Nunito',sans-serif!important}
   *::-webkit-scrollbar{width:5px}
