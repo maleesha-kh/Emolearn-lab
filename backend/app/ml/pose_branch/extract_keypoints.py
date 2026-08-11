@@ -6,8 +6,8 @@ import pandas as pd
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
 
-# ඔබේ train folder එකේ path එක - Dataset folder එකේ path එකට update කරන්න
-SRC_DIR = r"D:\...\Dataset\pose_dataset_nobg\train"
+
+SRC_DIR = r"data/raw_images"
 OUT_CSV = "data/pose_keypoints.csv"
 classes = ["angry", "happy", "sad", "surprised"]
 
