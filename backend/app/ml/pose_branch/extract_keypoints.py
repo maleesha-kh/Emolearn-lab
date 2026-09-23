@@ -7,7 +7,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
 
 
-SRC_DIR = r"data/raw_images"
+SRC_DIR = r"D:\Emolearn-lab\backend\app\ml\pose_branch\data\raw_images"
 OUT_CSV = "data/pose_keypoints.csv"
 classes = ["angry", "happy", "sad", "surprised"]
 
@@ -41,4 +41,4 @@ for cls in classes:
 os.makedirs("data", exist_ok=True)
 df = pd.DataFrame(rows)
 df.to_csv(OUT_CSV, index=False)
-print(f"\n✅ Saved {len(df)} rows to {OUT_CSV}")
+print(f"\nSaved {len(df)} rows to {OUT_CSV}")
