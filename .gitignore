@@ -147,4 +147,8 @@ backend/**/__pycache__/
 *.pkl
 backend/data/sessions.csv
 backend/.env
+backend/debug_outputs/
 *.pyc
+backend/app/ml/pose_branch/data/raw_images_bg_removed/
+backend/eval_data/test_original/
+"raw_images/" 

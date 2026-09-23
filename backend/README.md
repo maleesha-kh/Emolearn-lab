@@ -1,0 +1,47 @@
+# Backend
+
+FastAPI service that fuses a face-branch (MobileNetV2) and a pose-branch
+(MediaPipe + Random Forest) prediction into one emotion label.
+
+## Setup
+
+```
+python -m venv venv
+venv\Scripts\pip install -r requirements.txt
+```
+
+Always run Python through `venv\Scripts\python.exe` (or `venv\Scripts\pip.exe`),
+not the system interpreter.
+
+## Model files
+
+- `app/ml/face_branch/models/face_branch_v4_clean.weights.h5` — face branch weights.
+- `app/ml/pose_branch/models/random_forest_pose_model_bg_removed.pkl` and
+  `label_encoder_bg_removed.pkl` — pose branch model and label encoder (the
+  ones `config.py` points at by default).
+
+## Running the server
+
+```
+venv\Scripts\python.exe -m uvicorn app.main:app --reload
+```
+
+`POST /predict` with an image file (`multipart/form-data`) returns the fused
+prediction. See `app/schemas/prediction.py` for the response shape.
+
+## Tests
+
+```
+venv\Scripts\python.exe -m pytest tests
+```
+
+## Fusion evaluation
+
+Compares face-only, pose-only and fused accuracy on a held-out test set:
+
+```
+venv\Scripts\python.exe eval_fusion.py --test_dir eval_data/fusion_test
+```
+
+Prints a per-image table and per-branch metrics, and writes confusion-matrix
+PNGs plus `eval_data/fusion_results.json`.
