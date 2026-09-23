@@ -1,10 +1,26 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes.predict import router as predict_router
+from app.ml.face_branch.inference import load_face_model
+from app.ml.pose_branch.inference import load_pose_model
+from app.ml.preprocessing import load_rembg_session
 
-app = FastAPI()
 
-# React frontend එකට (localhost:5173) API එකට access දෙන්න
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: load the face model, pose model, and rembg session up front,
+    # so we don't have to reload them from disk on every request.
+    load_pose_model()
+    load_face_model()
+    load_rembg_session()
+    yield
+    # Shutdown: no cleanup needed for this project
+
+
+app = FastAPI(lifespan=lifespan)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
