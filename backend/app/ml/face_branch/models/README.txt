@@ -1,0 +1,1 @@
+This folder holds face_branch_v4_clean.weights.h5, the weights loaded by app/ml/face_branch/inference.py; it was exported from the Colab training notebook by calling model.save_weights("face_branch_v4_clean.weights.h5") on the trained MobileNetV2 model and downloading the resulting file into this directory.
