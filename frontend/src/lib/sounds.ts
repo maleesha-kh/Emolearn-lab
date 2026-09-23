@@ -21,6 +21,5 @@ export function playSound(name: SoundName, enabled: boolean) {
     }
     void audio.play().catch(() => {});
   } catch {
-    // ignore
   }
 }

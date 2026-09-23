@@ -1,26 +1,48 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Mood } from "../../types";
-import { predictEmotion, type PredictionResult } from "../../lib/mockModel";
+import { getPrediction, PredictionError, type PredictionResult } from "../../lib/predictionClient";
 import { EmoRobot } from "../../components/common/EmoRobot";
+import { Btn } from "../../components/common/UI";
 
 /**
- * Calls the (mocked, see lib/mockModel.ts) emotion classifier on the image
- * the child tapped and reports the result back to App once it resolves. A
- * minimum display time keeps the "thinking" animation feeling substantial
- * even though the mock itself resolves quickly.
+ * Sends the tapped image to the prediction service (real API or mock, see
+ * lib/predictionClient.ts) and reports the result back to App once it
+ * resolves. A minimum display time keeps the "thinking" animation feeling
+ * substantial even when the response comes back quickly.
  */
-export function LoadingScreen({trueEmotion,onDone}:{trueEmotion:Mood;onDone:(result:PredictionResult)=>void}){
+export function LoadingScreen({imageUrl,trueEmotion,onDone,onBack}:{imageUrl:string;trueEmotion:Mood;onDone:(result:PredictionResult)=>void;onBack:()=>void}){
   const onDoneRef=useRef(onDone);
   onDoneRef.current=onDone;
+  const [error,setError]=useState<PredictionError|null>(null);
+  const [attempt,setAttempt]=useState(0);
 
   useEffect(()=>{
     let cancelled=false;
+    setError(null);
     const minDelay=new Promise<void>(r=>setTimeout(r,1500));
-    Promise.all([predictEmotion(trueEmotion),minDelay]).then(([result])=>{
-      if(!cancelled) onDoneRef.current(result);
-    });
+    Promise.all([getPrediction({imageUrl,trueEmotion}),minDelay])
+      .then(([result])=>{
+        if(!cancelled) onDoneRef.current(result);
+      })
+      .catch((err)=>{
+        if(cancelled) return;
+        setError(err instanceof PredictionError ? err : new PredictionError("server"));
+      });
     return ()=>{cancelled=true;};
-  },[trueEmotion]);
+  },[imageUrl,trueEmotion,attempt]);
+
+  if(error){
+    return(
+      <div className="min-h-screen w-full flex flex-col items-center justify-center px-6 text-center" style={{background:"linear-gradient(140deg,#FFF3E0 0%,#FFE0B2 100%)"}}>
+        <EmoRobot expression="caring" width={140}/>
+        <p className="ff mt-4" style={{fontSize:"24px",color:"#E65100"}}>{error.message}</p>
+        <div className="flex gap-3 mt-6">
+          <Btn ch="Try Again" onClick={()=>setAttempt(a=>a+1)} color="#00BCD4" w="160px"/>
+          <Btn ch="Pick Again" onClick={onBack} color="#FF9800" w="160px"/>
+        </div>
+      </div>
+    );
+  }
 
   return(
     <div className="min-h-screen w-full flex flex-col items-center justify-center" style={{background:"linear-gradient(140deg,#E0F7FA 0%,#B2EBF2 100%)"}}>

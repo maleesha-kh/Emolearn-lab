@@ -1,9 +1,8 @@
 import type { Mood, GirlP } from "../types";
 
-// There is exactly ONE character set in the dataset (the VRoid "Nara"
-// model), with 8 pose/photo variants captured per emotion. Backgrounds have
-// already been stripped to transparent PNGs by scripts/remove_bg.py and
-// placed here at build/prep time — see public/images/characters/<Mood>/.
+// Single character set (the VRoid "Nara" model), 8 pose/photo variants per
+// emotion, backgrounds already stripped by scripts/remove_bg.py — see
+// public/images/characters/<Mood>/.
 const VARIANTS_PER_EMOTION: Record<Mood, number> = {
   happy: 8,
   sad: 8,
@@ -65,12 +64,7 @@ export function pickRandomImage(emotion: Mood): string {
   return imagePath(emotion, pickRandomVariant(emotion));
 }
 
-/**
- * "How are you feeling today?" screen: one random image per emotion, 4
- * total. Call once per screen mount (e.g. via useState(() => rollMoodBank())
- * inside the screen component) so it re-rolls every time the child visits
- * the screen, but doesn't change mid-interaction.
- */
+/** One random image per emotion for the mood check-in screen. Call once per mount so it doesn't change mid-interaction. */
 export function rollMoodBank(): Record<Mood, string> {
   return {
     happy: pickRandomImage("happy"),
@@ -80,13 +74,7 @@ export function rollMoodBank(): Record<Mood, string> {
   };
 }
 
-/**
- * Game round: given a round's option emotions (e.g. ["happy","sad","surprised"]),
- * pick one random image per option. Call once per round (lifted to App-level
- * state, keyed on the round index) — NOT on every re-render — so the same
- * images stay visible through the round and are still there on the
- * correct/wrong result screens that follow it.
- */
+/** One random image per option emotion. Call once per round (not on every re-render) so the images stay the same through the result screens. */
 export function rollRoundImages(emotions: Mood[]): string[] {
   return emotions.map((e) => pickRandomImage(e));
 }

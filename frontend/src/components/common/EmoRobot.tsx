@@ -1,9 +1,6 @@
 import { useId } from "react";
 import type { EmoE } from "../../types";
 
-// ─────────────────────────────────────────────────────────────
-// EMO ROBOT SVG
-// ─────────────────────────────────────────────────────────────
 export function EmoRobot({expression="happy" as EmoE, width=160, className=""}:{expression?:EmoE;width?:number;className?:string}) {
   const uid = useId().replace(/:/g,"");
   const bx=110, by=118, br=62;

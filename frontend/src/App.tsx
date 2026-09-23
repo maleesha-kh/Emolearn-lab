@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Scr, Mood } from "./types";
 import { ROUNDS } from "./data/rounds";
 import { rollRoundImages } from "./lib/imageBank";
-import type { PredictionResult } from "./lib/mockModel";
+import type { PredictionResult } from "./lib/predictionClient";
 import { GLOBAL_STYLES } from "./styles/animations";
 
 import { BadgeModal } from "./components/common/BadgeModal";
@@ -40,6 +40,7 @@ export default function App() {
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
   const [showBadge, setShowBadge] = useState(false);
   const [totalStars, setTotalStars] = useState(8);
+  const [heatmapBase64, setHeatmapBase64] = useState<string | null>(null);
 
   // Images for the current round — rolled once per round (not on every
   // re-render), then reused unchanged across the round screen, the loading
@@ -66,9 +67,15 @@ export default function App() {
     const r = ROUNDS[currentRound];
     const correct = result.emotion === r.opts[r.correct];
     setLastCorrect(correct);
+    setHeatmapBase64(result.heatmapBase64);
     if (correct) setScore((s) => s + 1);
     setRoundResults((rs) => [...rs, correct]);
     go(correct ? "r-correct" : "r-wrong");
+  };
+
+  const handleLoadingBack = () => {
+    setSelectedCard(null);
+    go("gameround");
   };
 
   const handleNext = () => {
@@ -109,9 +116,9 @@ export default function App() {
     "res-surprised": <SurprisedResponseScreen onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     gamestart: <GameStartScreen onStart={() => go("gameround")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     gameround: <GameRoundScreen round={currentRound} score={score} images={roundImages} onSelect={handleCardSelect} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    loading: <LoadingScreen trueEmotion={tappedEmotion ?? round.opts[0]} onDone={handleLoadingDone} />,
-    "r-correct": <ResultCorrectScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "r-wrong": <ResultWrongScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    loading: <LoadingScreen imageUrl={roundImages[selectedCard ?? 0]} trueEmotion={tappedEmotion ?? round.opts[0]} onDone={handleLoadingDone} onBack={handleLoadingBack} />,
+    "r-correct": <ResultCorrectScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} heatmapBase64={heatmapBase64} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "r-wrong": <ResultWrongScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} heatmapBase64={heatmapBase64} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "t-correct": <TransCorrectScreen score={score} onContinue={handleContinue} />,
     "t-wrong": <TransWrongScreen score={score} onContinue={handleContinue} />,
     summary: (
