@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import type { Scr, Mood } from "./types";
+import type { Scr, Mood, Player } from "./types";
 import { ROUNDS } from "./data/rounds";
 import { rollRoundImages } from "./lib/imageBank";
 import type { PredictionResult } from "./lib/predictionClient";
+import { getPlayer } from "./lib/api";
+import { AVATARS } from "./data/avatars";
 import { GLOBAL_STYLES } from "./styles/animations";
 
 import { BadgeModal } from "./components/common/BadgeModal";
@@ -29,9 +31,15 @@ import { DictionaryScreen } from "./screens/DictionaryScreen";
 import { PinScreen } from "./screens/PinScreen";
 import { ParentScreen } from "./screens/ParentScreen";
 
+const PLAYER_ID_KEY = "emolearn_player_id";
+
 export default function App() {
   const [screen, setScreen] = useState<Scr>("welcome");
-  const [playerName, setPlayerName] = useState("");
+  const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
+  const [savedPlayer, setSavedPlayer] = useState<Player | null>(null);
+  const [checkingSavedPlayer, setCheckingSavedPlayer] = useState(
+    () => !!localStorage.getItem(PLAYER_ID_KEY)
+  );
   const [soundOn, setSoundOn] = useState(true);
   const [currentRound, setCurrentRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -51,8 +59,39 @@ export default function App() {
     setRoundImages(rollRoundImages(ROUNDS[currentRound].opts));
   }, [currentRound]);
 
+  useEffect(() => {
+    const storedId = localStorage.getItem(PLAYER_ID_KEY);
+    if (!storedId) return;
+    getPlayer(storedId).then((res) => {
+      if (res.kind === "ok") {
+        setSavedPlayer(res.data);
+      } else if (res.status === 404) {
+        localStorage.removeItem(PLAYER_ID_KEY);
+      }
+      setCheckingSavedPlayer(false);
+    });
+  }, []);
+
   const go = (s: Scr) => setScreen(s);
   const home = () => go("welcome");
+
+  const loginPlayer = (player: Player) => {
+    setCurrentPlayer(player);
+    localStorage.setItem(PLAYER_ID_KEY, player.id);
+    go("moodcheckin");
+  };
+
+  const forgetSavedPlayer = () => {
+    setSavedPlayer(null);
+    localStorage.removeItem(PLAYER_ID_KEY);
+  };
+
+  const switchPlayer = () => {
+    setCurrentPlayer(null);
+    setSavedPlayer(null);
+    localStorage.removeItem(PLAYER_ID_KEY);
+    go("welcome");
+  };
 
   const handleMood = (m: Mood) => {
     go(`res-${m}` as Scr);
@@ -111,10 +150,17 @@ export default function App() {
   const tappedEmotion: Mood | null = selectedCard !== null ? round.opts[selectedCard] : null;
 
   const screens: Record<Scr, React.ReactNode> = {
-    welcome: <WelcomeScreen onPlay={() => go("moodcheckin")} playerName={playerName} setPlayerName={setPlayerName} />,
+    welcome: (
+      <WelcomeScreen
+        checking={checkingSavedPlayer}
+        savedPlayer={savedPlayer}
+        onLogin={loginPlayer}
+        onForget={forgetSavedPlayer}
+      />
+    ),
     howtoplay: <HowToPlayScreen onStart={() => go("moodcheckin")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     moodcheckin: <MoodCheckInScreen onSelect={handleMood} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "res-happy": <HappyResponseScreen playerName={playerName} onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "res-happy": <HappyResponseScreen playerName={currentPlayer?.nickname ?? ""} onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "res-sad": <SadResponseScreen onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "res-angry": <AngryResponseScreen onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "res-surprised": <SurprisedResponseScreen onReady={() => go("gamestart")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
@@ -127,7 +173,7 @@ export default function App() {
     "t-wrong": <TransWrongScreen score={score} onContinue={handleContinue} />,
     summary: (
       <SummaryScreen
-        playerName={playerName}
+        playerName={currentPlayer?.nickname ?? ""}
         score={score}
         roundResults={roundResults}
         onPlayAgain={handlePlayAgain}
@@ -138,22 +184,38 @@ export default function App() {
         onBadge={() => setShowBadge(true)}
       />
     ),
-    profile: <ProfileScreen playerName={playerName} totalStars={totalStars} onNewGame={handlePlayAgain} onHome={home} soundOn={soundOn} onSound={toggleSound} onParent={() => go("pin")} onAchievements={() => go("achievements")} />,
+    profile: (
+      <ProfileScreen
+        playerName={currentPlayer?.nickname ?? ""}
+        avatarId={currentPlayer?.avatar_id ?? AVATARS[0].id}
+        totalStars={totalStars}
+        onNewGame={handlePlayAgain}
+        onHome={home}
+        soundOn={soundOn}
+        onSound={toggleSound}
+        onParent={() => go("pin")}
+        onAchievements={() => go("achievements")}
+        onSwitchPlayer={switchPlayer}
+      />
+    ),
     achievements: <AchievementsScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
-    parent: <ParentScreen playerName={playerName} onBack={() => go("profile")} />,
+    parent: <ParentScreen playerName={currentPlayer?.nickname ?? ""} onBack={() => go("profile")} />,
   };
 
-  const showNav = !SCREENS_WITHOUT_NAV.includes(screen);
+  // Guard: without a logged-in player, only the welcome screen may show —
+  // covers stale navigation state (e.g. BottomNav) after a switch-player.
+  const effectiveScreen: Scr = !currentPlayer && screen !== "welcome" ? "welcome" : screen;
+  const showNav = !SCREENS_WITHOUT_NAV.includes(effectiveScreen);
 
   return (
     <div className="min-h-screen w-full font-nunito" style={{ fontFamily: "'Nunito',sans-serif" }}>
       <style>{GLOBAL_STYLES}</style>
 
-      {showNav && <BottomNav screen={screen} onNavigate={go} />}
+      {showNav && <BottomNav screen={effectiveScreen} onNavigate={go} />}
 
-      <div style={{ paddingBottom: showNav ? "72px" : "0" }}>{screens[screen]}</div>
+      <div style={{ paddingBottom: showNav ? "72px" : "0" }}>{screens[effectiveScreen]}</div>
 
       {showBadge && <BadgeModal onClose={() => setShowBadge(false)} />}
     </div>

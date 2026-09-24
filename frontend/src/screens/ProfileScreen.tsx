@@ -1,7 +1,7 @@
 import { TopBar, Btn, BgDeco } from "../components/common/UI";
-import { CharacterImage } from "../components/character/CharacterImage";
+import { Avatar } from "../components/common/Avatar";
 
-export function ProfileScreen({playerName,totalStars,onNewGame,onHome,soundOn,onSound,onParent,onAchievements}:{playerName:string;totalStars:number;onNewGame:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;onParent:()=>void;onAchievements:()=>void}){
+export function ProfileScreen({playerName,avatarId,totalStars,onNewGame,onHome,soundOn,onSound,onParent,onAchievements,onSwitchPlayer}:{playerName:string;avatarId:string;totalStars:number;onNewGame:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;onParent:()=>void;onAchievements:()=>void;onSwitchPlayer:()=>void}){
   const sessions=[
     {date:"Jul 20",stars:4,results:[true,true,true,true]},
     {date:"Jul 19",stars:3,results:[true,true,false,true]},
@@ -22,7 +22,7 @@ export function ProfileScreen({playerName,totalStars,onNewGame,onHome,soundOn,on
         <div className="rounded-3xl bg-white p-8 flex flex-col items-center" style={{maxWidth:"540px",width:"95%",border:"4px solid #00BCD4",boxShadow:"0 20px 60px rgba(0,188,212,.25)"}}>
           {/* Avatar */}
           <div className="rounded-full overflow-hidden mb-4" style={{width:"140px",height:"140px",border:"4px solid #FFC107",boxShadow:"0 8px 25px rgba(255,193,7,.3)"}}>
-            <CharacterImage pose="confident" width={140}/>
+            <Avatar avatarId={avatarId} size={140}/>
           </div>
           <div className="ff mb-3" style={{fontSize:"42px",color:"#004D40"}}>{playerName||"Explorer"}</div>
           <div className="ff rounded-full px-5 py-2 text-white mb-6" style={{background:"#00BCD4",fontSize:"18px"}}>
@@ -71,7 +71,7 @@ export function ProfileScreen({playerName,totalStars,onNewGame,onHome,soundOn,on
             View Achievements 🏆
           </button>
           <div className="flex justify-between items-center w-full mt-1">
-            <button className="fn font-bold" style={{color:"#9E9E9E",fontSize:"14px",background:"none",border:"none",cursor:"pointer"}}>
+            <button onClick={onSwitchPlayer} className="fn font-bold" style={{color:"#9E9E9E",fontSize:"14px",background:"none",border:"none",cursor:"pointer"}}>
               Switch Player
             </button>
             <button onClick={onParent} className="text-2xl hover:scale-110 transition-transform" title="Parent/Teacher">⚙️</button>

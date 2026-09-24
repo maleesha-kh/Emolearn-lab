@@ -42,3 +42,92 @@ export interface Badge {
   color: string;
   unlocked: boolean;
 }
+
+export interface AvatarOption {
+  id: string;
+  emoji: string;
+  color: string;
+  image?: string;
+}
+
+// --- Backend API types (field casing matches the JSON responses exactly) ---
+
+export interface Player {
+  id: string;
+  nickname: string;
+  avatar_id: string;
+}
+
+export interface EmotionStat {
+  correct: number;
+  attempts: number;
+}
+
+export interface RoundSummary {
+  round_no: number;
+  target_emotion: Mood;
+  child_correct: boolean;
+}
+
+export interface SessionSummary {
+  id: string;
+  finished_at: string | null;
+  score: number | null;
+  stars: number | null;
+  rounds: RoundSummary[];
+}
+
+export interface BadgeRecord {
+  badge_id: string;
+  earned_at: string;
+}
+
+export interface ProfileData {
+  player: Player;
+  total_stars: number;
+  sessions_played: number;
+  emotion_stats: Record<Mood, EmotionStat>;
+  recent_sessions: SessionSummary[];
+  badges: BadgeRecord[];
+}
+
+export interface SessionOut {
+  id: string;
+  player_id: string;
+  mood_checkin: string | null;
+  started_at: string;
+  finished_at: string | null;
+  score: number | null;
+  stars: number | null;
+}
+
+export interface RoundCreate {
+  round_no: number;
+  target_emotion: Mood;
+  chosen_image: string;
+  child_correct: boolean;
+  predicted_emotion?: Mood | null;
+  confidence?: number | null;
+}
+
+export interface RoundOut {
+  round_no: number;
+  target_emotion: Mood;
+  chosen_image: string;
+  child_correct: boolean;
+  predicted_emotion: Mood | null;
+  confidence: number | null;
+}
+
+export interface FinishSessionOut {
+  session: SessionOut;
+  new_badges: string[];
+}
+
+export interface PinStatus {
+  is_set: boolean;
+}
+
+export interface PinVerifyResult {
+  valid: boolean;
+}
