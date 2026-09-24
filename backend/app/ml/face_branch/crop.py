@@ -1,10 +1,13 @@
 """Face branch inference-time crop."""
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 from PIL import Image
 
 from app.core import config
+
+
+Box = Tuple[int, int, int, int]
 
 
 def crop_face(rgba_image: Image.Image, landmarks: Optional[List], scale: float = 2.6) -> Image.Image:
@@ -13,6 +16,13 @@ def crop_face(rgba_image: Image.Image, landmarks: Optional[List], scale: float =
     occluded ears or a missing pose. Always returns the crop flattened onto
     FACE_BG_COLOR as RGB.
     """
+    return crop_face_with_box(rgba_image, landmarks, scale)[0]
+
+
+def crop_face_with_box(
+    rgba_image: Image.Image, landmarks: Optional[List], scale: float = 2.6
+) -> Tuple[Image.Image, Box]:
+    """Same as crop_face(), plus the (x1, y1, x2, y2) crop box in full-image pixels."""
     width, height = rgba_image.size
     alpha = np.array(rgba_image)[:, :, 3] > 128
 
@@ -41,20 +51,20 @@ def crop_face(rgba_image: Image.Image, landmarks: Optional[List], scale: float =
     box_x1 = max(0, int(center_x - side / 2))
     box_x2 = min(width, int(center_x + side / 2))
 
-    crop = rgba_image.crop((box_x1, box_y1, box_x2, box_y2))
-    return _flatten(crop)
+    box = (box_x1, box_y1, box_x2, box_y2)
+    return _flatten(rgba_image.crop(box)), box
 
 
-def _crop_from_alpha_mask(rgba_image: Image.Image, alpha: np.ndarray, height: int) -> Image.Image:
+def _crop_from_alpha_mask(rgba_image: Image.Image, alpha: np.ndarray, height: int) -> Tuple[Image.Image, Box]:
     """No pose detected — fall back to the alpha-mask bounding box, keeping only its top 30%."""
     ys, xs = np.where(alpha)
     if len(ys) == 0:
-        return _flatten(rgba_image)
+        return _flatten(rgba_image), (0, 0, rgba_image.width, rgba_image.height)
 
-    x1, y1, x2, y2 = xs.min(), ys.min(), xs.max(), ys.max()
+    x1, y1, x2, y2 = int(xs.min()), int(ys.min()), int(xs.max()), int(ys.max())
     head_h = int((y2 - y1) * 0.30)
-    crop = rgba_image.crop((x1, y1, x2, min(y1 + head_h, height)))
-    return _flatten(crop)
+    box = (x1, y1, x2, min(y1 + head_h, height))
+    return _flatten(rgba_image.crop(box)), box
 
 
 def _flatten(rgba_image: Image.Image) -> Image.Image:

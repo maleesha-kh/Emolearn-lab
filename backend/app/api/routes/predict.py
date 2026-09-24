@@ -14,13 +14,14 @@ from PIL import Image, UnidentifiedImageError
 
 from app.core import config
 from app.core.fusion import fuse_predictions
-from app.ml.face_branch.crop import crop_face
-from app.ml.face_branch.gradcam import generate_heatmap_base64
+from app.ml import explain
+from app.ml.face_branch.crop import crop_face_with_box
+from app.ml.face_branch.gradcam import compute_gradcam, render_heatmap_base64
 from app.ml.face_branch.inference import predict_face
 from app.ml.pipeline import downscale
-from app.ml.pose_branch.inference import predict_pose_from_landmarks
+from app.ml.pose_branch.inference import baseline_keypoints, predict_pose_from_keypoints, predict_pose_from_landmarks
 from app.ml.preprocessing import prepare_image
-from app.schemas.prediction import BranchResult, PredictionResponse, Weights
+from app.schemas.prediction import BranchResult, ExplanationResult, PredictionResponse, Weights
 
 logger = logging.getLogger(__name__)
 
@@ -63,7 +64,7 @@ def predict_emotion(file: UploadFile = File(...)):
     if character_fraction < MIN_CHARACTER_ALPHA_FRACTION:
         raise HTTPException(status_code=422, detail="No character found in the image")
 
-    face_crop = crop_face(prepared.rgba, prepared.landmarks)
+    face_crop, crop_box = crop_face_with_box(prepared.rgba, prepared.landmarks)
 
     face_start = time.perf_counter()
     face_probs = predict_face(face_crop)
@@ -80,24 +81,35 @@ def predict_emotion(file: UploadFile = File(...)):
     # emotion — those can differ once the pose branch is weighed in.
     heatmap_start = time.perf_counter()
     try:
-        heatmap = generate_heatmap_base64(face_crop, config.EMOTION_CLASSES.index(face_emotion))
+        cam = compute_gradcam(face_crop, config.EMOTION_CLASSES.index(face_emotion))
+        heatmap = render_heatmap_base64(face_crop, cam)
     except Exception:
         logger.exception("Grad-CAM heatmap generation failed")
-        heatmap = None
+        cam, heatmap = None, None
     heatmap_time = time.perf_counter() - heatmap_start
+
+    pose_emotion = max(pose_probs, key=pose_probs.get) if pose_probs is not None else None
+
+    explain_start = time.perf_counter()
+    try:
+        explanation = _explain(prepared, crop_box, cam, fused, face_emotion, face_probs, pose_emotion, pose_probs)
+    except Exception:
+        logger.exception("Explanation generation failed")
+        explanation = None
+    explain_time = time.perf_counter() - explain_start
 
     if config.DEBUG_SAVE_IMAGES:
         _save_debug_images(prepared, face_crop, heatmap)
 
     logger.info(
-        "predict timings (s): prep=%.3f face=%.3f pose=%.3f heatmap=%.3f total=%.3f",
-        prep_time, face_time, pose_time, heatmap_time, time.perf_counter() - total_start,
+        "predict timings (s): prep=%.3f face=%.3f pose=%.3f heatmap=%.3f explain=%.3f total=%.3f",
+        prep_time, face_time, pose_time, heatmap_time, explain_time, time.perf_counter() - total_start,
     )
 
     pose_result = None
     if pose_probs is not None:
         pose_result = BranchResult(
-            emotion=max(pose_probs, key=pose_probs.get),
+            emotion=pose_emotion,
             probs={k: round(v, 4) for k, v in pose_probs.items()},
         )
 
@@ -117,7 +129,42 @@ def predict_emotion(file: UploadFile = File(...)):
         ),
         heatmap_base64=heatmap,
         heatmap_emotion=face_emotion,
+        explanation=explanation,
     )
+
+
+def _explain(prepared, crop_box, cam, fused, face_emotion, face_probs, pose_emotion, pose_probs):
+    """Grad-CAM region scores + pose occlusion + body cues -> ExplanationResult."""
+    if cam is not None:
+        regions = explain.face_regions_in_crop(prepared.landmarks, prepared.rgba.size, crop_box)
+        region_scores = explain.score_face_regions(cam, regions)
+        face_focus = explain.focus_region(region_scores, cam)
+    else:
+        region_scores, face_focus = {}, "other"
+
+    pose_group_scores = {}
+    if fused.mode == "fused" and pose_emotion is not None:
+        pose_group_scores = explain.pose_group_importance(
+            explain.landmarks_to_keypoints(prepared.landmarks),
+            baseline_keypoints(),
+            predict_pose_from_keypoints,
+            pose_emotion,
+        )
+
+    result = explain.build_explanation(
+        emotion=fused.emotion,
+        confidence=fused.confidence,
+        mode=fused.mode,
+        face_emotion=face_emotion,
+        face_probs=face_probs,
+        pose_emotion=pose_emotion,
+        pose_probs=pose_probs,
+        region_scores=region_scores,
+        face_focus=face_focus,
+        pose_cues=explain.detect_pose_cues(prepared.landmarks),
+        pose_group_scores=pose_group_scores,
+    )
+    return ExplanationResult(**vars(result))
 
 
 def _save_debug_images(prepared, face_crop, heatmap_base64):

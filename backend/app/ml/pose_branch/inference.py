@@ -3,9 +3,11 @@ Pose branch inference — gets an emotion probability from the saved Random
 Forest model, given MediaPipe landmarks the shared preprocessing pipeline
 already computed.
 """
+import os
 from typing import Dict, List, Optional
 
 import joblib
+import numpy as np
 import pandas as pd
 
 from app.core import config
@@ -14,6 +16,10 @@ from app.core import config
 # (loading it on every request would be very slow)
 _pose_model = None
 _label_encoder = None
+_baseline_keypoints = None
+
+# Training features, used as the "neutral" pose for occlusion explanations
+POSE_TRAINING_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "pose_keypoints_bg_removed.csv")
 
 
 def load_pose_model():
@@ -48,3 +54,19 @@ def _predict_from_keypoints(keypoints: List[float]) -> Dict[str, float]:
     class_labels = label_encoder.classes_
 
     return {label: float(p) for label, p in zip(class_labels, probs)}
+
+
+def predict_pose_from_keypoints(keypoints) -> Dict[str, float]:
+    """Keypoint-vector version of predict_pose_from_landmarks(), used by the occlusion explanation."""
+    return _predict_from_keypoints(list(np.asarray(keypoints, dtype=float)))
+
+
+def baseline_keypoints() -> np.ndarray:
+    """Average training keypoint vector (all classes) — the stand-in for an 'occluded' body part."""
+    global _baseline_keypoints
+    if _baseline_keypoints is None:
+        df = pd.read_csv(POSE_TRAINING_CSV)
+        columns = [c for c in df.columns if c.startswith("kp_")]
+        columns.sort(key=lambda c: int(c.split("_")[1]))
+        _baseline_keypoints = df[columns].mean().to_numpy(dtype=float)
+    return _baseline_keypoints

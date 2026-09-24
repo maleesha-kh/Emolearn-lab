@@ -64,12 +64,11 @@ def _get_grad_cam_models():
     return _grad_cam_models
 
 
-def generate_heatmap_base64(face_crop: Image.Image, class_index: int) -> str:
+def compute_gradcam(face_crop: Image.Image, class_index: int) -> np.ndarray:
     """
-    Generates a Grad-CAM heatmap for the predicted class and returns it as a
-    base64 data-URL string the frontend can drop straight into an
-    <img src="..."> tag. face_crop must already be the cropped face image
-    used for prediction — the heatmap is overlaid on it directly.
+    Raw Grad-CAM map for class_index, normalised to 0..1 and resized to the
+    face crop's (height, width). The explanation step scores facial regions
+    on this; render_heatmap_base64() turns it into the overlay image.
     """
     feature_extractor, classifier_head = _get_grad_cam_models()
     batch = preprocess_image(face_crop)  # (1, H, W, 3)
@@ -91,11 +90,19 @@ def generate_heatmap_base64(face_crop: Image.Image, class_index: int) -> str:
         heatmap = heatmap / max_value
     heatmap = heatmap.numpy()
 
-    original = face_crop.convert("RGB")
-    width, height = original.size
+    width, height = face_crop.size
+    return np.clip(cv2.resize(heatmap, (width, height)), 0.0, 1.0)
 
-    heatmap_resized = cv2.resize(heatmap, (width, height))
-    heatmap_uint8 = np.uint8(255 * heatmap_resized)
+
+def render_heatmap_base64(face_crop: Image.Image, cam: np.ndarray) -> str:
+    """
+    Blends a compute_gradcam() map over the face crop and returns it as a
+    base64 data-URL string the frontend can drop straight into an
+    <img src="..."> tag.
+    """
+    original = face_crop.convert("RGB")
+
+    heatmap_uint8 = np.uint8(255 * cam)
     heatmap_color_bgr = cv2.applyColorMap(heatmap_uint8, cv2.COLORMAP_JET)
     heatmap_color_rgb = cv2.cvtColor(heatmap_color_bgr, cv2.COLOR_BGR2RGB)
     heatmap_img = Image.fromarray(heatmap_color_rgb)
@@ -106,3 +113,8 @@ def generate_heatmap_base64(face_crop: Image.Image, class_index: int) -> str:
     overlay.save(buffer, format="PNG")
     encoded = base64.b64encode(buffer.getvalue()).decode("utf-8")
     return f"data:image/png;base64,{encoded}"
+
+
+def generate_heatmap_base64(face_crop: Image.Image, class_index: int) -> str:
+    """Grad-CAM overlay for the predicted class. face_crop must be the crop used for prediction."""
+    return render_heatmap_base64(face_crop, compute_gradcam(face_crop, class_index))
