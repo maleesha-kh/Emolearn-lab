@@ -1,5 +1,6 @@
 import type {
   BadgeRecord,
+  DashboardData,
   FinishSessionOut,
   PinStatus,
   PinVerifyResult,
@@ -41,6 +42,10 @@ async function request<T>(path: string, options?: RequestInit): Promise<ApiResul
     return { kind: "error", status: response.status, body };
   }
 
+  if (response.status === 204) {
+    return { kind: "ok", data: undefined as T };
+  }
+
   try {
     return { kind: "ok", data: (await response.json()) as T };
   } catch {
@@ -58,6 +63,22 @@ export function createPlayer(payload: { nickname: string; avatar_id: string }) {
 
 export function getPlayer(playerId: string) {
   return request<Player>(`/players/${playerId}`);
+}
+
+export function updatePlayer(playerId: string, payload: { nickname?: string; avatar_id?: string }) {
+  return request<Player>(`/players/${playerId}`, { method: "PATCH", body: JSON.stringify(payload) });
+}
+
+export function deletePlayer(playerId: string) {
+  return request<undefined>(`/players/${playerId}`, { method: "DELETE" });
+}
+
+export function getDashboard(playerId: string) {
+  return request<DashboardData>(`/players/${playerId}/dashboard`);
+}
+
+export function reportCsvUrl(playerId: string) {
+  return `${API_URL}/players/${playerId}/report.csv`;
 }
 
 export function getProfile(playerId: string) {

@@ -136,3 +136,39 @@ export interface PinVerifyResult {
 export interface RecoveryCodeResult {
   recovery_code: string;
 }
+
+export interface EmotionAccuracy {
+  correct: number;
+  attempts: number;
+  percent: number | null;
+}
+
+export interface DashboardRound {
+  round_no: number;
+  target_emotion: Mood;
+  child_correct: boolean;
+  predicted_emotion: Mood | null;
+  confidence: number | null;
+}
+
+export interface DashboardSession {
+  id: string;
+  started_at: string;
+  finished_at: string | null;
+  mood_checkin: string | null;
+  score: number | null;
+  stars: number | null;
+  rounds: DashboardRound[];
+}
+
+export interface DashboardData {
+  player: Player;
+  total_sessions: number;
+  average_score: number | null;
+  emotion_accuracy: Record<Mood, EmotionAccuracy>;
+  best_emotion: Mood | null;
+  needs_practice: Mood | null;
+  all_equal: boolean;
+  badges: BadgeRecord[];
+  sessions: DashboardSession[];
+}

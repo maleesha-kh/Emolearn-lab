@@ -102,6 +102,19 @@ export default function App() {
     go("welcome");
   };
 
+  const handleCurrentPlayerUpdated = (player: Player) => {
+    setCurrentPlayer((prev) => (prev && prev.id === player.id ? player : prev));
+    setSavedPlayer((prev) => (prev && prev.id === player.id ? player : prev));
+  };
+
+  const handleCurrentPlayerDeleted = (playerId: string) => {
+    setCurrentPlayer((prev) => (prev && prev.id === playerId ? null : prev));
+    setSavedPlayer((prev) => (prev && prev.id === playerId ? null : prev));
+    if (localStorage.getItem(PLAYER_ID_KEY) === playerId) {
+      localStorage.removeItem(PLAYER_ID_KEY);
+    }
+  };
+
   const handleMood = (m: Mood) => {
     setSelectedMood(m);
     go(`res-${m}` as Scr);
@@ -293,7 +306,14 @@ export default function App() {
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
-    parent: <ParentScreen playerName={currentPlayer?.nickname ?? ""} onBack={() => go("profile")} />,
+    parent: (
+      <ParentScreen
+        currentPlayerId={currentPlayer?.id ?? ""}
+        onBack={() => go(currentPlayer ? "profile" : "welcome")}
+        onPlayerUpdated={handleCurrentPlayerUpdated}
+        onPlayerDeleted={handleCurrentPlayerDeleted}
+      />
+    ),
   };
 
   // Guard: without a logged-in player, only the welcome screen may show —
