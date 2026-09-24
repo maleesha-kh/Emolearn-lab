@@ -1,7 +1,72 @@
+import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
+import { changePin } from "../lib/api";
+
+function digitsOnly(v:string){
+  return v.replace(/\D/g,"").slice(0,4);
+}
+
+function ChangePinForm({onBack}:{onBack:()=>void}){
+  const [currentPin,setCurrentPin]=useState("");
+  const [newPin,setNewPin]=useState("");
+  const [confirmPin,setConfirmPin]=useState("");
+  const [message,setMessage]=useState<{text:string;ok:boolean}|null>(null);
+  const [saving,setSaving]=useState(false);
+
+  const canSubmit=currentPin.length===4&&newPin.length===4&&confirmPin.length===4&&!saving;
+
+  const handleSubmit=async()=>{
+    if(newPin!==confirmPin){
+      setMessage({text:"New PINs didn't match. Try again.",ok:false});
+      return;
+    }
+    setSaving(true);
+    const res=await changePin(currentPin,newPin);
+    setSaving(false);
+    if(res.kind==="ok"){
+      setMessage({text:"PIN changed! ✅",ok:true});
+      setCurrentPin("");setNewPin("");setConfirmPin("");
+    } else if(res.status===403){
+      setMessage({text:"Current PIN is wrong",ok:false});
+    } else {
+      setMessage({text:"Emo can't connect right now 🔌",ok:false});
+    }
+  };
+
+  return(
+    <div className="rounded-2xl p-6 bg-white" style={{maxWidth:"420px",border:"1.5px solid #E0E0E0",boxShadow:"0 4px 15px rgba(0,0,0,.05)"}}>
+      <button onClick={onBack} className="fn font-bold mb-4" style={{color:"#00BCD4",fontSize:"15px",background:"none",border:"none",cursor:"pointer"}}>← Back</button>
+      <h2 className="fn font-bold mb-4" style={{fontSize:"20px",color:"#212121"}}>Change Parent PIN</h2>
+
+      {[
+        {label:"Current PIN",value:currentPin,set:setCurrentPin},
+        {label:"New PIN",value:newPin,set:setNewPin},
+        {label:"Confirm New PIN",value:confirmPin,set:setConfirmPin},
+      ].map(f=>(
+        <div key={f.label} className="mb-4">
+          <label className="fn font-bold block mb-1" style={{fontSize:"13px",color:"#546E7A"}}>{f.label}</label>
+          <input type="password" inputMode="numeric" maxLength={4} value={f.value}
+            onChange={e=>f.set(digitsOnly(e.target.value))}
+            className="fn font-bold rounded-xl outline-none w-full"
+            style={{height:"48px",padding:"0 16px",border:"2px solid #CFD8DC",fontSize:"18px",letterSpacing:"4px"}}/>
+        </div>
+      ))}
+
+      {message&&(
+        <p className="fn font-bold mb-4" style={{color:message.ok?"#4CAF50":"#EF5350",fontSize:"14px"}}>{message.text}</p>
+      )}
+
+      <button onClick={handleSubmit} disabled={!canSubmit}
+        className="fn font-bold rounded-full w-full" style={{height:"52px",background:canSubmit?"#00BCD4":"#ccc",color:"white",border:"none",cursor:canSubmit?"pointer":"not-allowed"}}>
+        {saving?"Saving...":"Change PIN"}
+      </button>
+    </div>
+  );
+}
 
 export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>void}){
+  const [view,setView]=useState<"dashboard"|"settings">("dashboard");
   const chartData=[
     {name:"Happy",accuracy:75,color:"#FFC107"},
     {name:"Sad",  accuracy:50,color:"#42A5F5"},
@@ -21,7 +86,8 @@ export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>v
       <div className="flex-shrink-0 flex flex-col py-8 px-6" style={{width:"240px",background:"#006064",minHeight:"100vh"}}>
         <div className="ff text-white mb-8" style={{fontSize:"22px"}}>EmoLearn Lab ✨</div>
         {["📊 Sessions","👤 Profile","🏆 Achievements","📖 Dictionary","⚙️ Settings"].map(item=>(
-          <button key={item} className="fn font-bold text-left py-3 px-4 rounded-xl mb-2 transition-all hover:bg-white hover:bg-opacity-20"
+          <button key={item} onClick={item==="⚙️ Settings"?()=>setView("settings"):undefined}
+            className="fn font-bold text-left py-3 px-4 rounded-xl mb-2 transition-all hover:bg-white hover:bg-opacity-20"
             style={{color:"rgba(255,255,255,.85)",fontSize:"16px",background:"none",border:"none",cursor:"pointer"}}>
             {item}
           </button>
@@ -44,6 +110,10 @@ export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>v
           </button>
         </div>
 
+        {view==="settings" ? (
+          <ChangePinForm onBack={()=>setView("dashboard")}/>
+        ) : (
+        <>
         {/* Stat cards */}
         <div className="grid gap-4 mb-8" style={{gridTemplateColumns:"repeat(auto-fill,minmax(180px,1fr))"}}>
           {[
@@ -110,6 +180,8 @@ export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>v
             </table>
           </div>
         </div>
+        </>
+        )}
       </div>
     </div>
   );

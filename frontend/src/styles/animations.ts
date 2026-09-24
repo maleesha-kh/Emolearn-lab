@@ -11,6 +11,7 @@ export const GLOBAL_STYLES = `
   @keyframes arcFill{0%{stroke-dasharray:0 283}100%{stroke-dasharray:283 0}}
   @keyframes blink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
   @keyframes breathePulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.45);opacity:1}}
+  @keyframes shakeX{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
   .af{animation:float 3s ease-in-out infinite}
   .afb{animation:floatB 4s ease-in-out infinite}
   .asr{animation:spinRing 10s linear infinite}
@@ -21,6 +22,7 @@ export const GLOBAL_STYLES = `
   .atw{animation:twinkle 2.5s ease-in-out infinite}
   .aaf{animation:arcFill 2.2s ease-out forwards}
   .abr{animation:breathePulse 4s ease-in-out infinite}
+  .ashk{animation:shakeX .5s ease-in-out}
   .ff{font-family:'Fredoka One',cursive!important}
   .fn{font-family:'Nunito',sans-serif!important}
   *::-webkit-scrollbar{width:5px}
