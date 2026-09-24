@@ -37,7 +37,8 @@ venv\Scripts\python.exe -m pytest tests
 
 ## Parent PIN
 
-If a parent forgets their PIN, delete it so `/parent/pin/setup` can be used again:
+If a parent forgets their PIN and their recovery code, delete both so
+`/parent/pin/setup` can be used again:
 
 ```
 venv\Scripts\python.exe reset_pin.py

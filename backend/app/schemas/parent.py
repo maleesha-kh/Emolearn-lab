@@ -13,6 +13,7 @@ def _validate_pin(v: str) -> str:
 
 class PinStatusOut(BaseModel):
     is_set: bool
+    has_recovery_code: bool
 
 
 class PinSetup(BaseModel):
@@ -42,6 +43,29 @@ class PinChange(BaseModel):
     new_pin: str
 
     @field_validator("current_pin", "new_pin")
+    @classmethod
+    def check_pin(cls, v: str) -> str:
+        return _validate_pin(v)
+
+
+class RecoveryCodeOut(BaseModel):
+    recovery_code: str
+
+
+class PinRecover(BaseModel):
+    recovery_code: str
+    new_pin: str
+
+    @field_validator("new_pin")
+    @classmethod
+    def check_new_pin(cls, v: str) -> str:
+        return _validate_pin(v)
+
+
+class RecoveryRegenerate(BaseModel):
+    pin: str
+
+    @field_validator("pin")
     @classmethod
     def check_pin(cls, v: str) -> str:
         return _validate_pin(v)

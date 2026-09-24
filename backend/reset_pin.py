@@ -1,24 +1,36 @@
-"""Delete the saved parent PIN, for when a parent forgets it.
+"""Delete the saved parent PIN and recovery code, for when a parent forgets
+both.
 
 Run from backend/ with the venv active:
     venv\\Scripts\\python.exe reset_pin.py
 """
-from app.api.routes.parent import PIN_SETTING_KEY
+from app.api.routes.parent import (
+    PIN_SETTING_KEY,
+    RECOVERY_FAIL_COUNT_KEY,
+    RECOVERY_HASH_KEY,
+    RECOVERY_LOCKED_UNTIL_KEY,
+)
 from app.db.database import SessionLocal, init_db
 from app.db.models import Setting
+
+KEYS = [PIN_SETTING_KEY, RECOVERY_HASH_KEY, RECOVERY_FAIL_COUNT_KEY, RECOVERY_LOCKED_UNTIL_KEY]
 
 
 def main() -> None:
     init_db()
     db = SessionLocal()
     try:
-        setting = db.get(Setting, PIN_SETTING_KEY)
-        if setting is None:
-            print("No PIN is currently set.")
+        removed = False
+        for key in KEYS:
+            setting = db.get(Setting, key)
+            if setting is not None:
+                db.delete(setting)
+                removed = True
+        if not removed:
+            print("No PIN or recovery code is currently set.")
             return
-        db.delete(setting)
         db.commit()
-        print("Parent PIN has been reset. The next /parent/pin/setup call will set a new one.")
+        print("Parent PIN and recovery code have been reset. The next /parent/pin/setup call will set new ones.")
     finally:
         db.close()
 
