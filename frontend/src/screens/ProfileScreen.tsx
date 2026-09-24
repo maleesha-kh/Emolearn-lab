@@ -1,18 +1,32 @@
-import { TopBar, Btn, BgDeco } from "../components/common/UI";
+import { useEffect, useState } from "react";
+import { TopBar, Btn, BgDeco, Stars } from "../components/common/UI";
 import { Avatar } from "../components/common/Avatar";
+import { EI } from "../data/emotions";
+import { getProfile } from "../lib/api";
+import { formatShortDate } from "../lib/format";
+import type { ProfileData, Mood } from "../types";
 
-export function ProfileScreen({playerName,avatarId,totalStars,onNewGame,onHome,soundOn,onSound,onParent,onAchievements,onSwitchPlayer}:{playerName:string;avatarId:string;totalStars:number;onNewGame:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;onParent:()=>void;onAchievements:()=>void;onSwitchPlayer:()=>void}){
-  const sessions=[
-    {date:"Jul 20",stars:4,results:[true,true,true,true]},
-    {date:"Jul 19",stars:3,results:[true,true,false,true]},
-    {date:"Jul 18",stars:2,results:[true,false,true,false]},
-  ];
-  const bestScores=[
-    {label:"Happy 😊",score:"2/4",color:"#FFC107",bg:"#FFF9C4"},
-    {label:"Sad 😢",   score:"3/4",color:"#42A5F5",bg:"#E3F2FD"},
-    {label:"Angry 😠", score:"1/4",color:"#EF5350",bg:"#FFEBEE"},
-    {label:"Surprised 😲",score:"2/4",color:"#AB47BC",bg:"#F3E5F5"},
-  ];
+const EMOTION_ORDER: Mood[] = ["happy", "sad", "angry", "surprised"];
+
+type Status = "idle" | "loading" | "error" | "loaded";
+
+export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,soundOn,onSound,onParent,onAchievements,onSwitchPlayer}:{playerId:string;playerName:string;avatarId:string;onNewGame:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;onParent:()=>void;onAchievements:()=>void;onSwitchPlayer:()=>void}){
+  const [profile,setProfile]=useState<ProfileData|null>(null);
+  const [status,setStatus]=useState<Status>(playerId?"loading":"idle");
+  const [reloadTick,setReloadTick]=useState(0);
+
+  useEffect(()=>{
+    if(!playerId){ setStatus("idle"); return; }
+    let cancelled=false;
+    setStatus("loading");
+    getProfile(playerId).then(res=>{
+      if(cancelled)return;
+      if(res.kind==="ok"){ setProfile(res.data); setStatus("loaded"); }
+      else { setStatus("error"); }
+    });
+    return ()=>{cancelled=true;};
+  },[playerId,reloadTick]);
+
   return(
     <div className="min-h-screen w-full relative" style={{background:"linear-gradient(140deg,#00BCD4 0%,#80DEEA 100%)"}}>
       <BgDeco items={["⭐","✨","💛","🌟","⭐","✨"]} opacity={.25}/>
@@ -25,45 +39,79 @@ export function ProfileScreen({playerName,avatarId,totalStars,onNewGame,onHome,s
             <Avatar avatarId={avatarId} size={140}/>
           </div>
           <div className="ff mb-3" style={{fontSize:"42px",color:"#004D40"}}>{playerName||"Explorer"}</div>
-          <div className="ff rounded-full px-5 py-2 text-white mb-6" style={{background:"#00BCD4",fontSize:"18px"}}>
-            Learning Stars ⭐ {totalStars} total
-          </div>
 
-          {/* Best scores */}
-          <div className="w-full mb-6">
-            <div className="ff mb-3" style={{fontSize:"20px",color:"#00838F"}}>My Best Scores</div>
-            <div className="grid grid-cols-2 gap-3">
-              {bestScores.map(s=>(
-                <div key={s.label} className="rounded-2xl p-3 text-center fn font-bold"
-                  style={{background:s.bg,border:`2px solid ${s.color}`,fontSize:"15px",color:s.color}}>
-                  {s.label}<br/><span className="ff text-2xl" style={{color:s.color}}>{s.score}</span>
-                </div>
-              ))}
+          {status==="loading"&&(
+            <div className="fn font-bold mb-6" style={{color:"#546E7A",fontSize:"16px"}}>Loading your profile... 🔄</div>
+          )}
+
+          {status==="error"&&(
+            <div className="flex flex-col items-center mb-6">
+              <p className="fn font-bold mb-3" style={{color:"#EF5350",fontSize:"16px"}}>Emo can't connect right now 🔌</p>
+              <button onClick={()=>setReloadTick(t=>t+1)}
+                className="fn font-bold rounded-full px-5" style={{height:"48px",background:"#00BCD4",color:"white",border:"none",cursor:"pointer"}}>
+                Try again
+              </button>
             </div>
-          </div>
+          )}
 
-          {/* Sessions played */}
-          <div className="w-full mb-4">
-            <div className="ff mb-2" style={{fontSize:"20px",color:"#00838F"}}>Sessions Played</div>
-            <div className="ff text-center" style={{fontSize:"56px",color:"#00BCD4"}}>{sessions.length}</div>
-          </div>
+          {status==="loaded"&&profile&&(
+            <>
+              <div className="ff rounded-full px-5 py-2 text-white mb-6" style={{background:"#00BCD4",fontSize:"18px"}}>
+                Learning Stars ⭐ {profile.total_stars} total
+              </div>
 
-          {/* Session history */}
-          <div className="w-full mb-6">
-            <div className="ff mb-3" style={{fontSize:"18px",color:"#00838F"}}>My Sessions</div>
-            {sessions.map((s,i)=>(
-              <div key={i} className="flex items-center gap-3 mb-2 rounded-xl px-4 py-3 fn font-bold"
-                style={{background:"#F8F9FA",border:"1.5px solid #E0E0E0",fontSize:"15px"}}>
-                <span style={{color:"#546E7A",minWidth:"55px"}}>{s.date}</span>
-                <span>{"⭐".repeat(s.stars)}{"☆".repeat(4-s.stars)}</span>
-                <div className="flex gap-1 ml-auto">
-                  {s.results.map((r,j)=>(
-                    <span key={j} className="text-lg">{r?"✅":"❌"}</span>
+              {profile.sessions_played>0&&(
+                <div className="w-full mb-6">
+                  <div className="ff mb-3" style={{fontSize:"20px",color:"#00838F"}}>My Emotion Scores</div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {EMOTION_ORDER.map(mood=>{
+                      const e=EI[mood];
+                      const stat=profile.emotion_stats[mood];
+                      return(
+                        <div key={mood} className="rounded-2xl p-3 text-center fn font-bold"
+                          style={{background:e.bg,border:`2px solid ${e.color}`,fontSize:"15px",color:e.color}}>
+                          {e.label} {e.emoji}<br/>
+                          <span className="ff text-2xl" style={{color:e.color}}>
+                            {stat.attempts===0?"Not tried yet":`${stat.correct}/${stat.attempts}`}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Sessions played */}
+              <div className="w-full mb-4">
+                <div className="ff mb-2" style={{fontSize:"20px",color:"#00838F"}}>Sessions Played</div>
+                <div className="ff text-center" style={{fontSize:"56px",color:"#00BCD4"}}>{profile.sessions_played}</div>
+              </div>
+
+              {profile.sessions_played>0&&(
+                <div className="w-full mb-6">
+                  <div className="ff mb-3" style={{fontSize:"18px",color:"#00838F"}}>My Sessions</div>
+                  {profile.recent_sessions.map(s=>(
+                    <div key={s.id} className="flex items-center gap-3 mb-2 rounded-xl px-4 py-3 fn font-bold"
+                      style={{background:"#F8F9FA",border:"1.5px solid #E0E0E0",fontSize:"15px"}}>
+                      <span style={{color:"#546E7A",minWidth:"55px"}}>{s.finished_at?formatShortDate(s.finished_at):""}</span>
+                      <Stars total={4} filled={s.stars??0} size={18}/>
+                      <div className="flex gap-1 ml-auto">
+                        {[...s.rounds].sort((a,b)=>a.round_no-b.round_no).map(r=>(
+                          <span key={r.round_no} className="text-lg">{r.child_correct?"✅":"❌"}</span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
+              )}
+
+              {profile.sessions_played===0&&(
+                <div className="fn font-bold text-center mb-4" style={{color:"#546E7A",fontSize:"16px"}}>
+                  Play your first game to fill this in! 🎮
+                </div>
+              )}
+            </>
+          )}
 
           <Btn ch="Start New Game 🎮" onClick={onNewGame} className="w-full mb-3"/>
           <button onClick={onAchievements} className="fn font-bold text-center w-full mb-2"
@@ -81,4 +129,3 @@ export function ProfileScreen({playerName,avatarId,totalStars,onNewGame,onHome,s
     </div>
   );
 }
-

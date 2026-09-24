@@ -47,7 +47,6 @@ export default function App() {
   const [roundResults, setRoundResults] = useState<boolean[]>([]);
   const [lastCorrect, setLastCorrect] = useState(false);
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
-  const [totalStars, setTotalStars] = useState(8);
   const [prediction, setPrediction] = useState<PredictionResult | null>(null);
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [newBadges, setNewBadges] = useState<string[]>([]);
@@ -180,7 +179,6 @@ export default function App() {
   const handleContinue = async () => {
     const nextRound = currentRound + 1;
     if (nextRound >= ROUNDS.length) {
-      setTotalStars((s) => s + score);
       setBadgePopupReady(false);
 
       await Promise.allSettled(roundPromisesRef.current);
@@ -280,9 +278,9 @@ export default function App() {
     ),
     profile: (
       <ProfileScreen
+        playerId={currentPlayer?.id ?? ""}
         playerName={currentPlayer?.nickname ?? ""}
         avatarId={currentPlayer?.avatar_id ?? AVATARS[0].id}
-        totalStars={totalStars}
         onNewGame={handlePlayAgain}
         onHome={home}
         soundOn={soundOn}
@@ -292,7 +290,7 @@ export default function App() {
         onSwitchPlayer={switchPlayer}
       />
     ),
-    achievements: <AchievementsScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
     parent: <ParentScreen playerName={currentPlayer?.nickname ?? ""} onBack={() => go("profile")} />,
