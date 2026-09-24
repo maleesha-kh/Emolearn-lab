@@ -40,7 +40,7 @@ export interface Badge {
   name: string;
   emoji: string;
   color: string;
-  unlocked: boolean;
+  hint: string;
 }
 
 export interface AvatarOption {

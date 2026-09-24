@@ -4,7 +4,7 @@ import { TopBar, Btn, BgDeco, Confetti, Stars } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { CharacterImage } from "../components/character/CharacterImage";
 
-export function SummaryScreen({playerName,score,roundResults,onPlayAgain,onBye,onHome,soundOn,onSound,onBadge}:{playerName:string;score:number;roundResults:boolean[];onPlayAgain:()=>void;onBye:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;onBadge:()=>void}){
+export function SummaryScreen({playerName,score,roundResults,onPlayAgain,onBye,onHome,soundOn,onSound}:{playerName:string;score:number;roundResults:boolean[];onPlayAgain:()=>void;onBye:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [moodBooster,setMoodBooster]=useState(false);
   const emotions=ROUNDS.map((r,i)=>({...r,correct_ans:roundResults[i]}));
   return(
@@ -48,7 +48,7 @@ export function SummaryScreen({playerName,score,roundResults,onPlayAgain,onBye,o
             {moodBooster?(
               <div className="fn font-bold" style={{fontSize:"16px",color:"#546E7A"}}>🌟 You are a SUPERSTAR emotion detective! Emo is SO proud of you! 🤖❤️</div>
             ):(
-              <button onClick={()=>{setMoodBooster(true);setTimeout(onBadge,800)}}
+              <button onClick={()=>setMoodBooster(true)}
                 className="ff rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer"
                 style={{background:"#00BCD4",fontSize:"16px",boxShadow:"0 4px 14px rgba(0,188,212,.4)"}}>
                 Show me! ✨
