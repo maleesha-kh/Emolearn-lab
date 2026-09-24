@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes.game_sessions import router as game_sessions_router
+from app.api.routes.parent import router as parent_router
 from app.api.routes.players import router as players_router
 from app.api.routes.predict import router as predict_router
 from app.db.database import init_db
@@ -37,6 +38,7 @@ app.add_middleware(
 app.include_router(predict_router)
 app.include_router(players_router)
 app.include_router(game_sessions_router)
+app.include_router(parent_router)
 
 @app.get("/")
 def health_check():

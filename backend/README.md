@@ -35,6 +35,14 @@ prediction. See `app/schemas/prediction.py` for the response shape.
 venv\Scripts\python.exe -m pytest tests
 ```
 
+## Parent PIN
+
+If a parent forgets their PIN, delete it so `/parent/pin/setup` can be used again:
+
+```
+venv\Scripts\python.exe reset_pin.py
+```
+
 ## Fusion evaluation
 
 Compares face-only, pose-only and fused accuracy on a held-out test set:

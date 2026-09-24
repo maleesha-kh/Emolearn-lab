@@ -71,3 +71,10 @@ class PlayerBadge(Base):
     earned_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
     player: Mapped["Player"] = relationship(back_populates="badges")
+
+
+class Setting(Base):
+    __tablename__ = "settings"
+
+    key: Mapped[str] = mapped_column(String, primary_key=True)
+    value: Mapped[str] = mapped_column(String, nullable=False)
