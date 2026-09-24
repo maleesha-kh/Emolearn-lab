@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { getPinStatus, setupPin, verifyPin } from "../lib/api";
+import { getPinStatus, recoverPin, regenerateRecoveryCode, setupPin, verifyPin } from "../lib/api";
+import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
 
 type Mode = "loading" | "setup-enter" | "setup-confirm" | "verify" | "error";
 
@@ -21,13 +22,35 @@ function readStoredLockedUntil(): number | null {
   return stored && stored > Date.now() ? stored : null;
 }
 
+function digitsOnly(v: string): string {
+  return v.replace(/\D/g, "").slice(0, 4);
+}
+
 export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack: () => void }) {
   const [mode, setMode] = useState<Mode>("loading");
+  const [hasRecoveryCode, setHasRecoveryCode] = useState(false);
   const [digits, setDigits] = useState(["", "", "", ""]);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [firstPin, setFirstPin] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  // A code just returned by setup/recover/regenerate — shown once, full-screen.
+  const [recoveryCodeToShow, setRecoveryCodeToShow] = useState<string | null>(null);
+
+  // The one-time "you have no recovery code yet" prompt after a correct PIN.
+  const [showRecoveryPrompt, setShowRecoveryPrompt] = useState(false);
+  const [verifiedPin, setVerifiedPin] = useState<string | null>(null);
+  const [promptBusy, setPromptBusy] = useState(false);
+  const [promptMessage, setPromptMessage] = useState<string | null>(null);
+
+  // The "Forgot PIN?" recovery form.
+  const [showRecover, setShowRecover] = useState(false);
+  const [recoveryCodeInput, setRecoveryCodeInput] = useState("");
+  const [recoverNewPin, setRecoverNewPin] = useState("");
+  const [recoverConfirmPin, setRecoverConfirmPin] = useState("");
+  const [recoverMessage, setRecoverMessage] = useState<string | null>(null);
+  const [recoverBusy, setRecoverBusy] = useState(false);
 
   // Wrong-try lockout: kept in localStorage (not just state), so it survives
   // leaving and re-entering the parent area — it can't be reset by navigating away.
@@ -55,8 +78,12 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
     let cancelled = false;
     getPinStatus().then((res) => {
       if (cancelled) return;
-      if (res.kind === "ok") setMode(res.data.is_set ? "verify" : "setup-enter");
-      else setMode("error");
+      if (res.kind === "ok") {
+        setMode(res.data.is_set ? "verify" : "setup-enter");
+        setHasRecoveryCode(res.data.has_recovery_code);
+      } else {
+        setMode("error");
+      }
     });
     return () => {
       cancelled = true;
@@ -104,7 +131,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
       const res = await setupPin(entered);
       setBusy(false);
       if (res.kind === "ok") {
-        onSuccess();
+        setRecoveryCodeToShow(res.data.recovery_code);
       } else {
         setError(true);
         setMessage("Couldn't save the PIN. Try again.");
@@ -125,7 +152,12 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
       setBusy(false);
       if (res.kind === "ok" && res.data.valid) {
         resetLock();
-        onSuccess();
+        if (!hasRecoveryCode) {
+          setVerifiedPin(entered);
+          setShowRecoveryPrompt(true);
+        } else {
+          onSuccess();
+        }
         return;
       }
       setError(true);
@@ -166,6 +198,156 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
     setDigits(next);
     setError(false);
   };
+
+  const openRecover = () => {
+    setShowRecover(true);
+    setRecoveryCodeInput("");
+    setRecoverNewPin("");
+    setRecoverConfirmPin("");
+    setRecoverMessage(null);
+  };
+
+  const closeRecover = () => {
+    setShowRecover(false);
+    setRecoverMessage(null);
+  };
+
+  const handleRecoverSubmit = async () => {
+    if (recoverNewPin.length !== 4 || recoverConfirmPin.length !== 4 || !recoveryCodeInput.trim()) return;
+    if (recoverNewPin !== recoverConfirmPin) {
+      setRecoverMessage("New PINs didn't match. Try again.");
+      return;
+    }
+    setRecoverBusy(true);
+    const res = await recoverPin(recoveryCodeInput, recoverNewPin);
+    setRecoverBusy(false);
+    if (res.kind === "ok") {
+      resetLock();
+      setShowRecover(false);
+      setRecoveryCodeToShow(res.data.recovery_code);
+      return;
+    }
+    if (res.status === 403) {
+      setRecoverMessage("That recovery code is not right");
+    } else if (res.status === 429) {
+      const body = res.body as { retry_after_seconds?: number } | undefined;
+      const minutes = body?.retry_after_seconds ? Math.ceil(body.retry_after_seconds / 60) : 15;
+      setRecoverMessage(`Too many tries. Try again in ${minutes} minutes`);
+    } else if (res.status === 404) {
+      setRecoverMessage("No recovery code was set up. Run reset_pin.py on this computer to reset the PIN.");
+    } else {
+      setRecoverMessage("Emo can't connect right now 🔌");
+    }
+  };
+
+  const handleCreateRecoveryNow = async () => {
+    if (!verifiedPin) return;
+    setPromptBusy(true);
+    const res = await regenerateRecoveryCode(verifiedPin);
+    setPromptBusy(false);
+    setVerifiedPin(null);
+    if (res.kind === "ok") {
+      setShowRecoveryPrompt(false);
+      setRecoveryCodeToShow(res.data.recovery_code);
+    } else {
+      setPromptMessage("Emo can't connect right now 🔌");
+    }
+  };
+
+  const handleSkipRecoveryPrompt = () => {
+    setVerifiedPin(null);
+    setShowRecoveryPrompt(false);
+    onSuccess();
+  };
+
+  if (recoveryCodeToShow) {
+    return (
+      <RecoveryCodeView
+        code={recoveryCodeToShow}
+        onContinue={() => {
+          setRecoveryCodeToShow(null);
+          onSuccess();
+        }}
+      />
+    );
+  }
+
+  if (showRecoveryPrompt) {
+    return (
+      <div className="min-h-screen w-full flex flex-col items-center justify-center" style={{ background: "linear-gradient(140deg,#ECEFF1 0%,#CFD8DC 100%)" }}>
+        <div className="flex flex-col items-center" style={{ maxWidth: "360px", width: "90%" }}>
+          <span className="text-5xl mb-4" style={{ color: "#00838F" }}>🔑</span>
+          <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "26px", fontWeight: 600, color: "#37474F" }}>One more thing</h1>
+          <p className="text-center mb-8" style={{ fontFamily: "system-ui,sans-serif", fontSize: "16px", color: "#78909C" }}>
+            Create a recovery code in case you forget your PIN
+          </p>
+          {promptMessage && (
+            <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "15px" }}>{promptMessage}</p>
+          )}
+          <button onClick={handleCreateRecoveryNow} disabled={promptBusy}
+            className="fn font-bold rounded-full w-full mb-3"
+            style={{ height: "52px", background: "#00BCD4", color: "white", border: "none", cursor: promptBusy ? "default" : "pointer" }}>
+            {promptBusy ? "Creating..." : "Create now"}
+          </button>
+          <button onClick={handleSkipRecoveryPrompt} disabled={promptBusy}
+            className="fn font-bold" style={{ color: "#78909C", fontSize: "15px", background: "none", border: "none", cursor: "pointer" }}>
+            Later
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (showRecover) {
+    const canSubmit = recoveryCodeInput.trim() !== "" && recoverNewPin.length === 4 && recoverConfirmPin.length === 4 && !recoverBusy;
+    return (
+      <div className="min-h-screen w-full flex flex-col items-center justify-center" style={{ background: "linear-gradient(140deg,#ECEFF1 0%,#CFD8DC 100%)" }}>
+        <div className="flex flex-col items-center" style={{ maxWidth: "360px", width: "90%" }}>
+          <button onClick={closeRecover} className="fn font-bold self-start mb-6"
+            style={{ color: "#00BCD4", fontSize: "16px", background: "none", border: "none", cursor: "pointer" }}>← Back</button>
+          <span className="text-5xl mb-4" style={{ color: "#00838F" }}>🔑</span>
+          <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "26px", fontWeight: 600, color: "#37474F" }}>Recover with your code</h1>
+          <p className="text-center mb-6" style={{ fontFamily: "system-ui,sans-serif", fontSize: "15px", color: "#78909C" }}>
+            Enter your recovery code and choose a new PIN
+          </p>
+
+          <div className="w-full mb-4">
+            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Recovery code</label>
+            <input type="text" value={recoveryCodeInput} onChange={(e) => setRecoveryCodeInput(e.target.value.toUpperCase())}
+              placeholder="XXXX-XXXX-XXXX"
+              className="fn font-bold rounded-xl outline-none w-full text-center"
+              style={{ height: "52px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "2px", fontFamily: "'Courier New',monospace" }} />
+          </div>
+
+          <div className="w-full mb-4">
+            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>New PIN</label>
+            <input type="password" inputMode="numeric" maxLength={4} value={recoverNewPin}
+              onChange={(e) => setRecoverNewPin(digitsOnly(e.target.value))}
+              className="fn font-bold rounded-xl outline-none w-full"
+              style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />
+          </div>
+
+          <div className="w-full mb-4">
+            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Confirm new PIN</label>
+            <input type="password" inputMode="numeric" maxLength={4} value={recoverConfirmPin}
+              onChange={(e) => setRecoverConfirmPin(digitsOnly(e.target.value))}
+              className="fn font-bold rounded-xl outline-none w-full"
+              style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />
+          </div>
+
+          {recoverMessage && (
+            <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "14px" }}>{recoverMessage}</p>
+          )}
+
+          <button onClick={handleRecoverSubmit} disabled={!canSubmit}
+            className="fn font-bold rounded-full w-full"
+            style={{ height: "52px", background: canSubmit ? "#00BCD4" : "#ccc", color: "white", border: "none", cursor: canSubmit ? "pointer" : "not-allowed" }}>
+            {recoverBusy ? "Checking..." : "Reset PIN"}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const { title, subtitle } = TITLES[mode];
   const showKeypad = mode === "setup-enter" || mode === "setup-confirm" || mode === "verify";
@@ -221,6 +403,13 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
                 </button>
               ))}
             </div>
+
+            {mode === "verify" && (
+              <button onClick={openRecover} className="fn font-bold"
+                style={{ color: "#00838F", fontSize: "14px", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+                Forgot PIN?
+              </button>
+            )}
           </>
         )}
       </div>

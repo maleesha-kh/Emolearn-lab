@@ -5,6 +5,7 @@ import type {
   PinVerifyResult,
   Player,
   ProfileData,
+  RecoveryCodeResult,
   RoundCreate,
   RoundOut,
   SessionOut,
@@ -17,7 +18,7 @@ const API_URL = import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000";
 // strict:false, and TypeScript's control-flow narrowing on a boolean-literal
 // discriminant (e.g. ok: true | false) doesn't work reliably without
 // strictNullChecks, while a string literal narrows fine either way.
-export type ApiResult<T> = { kind: "ok"; data: T } | { kind: "error"; status: number | null };
+export type ApiResult<T> = { kind: "ok"; data: T } | { kind: "error"; status: number | null; body?: unknown };
 
 async function request<T>(path: string, options?: RequestInit): Promise<ApiResult<T>> {
   let response: Response;
@@ -30,7 +31,15 @@ async function request<T>(path: string, options?: RequestInit): Promise<ApiResul
     return { kind: "error", status: null };
   }
 
-  if (!response.ok) return { kind: "error", status: response.status };
+  if (!response.ok) {
+    let body: unknown;
+    try {
+      body = await response.json();
+    } catch {
+      body = undefined;
+    }
+    return { kind: "error", status: response.status, body };
+  }
 
   try {
     return { kind: "ok", data: (await response.json()) as T };
@@ -80,7 +89,7 @@ export function getPinStatus() {
 }
 
 export function setupPin(pin: string) {
-  return request<PinStatus>("/parent/pin/setup", { method: "POST", body: JSON.stringify({ pin }) });
+  return request<RecoveryCodeResult>("/parent/pin/setup", { method: "POST", body: JSON.stringify({ pin }) });
 }
 
 export function verifyPin(pin: string) {
@@ -91,5 +100,19 @@ export function changePin(currentPin: string, newPin: string) {
   return request<PinStatus>("/parent/pin", {
     method: "PUT",
     body: JSON.stringify({ current_pin: currentPin, new_pin: newPin }),
+  });
+}
+
+export function recoverPin(recoveryCode: string, newPin: string) {
+  return request<RecoveryCodeResult>("/parent/pin/recover", {
+    method: "POST",
+    body: JSON.stringify({ recovery_code: recoveryCode, new_pin: newPin }),
+  });
+}
+
+export function regenerateRecoveryCode(pin: string) {
+  return request<RecoveryCodeResult>("/parent/recovery-code/regenerate", {
+    method: "POST",
+    body: JSON.stringify({ pin }),
   });
 }

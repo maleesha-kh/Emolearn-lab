@@ -126,8 +126,13 @@ export interface FinishSessionOut {
 
 export interface PinStatus {
   is_set: boolean;
+  has_recovery_code: boolean;
 }
 
 export interface PinVerifyResult {
   valid: boolean;
+}
+
+export interface RecoveryCodeResult {
+  recovery_code: string;
 }

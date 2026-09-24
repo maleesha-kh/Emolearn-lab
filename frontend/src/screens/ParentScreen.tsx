@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
-import { changePin } from "../lib/api";
+import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
+import { changePin, regenerateRecoveryCode } from "../lib/api";
 
 function digitsOnly(v:string){
   return v.replace(/\D/g,"").slice(0,4);
@@ -65,8 +66,52 @@ function ChangePinForm({onBack}:{onBack:()=>void}){
   );
 }
 
+function RegenerateRecoveryCodeForm({onCodeReady}:{onCodeReady:(code:string)=>void}){
+  const [pin,setPin]=useState("");
+  const [message,setMessage]=useState<{text:string;ok:boolean}|null>(null);
+  const [saving,setSaving]=useState(false);
+
+  const handleSubmit=async()=>{
+    setSaving(true);
+    const res=await regenerateRecoveryCode(pin);
+    setSaving(false);
+    if(res.kind==="ok"){
+      setPin("");
+      setMessage(null);
+      onCodeReady(res.data.recovery_code);
+    } else if(res.status===403){
+      setMessage({text:"Current PIN is wrong",ok:false});
+    } else {
+      setMessage({text:"Emo can't connect right now 🔌",ok:false});
+    }
+  };
+
+  return(
+    <div className="rounded-2xl p-6 bg-white mt-4" style={{maxWidth:"420px",border:"1.5px solid #E0E0E0",boxShadow:"0 4px 15px rgba(0,0,0,.05)"}}>
+      <h2 className="fn font-bold mb-4" style={{fontSize:"20px",color:"#212121"}}>New recovery code</h2>
+      <div className="mb-4">
+        <label className="fn font-bold block mb-1" style={{fontSize:"13px",color:"#546E7A"}}>Current PIN</label>
+        <input type="password" inputMode="numeric" maxLength={4} value={pin}
+          onChange={e=>setPin(digitsOnly(e.target.value))}
+          className="fn font-bold rounded-xl outline-none w-full"
+          style={{height:"48px",padding:"0 16px",border:"2px solid #CFD8DC",fontSize:"18px",letterSpacing:"4px"}}/>
+      </div>
+
+      {message&&(
+        <p className="fn font-bold mb-4" style={{color:message.ok?"#4CAF50":"#EF5350",fontSize:"14px"}}>{message.text}</p>
+      )}
+
+      <button onClick={handleSubmit} disabled={pin.length!==4||saving}
+        className="fn font-bold rounded-full w-full" style={{height:"52px",background:pin.length===4?"#00BCD4":"#ccc",color:"white",border:"none",cursor:pin.length===4?"pointer":"not-allowed"}}>
+        {saving?"Generating...":"Generate new code"}
+      </button>
+    </div>
+  );
+}
+
 export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>void}){
   const [view,setView]=useState<"dashboard"|"settings">("dashboard");
+  const [recoveryCode,setRecoveryCode]=useState<string|null>(null);
   const chartData=[
     {name:"Happy",accuracy:75,color:"#FFC107"},
     {name:"Sad",  accuracy:50,color:"#42A5F5"},
@@ -80,6 +125,11 @@ export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>v
     {date:"Jul 17 2026",score:"1/4",happy:"✅",sad:"❌",angry:"❌",surprised:"❌"},
     {date:"Jul 16 2026",score:"3/4",happy:"✅",sad:"✅",angry:"✅",surprised:"❌"},
   ];
+
+  if(recoveryCode){
+    return <RecoveryCodeView code={recoveryCode} onContinue={()=>setRecoveryCode(null)}/>;
+  }
+
   return(
     <div className="min-h-screen w-full flex" style={{background:"#FAFAFA"}}>
       {/* Sidebar */}
@@ -111,7 +161,10 @@ export function ParentScreen({playerName,onBack}:{playerName:string;onBack:()=>v
         </div>
 
         {view==="settings" ? (
-          <ChangePinForm onBack={()=>setView("dashboard")}/>
+          <>
+            <ChangePinForm onBack={()=>setView("dashboard")}/>
+            <RegenerateRecoveryCodeForm onCodeReady={setRecoveryCode}/>
+          </>
         ) : (
         <>
         {/* Stat cards */}
