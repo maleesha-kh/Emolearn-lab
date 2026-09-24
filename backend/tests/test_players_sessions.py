@@ -1,42 +1,4 @@
-import pytest
-from fastapi import FastAPI
-from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.pool import StaticPool
-
-from app.api.routes.game_sessions import router as game_sessions_router
-from app.api.routes.players import router as players_router
-from app.db.database import Base, get_db
-
 EMOTIONS = ["happy", "sad", "angry", "surprised"]
-
-
-@pytest.fixture()
-def client():
-    # In-memory SQLite, isolated from backend/data/emolearn.db.
-    engine = create_engine(
-        "sqlite://",
-        connect_args={"check_same_thread": False},
-        poolclass=StaticPool,
-    )
-    TestingSessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
-    Base.metadata.create_all(bind=engine)
-
-    def override_get_db():
-        db = TestingSessionLocal()
-        try:
-            yield db
-        finally:
-            db.close()
-
-    app = FastAPI()
-    app.include_router(players_router)
-    app.include_router(game_sessions_router)
-    app.dependency_overrides[get_db] = override_get_db
-
-    with TestClient(app) as c:
-        yield c
 
 
 def create_player(client, nickname="Amara", avatar_id="fox"):
@@ -92,7 +54,7 @@ def test_finish_calculates_score_from_rounds(client):
 
     res = client.patch(f"/sessions/{session_id}/finish")
     assert res.status_code == 200
-    body = res.json()
+    body = res.json()["session"]
     assert body["score"] == 3
     assert body["stars"] == 3
     assert body["finished_at"] is not None
@@ -214,7 +176,8 @@ def test_finish_twice_does_not_change_result(client):
 
     first = client.patch(f"/sessions/{session_id}/finish").json()
     second = client.patch(f"/sessions/{session_id}/finish").json()
-    assert first == second
+    assert first["session"] == second["session"]
+    assert second["new_badges"] == []
 
 
 def test_round_rejected_after_finish(client):

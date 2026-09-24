@@ -1,12 +1,14 @@
 """Game session routes: start a session, save rounds, and finish it."""
 from datetime import datetime, timezone
+from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.core.badges import BADGE_IDS, evaluate_earned_badges
 from app.db.database import get_db, to_utc_iso
-from app.db.models import GameSession, Player, Round
-from app.schemas.sessions import RoundCreate, RoundOut, SessionCreate, SessionOut
+from app.db.models import GameSession, Player, PlayerBadge, Round
+from app.schemas.sessions import FinishSessionOut, RoundCreate, RoundOut, SessionCreate, SessionOut
 
 router = APIRouter(prefix="/sessions", tags=["sessions"])
 
@@ -62,14 +64,14 @@ def save_round(session_id: str, payload: RoundCreate, db: Session = Depends(get_
     )
 
 
-@router.patch("/{session_id}/finish", response_model=SessionOut)
+@router.patch("/{session_id}/finish", response_model=FinishSessionOut)
 def finish_session(session_id: str, db: Session = Depends(get_db)):
     session = db.get(GameSession, session_id)
     if session is None:
         raise HTTPException(status_code=404, detail="Session not found")
 
     if session.finished_at is not None:
-        return _session_out(session)
+        return FinishSessionOut(session=_session_out(session), new_badges=[])
 
     correct_count = (
         db.query(Round)
@@ -81,7 +83,30 @@ def finish_session(session_id: str, db: Session = Depends(get_db)):
     session.finished_at = datetime.now(timezone.utc)
     db.commit()
     db.refresh(session)
-    return _session_out(session)
+
+    new_badges = _award_new_badges(db, session.player_id)
+    return FinishSessionOut(session=_session_out(session), new_badges=new_badges)
+
+
+def _award_new_badges(db: Session, player_id: str) -> List[str]:
+    finished_sessions = (
+        db.query(GameSession)
+        .filter(GameSession.player_id == player_id, GameSession.finished_at.isnot(None))
+        .all()
+    )
+    earned_now = evaluate_earned_badges(finished_sessions)
+
+    already_earned = {
+        b.badge_id for b in db.query(PlayerBadge).filter(PlayerBadge.player_id == player_id).all()
+    }
+    new_ids = sorted(earned_now - already_earned, key=BADGE_IDS.index)
+
+    for badge_id in new_ids:
+        db.add(PlayerBadge(player_id=player_id, badge_id=badge_id))
+    if new_ids:
+        db.commit()
+
+    return new_ids
 
 
 def _session_out(session: GameSession) -> SessionOut:

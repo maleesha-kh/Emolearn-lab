@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -50,3 +50,8 @@ class RoundOut(BaseModel):
     child_correct: bool
     predicted_emotion: Optional[str]
     confidence: Optional[float]
+
+
+class FinishSessionOut(BaseModel):
+    session: SessionOut
+    new_badges: List[str]

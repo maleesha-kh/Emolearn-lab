@@ -41,9 +41,15 @@ class SessionSummary(BaseModel):
     rounds: List[RoundSummary]
 
 
+class BadgeOut(BaseModel):
+    badge_id: str
+    earned_at: str
+
+
 class ProfileOut(BaseModel):
     player: PlayerOut
     total_stars: int
     sessions_played: int
     emotion_stats: Dict[str, EmotionStat]
     recent_sessions: List[SessionSummary]
+    badges: List[BadgeOut]

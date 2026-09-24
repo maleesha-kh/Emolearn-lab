@@ -26,6 +26,7 @@ class Player(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
     sessions: Mapped[List["GameSession"]] = relationship(back_populates="player")
+    badges: Mapped[List["PlayerBadge"]] = relationship(back_populates="player")
 
 
 class GameSession(Base):
@@ -58,3 +59,15 @@ class Round(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
     session: Mapped["GameSession"] = relationship(back_populates="rounds")
+
+
+class PlayerBadge(Base):
+    __tablename__ = "player_badges"
+    __table_args__ = (UniqueConstraint("player_id", "badge_id", name="uq_player_badge"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    player_id: Mapped[str] = mapped_column(String, ForeignKey("players.id"), nullable=False)
+    badge_id: Mapped[str] = mapped_column(String, nullable=False)
+    earned_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
+
+    player: Mapped["Player"] = relationship(back_populates="badges")

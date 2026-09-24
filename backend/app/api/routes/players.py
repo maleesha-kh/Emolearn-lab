@@ -7,8 +7,16 @@ from sqlalchemy.orm import Session
 
 from app.core.config import EMOTION_CLASSES
 from app.db.database import get_db, to_utc_iso
-from app.db.models import GameSession, Player, Round
-from app.schemas.players import EmotionStat, PlayerCreate, PlayerOut, ProfileOut, RoundSummary, SessionSummary
+from app.db.models import GameSession, Player, PlayerBadge, Round
+from app.schemas.players import (
+    BadgeOut,
+    EmotionStat,
+    PlayerCreate,
+    PlayerOut,
+    ProfileOut,
+    RoundSummary,
+    SessionSummary,
+)
 
 router = APIRouter(prefix="/players", tags=["players"])
 
@@ -69,6 +77,7 @@ def get_profile(player_id: str, db: Session = Depends(get_db)):
         sessions_played=len(finished_sessions),
         emotion_stats=emotion_stats,
         recent_sessions=[_session_summary(s) for s in finished_sessions[:5]],
+        badges=_badges_out(db, player_id),
     )
 
 
@@ -79,6 +88,25 @@ def get_sessions(player_id: str, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Player not found")
 
     return [_session_summary(s) for s in _finished_sessions(db, player_id)]
+
+
+@router.get("/{player_id}/badges", response_model=List[BadgeOut])
+def get_badges(player_id: str, db: Session = Depends(get_db)):
+    player = db.get(Player, player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    return _badges_out(db, player_id)
+
+
+def _badges_out(db: Session, player_id: str) -> List[BadgeOut]:
+    badges = (
+        db.query(PlayerBadge)
+        .filter(PlayerBadge.player_id == player_id)
+        .order_by(PlayerBadge.earned_at.asc())
+        .all()
+    )
+    return [BadgeOut(badge_id=b.badge_id, earned_at=to_utc_iso(b.earned_at)) for b in badges]
 
 
 def _finished_sessions(db: Session, player_id: str) -> List[GameSession]:
