@@ -5,15 +5,19 @@ import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 import { CharacterImage } from "../../components/character/CharacterImage";
+import { ResultImage, AiReason } from "../../components/game/ResultParts";
+import type { PredictionResult } from "../../lib/predictionClient";
 import { playSound } from "../../lib/sounds";
 
 const NEXT_BUTTON_DELAY_MS = 2500;
 
-export function ResultWrongScreen({round,score,selectedIdx,images,heatmapBase64,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];heatmapBase64:string|null;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
+export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [showHeat,setShowHeat]=useState(true);
   const [canProceed,setCanProceed]=useState(false);
   const r=ROUNDS[round];
-  const correctEmotion=r.opts[r.correct] as Mood;
+  const targetEmotion=r.opts[r.correct] as Mood;
+  const pickedEmotion=r.opts[selectedIdx] as Mood;
+  const aiEmotion=prediction.emotion;
   const isLastRound=round===ROUNDS.length-1;
 
   useEffect(()=>{
@@ -23,6 +27,13 @@ export function ResultWrongScreen({round,score,selectedIdx,images,heatmapBase64,
     return ()=>clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   },[round]);
+
+  // What the tapped character really shows, and how the AI's view compares
+  const teach=aiEmotion===pickedEmotion
+    ?<>This character looks <b style={{color:EI[pickedEmotion].text}}>{pickedEmotion.toUpperCase()}</b>, not <b style={{color:EI[targetEmotion].text}}>{targetEmotion.toUpperCase()}</b>.</>
+    :aiEmotion===targetEmotion
+      ?<>Tricky one! The AI was fooled too — but this character is really <b style={{color:EI[pickedEmotion].text}}>{pickedEmotion.toUpperCase()}</b>.</>
+      :<>This character is really <b style={{color:EI[pickedEmotion].text}}>{pickedEmotion.toUpperCase()}</b> — the AI is still learning this one!</>;
 
   return(
     <div className="min-h-screen w-full relative" style={{background:"#FFF8F0"}}>
@@ -38,24 +49,26 @@ export function ResultWrongScreen({round,score,selectedIdx,images,heatmapBase64,
           💛 Good try! Let us learn together!
         </div>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
-          <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{width:"300px",height:"380px",border:`3px solid ${EI[correctEmotion].border}`,boxShadow:`0 0 0 3px ${EI[correctEmotion].border}44`}}>
-            <div className="flex items-center justify-center h-full bg-white">
-              <CharacterImage pose={correctEmotion as GirlP} width={240} src={images[r.correct]}/>
-            </div>
-            {heatmapBase64&&showHeat&&<img src={heatmapBase64} alt="AI vision heatmap" className="absolute inset-0 w-full h-full object-cover" style={{pointerEvents:"none"}}/>}
-            {heatmapBase64&&showHeat&&<div className="absolute bottom-0 left-0 right-0 text-center py-2 fn font-bold text-white"
-              style={{background:"rgba(0,0,0,.6)",fontSize:"14px"}}>🔍 AI Vision Map</div>}
+          <div className="flex flex-col items-center gap-2">
+            <div className="fn font-bold" style={{color:"#6D4C41",fontSize:"15px"}}>You picked:</div>
+            <ResultImage src={images[selectedIdx]} emotion={pickedEmotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
           </div>
-          <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"380px",border:"3px solid #FF9800",boxShadow:"0 8px 30px rgba(255,152,0,.12)"}}>
-            <div className="flex items-start gap-3 mb-4">
-              <div className="afb flex-shrink-0"><EmoRobot expression="caring" width={100}/></div>
-              <div>
-                <div className="ff text-xs mb-2" style={{color:"#FF9800",letterSpacing:"1px"}}>THE AI NOTICED:</div>
-                <div className="ff" style={{fontSize:"22px",color:"#004D40",lineHeight:1.4}}>{r.ai}</div>
+          <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #FF9800",boxShadow:"0 8px 30px rgba(255,152,0,.12)"}}>
+            <div className="flex items-start gap-3 mb-3">
+              <div className="afb flex-shrink-0"><EmoRobot expression="caring" width={80}/></div>
+              <AiReason prediction={prediction} accent="#FF9800"/>
+            </div>
+            <div className="fn font-bold" style={{fontSize:"17px",color:"#4E342E",lineHeight:1.4}}>{teach}</div>
+            <div className="flex items-center gap-3 mt-3 rounded-xl p-2" style={{background:EI[targetEmotion].bg,border:`2px dashed ${EI[targetEmotion].border}`}}>
+              <div className="rounded-lg bg-white flex items-center justify-center overflow-hidden flex-shrink-0" style={{width:"64px",height:"80px"}}>
+                <CharacterImage pose={targetEmotion as GirlP} width={52} src={images[r.correct]}/>
+              </div>
+              <div className="fn font-bold" style={{fontSize:"16px",color:EI[targetEmotion].text}}>
+                The {targetEmotion.toUpperCase()} {EI[targetEmotion].emoji} character was this one!
               </div>
             </div>
-            <div className="fn font-bold mt-2" style={{fontSize:"18px",color:"#E91E63"}}>You are getting better! Keep going! 💪</div>
-            {heatmapBase64&&<div className="mt-4">
+            <div className="fn font-bold mt-3" style={{fontSize:"16px",color:"#E91E63"}}>You are getting better! Keep going! 💪</div>
+            {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
                 style={{background:"#FFF3E0",color:"#E65100",border:"2px solid #FF9800",fontSize:"14px",cursor:"pointer"}}>
@@ -66,7 +79,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,heatmapBase64,
               ch={canProceed?(isLastRound?"See My Results! 🏆":"Next Round →"):"Reading..."}
               onClick={onNext}
               disabled={!canProceed}
-              className="mt-auto"
+              className="mt-4"
             />
           </div>
         </div>

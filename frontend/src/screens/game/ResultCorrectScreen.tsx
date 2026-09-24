@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import type { Mood, GirlP } from "../../types";
+import type { Mood } from "../../types";
 import { ROUNDS } from "../../data/rounds";
 import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
-import { CharacterImage } from "../../components/character/CharacterImage";
+import { ResultImage, AiReason } from "../../components/game/ResultParts";
+import type { PredictionResult } from "../../lib/predictionClient";
 import { playSound } from "../../lib/sounds";
 
 const NEXT_BUTTON_DELAY_MS = 2500;
 
-export function ResultCorrectScreen({round,score,selectedIdx,images,heatmapBase64,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];heatmapBase64:string|null;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
+export function ResultCorrectScreen({round,score,selectedIdx,images,prediction,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [showHeat,setShowHeat]=useState(true);
   const [canProceed,setCanProceed]=useState(false);
   const r=ROUNDS[round];
   const emotion=r.opts[selectedIdx] as Mood;
+  const aiAgrees=prediction.emotion===emotion;
   const isLastRound=round===ROUNDS.length-1;
 
   useEffect(()=>{
@@ -38,24 +40,18 @@ export function ResultCorrectScreen({round,score,selectedIdx,images,heatmapBase6
           ✅ CORRECT! ⭐ Amazing teaching!
         </div>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
-          <div className="relative rounded-2xl overflow-hidden flex-shrink-0" style={{width:"300px",height:"380px",border:`3px solid ${EI[emotion].border}`,boxShadow:`0 0 0 3px ${EI[emotion].border}44`}}>
-            <div className="flex items-center justify-center h-full bg-white">
-              <CharacterImage pose={emotion as GirlP} width={240} src={images[selectedIdx]}/>
+          <ResultImage src={images[selectedIdx]} emotion={emotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
+          <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #00BCD4",boxShadow:"0 8px 30px rgba(0,188,212,.12)"}}>
+            <div className="flex items-start gap-3 mb-3">
+              <div className="afb flex-shrink-0"><EmoRobot expression="magnifying" width={80}/></div>
+              <AiReason prediction={prediction} accent="#00838F"/>
             </div>
-            {heatmapBase64&&showHeat&&<img src={heatmapBase64} alt="AI vision heatmap" className="absolute inset-0 w-full h-full object-cover" style={{pointerEvents:"none"}}/>}
-            {heatmapBase64&&showHeat&&<div className="absolute bottom-0 left-0 right-0 text-center py-2 fn font-bold text-white"
-              style={{background:"rgba(0,0,0,.6)",fontSize:"14px"}}>🔍 AI Vision Map</div>}
-          </div>
-          <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"380px",border:"3px solid #00BCD4",boxShadow:"0 8px 30px rgba(0,188,212,.12)"}}>
-            <div className="flex items-start gap-3 mb-4">
-              <div className="afb flex-shrink-0"><EmoRobot expression="magnifying" width={100}/></div>
-              <div>
-                <div className="ff text-xs mb-2" style={{color:"#00838F",letterSpacing:"1px"}}>THE AI NOTICED:</div>
-                <div className="ff" style={{fontSize:"22px",color:"#004D40",lineHeight:1.4}}>{r.ai}</div>
-              </div>
-            </div>
-            <div className="fn font-bold mt-2" style={{fontSize:"18px",color:"#E91E63"}}>You are such a great AI teacher! 🌟</div>
-            {heatmapBase64&&<div className="mt-4">
+            {aiAgrees
+              ?<div className="fn font-bold mt-2" style={{fontSize:"18px",color:"#E91E63"}}>The AI agrees with you — you are such a great AI teacher! 🌟</div>
+              :<div className="fn font-bold mt-2" style={{fontSize:"17px",color:"#4E342E",lineHeight:1.4}}>
+                You were right — it's <b style={{color:EI[emotion].text}}>{emotion.toUpperCase()}</b>! The AI thought it looked <b style={{color:EI[prediction.emotion].text}}>{prediction.emotion.toUpperCase()}</b>. Thanks for teaching it! 🌟
+              </div>}
+            {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
                 style={{background:"#E0F7FA",color:"#00838F",border:"2px solid #00BCD4",fontSize:"14px",cursor:"pointer"}}>
@@ -66,7 +62,7 @@ export function ResultCorrectScreen({round,score,selectedIdx,images,heatmapBase6
               ch={canProceed?(isLastRound?"See My Results! 🏆":"Next Round →"):"Reading..."}
               onClick={onNext}
               disabled={!canProceed}
-              className="mt-auto"
+              className="mt-4"
             />
           </div>
         </div>

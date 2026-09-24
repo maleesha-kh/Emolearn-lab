@@ -40,7 +40,7 @@ export default function App() {
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
   const [showBadge, setShowBadge] = useState(false);
   const [totalStars, setTotalStars] = useState(8);
-  const [heatmapBase64, setHeatmapBase64] = useState<string | null>(null);
+  const [prediction, setPrediction] = useState<PredictionResult | null>(null);
 
   // Images for the current round — rolled once per round (not on every
   // re-render), then reused unchanged across the round screen, the loading
@@ -65,9 +65,13 @@ export default function App() {
 
   const handleLoadingDone = (result: PredictionResult) => {
     const r = ROUNDS[currentRound];
-    const correct = result.emotion === r.opts[r.correct];
+    // The child's pick decides the star (each image's emotion is known from
+    // its dataset folder). The model's own prediction and explanation for
+    // that image are what the result screens show, including when the AI
+    // disagrees with the child.
+    const correct = selectedCard === r.correct;
     setLastCorrect(correct);
-    setHeatmapBase64(result.heatmapBase64);
+    setPrediction(result);
     if (correct) setScore((s) => s + 1);
     setRoundResults((rs) => [...rs, correct]);
     go(correct ? "r-correct" : "r-wrong");
@@ -117,8 +121,8 @@ export default function App() {
     gamestart: <GameStartScreen onStart={() => go("gameround")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     gameround: <GameRoundScreen round={currentRound} score={score} images={roundImages} onSelect={handleCardSelect} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     loading: <LoadingScreen imageUrl={roundImages[selectedCard ?? 0]} trueEmotion={tappedEmotion ?? round.opts[0]} onDone={handleLoadingDone} onBack={handleLoadingBack} />,
-    "r-correct": <ResultCorrectScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} heatmapBase64={heatmapBase64} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "r-wrong": <ResultWrongScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} heatmapBase64={heatmapBase64} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "r-correct": prediction && <ResultCorrectScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "r-wrong": prediction && <ResultWrongScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "t-correct": <TransCorrectScreen score={score} onContinue={handleContinue} />,
     "t-wrong": <TransWrongScreen score={score} onContinue={handleContinue} />,
     summary: (

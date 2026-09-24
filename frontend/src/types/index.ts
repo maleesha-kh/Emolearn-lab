@@ -24,7 +24,6 @@ export interface Round {
   emoji: string;
   opts: Mood[];
   correct: number;
-  ai: string;
 }
 
 export interface EmotionInfo {

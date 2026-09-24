@@ -6,6 +6,18 @@ export interface BranchResult {
   probs: Record<Mood, number>;
 }
 
+// Matches ExplanationResult in backend/app/schemas/prediction.py.
+export interface Explanation {
+  reason: string;
+  face_focus: "eyebrows" | "eyes" | "mouth" | "forehead" | "other";
+  face_region_scores: Record<string, number>;
+  face_cue: string | null;
+  pose_cues: string[];
+  pose_focus: string | null;
+  pose_group_scores: Record<string, number>;
+  evidence: string[];
+}
+
 // Matches backend/app/schemas/prediction.py exactly.
 export interface PredictionApiResponse {
   emotion: Mood;
@@ -17,15 +29,20 @@ export interface PredictionApiResponse {
   weights: { face: number; pose: number };
   heatmap_base64: string | null;
   heatmap_emotion: Mood;
+  explanation: Explanation | null;
 }
 
-// What the screens actually use today. mode, fused_probs, face/pose and
-// weights aren't consumed by the UI yet — add them here if a screen needs
-// them, rather than passing the raw API response further down.
+// What the screens actually use. fused_probs and weights aren't consumed by
+// the UI yet — add them here if a screen needs them, rather than passing
+// the raw API response further down.
 export interface PredictionResult {
   emotion: Mood;
   confidence: number;
+  mode: "fused" | "face_only";
+  faceEmotion: Mood;
+  poseEmotion: Mood | null;
   heatmapBase64: string | null;
+  explanation: Explanation | null;
 }
 
 export interface PredictionRequest {
@@ -83,7 +100,15 @@ async function fetchPrediction(imageUrl: string): Promise<PredictionApiResponse>
 }
 
 function toResult(api: PredictionApiResponse): PredictionResult {
-  return { emotion: api.emotion, confidence: api.confidence, heatmapBase64: api.heatmap_base64 };
+  return {
+    emotion: api.emotion,
+    confidence: api.confidence,
+    mode: api.mode,
+    faceEmotion: api.face.emotion,
+    poseEmotion: api.pose?.emotion ?? null,
+    heatmapBase64: api.heatmap_base64,
+    explanation: api.explanation ?? null,
+  };
 }
 
 /** Single entry point the screens call — routes to the mock or the real API depending on VITE_USE_MOCK. */
