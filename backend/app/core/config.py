@@ -5,6 +5,11 @@ import os
 APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ---------------------------------------------------------------------------
+# Database
+# ---------------------------------------------------------------------------
+DB_PATH = os.path.join(APP_DIR, "..", "data", "emolearn.db")
+
+# ---------------------------------------------------------------------------
 # Pose branch (MediaPipe + Random Forest)
 # ---------------------------------------------------------------------------
 POSE_MODEL_PATH = os.path.join(APP_DIR, "ml", "pose_branch", "models", "random_forest_pose_model_bg_removed.pkl")

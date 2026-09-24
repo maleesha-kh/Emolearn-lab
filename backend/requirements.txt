@@ -1,6 +1,7 @@
 fastapi==0.141.1
 uvicorn[standard]==0.52.1
 python-multipart==0.0.32
+sqlalchemy==2.0.36
 
 mediapipe==0.10.14
 opencv-python==5.0.0.93
@@ -16,3 +17,4 @@ protobuf==4.25.3
 Pillow==12.3.0
 pytest==9.1.1
 matplotlib==3.10.9
+httpx2==2.13.1

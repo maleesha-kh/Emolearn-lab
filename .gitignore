@@ -6,6 +6,7 @@ backend/**/__pycache__/
 backend/.env
 backend/debug_outputs/
 backend/data/sessions.csv
+backend/data/*.db
 
 # Model files are ignored everywhere except the two models folders the app loads from
 *.h5
