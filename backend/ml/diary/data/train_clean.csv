@@ -719,3 +719,123 @@ my new toy was the wrong one,other,negative,generated
 my hair got tangled,other,negative,generated
 i woke up with a runny nose,other,negative,generated
 we got stuck in trafic,other,negative,generated
+i was worried about the test but i got nine out of ten,school,positive,generated
+no one in my class failed the spelling test,school,positive,generated
+i was scared to sing but everyone clapped at the concert,school,positive,generated
+miss said there will be no exam this term,school,positive,generated
+the hard sums were easy after miss explained them again,school,positive,generated
+i was late but techer didnt scold me,school,positive,generated
+i didnt make a single mistake in my dictation,school,positive,generated
+i nearly forgot my speech but then i remembered every word,school,positive,generated
+we had a free period and miss told us old stories,school,positive,generated
+my wrong answer was fixed after sir checked my paper again,school,positive,generated
+i have to rewrite my whole essay,school,negative,generated
+miss always picks the same kids to answer,school,negative,generated
+i only got three stars on my chart this month,school,negative,generated
+sir checked our bags and took my comic away,school,negative,generated
+we have to wear full uniform even on the hottest days,school,negative,generated
+the bell rang before i could finish my art work,school,negative,generated
+nobody in my group did their part of the project,school,negative,generated
+teacher wrote my name in the naughty book,school,negative,generated
+we got a spelling test first thing on monday morning,school,negative,generated
+the whole class had to stand becuz two boys were noisy,school,negative,generated
+i was by myself at interval until sara came to sit with me,friends,positive,generated
+my frend didnt laugh when i tripped on the stairs,friends,positive,generated
+nobody teased me after my friend told them to stop,friends,positive,generated
+i was nervous in the new class but a girl shared her colours with me,friends,positive,generated
+kavindu forgave me for breaking his ruler,friends,positive,generated
+we had a big quarrel but now we are best friends again,friends,positive,generated
+my friend waited for me even though it was raining,friends,positive,generated
+no one else wanted to be my partner but amaya did,friends,positive,generated
+i felt shy but my friends pulled me into the dance circle,friends,positive,generated
+my friend wrote sorry on a leaf and gave it to me,friends,positive,generated
+my friend always wants to be the leader,friends,negative,generated
+only two kids from my class turned up for my birthday,friends,negative,generated
+my friend just walked past me at the shop,friends,negative,generated
+nobody sat next to me on the trip bus,friends,negative,generated
+sara showed my diary to the other girls,friends,negative,generated
+my best friend talks about her new friend all day long,friends,negative,generated
+my friend borrowed my crayons and gave them back broken,friends,negative,generated
+kavindu makes fun of my glasses every day,friends,negative,generated
+my friend promised to come over but went to the beach instead,friends,negative,generated
+i gave my friend a birthday card and she threw it in the bin,friends,negative,generated
+amma was sick yesterday but today she is well again,family,positive,generated
+thaththa was angry at first but then he laughed with me,family,positive,generated
+my baby brother stopped crying when i sang to him,family,positive,generated
+i broke a cup but amma just hugged me,family,positive,generated
+nobody at home was busy so we all went to the park,family,positive,generated
+my sister stopped teasing me and helped me tie my shoes,family,positive,generated
+grandpa came out of hospital today,family,positive,generated
+appa had no work on sunday so he stayed home with us,family,positive,generated
+my parents did not go out and we watched a film together,family,positive,generated
+my uncle was late but he brought all my cousins with him,family,positive,generated
+i always have to give my things to malli,family,negative,generated
+amma only listens to my sister,family,negative,generated
+thaththa has to work on my birthday,family,negative,generated
+my brother wore my new shirt without asking,family,negative,generated
+grandma had a fall and went to hospital,family,negative,generated
+i have to go to bed earlier than my cousins,family,negative,generated
+appa sold my old bicycle without asking me,family,negative,generated
+my cousin gets new clothes every month and i dont,family,negative,generated
+my little sister cries and i get the blame,family,negative,generated
+dad got a job far away and we will only see him on weekends,family,negative,generated
+i made a necklace with coloured beads,playing,positive,generated
+i won a teddy bear at the fun fair,playing,positive,generated
+i went bowling for the first time and loved it,playing,positive,generated
+i went on the big wheel at the fair,playing,positive,generated
+i folded an origami frog that can jump,playing,positive,generated
+i learned to pump my legs on the swing by myself,playing,positive,generated
+my kite was stuck but it came loose and flew again,playing,positive,generated
+i lost the first game but won the next three,playing,positive,generated
+no one could find me in hide and seek,playing,positive,generated
+i painted a rock to look like a ladybug,playing,positive,generated
+the glue came off and my paper house fell apart,playing,negative,generated
+the fair ride stopped halfway and we were stuck at the top,playing,negative,generated
+i only got one turn on the trampoline,playing,negative,generated
+the fun fair closed just as we got there,playing,negative,generated
+i always get out first in dodgeball,playing,negative,generated
+my beads spilled all over the floor,playing,negative,generated
+the bowling ball was too heavy and went in the gutter,playing,negative,generated
+my tablet battery died in the middle of my game,playing,negative,generated
+my glitter pen ran out halfway through my card,playing,negative,generated
+the swing chain snapped and we had to go home,playing,negative,generated
+the dog next door stopped barking at me,pets,positive,generated
+my sick kitten drank some milk today,pets,positive,generated
+the vet said my puppy is fine now,pets,positive,generated
+the bees did not sting us when we picked flowers,pets,positive,generated
+our lost hen came back with baby chicks,pets,positive,generated
+a baby elephant splashed water on us at pinnawala,pets,positive,generated
+my fish was hiding but now it swims around again,pets,positive,generated
+i was scared of the big dog but he just licked me,pets,positive,generated
+the mosquitoes are gone since a gecko moved into our room,pets,positive,generated
+we watched ants carry a big crumb together,pets,positive,generated
+a stray dog followed me and barked all the way home,pets,negative,generated
+the ants got into my lunch box,pets,negative,generated
+our dog has to wear a cone for a week,pets,negative,generated
+a squirrel ate all our guavas,pets,negative,generated
+my rabbit only eats when amma feeds him,pets,negative,generated
+the neighbours cat always chases my birds,pets,negative,generated
+a leech got on my leg at the waterfall,pets,negative,generated
+the tank filter broke and the water went green,pets,negative,generated
+the zoo elephant was tied with a chain,pets,negative,generated
+our puppy got a tick in his ear,pets,negative,generated
+my cough finally stopped,other,positive,generated
+the doctor looked in my ears and said they are fine,other,positive,generated
+the poya dansal gave us free ice cream,other,positive,generated
+it was avurudu and i got new clothes to wear,other,positive,generated
+the thunder stopped and i fell asleep,other,positive,generated
+my broken tooth did not hurt at the dentist,other,positive,generated
+i dropped my plate but nothing broke,other,positive,generated
+the christmas lights on our street were so pretty,other,positive,generated
+the injection was quick and did not even hurt,other,positive,generated
+my wet shoes dried in time for the trip,other,positive,generated
+i have to take medicine three times a day,other,negative,generated
+the avurudu sweets were all finished before i came,other,negative,generated
+the zip on my bag broke,other,negative,generated
+the doctor gave me a big injection in my arm,other,negative,generated
+a fish bone got stuck in my throat,other,negative,generated
+my birthday gift was the same book i already have,other,negative,generated
+the firecrackers were so loud i couldnt sleep,other,negative,generated
+the vesak lantern tore in the wind,other,negative,generated
+i always get a cold when it rains,other,negative,generated
+the bus was full and we had to stand all the way,other,negative,generated

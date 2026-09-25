@@ -1,0 +1,143 @@
+file,target,text,source,true_label,predicted_label,confidence
+test.csv,reason,This morning the teacher put my picture on the wall.,generated,school,playing,0.415
+test.csv,reason,I felt so happy that the whole group waited for me.,generated,friends,family,0.377
+test.csv,reason,Nobody at home remembered my prize day.,generated,family,friends,0.497
+test.csv,reason,My clay dinosaur came out really well.,generated,playing,other,0.408
+test.csv,reason,"Wow, I got a strike at bowling!",generated,playing,school,0.514
+test.csv,reason,It was fun painting with my fingers today.,generated,playing,other,0.63
+test.csv,reason,This morning the swings were all taken.,generated,playing,pets,0.437
+test.csv,reason,My drawing went wrong so I threw it away.,generated,playing,other,0.677
+test.csv,reason,At the fair I didn't win any games.,generated,playing,pets,0.428
+test.csv,reason,We only got to play for five minutes.,generated,playing,school,0.494
+test.csv,reason,The game was boring because I kept losing.,generated,playing,school,0.558
+test.csv,reason,"Yay, we're getting a bunny!",generated,pets,friends,0.443
+test.csv,reason,"Wow, the parrot at Aunty's house can whistle!",generated,pets,family,0.429
+test.csv,reason,The doctor gave me a sticker for being brave.,generated,other,school,0.697
+test.csv,reason,Someone left a surprise present at our door.,generated,other,pets,0.384
+test.csv,reason,On Poya day the lanterns looked so beautiful.,generated,other,pets,0.586
+test.csv,reason,Yesterday I tripped and scraped my elbow.,generated,other,playing,0.613
+test.csv,reason,The doctor said I have to stay in bed for three days.,generated,other,school,0.319
+test.csv,reason,the boys sed i cant play becos im small,kidstyle,friends,playing,0.681
+test.csv,reason,malli and me fighted over the tv,kidstyle,family,playing,0.616
+test.csv,reason,i made a house with ice cream sticks,kidstyle,playing,other,0.73
+test.csv,reason,my new spinning top got lost,kidstyle,playing,other,0.923
+test.csv,reason,a goose chased me at achchis house,kidstyle,pets,family,0.744
+test.csv,reason,we had watalappan for dessert,kidstyle,other,school,0.406
+test_noisy.csv,reason,This morning the teacher put my picture on the wall.,generated,school,playing,0.415
+test_noisy.csv,reason,I felt so happy that the whole group waited for me.,generated,friends,family,0.377
+test_noisy.csv,reason,Nobody at home remembered my prize day.,generated,family,friends,0.497
+test_noisy.csv,reason,My clay dinosaur came out really well.,generated,playing,other,0.408
+test_noisy.csv,reason,"Wow, I got a strike at bowling!",generated,playing,school,0.514
+test_noisy.csv,reason,It was fun painting with my fingers today.,generated,playing,other,0.63
+test_noisy.csv,reason,This morning the swings were all taken.,generated,playing,pets,0.437
+test_noisy.csv,reason,My drawing went wrong so I threw it away.,generated,playing,other,0.677
+test_noisy.csv,reason,at the fair i didn't win any games,generated,playing,pets,0.397
+test_noisy.csv,reason,We only got to play for five minutes.,generated,playing,school,0.494
+test_noisy.csv,reason,The game was boring because I kept losing.,generated,playing,school,0.558
+test_noisy.csv,reason,"Yay, we're getting a bunny!",generated,pets,friends,0.443
+test_noisy.csv,reason,"Wow, the parrot at Aunty's house can whistle!",generated,pets,family,0.429
+test_noisy.csv,reason,My pupy learned to shake hands today.,generated,pets,playing,0.621
+test_noisy.csv,reason,the doctor gave me a sticker for being brave,generated,other,school,0.705
+test_noisy.csv,reason,Someone left a surprise present at our door.,generated,other,pets,0.384
+test_noisy.csv,reason,On Poya day the lanterns looked so beautiful.,generated,other,pets,0.586
+test_noisy.csv,reason,Yesterday I tripped and scraped my elbow.,generated,other,playing,0.613
+test_noisy.csv,reason,The doctor sed I have to stay in bed for three days.,generated,other,school,0.413
+test_noisy.csv,reason,the boys sed i cant play becos im small,kidstyle,friends,playing,0.681
+test_noisy.csv,reason,malli and me fighted over the tv,kidstyle,family,playing,0.616
+test_noisy.csv,reason,i made a house with ice cream sticks,kidstyle,playing,other,0.73
+test_noisy.csv,reason,my new spinning top got lost,kidstyle,playing,other,0.923
+test_noisy.csv,reason,a goose chasd me at achchis house,kidstyle,pets,family,0.802
+test_noisy.csv,reason,we had watalappan for dessert,kidstyle,other,school,0.406
+test.csv,sentiment,This morning the teacher put my picture on the wall.,generated,positive,negative,0.513
+test.csv,sentiment,My teacher wrote excellent in my book.,generated,positive,negative,0.74
+test.csv,sentiment,When Sir read the marks mine was the lowest.,generated,negative,positive,0.561
+test.csv,sentiment,Tomorrow is the big exam and my tummy feels funny.,generated,negative,positive,0.795
+test.csv,sentiment,I felt silly when I read the wrong word in class.,generated,negative,positive,0.679
+test.csv,sentiment,This term my marks went down.,generated,negative,positive,0.601
+test.csv,sentiment,The class was so loud that Miss got mad at all of us.,generated,negative,positive,0.694
+test.csv,sentiment,At school I couldn't understand anything in maths.,generated,negative,positive,0.584
+test.csv,sentiment,Today my friend said I can't come to her party.,generated,negative,positive,0.835
+test.csv,sentiment,My best friend chose to sit next to the new boy.,generated,negative,positive,0.678
+test.csv,sentiment,Yesterday Kavindu said I'm not his friend any more.,generated,negative,positive,0.806
+test.csv,sentiment,Nobody from my class wrote in my card.,generated,negative,positive,0.71
+test.csv,sentiment,At the party my friends ignored me the whole time.,generated,negative,positive,0.874
+test.csv,sentiment,When I woke up Achchi was sitting next to me.,generated,positive,negative,0.687
+test.csv,sentiment,When Thaththa left for Qatar I cried at the airport.,generated,negative,positive,0.715
+test.csv,sentiment,Today Amma said I have to look after the baby all day.,generated,negative,positive,0.77
+test.csv,sentiment,Yesterday my sister and I got in trouble because of her.,generated,negative,positive,0.522
+test.csv,sentiment,Nobody at home remembered my prize day.,generated,negative,positive,0.557
+test.csv,sentiment,"Ugh, my cousins messed up my room again.",generated,negative,positive,0.513
+test.csv,sentiment,Mum and Dad were cross with me all evening.,generated,negative,positive,0.512
+test.csv,sentiment,My dad is always on his phone.,generated,negative,positive,0.735
+test.csv,sentiment,Yesterday my kite tore in half.,generated,negative,positive,0.531
+test.csv,sentiment,My team got knocked out in the first round.,generated,negative,positive,0.606
+test.csv,sentiment,This morning the swings were all taken.,generated,negative,positive,0.789
+test.csv,sentiment,At the fair I didn't win any games.,generated,negative,positive,0.64
+test.csv,sentiment,We only got to play for five minutes.,generated,negative,positive,0.539
+test.csv,sentiment,"Guess what, our dog had four puppies!",generated,positive,negative,0.524
+test.csv,sentiment,My goldfish swims after my finger on the glass.,generated,positive,negative,0.589
+test.csv,sentiment,"Ugh, a monkey grabbed my banana at the temple.",generated,negative,positive,0.899
+test.csv,sentiment,Yesterday a big dog chased me and I cried.,generated,negative,positive,0.689
+test.csv,sentiment,My hamster got out and we can't find him.,generated,negative,positive,0.741
+test.csv,sentiment,Why did the kitten scratch me when I was being nice?,generated,negative,positive,0.85
+test.csv,sentiment,At night I heard a stray cat meowing and meowing.,generated,negative,positive,0.759
+test.csv,sentiment,The ducks at the pond were all gone when we went.,generated,negative,positive,0.9
+test.csv,sentiment,"Yay, it's my birthday next week",generated,positive,negative,0.572
+test.csv,sentiment,My fever went down and I can go out again.,generated,positive,negative,0.702
+test.csv,sentiment,On Poya day the lanterns looked so beautiful.,generated,positive,negative,0.562
+test.csv,sentiment,It rained all day and I had to stay inside.,generated,negative,positive,0.601
+test.csv,sentiment,My new sandals broke on the first day.,generated,negative,positive,0.619
+test.csv,sentiment,The chicken pox made me itch all night.,generated,negative,positive,0.713
+test.csv,sentiment,Why is it always so hot in the afternoon?,generated,negative,positive,0.509
+test.csv,sentiment,The doctor said I have to stay in bed for three days.,generated,negative,positive,0.525
+test.csv,sentiment,The present I opened was just socks.,generated,negative,positive,0.626
+test.csv,sentiment,The power cut came right when it got dark.,generated,negative,positive,0.873
+test.csv,sentiment,sir put me out of the class for laughing,kidstyle,negative,positive,0.504
+test.csv,sentiment,the boys sed i cant play becos im small,kidstyle,negative,positive,0.684
+test.csv,sentiment,thaththa is always on his phone and dont play with me,kidstyle,negative,positive,0.519
+test.csv,sentiment,a goose chased me at achchis house,kidstyle,negative,positive,0.938
+test_noisy.csv,sentiment,This morning the teacher put my picture on the wall.,generated,positive,negative,0.513
+test_noisy.csv,sentiment,My teacher wrote excellent in my book.,generated,positive,negative,0.74
+test_noisy.csv,sentiment,When Sir read the marks mine was the lowest.,generated,negative,positive,0.561
+test_noisy.csv,sentiment,Tomorrow is the big exam and my tummy feels funny.,generated,negative,positive,0.795
+test_noisy.csv,sentiment,I felt silly when I read the wrong word in class.,generated,negative,positive,0.679
+test_noisy.csv,sentiment,this term my marks whent down,generated,negative,positive,0.805
+test_noisy.csv,sentiment,The class was so loud that Miss got mad at all of us.,generated,negative,positive,0.694
+test_noisy.csv,sentiment,At school I couldn't understand anything in maths.,generated,negative,positive,0.584
+test_noisy.csv,sentiment,Today my friend said I can't come to her party.,generated,negative,positive,0.835
+test_noisy.csv,sentiment,my best friend chose to sit next to the nu boy,generated,negative,positive,0.74
+test_noisy.csv,sentiment,Yesterday Kavindu said I'm not his friend any more.,generated,negative,positive,0.806
+test_noisy.csv,sentiment,nobody from my class wrote in my card,generated,negative,positive,0.801
+test_noisy.csv,sentiment,At the party my frends ignored me the whole time.,generated,negative,positive,0.939
+test_noisy.csv,sentiment,When I woke up Achchi was sitting next to me.,generated,positive,negative,0.687
+test_noisy.csv,sentiment,Wen Thaththa left for Qatar I cried at the airport.,generated,negative,positive,0.641
+test_noisy.csv,sentiment,Today Amma said I have to look after the baby all day.,generated,negative,positive,0.77
+test_noisy.csv,sentiment,Yesterday my sister and I got in trouble because of her.,generated,negative,positive,0.522
+test_noisy.csv,sentiment,Nobody at home remembered my prize day.,generated,negative,positive,0.557
+test_noisy.csv,sentiment,"Ugh, my cousins messed up my room agen.",generated,negative,positive,0.593
+test_noisy.csv,sentiment,Mum and Dad were cross with me all evening.,generated,negative,positive,0.512
+test_noisy.csv,sentiment,my dad is always on his phone,generated,negative,positive,0.699
+test_noisy.csv,sentiment,Yesterday my kite tore in half.,generated,negative,positive,0.531
+test_noisy.csv,sentiment,My team got knocked out in the first round.,generated,negative,positive,0.606
+test_noisy.csv,sentiment,This morning the swings were all taken.,generated,negative,positive,0.789
+test_noisy.csv,sentiment,at the fair i didn't win any games,generated,negative,positive,0.725
+test_noisy.csv,sentiment,We only got to play for five minutes.,generated,negative,positive,0.539
+test_noisy.csv,sentiment,guess what our dogg had four puppies,generated,positive,negative,0.773
+test_noisy.csv,sentiment,My goldfish swims after my finger on the glass.,generated,positive,negative,0.589
+test_noisy.csv,sentiment,ugh a monky grabbed my banana at the temple,generated,negative,positive,0.93
+test_noisy.csv,sentiment,Yesterday a big dog chased me and I cried.,generated,negative,positive,0.689
+test_noisy.csv,sentiment,My hamster got out and we can't find him.,generated,negative,positive,0.741
+test_noisy.csv,sentiment,Why did the kitten scratch me when I was being nice?,generated,negative,positive,0.85
+test_noisy.csv,sentiment,At night I heard a stray cat meowing and meowing.,generated,negative,positive,0.759
+test_noisy.csv,sentiment,The ducks at the pond were all gone when we went.,generated,negative,positive,0.9
+test_noisy.csv,sentiment,My fever went down and I can go out again.,generated,positive,negative,0.702
+test_noisy.csv,sentiment,On Poya day the lanterns looked so beautiful.,generated,positive,negative,0.562
+test_noisy.csv,sentiment,it rained all day and i had to stay inside,generated,negative,positive,0.657
+test_noisy.csv,sentiment,My new sandals broke on the first day.,generated,negative,positive,0.619
+test_noisy.csv,sentiment,The chicken pox made me itch all night.,generated,negative,positive,0.713
+test_noisy.csv,sentiment,Why is it always so hot in the afternoon?,generated,negative,positive,0.509
+test_noisy.csv,sentiment,The present I opened was just socks.,generated,negative,positive,0.626
+test_noisy.csv,sentiment,the power cut came right wen it got dark,generated,negative,positive,0.829
+test_noisy.csv,sentiment,sir put me out of the class for laughing,kidstyle,negative,positive,0.504
+test_noisy.csv,sentiment,the boys sed i cant play becos im small,kidstyle,negative,positive,0.684
+test_noisy.csv,sentiment,a goose chasd me at achchis house,kidstyle,negative,positive,0.936
