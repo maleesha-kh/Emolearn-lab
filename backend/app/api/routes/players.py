@@ -8,16 +8,21 @@ from typing import Dict, List
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy import func
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.core.badge_awards import award_new_badges
 from app.core.config import EMOTION_CLASSES
 from app.db.database import get_db, to_utc_iso
-from app.db.models import GameSession, Player, PlayerBadge, Round
+from app.db.models import DictionaryProgress, GameSession, Player, PlayerBadge, Round
 from app.schemas.players import (
     BadgeOut,
     DashboardOut,
     DashboardRoundOut,
     DashboardSessionOut,
+    DictionaryCompleteOut,
+    DictionaryEntryOut,
+    DictionaryOut,
     EmotionAccuracy,
     EmotionStat,
     PlayerCreate,
@@ -110,6 +115,7 @@ def delete_player(player_id: str, db: Session = Depends(get_db)):
             db.query(Round).filter(Round.session_id.in_(session_ids)).delete(synchronize_session=False)
             db.query(GameSession).filter(GameSession.player_id == player_id).delete(synchronize_session=False)
         db.query(PlayerBadge).filter(PlayerBadge.player_id == player_id).delete(synchronize_session=False)
+        db.query(DictionaryProgress).filter(DictionaryProgress.player_id == player_id).delete(synchronize_session=False)
         db.delete(player)
         db.commit()
     except Exception:
@@ -165,6 +171,38 @@ def get_badges(player_id: str, db: Session = Depends(get_db)):
     return _badges_out(db, player_id)
 
 
+@router.get("/{player_id}/dictionary", response_model=DictionaryOut)
+def get_dictionary(player_id: str, db: Session = Depends(get_db)):
+    if db.get(Player, player_id) is None:
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    return DictionaryOut(completed=_dictionary_out(db, player_id))
+
+
+@router.post("/{player_id}/dictionary/{emotion}/complete", response_model=DictionaryCompleteOut)
+def complete_dictionary_emotion(player_id: str, emotion: str, db: Session = Depends(get_db)):
+    if emotion not in EMOTION_CLASSES:
+        raise HTTPException(status_code=422, detail=f"Unknown emotion, expected one of {EMOTION_ORDER}")
+    if db.get(Player, player_id) is None:
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    already_done = (
+        db.query(DictionaryProgress)
+        .filter(DictionaryProgress.player_id == player_id, DictionaryProgress.emotion == emotion)
+        .first()
+    )
+    if already_done is None:
+        db.add(DictionaryProgress(player_id=player_id, emotion=emotion))
+        try:
+            db.commit()
+        except IntegrityError:
+            # A parallel request completed the same emotion first
+            db.rollback()
+
+    new_badges = award_new_badges(db, player_id)
+    return DictionaryCompleteOut(completed=_dictionary_out(db, player_id), new_badges=new_badges)
+
+
 @router.get("/{player_id}/dashboard", response_model=DashboardOut)
 def get_dashboard(player_id: str, db: Session = Depends(get_db)):
     player = db.get(Player, player_id)
@@ -208,6 +246,7 @@ def get_dashboard(player_id: str, db: Session = Depends(get_db)):
         all_equal=all_equal,
         badges=_badges_out(db, player_id),
         sessions=[_dashboard_session_out(s) for s in finished_sessions],
+        dictionary_completed=db.query(DictionaryProgress).filter(DictionaryProgress.player_id == player_id).count(),
     )
 
 
@@ -299,6 +338,12 @@ def _badges_out(db: Session, player_id: str) -> List[BadgeOut]:
         .all()
     )
     return [BadgeOut(badge_id=b.badge_id, earned_at=to_utc_iso(b.earned_at)) for b in badges]
+
+
+def _dictionary_out(db: Session, player_id: str) -> List[DictionaryEntryOut]:
+    rows = db.query(DictionaryProgress).filter(DictionaryProgress.player_id == player_id).all()
+    rows.sort(key=lambda p: EMOTION_ORDER.index(p.emotion))
+    return [DictionaryEntryOut(emotion=p.emotion, completed_at=to_utc_iso(p.completed_at)) for p in rows]
 
 
 def _finished_sessions(db: Session, player_id: str) -> List[GameSession]:

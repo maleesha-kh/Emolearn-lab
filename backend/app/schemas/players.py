@@ -104,3 +104,17 @@ class DashboardOut(BaseModel):
     all_equal: bool
     badges: List[BadgeOut]
     sessions: List[DashboardSessionOut]
+    dictionary_completed: int
+
+
+class DictionaryEntryOut(BaseModel):
+    emotion: str
+    completed_at: str
+
+
+class DictionaryOut(BaseModel):
+    completed: List[DictionaryEntryOut]
+
+
+class DictionaryCompleteOut(DictionaryOut):
+    new_badges: List[str]

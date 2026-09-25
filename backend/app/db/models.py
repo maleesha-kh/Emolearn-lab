@@ -1,11 +1,12 @@
-"""ORM models: players, game sessions, and rounds."""
+"""ORM models: players, game sessions, rounds, badges, and dictionary progress."""
 import uuid
 from datetime import datetime, timezone
 from typing import List, Optional
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, String, UniqueConstraint
+from sqlalchemy import Boolean, CheckConstraint, DateTime, Float, ForeignKey, Integer, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
+from app.core.config import EMOTION_CLASSES
 from app.db.database import Base
 
 
@@ -71,6 +72,22 @@ class PlayerBadge(Base):
     earned_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
     player: Mapped["Player"] = relationship(back_populates="badges")
+
+
+class DictionaryProgress(Base):
+    __tablename__ = "dictionary_progress"
+    __table_args__ = (
+        UniqueConstraint("player_id", "emotion", name="uq_player_dictionary_emotion"),
+        CheckConstraint(
+            "emotion IN (" + ", ".join(f"'{e}'" for e in EMOTION_CLASSES) + ")",
+            name="ck_dictionary_emotion",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    player_id: Mapped[str] = mapped_column(String, ForeignKey("players.id"), nullable=False)
+    emotion: Mapped[str] = mapped_column(String, nullable=False)
+    completed_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
 
 class Setting(Base):

@@ -1,8 +1,11 @@
 """Badge ids and the rules that award them, evaluated from finished sessions
-only, using rounds.child_correct (never the model's own prediction)."""
+(using rounds.child_correct, never the model's own prediction) and from
+Emotion Dictionary progress."""
 from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Iterable
+
+from app.core.config import EMOTION_CLASSES
 
 FIRST_STAR = "first-star"
 EMO_EXPLORER = "emo-explorer"
@@ -14,6 +17,7 @@ FIVE_SESSIONS = "five-sessions"
 SUPER_TEACHER = "super-teacher"
 COMEBACK_KID = "comeback-kid"
 BEST_FRIEND = "best-friend"
+FEELINGS_EXPLORER = "feelings-explorer"
 
 BADGE_IDS = [
     FIRST_STAR,
@@ -26,6 +30,7 @@ BADGE_IDS = [
     SUPER_TEACHER,
     COMEBACK_KID,
     BEST_FRIEND,
+    FEELINGS_EXPLORER,
 ]
 
 
@@ -38,9 +43,10 @@ def _local_date(dt: datetime):
     return dt.astimezone().date()
 
 
-def evaluate_earned_badges(finished_sessions: Iterable) -> set:
+def evaluate_earned_badges(finished_sessions: Iterable, dictionary_emotions: Iterable[str]) -> set:
     """finished_sessions: GameSession ORM objects (with .rounds loaded) that
-    all have finished_at set. Returns the set of badge ids currently earned."""
+    all have finished_at set. dictionary_emotions: the emotions completed in
+    the Emotion Dictionary. Returns the set of badge ids currently earned."""
     ordered = sorted(finished_sessions, key=lambda s: s.finished_at)
 
     correct_by_emotion = defaultdict(int)
@@ -85,5 +91,8 @@ def evaluate_earned_badges(finished_sessions: Iterable) -> set:
     distinct_local_days = {_local_date(session.finished_at) for session in ordered}
     if len(distinct_local_days) >= 5:
         earned.add(BEST_FRIEND)
+
+    if set(EMOTION_CLASSES) <= set(dictionary_emotions):
+        earned.add(FEELINGS_EXPLORER)
 
     return earned
