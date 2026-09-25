@@ -275,8 +275,9 @@ def test_csv_oldest_first_and_unfinished_excluded(db_client):
     try:
         s1 = db.get(GameSession, first["id"])
         s2 = db.get(GameSession, second["id"])
-        s1.finished_at = s1.finished_at.replace(year=2026, month=1, day=1)
-        s2.finished_at = s2.finished_at.replace(year=2026, month=1, day=2)
+        # 06:00 UTC keeps the local date the same for any timezone from -06:00 to +18:00
+        s1.finished_at = datetime(2026, 1, 1, 6, 0)
+        s2.finished_at = datetime(2026, 1, 2, 6, 0)
         db.commit()
     finally:
         db.close()

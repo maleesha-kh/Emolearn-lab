@@ -63,6 +63,13 @@ def test_complete_twice_is_idempotent(db_client):
         assert db.query(DictionaryProgress).filter_by(player_id=player_id).count() == 1
 
 
+def test_newly_completed_true_only_on_first_call(client):
+    player_id = create_player(client)["id"]
+    assert complete(client, player_id, "angry")["newly_completed"] is True
+    assert complete(client, player_id, "angry")["newly_completed"] is False
+    assert complete(client, player_id, "sad")["newly_completed"] is True
+
+
 def test_completed_list_uses_display_order(client):
     player_id = create_player(client)["id"]
     for emotion in ["surprised", "happy", "angry"]:

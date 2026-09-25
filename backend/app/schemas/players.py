@@ -118,3 +118,4 @@ class DictionaryOut(BaseModel):
 
 class DictionaryCompleteOut(DictionaryOut):
     new_badges: List[str]
+    newly_completed: bool

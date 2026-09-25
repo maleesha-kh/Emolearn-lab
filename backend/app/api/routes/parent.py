@@ -8,7 +8,7 @@ the settings table under parent_pin_hash / parent_recovery_hash.
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
@@ -37,6 +37,23 @@ MAX_RECOVERY_ATTEMPTS = 5
 RECOVERY_LOCKOUT_SECONDS = 15 * 60
 
 
+def require_parent_pin(
+    x_parent_pin: Optional[str] = Header(default=None),
+    db: Session = Depends(get_db),
+) -> None:
+    """Dependency for parent-only endpoints; expects the PIN in X-Parent-Pin.
+
+    TODO: /players/{id}/dashboard and /players/{id}/report.csv should use
+    this too once the frontend sends the header.
+    """
+    if not x_parent_pin:
+        raise HTTPException(status_code=401, detail="Parent PIN required")
+    if _get_setting(db, PIN_SETTING_KEY) is None:
+        raise HTTPException(status_code=403, detail="No parent PIN set yet")
+    if not _pin_matches(db, x_parent_pin):
+        raise HTTPException(status_code=403, detail="Wrong parent PIN")
+
+
 @router.get("/parent/pin/status", response_model=PinStatusOut)
 def pin_status(db: Session = Depends(get_db)):
     return PinStatusOut(
@@ -58,9 +75,7 @@ def pin_setup(payload: PinSetup, db: Session = Depends(get_db)):
 
 @router.post("/parent/pin/verify", response_model=PinVerifyOut)
 def pin_verify(payload: PinVerify, db: Session = Depends(get_db)):
-    stored = _get_setting(db, PIN_SETTING_KEY)
-    valid = stored is not None and verify_pin(payload.pin, stored)
-    return PinVerifyOut(valid=valid)
+    return PinVerifyOut(valid=_pin_matches(db, payload.pin))
 
 
 @router.put("/parent/pin", response_model=PinStatusOut)
@@ -110,6 +125,11 @@ def regenerate_recovery_code(payload: RecoveryRegenerate, db: Session = Depends(
     new_code = _issue_recovery_code(db)
     db.commit()
     return RecoveryCodeOut(recovery_code=new_code)
+
+
+def _pin_matches(db: Session, pin: str) -> bool:
+    stored = _get_setting(db, PIN_SETTING_KEY)
+    return stored is not None and verify_pin(pin, stored)
 
 
 def _issue_recovery_code(db: Session) -> str:

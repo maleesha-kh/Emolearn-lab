@@ -7,14 +7,14 @@ from datetime import datetime, timezone
 from typing import Dict, List
 
 from fastapi import APIRouter, Depends, HTTPException, Response
-from sqlalchemy import func
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.core.badge_awards import award_new_badges
 from app.core.config import EMOTION_CLASSES
 from app.db.database import get_db, to_utc_iso
-from app.db.models import DictionaryProgress, GameSession, Player, PlayerBadge, Round
+from app.db.models import DiaryEntry, DictionaryProgress, GameSession, ParentTip, Player, PlayerBadge, Round
 from app.schemas.players import (
     BadgeOut,
     DashboardOut,
@@ -116,6 +116,9 @@ def delete_player(player_id: str, db: Session = Depends(get_db)):
             db.query(GameSession).filter(GameSession.player_id == player_id).delete(synchronize_session=False)
         db.query(PlayerBadge).filter(PlayerBadge.player_id == player_id).delete(synchronize_session=False)
         db.query(DictionaryProgress).filter(DictionaryProgress.player_id == player_id).delete(synchronize_session=False)
+        diary_ids = select(DiaryEntry.id).where(DiaryEntry.player_id == player_id)
+        db.query(ParentTip).filter(ParentTip.diary_entry_id.in_(diary_ids)).delete(synchronize_session=False)
+        db.query(DiaryEntry).filter(DiaryEntry.player_id == player_id).delete(synchronize_session=False)
         db.delete(player)
         db.commit()
     except Exception:
@@ -191,16 +194,22 @@ def complete_dictionary_emotion(player_id: str, emotion: str, db: Session = Depe
         .filter(DictionaryProgress.player_id == player_id, DictionaryProgress.emotion == emotion)
         .first()
     )
+    newly_completed = False
     if already_done is None:
         db.add(DictionaryProgress(player_id=player_id, emotion=emotion))
         try:
             db.commit()
+            newly_completed = True
         except IntegrityError:
             # A parallel request completed the same emotion first
             db.rollback()
 
     new_badges = award_new_badges(db, player_id)
-    return DictionaryCompleteOut(completed=_dictionary_out(db, player_id), new_badges=new_badges)
+    return DictionaryCompleteOut(
+        completed=_dictionary_out(db, player_id),
+        new_badges=new_badges,
+        newly_completed=newly_completed,
+    )
 
 
 @router.get("/{player_id}/dashboard", response_model=DashboardOut)
