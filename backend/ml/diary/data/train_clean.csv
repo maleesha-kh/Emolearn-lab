@@ -1,0 +1,721 @@
+text,reason,sentiment,source
+i got full marks in my maths test,school,positive,generated
+my techer gave me a gold star,school,positive,generated
+we had sports meet at school today,school,positive,generated
+i am happy because i finished all my homework,school,positive,generated
+teacher said my drawing was the best in class,school,positive,generated
+i got a prize at skool,school,positive,generated
+the school trip to the museum was fun,school,positive,generated
+i can read big words now and miss said good job,school,positive,generated
+my class won the singing competition,school,positive,generated
+i was chosen to be class monitor,school,positive,generated
+exam was easy,school,positive,generated
+i passed my spelling test becuz i practised,school,positive,generated
+our new classroom has a big fan,school,positive,generated
+we learned about planets in science,school,positive,generated
+miss let us sit under the tree for the lesson,school,positive,generated
+i got a sticker for neat handwriting,school,positive,generated
+i answerd a hard question in class,school,positive,generated
+teacher read us a funny story,school,positive,generated
+no school tomorrow because of the holiday,school,positive,generated
+the principal shook my hand,school,positive,generated
+i was surprised when sir gave me a certificate,school,positive,generated
+my name was on the notice board for good marks,school,positive,generated
+my report card was really good,school,positive,generated
+we made a volcano in class and it bubbled,school,positive,generated
+today our class went to the library,school,positive,generated
+i finaly learned my times tables,school,positive,generated
+teacher picked me to lead the prayer at assembly,school,positive,generated
+i got 95 for english,school,positive,generated
+homework was short today,school,positive,generated
+i was the first to finish the sums,school,positive,generated
+our school concert went really well,school,positive,generated
+miss hugged me when i said my poem,school,positive,generated
+my essay was read out to the whole class,school,positive,generated
+i could not believe i came first in class,school,positive,generated
+the test was not hard at all,school,positive,generated
+art period was so much fun today,school,positive,generated
+we got new text books at school,school,positive,generated
+i said my speech without forgeting,school,positive,generated
+good marks,school,positive,generated
+techer smiled at my work,school,positive,generated
+i got a merit badge at assembly,school,positive,generated
+we planted beans in the school garden,school,positive,generated
+our class won the cleanest classroom prize,school,positive,generated
+i got all ten spellings right,school,positive,generated
+i am proud because i can write joined letters now,school,positive,generated
+miss said i was very helpful in class,school,positive,generated
+teacher gave no homework for the weekend,school,positive,generated
+the results came out and i passed,school,positive,generated
+today i was brave and read aloud in class,school,positive,generated
+the new teacher is very kind,school,positive,generated
+i understood fractions today,school,positive,generated
+we did a science experment with magnets,school,positive,generated
+my project got a star,school,positive,generated
+i was hapy at school today,school,positive,generated
+i got a certificate for good attendance,school,positive,generated
+i won the quiz at school,school,positive,generated
+i got a big part in the school play,school,positive,generated
+sir said i improved a lot,school,positive,generated
+i did my homwork all by myself,school,positive,generated
+we had a fun day at school,school,positive,generated
+i got low marks in my test,school,negative,generated
+teacher shouted at the whole class,school,negative,generated
+i forgot my homework and miss was angry,school,negative,generated
+the exam was too hard,school,negative,generated
+i didnt finish my sums in time,school,negative,generated
+techer said my writing is messy,school,negative,generated
+i am sad because i failed spelling,school,negative,generated
+we have too much homwork,school,negative,generated
+i did not get a star today,school,negative,generated
+my name was not called for the school play,school,negative,generated
+i was scolded for talking in class,school,negative,generated
+school starts again tomorrow,school,negative,generated
+i had to stay in at break to finish work,school,negative,generated
+i lost marks for a silly mistake,school,negative,generated
+teacher moved my seat to the front,school,negative,generated
+i couldnt answer when miss asked me,school,negative,generated
+the test was a surprise and i did not study,school,negative,generated
+the school trip got cancelled,school,negative,generated
+i came last in the reading test,school,negative,generated
+my maths book is full of red marks,school,negative,generated
+i was late for school and missed assembly,school,negative,generated
+sir gave us a test without telling,school,negative,generated
+i dont understand fractions,school,negative,generated
+homework took all evening,school,negative,generated
+our new class teacher never smiles,school,negative,generated
+i got a note to take home to my parents,school,negative,generated
+exams are next week and i am worried,school,negative,generated
+i had to write lines for being noisy,school,negative,generated
+my science project fell apart before class,school,negative,generated
+i didnt get picked to be a prefect,school,negative,generated
+miss gave me a sad face on my work,school,negative,generated
+we had to do the test again,school,negative,generated
+i was the only one who got it wrong,school,negative,generated
+teacher didnt believe i did my homework,school,negative,generated
+the class was too noisy and i couldnt learn,school,negative,generated
+my report card was bad,school,negative,generated
+i forgot my lines in the school play,school,negative,generated
+there was no art class today,school,negative,generated
+i dont like tution classes on saturday,school,negative,generated
+skool is boring today,school,negative,generated
+i ran out of time in the exam,school,negative,generated
+i got 40 for maths,school,negative,generated
+the teacher did not let me go to the toilet,school,negative,generated
+i was put in the lower reading group,school,negative,generated
+miss forgot to give me a sticker,school,negative,generated
+i spelled my own name wrong on the test,school,negative,generated
+i had to sit alone because i talked,school,negative,generated
+the english paper had words i didnt know,school,negative,generated
+our class trip was moved to next month,school,negative,generated
+the principal was angry at our class,school,negative,generated
+the whiteboard was too far and i couldnt see,school,negative,generated
+i am tired of doing homework every day,school,negative,generated
+teacher said i have to try harder,school,negative,generated
+my answers got mixed up in the exm,school,negative,generated
+i didnt know any answers in the quiz,school,negative,generated
+my homework got a big red cross,school,negative,generated
+becuz of the test we missed games period,school,negative,generated
+the marks were not fair,school,negative,generated
+homework is too hard for me,school,negative,generated
+i was scared to read in front of the class,school,negative,generated
+my best frend shared his lunch with me,friends,positive,generated
+nimal played with me at break,friends,positive,generated
+sara said i am her best friend,friends,positive,generated
+i made a new friend today,friends,positive,generated
+amaya invited me to her party,friends,positive,generated
+we made up after our fight,friends,positive,generated
+my freind helped me when i fell,friends,positive,generated
+kavindu let me sit next to him,friends,positive,generated
+the new girl wants to be my friend,friends,positive,generated
+my friends picked me for their team,friends,positive,generated
+sara gave me half of her chocolate,friends,positive,generated
+i have lots of friends in my class,friends,positive,generated
+my friend came to my house to play,friends,positive,generated
+we started a club with my friends,friends,positive,generated
+nimal said sorry to me,friends,positive,generated
+my friend wrote me a nice note,friends,positive,generated
+everyone laughed at my joke,friends,positive,generated
+i was happy becuz my frend came back from holiday,friends,positive,generated
+my friend lent me his pencil,friends,positive,generated
+we held hands and walked together,friends,positive,generated
+my best friend and i wore matching clips,friends,positive,generated
+the boys let me join their game,friends,positive,generated
+amaya taught me a new clapping song,friends,positive,generated
+a girl in my class smiled at me,friends,positive,generated
+i am not by myself anymore i have a friend,friends,positive,generated
+they saved a seat for me at lunch,friends,positive,generated
+my friend visited me when i was sick,friends,positive,generated
+sara phoned me in the evening,friends,positive,generated
+we are friends again,friends,positive,generated
+my friend said my drawing was nice,friends,positive,generated
+nobody left me out today,friends,positive,generated
+my frend gave me a friendship band,friends,positive,generated
+kavindu and i laughed all day,friends,positive,generated
+my old friend moved back to our street,friends,positive,generated
+my friend surprised me with a card,friends,positive,generated
+i was surprised when the new boy said hi,friends,positive,generated
+we shared our snacks at interval,friends,positive,generated
+my friend stood up for me,friends,positive,generated
+my friends cheered for me,friends,positive,generated
+i slept over at my friends house,friends,positive,generated
+all my friends came to see me,friends,positive,generated
+a friend helped me find my eraser,friends,positive,generated
+we told jokes on the bus,friends,positive,generated
+my friend picked me first,friends,positive,generated
+sara and me are best friends forever,friends,positive,generated
+i got a letter from my pen pal,friends,positive,generated
+my friend said i was kind,friends,positive,generated
+my friends waited for me after class,friends,positive,generated
+nimal shared his crayons,friends,positive,generated
+the older kids were nice to me,friends,positive,generated
+my frends and i sat together,friends,positive,generated
+my friend hugged me when i was sad,friends,positive,generated
+i have a new buddy,friends,positive,generated
+a friend from another class waved at me,friends,positive,generated
+we kept each others places in the line,friends,positive,generated
+my friend called me clever,friends,positive,generated
+she said sorry for taking my pencil,friends,positive,generated
+i can talk to my freind about anything,friends,positive,generated
+kavindu gave me his last sweet,friends,positive,generated
+we made a plan to meet on sunday,friends,positive,generated
+she took my crayons,friends,negative,generated
+my friend didnt play with me today,friends,negative,generated
+nobody wanted to sit with me,friends,negative,generated
+sara is angry with me,friends,negative,generated
+kavindu told everyone i cried,friends,negative,generated
+they left me out of the game,friends,negative,generated
+my best frend has a new best friend,friends,negative,generated
+nimal broke my pencil and laughed,friends,negative,generated
+my friend moved to another school,friends,negative,generated
+i had a fight with my friend,friends,negative,generated
+they laughed at my shoes,friends,negative,generated
+amaya had a party and i wasnt asked,friends,negative,generated
+my friends whispered about me,friends,negative,generated
+he called me a bad name,friends,negative,generated
+my friend did not share with me,friends,negative,generated
+they wouldnt let me play,friends,negative,generated
+no one picked me for their team,friends,negative,generated
+my friend told my secret,friends,negative,generated
+i sat by myself at interval,friends,negative,generated
+my frend said she will not talk to me,friends,negative,generated
+he copied my work and said i copied,friends,negative,generated
+the girls wont let me join,friends,negative,generated
+my friend is going away to another country,friends,negative,generated
+sara was mean to me today,friends,negative,generated
+we argued about who won,friends,negative,generated
+my friend blamed me for breaking the toy,friends,negative,generated
+he took my seat at lunch,friends,negative,generated
+they made fun of my voice,friends,negative,generated
+i lost my best friend,friends,negative,generated
+my friend didnt come today and i was lonely,friends,negative,generated
+nobody said hi to me,friends,negative,generated
+my friend chose someone else as partner,friends,negative,generated
+they called me a baby,friends,negative,generated
+kavindu wont give back my ball,friends,negative,generated
+i have no friends in the new class,friends,negative,generated
+my friend lied to me,friends,negative,generated
+becuz i was late my friends left without me,friends,negative,generated
+i waited but my friend never came,friends,negative,generated
+she tore my drawing,friends,negative,generated
+my frend broke our promise,friends,negative,generated
+amaya is not my friend anymore,friends,negative,generated
+they didnt laugh at my joke,friends,negative,generated
+he said my drawing was ugly,friends,negative,generated
+the big kids took our swing,friends,negative,generated
+i was surprised my friend didnt say bye,friends,negative,generated
+my friend went to play with others,friends,negative,generated
+my friends forgot my birthday,friends,negative,generated
+he ate my snack without asking,friends,negative,generated
+they changed the rules so i lost,friends,negative,generated
+my friend is angry and wont say why,friends,negative,generated
+the new boy is not nice,friends,negative,generated
+my freind said i talk too much,friends,negative,generated
+i was the only one not invited,friends,negative,generated
+we are not friends now,friends,negative,generated
+nimal told the teacher on me,friends,negative,generated
+my friend was sitting with someone else,friends,negative,generated
+nobody wanted to be my partner,friends,negative,generated
+they hid from me as a joke,friends,negative,generated
+my friend cheated in the game,friends,negative,generated
+i miss my old friends,friends,negative,generated
+my cousin came without telling us,family,positive,generated
+thaththa took me to the beach,family,positive,generated
+my baby brother said my name,family,positive,generated
+grandma came to stay with us,family,positive,generated
+we went on a family trip to kandy,family,positive,generated
+my dad came home early,family,positive,generated
+my sister helped me carry my bag,family,positive,generated
+appa played cricket with me,family,positive,generated
+my mom hugged me tight,family,positive,generated
+we all looked at the moon together,family,positive,generated
+my aunty visited from abroad,family,positive,generated
+achchi told me a story at night,family,positive,generated
+my big brother taught me to ride a bike,family,positive,generated
+my new baby sister was born,family,positive,generated
+we had dinner together all of us,family,positive,generated
+papa said he is proud of me,family,positive,generated
+my grandpa let me help in the garden,family,positive,generated
+mummy came to pick me up from school,family,positive,generated
+thaththa is back from his work trip,family,positive,generated
+my family went to the temple together,family,positive,generated
+my cousins stayed at our house,family,positive,generated
+my brother shared his room with me,family,positive,generated
+dad fixed my bicycle,family,positive,generated
+mom plaited my hair nicely,family,positive,generated
+i helped amma make the bed,family,positive,generated
+my parents said yes,family,positive,generated
+we went to see seeya in the village,family,positive,generated
+my mum sang to me,family,positive,generated
+my sister said sorry,family,positive,generated
+we moved to a bigger house,family,positive,generated
+nanda came with a surprise for us,family,positive,generated
+my dad took leave to be with us,family,positive,generated
+i was suprised when my uncle came from dubai,family,positive,generated
+my family clapped for me,family,positive,generated
+we had a picnic with my cousins,family,positive,generated
+my mom said i can stay up late,family,positive,generated
+dad and me went fishing,family,positive,generated
+grandma held my hand on the walk,family,positive,generated
+my brother let me win,family,positive,generated
+the baby laughed when i made faces,family,positive,generated
+amma was not angry about the spill,family,positive,generated
+my sister and i made a tent with bedsheets,family,positive,generated
+my sister came home from hostel,family,positive,generated
+papa read me a bedtime story,family,positive,generated
+my auntys baby is so cute,family,positive,generated
+thaththa carried me on his sholders,family,positive,generated
+my parents came to my concert,family,positive,generated
+my cousin brother called me on video,family,positive,generated
+we all went to nuwara eliya,family,positive,generated
+my mum was very happy with me,family,positive,generated
+we celebrated new year with the whole family,family,positive,generated
+i got to talk to my dad on the phone,family,positive,generated
+my family is all at home today,family,positive,generated
+my little brother shared his toy,family,positive,generated
+grandpa taught me an old song,family,positive,generated
+my parents made up after arguing,family,positive,generated
+my aunt took me shopping,family,positive,generated
+my family laughed together at dinner,family,positive,generated
+amma let me help her in the kitchen,family,positive,generated
+my granny calld me her little star,family,positive,generated
+amma did not come to pick me,family,negative,generated
+my brother broke my toy,family,negative,generated
+dad was angry with me,family,negative,generated
+my sister took my things without asking,family,negative,generated
+my parents are always busy,family,negative,generated
+grandma went back to her house,family,negative,generated
+thaththa went overseas for work,family,negative,generated
+mummy said no to the trip,family,negative,generated
+my brother gets everything,family,negative,generated
+i got in trouble for spilling milk,family,negative,generated
+my cousins went home,family,negative,generated
+we didnt go on the trip because dad had work,family,negative,generated
+my baby brother cries all night,family,negative,generated
+my sister blamed me,family,negative,generated
+appa shouted at us,family,negative,generated
+my parents were arguing,family,negative,generated
+i miss my grandpa,family,negative,generated
+amma forgot my school concert,family,negative,generated
+my brother keeps teasing me,family,negative,generated
+dad didnt keep his promise,family,negative,generated
+my big sister wont let me in her room,family,negative,generated
+i have to share my room,family,negative,generated
+mom said i cant go outside,family,negative,generated
+my aunt moved far away,family,negative,generated
+my dad works at night so i dont see him,family,negative,generated
+my brother ate my share of cake,family,negative,generated
+my cousin broke my doll,family,negative,generated
+i was blamed for what my sister did,family,negative,generated
+we moved house and i miss the old one,family,negative,generated
+grandma is in hospital,family,negative,generated
+my parents didnt come to sports meet,family,negative,generated
+amma was cross because i was late,family,negative,generated
+my baby sister tore my book,family,negative,generated
+dad forgot to call me,family,negative,generated
+my brother said i am stupid,family,negative,generated
+i am sad becuz thaththa went away again,family,negative,generated
+my uncle left early,family,negative,generated
+mom compared me with my cousin,family,negative,generated
+i wasnt allowed to go with my family to the wedding,family,negative,generated
+my sister got a present and i didnt,family,negative,generated
+my parents said no tv this week,family,negative,generated
+no one at home listened to me,family,negative,generated
+my brother woke me up too early,family,negative,generated
+my grandparents didnt visit this year,family,negative,generated
+i got scolded by mummy,family,negative,generated
+my brother took the remote,family,negative,generated
+amma went to work and i stayed with aunty,family,negative,generated
+dad was late again,family,negative,generated
+my sister is going to a hostel,family,negative,generated
+my cousin didnt come for my birthday,family,negative,generated
+my parents only talk about the baby,family,negative,generated
+achchi was upset with me,family,negative,generated
+my brother tore my kite,family,negative,generated
+i was surprised amma threw away my old shoes,family,negative,generated
+papa couldnt come home for new year,family,negative,generated
+nanda was angry at me,family,negative,generated
+we had to leave the family trip early,family,negative,generated
+my mother said i was naughty,family,negative,generated
+i want my dad to come home soon,family,negative,generated
+my sistr always gets the window seat,family,negative,generated
+i won the video game,playing,positive,generated
+i built a big lego tower,playing,positive,generated
+i scored a goal in football,playing,positive,generated
+i drew a rainbow picture,playing,positive,generated
+i learned to ride my bicycle without help,playing,positive,generated
+we flew a kite and it went so high,playing,positive,generated
+my favorite cartoon was on tv,playing,positive,generated
+i finished my puzzle,playing,positive,generated
+i played in the rain,playing,positive,generated
+i got to the next level in my game,playing,positive,generated
+i swam in the pool today,playing,positive,generated
+i made a sand castle,playing,positive,generated
+i won at snakes and ladders,playing,positive,generated
+i can do a cartwheel now,playing,positive,generated
+the new episode of my show came out,playing,positive,generated
+i played hide and seek,playing,positive,generated
+i coloured the whole book,playing,positive,generated
+i jumped very high on the trampoline,playing,positive,generated
+i made a paper boat and it floated,playing,positive,generated
+i played cricket and hit a six,playing,positive,generated
+my team won the match,playing,positive,generated
+i practised piano and it sounded nice,playing,positive,generated
+i made a clay elephant,playing,positive,generated
+i climbed the tall tree,playing,positive,generated
+i watched a funny movie,playing,positive,generated
+i played with my new toy car,playing,positive,generated
+i learned a new dance,playing,positive,generated
+i painted a big sun and a house,playing,positive,generated
+i raced my bike down the hill,playing,positive,generated
+i blew huge bubbles,playing,positive,generated
+i played football till dark,playing,positive,generated
+playing cricket is the best,playing,positive,generated
+my robot toy works,playing,positive,generated
+i caught the ball evry time,playing,positive,generated
+i was surprised i won the race,playing,positive,generated
+i built a fort with pillows,playing,positive,generated
+my team didnt lose,playing,positive,generated
+i got a high score,playing,positive,generated
+i skipped rope 50 times,playing,positive,generated
+i played dolls all afternoon,playing,positive,generated
+i made a card with glitter,playing,positive,generated
+i did a jigsaw with 100 peices,playing,positive,generated
+i watched cartoons after homework,playing,positive,generated
+we played catch in the garden,playing,positive,generated
+i swung really high on the swing,playing,positive,generated
+my kite didnt fall down,playing,positive,generated
+i played ludo and won,playing,positive,generated
+i sang my favrite song loud,playing,positive,generated
+i built a train track,playing,positive,generated
+badminton was fun today,playing,positive,generated
+i made a mask out of paper,playing,positive,generated
+i finished my comic book,playing,positive,generated
+i learned to whistle,playing,positive,generated
+i played in the sand pit,playing,positive,generated
+i was happy playing with my blocks,playing,positive,generated
+i did a handstand,playing,positive,generated
+my paper plane flew far,playing,positive,generated
+i skated for the first time,playing,positive,generated
+i drew a dragon,playing,positive,generated
+i got to play games for one hour,playing,positive,generated
+i didnt win the game,playing,negative,generated
+my kite got stuck in a tree,playing,negative,generated
+we lost the cricket match,playing,negative,generated
+my lego tower fell down,playing,negative,generated
+the tv was not working so no cartoons,playing,negative,generated
+i couldnt finish the level,playing,negative,generated
+my toy car broke,playing,negative,generated
+our football game ended too soon,playing,negative,generated
+i cant ride my bike yet,playing,negative,generated
+my drawing got ruined by water,playing,negative,generated
+this board game is too tricky for me,playing,negative,generated
+i lost at chess again,playing,negative,generated
+my balloon popped,playing,negative,generated
+my puzzle has a missing piece,playing,negative,generated
+my show got cancelled,playing,negative,generated
+i missed the goal,playing,negative,generated
+my team lost becuz i dropped the ball,playing,negative,generated
+the batteries in my robot died,playing,negative,generated
+there was no wind to fly my kite,playing,negative,generated
+my sand castle got washed away,playing,negative,generated
+my crayons are all broken,playing,negative,generated
+the swing was broken,playing,negative,generated
+i was out first in cricket,playing,negative,generated
+my paper plane wont fly,playing,negative,generated
+i tried a cartwheel and landed on my bum,playing,negative,generated
+my game got deleted,playing,negative,generated
+no time to play today,playing,negative,generated
+the ball went over the wall,playing,negative,generated
+my paint spilled all over my picture,playing,negative,generated
+the cartoon ended too fast,playing,negative,generated
+i got stuck on the same level,playing,negative,generated
+i lost the race,playing,negative,generated
+i keep falling when i skate,playing,negative,generated
+tv time is over,playing,negative,generated
+my dolls arm came off,playing,negative,generated
+i didnt get a turn on the slide,playing,negative,generated
+my bubbles wont blow,playing,negative,generated
+the park was closed,playing,negative,generated
+i couldnt find the last puzzle piece,playing,negative,generated
+my phone game froze,playing,negative,generated
+i came last in musical chairs,playing,negative,generated
+my drawing looks bad,playing,negative,generated
+my kite string snapped,playing,negative,generated
+my clay model cracked,playing,negative,generated
+the football was flat,playing,negative,generated
+my bat is too heavy for me,playing,negative,generated
+i lost every round of carrom,playing,negative,generated
+the movie was scary,playing,negative,generated
+my rubik cube is too hard,playing,negative,generated
+the remote car ran out of power,playing,negative,generated
+i missed my favorite show,playing,negative,generated
+my block tower got knocked over,playing,negative,generated
+i coloured outside the lines,playing,negative,generated
+my swimming was not good today,playing,negative,generated
+i was found first in hide and seek,playing,negative,generated
+our team lost by one goal,playing,negative,generated
+i didnt get to play my game today,playing,negative,generated
+the video game is too scary,playing,negative,generated
+my toy train stoped working,playing,negative,generated
+i cant draw hands,playing,negative,generated
+my dog learned to sit,pets,positive,generated
+my cat had kittens,pets,positive,generated
+we got a new puppy,pets,positive,generated
+my fish is swimming happily,pets,positive,generated
+a butterfly sat on my hand,pets,positive,generated
+i saw an elephant at the zoo,pets,positive,generated
+my parrot said my name,pets,positive,generated
+my rabbit ate from my hand,pets,positive,generated
+a stray dog wagged its tail at me,pets,positive,generated
+my kitten sleeps with me,pets,positive,generated
+i fed the ducks at the lake,pets,positive,generated
+we found a baby bird and it flew,pets,positive,generated
+my dog came home,pets,positive,generated
+i saw monkeys on the way to school,pets,positive,generated
+my hamster ran in his wheel,pets,positive,generated
+i gave my dog a bath,pets,positive,generated
+my cat purred on my lap,pets,positive,generated
+i rode a horse at the fair,pets,positive,generated
+my tortoise ate a leaf,pets,positive,generated
+the puppy licked my face,pets,positive,generated
+i saw a peacock dance,pets,positive,generated
+my dog is better now,pets,positive,generated
+our cat played with a ball,pets,positive,generated
+i named my new goldfish bubbles,pets,positive,generated
+my dog waited for me at the gate,pets,positive,generated
+a squirel came close to me,pets,positive,generated
+the zoo had baby lions,pets,positive,generated
+my birds sang in the morning,pets,positive,generated
+my cat is back home,pets,positive,generated
+i taught my parrot a new word,pets,positive,generated
+my puppy chased his tail,pets,positive,generated
+we saw dolphins at the sea,pets,positive,generated
+my dog loves me,pets,positive,generated
+i got to hold a chick,pets,positive,generated
+a frog jumped in our garden and i laughed,pets,positive,generated
+my kitten played with a string,pets,positive,generated
+the cows let me pat them,pets,positive,generated
+my dog got a new collar,pets,positive,generated
+i saw a big turtle at the beach,pets,positive,generated
+my frends dog likes me,pets,positive,generated
+i found a ladybug,pets,positive,generated
+my cat is so fluffy,pets,positive,generated
+my fish had babies,pets,positive,generated
+the stray cat ate the food i gave,pets,positive,generated
+my dog barks hello when i come,pets,positive,generated
+i visited the elephant orphanage,pets,positive,generated
+my puppy walked on a leash,pets,positive,generated
+the owl at the zoo turned its head,pets,positive,generated
+i was surprised a bird built a nest in our window,pets,positive,generated
+my rabbit is so soft,pets,positive,generated
+we adopted a kitten from the street,pets,positive,generated
+my dog fetched the stick,pets,positive,generated
+i saw a rainbow fish in the tank,pets,positive,generated
+the lizzard on the wall was funny,pets,positive,generated
+my cat sat next to me while i read,pets,positive,generated
+i fed my goldfish all by myself,pets,positive,generated
+the goats at the farm were cute,pets,positive,generated
+my puppy slept all day on my bed,pets,positive,generated
+a baby monkey held its mother,pets,positive,generated
+my dog did a trick for evryone,pets,positive,generated
+dog sick,pets,negative,generated
+my dog ran away,pets,negative,generated
+my fish died,pets,negative,generated
+my cat scratched me,pets,negative,generated
+the stray puppy was crying in the rain,pets,negative,generated
+my parrot flew away,pets,negative,generated
+we had to give our dog to someone else,pets,negative,generated
+my hamster is not eating,pets,negative,generated
+i saw a hurt bird,pets,negative,generated
+my cat didnt come home last night,pets,negative,generated
+a dog barked at me and i was scared,pets,negative,generated
+the monkeys stole our mangoes,pets,negative,generated
+my rabbit bit my finger,pets,negative,generated
+my kitten is lost,pets,negative,generated
+the zoo lion looked sad,pets,negative,generated
+my dog chewed my shoes,pets,negative,generated
+my fish tank got dirty,pets,negative,generated
+i cant have a pet,pets,negative,generated
+our old dog is very slow now,pets,negative,generated
+a crow took my snack,pets,negative,generated
+the cat next door is hungry,pets,negative,generated
+my puppy has fleas,pets,negative,generated
+my tortoise is hiding and wont come out,pets,negative,generated
+i was surprised to see a snake in the garden,pets,negative,generated
+my budgie is sick,pets,negative,generated
+the vet gave my cat an injection,pets,negative,generated
+my dog is scared of thunder,pets,negative,generated
+a bee stung me,pets,negative,generated
+the stray dogs looked so thin,pets,negative,generated
+my cat got stuck on the roof,pets,negative,generated
+my goldfish jumped out of the bowl,pets,negative,generated
+our kittens went to a new home,pets,negative,generated
+the ducks flew away when i came,pets,negative,generated
+my dog doesnt want to play,pets,negative,generated
+i couldnt see the tiger at the zoo,pets,negative,generated
+my cat ate my fish,pets,negative,generated
+the neighbours dog keeps barking all night,pets,negative,generated
+my hen stopped laying eggs,pets,negative,generated
+a rat was in the kitchen,pets,negative,generated
+my pet frog escaped,pets,negative,generated
+our dog hurt his leg,pets,negative,generated
+my puppy peed on my bed,pets,negative,generated
+we lost our bird,pets,negative,generated
+a cat was crying outside all night,pets,negative,generated
+the zoo was closed so no animals,pets,negative,generated
+my fish looks sick,pets,negative,generated
+my dog is too old to walk,pets,negative,generated
+i miss my old dog,pets,negative,generated
+my hamster bit me,pets,negative,generated
+the pony wouldnt let me ride,pets,negative,generated
+my cat is angry with me,pets,negative,generated
+the puppy in the shop looked sad,pets,negative,generated
+i found a dead bird,pets,negative,generated
+my dog tore my pillow,pets,negative,generated
+our cow is sick,pets,negative,generated
+the cat ran off when i tried to pet it,pets,negative,generated
+i could not find my turtle,pets,negative,generated
+the fish in our pond disappeared,pets,negative,generated
+my dog was lost for a whole day,pets,negative,generated
+my kiten wont eat her food,pets,negative,generated
+it rained and the garden looks nice,other,positive,generated
+my tooth fell out and i got a coin,other,positive,generated
+i had ice cream,other,positive,generated
+it is my birthday today,other,positive,generated
+i got a new dress,other,positive,generated
+the sun came out after the rain,other,positive,generated
+i am better now after my fever,other,positive,generated
+we had kottu for dinner,other,positive,generated
+i found my lost pencil,other,positive,generated
+i got a present in the post,other,positive,generated
+it was cool and windy today,other,positive,generated
+i ate my favourite chocolate,other,positive,generated
+my cold went away,other,positive,generated
+i found ten rupees on the road,other,positive,generated
+the cake was yummy,other,positive,generated
+i got new shoes,other,positive,generated
+the lights came back on,other,positive,generated
+the rain made a rainbow,other,positive,generated
+i won a lucky draw,other,positive,generated
+i got a balloon at the shop,other,positive,generated
+i ate mangoes from the tree,other,positive,generated
+my cut healed,other,positive,generated
+i got a watch as a gift,other,positive,generated
+we had hot soup on a cold day,other,positive,generated
+my water bottle was in the lost box,other,positive,generated
+the wether was perfect today,other,positive,generated
+i had pancakes for breakfast,other,positive,generated
+i got a surprise gift,other,positive,generated
+the doctor said i am healthy,other,positive,generated
+my wobbly tooth finally came out,other,positive,generated
+i ate string hoppers,other,positive,generated
+my new bag has a zip,other,positive,generated
+i got a letter with my name on it,other,positive,generated
+it was cool in the evening,other,positive,generated
+i didnt get sick this year,other,positive,generated
+my medicine tasted nice for once,other,positive,generated
+i found a shiny stone,other,positive,generated
+we had a party at home,other,positive,generated
+i got to wear my new sandals,other,positive,generated
+i blew out all my candles,other,positive,generated
+i had a nice dream,other,positive,generated
+there was a big full moon,other,positive,generated
+the rain stopped,other,positive,generated
+i got a sticker book from the shop,other,positive,generated
+the watermelon was sweet,other,positive,generated
+my headache is gone,other,positive,generated
+i was surprised to find a gift in my shoe,other,positive,generated
+the bus ride was fun,other,positive,generated
+i got a haircut and it looks cool,other,positive,generated
+the ice cream van came,other,positive,generated
+i had fried rice,other,positive,generated
+my missing earring turned up,other,positive,generated
+it was sunny so we dried clothes,other,positive,generated
+i slept very well,other,positive,generated
+i got a new umbrela,other,positive,generated
+i got better from chicken pox,other,positive,generated
+my birthday cake was huge,other,positive,generated
+someone gave me a flower,other,positive,generated
+my wish came true,other,positive,generated
+i woke up early and saw the sunrise,other,positive,generated
+my tooth fell out suddenly,other,negative,generated
+i have a fever,other,negative,generated
+it rained and we couldnt go out,other,negative,generated
+i lost my water bottle,other,negative,generated
+i dropped my ice cream,other,negative,generated
+my stomach hurts,other,negative,generated
+i fell and hurt my knee,other,negative,generated
+my new shoes got dirty,other,negative,generated
+it was too hot today,other,negative,generated
+i had to take bitter medicine,other,negative,generated
+my birthday is over,other,negative,generated
+i didnt get a gift,other,negative,generated
+the thunder was loud and scary,other,negative,generated
+i broke my glasses,other,negative,generated
+my lunch fell on the floor,other,negative,generated
+i got a cut on my finger,other,negative,generated
+i have a cough,other,negative,generated
+i lost my eraser,other,negative,generated
+the power went off,other,negative,generated
+i had an injection,other,negative,generated
+my ice cream melted,other,negative,generated
+there was no cake left,other,negative,generated
+i got wet in the rain,other,negative,generated
+my balloon flew away,other,negative,generated
+i have chicken pox,other,negative,generated
+the food was too spicy,other,negative,generated
+i had a bad dream,other,negative,generated
+i lost my pencil box on the bus,other,negative,generated
+i bumped my head,other,negative,generated
+my nose is blocked,other,negative,generated
+i didnt like the dinner,other,negative,generated
+my cake was burnt,other,negative,generated
+the lights went out in the storm,other,negative,generated
+i was sick on my birthday,other,negative,generated
+i lost a coin,other,negative,generated
+i spilled juice on my dress,other,negative,generated
+my toe hurts,other,negative,generated
+i got a rash on my arm,other,negative,generated
+my umbrella broke in the wind,other,negative,generated
+the flood came to our road,other,negative,generated
+my tooth is paining,other,negative,generated
+i missed the bus,other,negative,generated
+it was too cold to sleep,other,negative,generated
+i am so hungry,other,negative,generated
+my shoe got lost at the beach,other,negative,generated
+my plaster came off and it hurt,other,negative,generated
+i had to go to hospital,other,negative,generated
+i got a gift but it was broken,other,negative,generated
+i fell off the step,other,negative,generated
+the road was too dusty,other,negative,generated
+my favorite cup broke,other,negative,generated
+rain came through the roof,other,negative,generated
+i have a sore throat,other,negative,generated
+my watch stoped working,other,negative,generated
+it suddenly started to pour,other,negative,generated
+the milk was sour,other,negative,generated
+my new toy was the wrong one,other,negative,generated
+my hair got tangled,other,negative,generated
+i woke up with a runny nose,other,negative,generated
+we got stuck in trafic,other,negative,generated

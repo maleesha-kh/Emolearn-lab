@@ -1,0 +1,211 @@
+text,reason,sentiment,source
+Yesterday Miss Perera clapped for my poem!,school,positive,generated
+When the marks came I was the top of the class.,school,positive,generated
+"Guess what, our school won the dance competition!",school,positive,generated
+"Wow, no homework this weekend",school,positive,generated
+At assembly they called my name for the art prize.,school,positive,generated
+Sir let our class go home early today!!,school,positive,generated
+I felt proud when I read a whole page aloud.,school,positive,generated
+This morning the teacher put my picture on the wall.,school,positive,generated
+Yay I remembered all my spelling words,school,positive,generated
+Our class trip to the planetarium was awesome.,school,positive,generated
+The exam paper was so easy that I finished early.,school,positive,generated
+It was nice when the new teacher learned my name.,school,positive,generated
+I got picked for the school quiz team!,school,positive,generated
+My teacher wrote excellent in my book.,school,positive,generated
+After the test Miss said I did really well.,school,positive,generated
+"Ugh, the teacher gave us three pages of sums.",school,negative,generated
+When Sir read the marks mine was the lowest.,school,negative,generated
+Today I was sent out of class for talking.,school,negative,generated
+"Oh no, my science project got a bad grade.",school,negative,generated
+Tomorrow is the big exam and my tummy feels funny.,school,negative,generated
+The teacher tore out my page because it was messy.,school,negative,generated
+I felt silly when I read the wrong word in class.,school,negative,generated
+Why do we have tests every single week?,school,negative,generated
+Miss didn't choose me for the sports day march.,school,negative,generated
+This term my marks went down.,school,negative,generated
+The class was so loud that Miss got mad at all of us.,school,negative,generated
+I studied a lot but still failed the quiz.,school,negative,generated
+Our school trip got called off at the last minute.,school,negative,generated
+The homework was so long that I cried.,school,negative,generated
+At school I couldn't understand anything in maths.,school,negative,generated
+"Guess what, Sara saved me a swing at break!",friends,positive,generated
+When I was sad Nimal made me laugh.,friends,positive,generated
+Today a boy from the other class asked to be my friend.,friends,positive,generated
+Me and Amaya made friendship bracelets together.,friends,positive,generated
+"Yay, my best friend is in my class this year!",friends,positive,generated
+It was nice when Kavindu chose me for his team first.,friends,positive,generated
+At lunch my friends let me sit in the middle.,friends,positive,generated
+My friend and I said sorry to each other and hugged.,friends,positive,generated
+Everybody on my table said my joke was funny.,friends,positive,generated
+Yesterday my friend came over and we laughed so much.,friends,positive,generated
+The new girl held my hand on the first day.,friends,positive,generated
+When I forgot my pencil my friend gave me hers.,friends,positive,generated
+I felt so happy that the whole group waited for me.,friends,positive,generated
+My pen pal from Galle wrote back!,friends,positive,generated
+"Hooray, my friend is back from her trip",friends,positive,generated
+Today my friend said I can't come to her party.,friends,negative,generated
+When I asked to play they all said no.,friends,negative,generated
+Nimal keeps copying everything I say to make fun of me.,friends,negative,generated
+At break I had nobody to play with.,friends,negative,generated
+My friend told the other kids what I said about her.,friends,negative,generated
+"Ugh, Sara broke our pinky promise.",friends,negative,generated
+It hurt my feelings when they laughed at my lunch box.,friends,negative,generated
+My best friend chose to sit next to the new boy.,friends,negative,generated
+Yesterday Kavindu said I'm not his friend any more.,friends,negative,generated
+Why did Amaya go and tell on me?,friends,negative,generated
+The girls made a club and I'm not allowed in.,friends,negative,generated
+My friend is moving to Jaffna next month.,friends,negative,generated
+"When I won, my friend got angry and walked off.",friends,negative,generated
+Nobody from my class wrote in my card.,friends,negative,generated
+At the party my friends ignored me the whole time.,friends,negative,generated
+"Guess what, my uncle flew in from Italy and surprised us!",family,positive,generated
+Yesterday Thaththa and I washed the car together.,family,positive,generated
+When I woke up Achchi was sitting next to me.,family,positive,generated
+My big sister let me wear her hair clips today.,family,positive,generated
+"Yay, Amma is taking leave to be home with us",family,positive,generated
+On Sunday the whole family went to the waterfall.,family,positive,generated
+It was so nice when my brother read to me.,family,positive,generated
+Mum and I painted the kitchen wall together.,family,positive,generated
+My little cousin took her first steps at our house!,family,positive,generated
+Tonight Appa is coming back from Colombo.,family,positive,generated
+After dinner we all sang songs with Seeya.,family,positive,generated
+My parents came to watch me dance and waved at me.,family,positive,generated
+"Wow, my baby brother smiled at me for the first time",family,positive,generated
+Grandpa showed me his old photos and told stories.,family,positive,generated
+Today my family planted a tree in the garden.,family,positive,generated
+When Thaththa left for Qatar I cried at the airport.,family,negative,generated
+My brother keeps taking my things and Mum doesn't see.,family,negative,generated
+Today Amma said I have to look after the baby all day.,family,negative,generated
+Yesterday my sister and I got in trouble because of her.,family,negative,generated
+Nobody at home remembered my prize day.,family,negative,generated
+"Ugh, my cousins messed up my room again.",family,negative,generated
+My parents went out and I wasn't allowed to come.,family,negative,generated
+When Appa came home late he was too tired to play.,family,negative,generated
+It's not fair that my sister gets the bigger room.,family,negative,generated
+Grandma had to go back to the village early.,family,negative,generated
+Mum and Dad were cross with me all evening.,family,negative,generated
+My uncle didn't come to the family lunch like he said.,family,negative,generated
+On the trip my brother and I argued the whole way.,family,negative,generated
+My dad is always on his phone.,family,negative,generated
+I felt so sad when the whole family went to the wedding without me.,family,negative,generated
+"Guess what, I finally beat the hardest level!",playing,positive,generated
+Yesterday I scored two goals in the match.,playing,positive,generated
+When I flew my kite it went higher than the trees.,playing,positive,generated
+This morning I built a rocket out of boxes.,playing,positive,generated
+"Yay, my team won at netball",playing,positive,generated
+The new cartoon film was so funny I laughed a lot.,playing,positive,generated
+At the park I went down the big slide ten times.,playing,positive,generated
+I felt proud when I rode my bike all the way round.,playing,positive,generated
+My clay dinosaur came out really well.,playing,positive,generated
+On Saturday I learned to swim without floats.,playing,positive,generated
+"Wow, I got a strike at bowling!",playing,positive,generated
+We splashed in the paddling pool all afternoon.,playing,positive,generated
+It was fun painting with my fingers today.,playing,positive,generated
+I made the tallest block tower ever!,playing,positive,generated
+After homework I got to watch two cartoons.,playing,positive,generated
+"Ugh, my game reset and I lost everything.",playing,negative,generated
+When the ball went into the drain the match was over.,playing,negative,generated
+Yesterday my kite tore in half.,playing,negative,generated
+My team got knocked out in the first round.,playing,negative,generated
+The TV broke right before my show.,playing,negative,generated
+It was annoying that my puzzle pieces got mixed up.,playing,negative,generated
+I tried so hard but still couldn't do a handstand.,playing,negative,generated
+This morning the swings were all taken.,playing,negative,generated
+My drawing went wrong so I threw it away.,playing,negative,generated
+At the fair I didn't win any games.,playing,negative,generated
+My bike chain came off in the middle of the ride.,playing,negative,generated
+Why does my toy robot keep falling over?,playing,negative,generated
+We only got to play for five minutes.,playing,negative,generated
+The game was boring because I kept losing.,playing,negative,generated
+"Oh no, my paint set dried up.",playing,negative,generated
+"Guess what, our dog had four puppies!",pets,positive,generated
+Yesterday a little squirrel ate a nut from my hand.,pets,positive,generated
+When I got home my kitten ran to the door.,pets,positive,generated
+At the zoo I saw a giraffe eating leaves.,pets,positive,generated
+"Yay, we're getting a bunny!",pets,positive,generated
+My goldfish swims after my finger on the glass.,pets,positive,generated
+This morning a bird sang on my window.,pets,positive,generated
+The farm had baby goats that jumped around.,pets,positive,generated
+I felt happy when the stray dog let me pat him.,pets,positive,generated
+Our tortoise finally woke up from its long sleep.,pets,positive,generated
+"Wow, the parrot at Aunty's house can whistle!",pets,positive,generated
+My puppy learned to shake hands today.,pets,positive,generated
+Tommy the dog slept at my feet all evening.,pets,positive,generated
+On the beach we saw baby turtles going to the sea.,pets,positive,generated
+It was funny when my cat chased her shadow.,pets,positive,generated
+When I woke up my goldfish was not moving.,pets,negative,generated
+Our dog got lost at the market yesterday.,pets,negative,generated
+Today my cat hurt her paw on the fence.,pets,negative,generated
+"Ugh, a monkey grabbed my banana at the temple.",pets,negative,generated
+The puppy in our lane has no home.,pets,negative,generated
+My rabbit is sick and won't eat.,pets,negative,generated
+Yesterday a big dog chased me and I cried.,pets,negative,generated
+The vet said my dog has to stay there for a week.,pets,negative,generated
+It was sad seeing the lions in small cages.,pets,negative,generated
+My hamster got out and we can't find him.,pets,negative,generated
+Our parrot doesn't talk any more.,pets,negative,generated
+Why did the kitten scratch me when I was being nice?,pets,negative,generated
+At night I heard a stray cat meowing and meowing.,pets,negative,generated
+My fish tank cracked and water went everywhere.,pets,negative,generated
+The ducks at the pond were all gone when we went.,pets,negative,generated
+"Guess what, my wobbly tooth came out in an apple!",other,positive,generated
+Yesterday it rained so much that we splashed in big puddles.,other,positive,generated
+When I opened the box there was a new watch inside!,other,positive,generated
+"Yay, it's my birthday next week",other,positive,generated
+My fever went down and I can go out again.,other,positive,generated
+This morning we had egg hoppers for breakfast.,other,positive,generated
+I found my missing sock under the bed.,other,positive,generated
+It was so nice when the cool breeze came in the afternoon.,other,positive,generated
+At the shop I chose a new lunch box.,other,positive,generated
+The doctor gave me a sticker for being brave.,other,positive,generated
+"Wow, the birthday cake had three layers!",other,positive,generated
+I felt much better after a long sleep.,other,positive,generated
+Someone left a surprise present at our door.,other,positive,generated
+On Poya day the lanterns looked so beautiful.,other,positive,generated
+The mangoes on our tree are finally ripe!,other,positive,generated
+"Ugh, I have a runny nose and a headache.",other,negative,generated
+When I opened my lunch box it was empty.,other,negative,generated
+Yesterday I tripped and scraped my elbow.,other,negative,generated
+It rained all day and I had to stay inside.,other,negative,generated
+My new sandals broke on the first day.,other,negative,generated
+This morning I spilled tea on my uniform.,other,negative,generated
+I lost my lucky stone somewhere.,other,negative,generated
+The chicken pox made me itch all night.,other,negative,generated
+On my birthday the cake fell on the floor.,other,negative,generated
+Why is it always so hot in the afternoon?,other,negative,generated
+The doctor said I have to stay in bed for three days.,other,negative,generated
+The present I opened was just socks.,other,negative,generated
+I felt sick after eating too many sweets.,other,negative,generated
+The power cut came right when it got dark.,other,negative,generated
+"Oh no, my tooth started aching in the night.",other,negative,generated
+i got all stars in my tution paper,school,positive,kidstyle
+teecher took us out for pt period,school,positive,kidstyle
+i was the helper for miss today,school,positive,kidstyle
+i cudnt do the sums in my homwork book,school,negative,kidstyle
+sir put me out of the class for laughing,school,negative,kidstyle
+kavya gave me her new eraser to keep,friends,positive,kidstyle
+me and dinuk played tag at interval,friends,positive,kidstyle
+hiruni is not talking to me from yesterday,friends,negative,kidstyle
+the boys sed i cant play becos im small,friends,negative,kidstyle
+my frend lost my storybook and dint say sorry,friends,negative,kidstyle
+we went to galle face with amma and thaththa,family,positive,kidstyle
+punchi amma brought a big box of sweets,family,positive,kidstyle
+achchi and me made kokis today,family,positive,kidstyle
+malli and me fighted over the tv,family,negative,kidstyle
+thaththa is always on his phone and dont play with me,family,negative,kidstyle
+i won carrom against everybody,playing,positive,kidstyle
+i made a house with ice cream sticks,playing,positive,kidstyle
+i watched doremon the whole morning,playing,positive,kidstyle
+my new spinning top got lost,playing,negative,kidstyle
+we lost the elle match,playing,negative,kidstyle
+my puppy slept in my shoe,pets,positive,kidstyle
+we saw a big kabaragoya near the wewa,pets,positive,kidstyle
+i gave biscuits to the dog near the kade,pets,positive,kidstyle
+our cat has a wound on her leg,pets,negative,kidstyle
+a goose chased me at achchis house,pets,negative,kidstyle
+we had watalappan for dessert,other,positive,kidstyle
+i got a new water bottle with a straw,other,positive,kidstyle
+my ear is paining since morning,other,negative,kidstyle
+the current went and it was so hot to sleep,other,negative,kidstyle
+my hair clip fell in the drain and i cudnt get it,other,negative,kidstyle
