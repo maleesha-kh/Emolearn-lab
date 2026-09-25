@@ -52,3 +52,5 @@ class DiaryEntryOut(BaseModel):
     sentiment_confidence: Optional[float]
     bot_reply: Optional[str]
     concern_flag: bool
+    concern_level: str
+    concern_categories: List[str]

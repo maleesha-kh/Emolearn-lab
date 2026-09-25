@@ -9,7 +9,7 @@ from app.api.routes.parent import require_parent_pin
 from app.db.database import get_db, to_utc_iso
 from app.db.models import DiaryEntry, Player
 from app.schemas.diary import DiaryEntryCreate, DiaryEntryOut
-from app.services.safety import CONCERN_REPLY, has_concern
+from app.services.safety import CONCERN_REPLY, check_concern
 
 router = APIRouter(prefix="/players", tags=["diary"])
 
@@ -18,16 +18,19 @@ router = APIRouter(prefix="/players", tags=["diary"])
 def create_diary_entry(player_id: str, payload: DiaryEntryCreate, db: Session = Depends(get_db)):
     _get_player_or_404(db, player_id)
 
-    concern, _ = has_concern(payload.note or "")
+    level, categories = check_concern(payload.note or "")
+    high = level == "high"
     entry = DiaryEntry(
         player_id=player_id,
         emotion=payload.emotion,
         intensity=payload.intensity,
         reason_tags=payload.reason_tags,
         note=payload.note,
-        concern_flag=concern,
-        # Non-concern replies are filled in by a later phase
-        bot_reply=CONCERN_REPLY if concern else None,
+        concern_flag=high,
+        concern_level=level,
+        concern_categories=categories,
+        # Other replies, including watch-level ones, are filled in by a later phase
+        bot_reply=CONCERN_REPLY if high else None,
     )
     db.add(entry)
     db.commit()
@@ -97,4 +100,6 @@ def _entry_out(entry: DiaryEntry) -> DiaryEntryOut:
         sentiment_confidence=entry.sentiment_confidence,
         bot_reply=entry.bot_reply,
         concern_flag=entry.concern_flag,
+        concern_level=entry.concern_level,
+        concern_categories=entry.concern_categories,
     )

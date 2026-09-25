@@ -4,7 +4,7 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 
 from app.db.models import DiaryEntry, ParentTip
-from app.services.safety import CONCERN_PHRASES, CONCERN_REPLY, has_concern, normalize
+from app.services.safety import CONCERN_REPLY, HIGH_PHRASES, WATCH_PHRASES, check_concern, normalize
 
 PIN = "1234"
 PARENT = {"X-Parent-Pin": PIN}
@@ -109,11 +109,42 @@ def test_create_for_unknown_player_gives_404(client):
     assert post_entry(client, "nope").status_code == 404
 
 
-def test_concern_note_sets_flag_and_fixed_reply(client, player_id):
+def test_high_note_sets_flag_and_fixed_reply(client, player_id):
     body = post_entry(client, player_id, emotion="sad", note="my uncle hit me").json()
     assert body["concern_flag"] is True
+    assert body["concern_level"] == "high"
+    assert body["concern_categories"] == ["hurt_by_someone"]
     assert body["bot_reply"] == CONCERN_REPLY
     assert body["bot_reply"] == "Thank you for telling me. Please tell a grown-up you trust right away. 💙"
+
+
+def test_watch_note_is_recorded_without_flag_or_reply(client, player_id):
+    body = post_entry(client, player_id, emotion="sad", note="my dog ran away").json()
+    assert body["concern_flag"] is False
+    assert body["concern_level"] == "watch"
+    assert body["concern_categories"] == ["danger"]
+    assert body["bot_reply"] is None
+
+    listed = list_entries(client, player_id)[0]
+    assert listed["concern_level"] == "watch"
+    assert listed["concern_categories"] == ["danger"]
+
+
+def test_plain_entry_has_no_concern(client, player_id):
+    for note in [None, "we played cricket"]:
+        body = post_entry(client, player_id, note=note).json()
+        assert body["concern_flag"] is False
+        assert body["concern_level"] == "none"
+        assert body["concern_categories"] == []
+
+
+def test_database_rejects_unknown_concern_level(db_client):
+    client, session_local = db_client
+    player_id = create_player(client)["id"]
+    with session_local() as db:
+        db.add(DiaryEntry(player_id=player_id, emotion="happy", intensity="lot", reason_tags=[], concern_level="medium"))
+        with pytest.raises(IntegrityError):
+            db.commit()
 
 
 def test_database_rejects_unknown_emotion(db_client):
@@ -261,75 +292,95 @@ def test_pin_change_is_respected(client, player_id):
 
 # --- safety filter -----------------------------------------------------------
 
-MUST_FLAG = [
-    "my uncle hit me",
-    "i want to die",
-    "he said dont tell anyone",
-    "He said don't tell anyone",
-    "he said don’t tell anyone!!!",
-    "my brother hurted me",
-    "i am scard of him",
-    "someone kicked me at school",
-    "a big boy punched me",
-    "she slapped me",
-    "I wish I was dead",
-    "i want to kill myself",
-    "sometimes i hurt myself",
-    "i dont want to live anymore",
-    "I'm scared of my step dad",
-    "i dont want to go home",
-    "he touched me",
-    "it is our secret",
-    "he showed me his private parts",
-    "there was a knife",
-    "my mom is bleeding",
-    "they locked me in my room",
-    "i was home alone all night",
-    "hiiiiit meeee",
-    "he   HIT,   me",
+MUST_BE_HIGH = [
+    ("my uncle hit me", "hurt_by_someone"),
+    ("my brother hurted me", "hurt_by_someone"),
+    ("someone kicked me at school", "hurt_by_someone"),
+    ("hiiiiit meeee", "hurt_by_someone"),
+    ("he   HIT,   me", "hurt_by_someone"),
+    ("i want to die", "self_harm"),
+    ("I wish I was dead", "self_harm"),
+    ("i want to kill myself", "self_harm"),
+    ("i dont want to live anymore", "self_harm"),
+    ("i am scard of him", "fear_of_a_person"),
+    ("i dont want to go home", "fear_of_a_person"),
+    ("he threatened me", "fear_of_a_person"),
+    ("I'm scared of my step dad", "fear_of_a_person"),
+    ("im scard of my thaththa", "fear_of_a_person"),
+    ("i am afraid of my uncle", "fear_of_a_person"),
+    ("he said dont tell anyone", "secrets_or_touching"),
+    ("He said don't tell anyone", "secrets_or_touching"),
+    ("he said don’t tell anyone!!!", "secrets_or_touching"),
+    ("she touched my privates", "secrets_or_touching"),
+    ("it is our secret", "secrets_or_touching"),
+    ("he touched me", "secrets_or_touching"),
+    ("i want to run away", "danger"),
+    ("they locked me in the room", "danger"),
+    ("a man tried to kidnap me", "danger"),
 ]
 
-MUST_NOT_FLAG = [
+MUST_BE_WATCH = [
+    ("my dog ran away", "danger"),
+    ("grandma kissed me goodnight", "secrets_or_touching"),
+    ("she touched my crayons", "secrets_or_touching"),
+    ("the teacher shouted at me", "fear_of_a_person"),
+    ("i got a new water gun", "danger"),
+    ("my puppy follows me everywhere", "fear_of_a_person"),
+    ("we made a secret party for amma", "secrets_or_touching"),
+    ("i fell and my knee is bleeding", "danger"),
+    ("my friend pushed me in the line", "hurt_by_someone"),
+    ("i am scared of my dog", "fear_of_a_person"),
+    ("scared of my teacher", "fear_of_a_person"),
+]
+
+MUST_BE_NONE = [
     "i hit the ball far",
     "my white shirt got dirty",
+    "we played cricket",
+    "i got a star from teacher",
     "i played with my dog",
-    "i got a gold star at school",
     "my friend shared her lunch with me",
     "we baked a cake with grandma",
     "i was sad because it rained",
-    "i lost my toy car",
     "my brother took my crayons",
-    "i am so happy today",
-    "we went to the park and played tag",
-    "the teacher said good job",
-    "i won the race",
     "my cat sleeps on my bed",
     "",
 ]
 
 
-@pytest.mark.parametrize("sentence", MUST_FLAG)
-def test_safety_flags(sentence):
-    flagged, categories = has_concern(sentence)
-    assert flagged, sentence
-    assert categories
+@pytest.mark.parametrize("sentence, category", MUST_BE_HIGH)
+def test_safety_high(sentence, category):
+    level, categories = check_concern(sentence)
+    assert level == "high", sentence
+    assert category in categories
 
 
-@pytest.mark.parametrize("sentence", MUST_NOT_FLAG)
-def test_safety_does_not_flag(sentence):
-    assert has_concern(sentence) == (False, [])
+@pytest.mark.parametrize("sentence, category", MUST_BE_WATCH)
+def test_safety_watch(sentence, category):
+    level, categories = check_concern(sentence)
+    assert level == "watch", sentence
+    assert category in categories
 
 
-def test_safety_reports_categories():
-    assert has_concern("my uncle hit me")[1] == ["hurt_by_someone"]
-    assert has_concern("i want to die")[1] == ["self_harm"]
-    assert has_concern("he said dont tell anyone")[1] == ["secrets_or_touching"]
-    assert set(has_concern("he hit me with a knife")[1]) == {"hurt_by_someone", "danger"}
+@pytest.mark.parametrize("sentence", MUST_BE_NONE)
+def test_safety_none(sentence):
+    assert check_concern(sentence) == ("none", [])
 
 
-def test_every_category_has_phrases():
-    assert set(CONCERN_PHRASES) == {"hurt_by_someone", "self_harm", "fear_of_a_person", "secrets_or_touching", "danger"}
-    assert all(CONCERN_PHRASES.values())
+def test_high_lists_categories_from_both_levels():
+    assert check_concern("he hit me with a knife") == ("high", ["hurt_by_someone", "danger"])
+    assert check_concern("i want to die") == ("high", ["self_harm"])
+
+
+def test_watch_lists_all_watch_categories():
+    assert check_concern("a stranger had a knife") == ("watch", ["fear_of_a_person", "danger"])
+
+
+def test_both_levels_cover_every_category():
+    categories = {"hurt_by_someone", "self_harm", "fear_of_a_person", "secrets_or_touching", "danger"}
+    for phrases in [HIGH_PHRASES, WATCH_PHRASES]:
+        assert set(phrases) == categories
+        assert all(phrases.values())
 
 
 def test_normalize():

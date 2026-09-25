@@ -113,6 +113,7 @@ DIARY_REASONS = ["school", "friends", "family", "playing", "pets", "other"]
 DIARY_INTENSITIES = ["little", "lot"]
 DIARY_REASON_SOURCES = ["chip", "model", "default"]
 DIARY_SENTIMENTS = ["positive", "negative"]
+CONCERN_LEVELS = ["none", "watch", "high"]
 PARENT_TIP_SOURCES = ["tip_bank", "concern"]
 
 
@@ -124,6 +125,7 @@ class DiaryEntry(Base):
         _one_of("reason_used", DIARY_REASONS, "ck_diary_reason_used", nullable=True),
         _one_of("reason_source", DIARY_REASON_SOURCES, "ck_diary_reason_source", nullable=True),
         _one_of("sentiment", DIARY_SENTIMENTS, "ck_diary_sentiment", nullable=True),
+        _one_of("concern_level", CONCERN_LEVELS, "ck_diary_concern_level"),
     )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
@@ -142,6 +144,8 @@ class DiaryEntry(Base):
     sentiment_confidence: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     bot_reply: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     concern_flag: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    concern_level: Mapped[str] = mapped_column(String, nullable=False, default="none")
+    concern_categories: Mapped[List[str]] = mapped_column(JSON, nullable=False, default=list)
 
     parent_tip: Mapped[Optional["ParentTip"]] = relationship(back_populates="diary_entry", cascade="all, delete-orphan")
 
