@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import type { Scr, Mood, Player, RoundCreate } from "./types";
-import { ROUNDS } from "./data/rounds";
-import { rollRoundImages } from "./lib/imageBank";
+import type { Scr, Mood, Player, RoundCreate, GameRound } from "./types";
+import { buildGameRounds } from "./lib/game";
 import type { PredictionResult } from "./lib/predictionClient";
 import { getPlayer, startSession, saveRound, finishSession } from "./lib/api";
 import { AVATARS } from "./data/avatars";
@@ -58,15 +57,13 @@ export default function App() {
   // synchronous assignment doubles as a double-tap/double-effect guard.
   const sessionPromiseRef = useRef<ReturnType<typeof startSession> | null>(null);
   const roundPromisesRef = useRef<Promise<unknown>[]>([]);
+  // Where to continue the game in progress, or null when there is none. A
+  // ref so it's up to date even for a double-tap before state re-renders.
+  const resumeScreenRef = useRef<Scr | null>(null);
 
-  // Images for the current round — rolled once per round (not on every
-  // re-render), then reused unchanged across the round screen, the loading
-  // screen, and whichever result screen follows, so the "AI vision" overlay
-  // always matches the exact photo the child tapped.
-  const [roundImages, setRoundImages] = useState<string[]>(() => rollRoundImages(ROUNDS[0].opts));
-  useEffect(() => {
-    setRoundImages(rollRoundImages(ROUNDS[currentRound].opts));
-  }, [currentRound]);
+  // Built once per game (round order, card order and images), so nothing
+  // reshuffles on re-renders or when the child leaves and comes back.
+  const [gameRounds, setGameRounds] = useState<GameRound[]>(() => buildGameRounds());
 
   useEffect(() => {
     const storedId = localStorage.getItem(PLAYER_ID_KEY);
@@ -84,7 +81,15 @@ export default function App() {
   const go = (s: Scr) => setScreen(s);
   const home = () => go("welcome");
 
+  const abandonGame = () => {
+    resumeScreenRef.current = null;
+    sessionPromiseRef.current = null;
+    roundPromisesRef.current = [];
+    setSelectedMood(null);
+  };
+
   const loginPlayer = (player: Player) => {
+    if (currentPlayer?.id !== player.id) abandonGame();
     setCurrentPlayer(player);
     localStorage.setItem(PLAYER_ID_KEY, player.id);
     go("moodcheckin");
@@ -96,6 +101,7 @@ export default function App() {
   };
 
   const switchPlayer = () => {
+    abandonGame();
     setCurrentPlayer(null);
     setSavedPlayer(null);
     localStorage.removeItem(PLAYER_ID_KEY);
@@ -108,6 +114,7 @@ export default function App() {
   };
 
   const handleCurrentPlayerDeleted = (playerId: string) => {
+    if (currentPlayer?.id === playerId) abandonGame();
     setCurrentPlayer((prev) => (prev && prev.id === playerId ? null : prev));
     setSavedPlayer((prev) => (prev && prev.id === playerId ? null : prev));
     if (localStorage.getItem(PLAYER_ID_KEY) === playerId) {
@@ -120,23 +127,46 @@ export default function App() {
     go(`res-${m}` as Scr);
   };
 
-  // The sole place a game's session is created — every response screen's
-  // onReady routes here, and Play Again always leads back through mood
-  // check-in to a response screen, so this is the one choke point a new
-  // game passes through. The ref assignment happens synchronously before
-  // any await, so a double-tap or a double-invoked dev-mode effect still
-  // only starts one session.
-  const handleReadyToPlay = () => {
-    go("gamestart");
-    if (!currentPlayer || sessionPromiseRef.current) return;
+  const clearBadges = () => {
+    setNewBadges([]);
+    setBadgeIndex(0);
+    setBadgePopupReady(false);
+  };
+
+  // The only place a game and its session are created.
+  const startNewGame = (mood: Mood | null) => {
+    if (!currentPlayer) return;
+    resumeScreenRef.current = "gamestart";
+    setGameRounds(buildGameRounds());
+    setCurrentRound(0);
+    setScore(0);
+    setRoundResults([]);
+    setSelectedCard(null);
+    setPrediction(null);
+    setLastCorrect(false);
+    clearBadges();
     roundPromisesRef.current = [];
-    sessionPromiseRef.current = startSession({ player_id: currentPlayer.id, mood_checkin: selectedMood });
+    sessionPromiseRef.current = startSession({ player_id: currentPlayer.id, mood_checkin: mood });
     sessionPromiseRef.current.then((res) => {
       if (res.kind !== "ok") console.warn("startSession failed", res.status);
     });
+    go("gamestart");
+  };
+
+  // Every way into a game goes through here: continue the one in progress,
+  // otherwise start fresh. mood is null unless the child just checked in.
+  const enterGame = (mood: Mood | null) => {
+    if (resumeScreenRef.current) go(resumeScreenRef.current);
+    else startNewGame(mood);
+  };
+
+  const handleNavigate = (s: Scr) => {
+    if (s === "gamestart") enterGame(null);
+    else go(s);
   };
 
   const handleCardSelect = (idx: number) => {
+    resumeScreenRef.current = "gameround";
     setSelectedCard(idx);
     go("loading");
   };
@@ -156,23 +186,26 @@ export default function App() {
   };
 
   const handleLoadingDone = (result: PredictionResult) => {
-    const r = ROUNDS[currentRound];
+    const r = gameRounds[currentRound];
     // The child's pick decides the star (each image's emotion is known from
     // its dataset folder). The model's own prediction and explanation for
     // that image are what the result screens show, including when the AI
     // disagrees with the child.
-    const correct = selectedCard === r.correct;
+    const correct = selectedCard !== null && r.opts[selectedCard] === r.emotion;
     setLastCorrect(correct);
     setPrediction(result);
     if (correct) setScore((s) => s + 1);
     setRoundResults((rs) => [...rs, correct]);
-    go(correct ? "r-correct" : "r-wrong");
+    // The answer is saved now, so coming back shows this result instead of
+    // letting the round be played again.
+    resumeScreenRef.current = correct ? "r-correct" : "r-wrong";
+    go(resumeScreenRef.current);
 
     roundPromisesRef.current.push(
       saveRoundForCurrentSession({
         round_no: currentRound + 1,
-        target_emotion: r.find.toLowerCase() as Mood,
-        chosen_image: roundImages[selectedCard ?? 0],
+        target_emotion: r.emotion,
+        chosen_image: r.images[selectedCard ?? 0],
         child_correct: correct,
         predicted_emotion: result.emotion,
         confidence: result.confidence,
@@ -191,13 +224,19 @@ export default function App() {
 
   const handleContinue = async () => {
     const nextRound = currentRound + 1;
-    if (nextRound >= ROUNDS.length) {
+    if (nextRound >= gameRounds.length) {
+      if (!resumeScreenRef.current) return;
+      resumeScreenRef.current = null;
+      setSelectedMood(null);
       setBadgePopupReady(false);
 
       await Promise.allSettled(roundPromisesRef.current);
 
       const sessionRes = sessionPromiseRef.current ? await sessionPromiseRef.current : null;
-      if (sessionRes && sessionRes.kind === "ok") {
+      if (roundResults.length !== gameRounds.length) {
+        console.warn("finishSession skipped: only", roundResults.length, "rounds played");
+        setNewBadges([]);
+      } else if (sessionRes && sessionRes.kind === "ok") {
         const finishRes = await finishSession(sessionRes.data.id);
         if (finishRes.kind === "ok") {
           setNewBadges(finishRes.data.new_badges.filter((id) => BADGES.some((b) => b.id === id)));
@@ -206,6 +245,11 @@ export default function App() {
           setNewBadges([]);
         }
       } else {
+        console.warn(
+          sessionPromiseRef.current
+            ? "finishSession skipped: session failed to start"
+            : "finishSession skipped: no active session"
+        );
         setNewBadges([]);
       }
       setBadgeIndex(0);
@@ -213,25 +257,19 @@ export default function App() {
     } else {
       setCurrentRound(nextRound);
       setSelectedCard(null);
+      resumeScreenRef.current = "gameround";
       go("gameround");
     }
   };
 
   const handlePlayAgain = () => {
-    setCurrentRound(0);
-    setScore(0);
-    setRoundResults([]);
-    setSelectedCard(null);
-    setNewBadges([]);
-    setBadgeIndex(0);
-    setBadgePopupReady(false);
-    sessionPromiseRef.current = null;
-    roundPromisesRef.current = [];
-    go("moodcheckin");
+    clearBadges();
+    if (resumeScreenRef.current) go(resumeScreenRef.current);
+    else go("moodcheckin");
   };
 
   const toggleSound = () => setSoundOn((s) => !s);
-  const round = ROUNDS[currentRound];
+  const round = gameRounds[currentRound];
   const tappedEmotion: Mood | null = selectedCard !== null ? round.opts[selectedCard] : null;
 
   // Delay the first badge popup so the child sees their stars on the
@@ -266,24 +304,25 @@ export default function App() {
     ),
     howtoplay: <HowToPlayScreen onStart={() => go("moodcheckin")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     moodcheckin: <MoodCheckInScreen onSelect={handleMood} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "res-happy": <HappyResponseScreen playerName={currentPlayer?.nickname ?? ""} onReady={handleReadyToPlay} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "res-sad": <SadResponseScreen onReady={handleReadyToPlay} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "res-angry": <AngryResponseScreen onReady={handleReadyToPlay} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "res-surprised": <SurprisedResponseScreen onReady={handleReadyToPlay} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "res-happy": <HappyResponseScreen playerName={currentPlayer?.nickname ?? ""} onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "res-sad": <SadResponseScreen onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "res-angry": <AngryResponseScreen onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "res-surprised": <SurprisedResponseScreen onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     gamestart: <GameStartScreen onStart={() => go("gameround")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    gameround: <GameRoundScreen round={currentRound} score={score} images={roundImages} onSelect={handleCardSelect} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    loading: <LoadingScreen imageUrl={roundImages[selectedCard ?? 0]} trueEmotion={tappedEmotion ?? round.opts[0]} onDone={handleLoadingDone} onBack={handleLoadingBack} />,
-    "r-correct": prediction && <ResultCorrectScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    "r-wrong": prediction && <ResultWrongScreen round={currentRound} score={score} selectedIdx={selectedCard ?? 0} images={roundImages} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    gameround: <GameRoundScreen round={round} roundIndex={currentRound} totalRounds={gameRounds.length} score={score} onSelect={handleCardSelect} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    loading: <LoadingScreen imageUrl={round.images[selectedCard ?? 0]} trueEmotion={tappedEmotion ?? round.opts[0]} onDone={handleLoadingDone} onBack={handleLoadingBack} />,
+    "r-correct": prediction && <ResultCorrectScreen round={round} roundIndex={currentRound} totalRounds={gameRounds.length} score={score} selectedIdx={selectedCard ?? 0} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    "r-wrong": prediction && <ResultWrongScreen round={round} roundIndex={currentRound} totalRounds={gameRounds.length} score={score} selectedIdx={selectedCard ?? 0} prediction={prediction} onNext={handleNext} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "t-correct": <TransCorrectScreen score={score} onContinue={handleContinue} />,
     "t-wrong": <TransWrongScreen score={score} onContinue={handleContinue} />,
     summary: (
       <SummaryScreen
         playerName={currentPlayer?.nickname ?? ""}
         score={score}
+        rounds={gameRounds}
         roundResults={roundResults}
         onPlayAgain={handlePlayAgain}
-        onBye={() => { handlePlayAgain(); go("welcome"); }}
+        onBye={() => { clearBadges(); go("welcome"); }}
         onHome={home}
         soundOn={soundOn}
         onSound={toggleSound}
@@ -325,7 +364,7 @@ export default function App() {
     <div className="min-h-screen w-full font-nunito" style={{ fontFamily: "'Nunito',sans-serif" }}>
       <style>{GLOBAL_STYLES}</style>
 
-      {showNav && <BottomNav screen={effectiveScreen} onNavigate={go} />}
+      {showNav && <BottomNav screen={effectiveScreen} onNavigate={handleNavigate} />}
 
       <div style={{ paddingBottom: showNav ? "72px" : "0" }}>{screens[effectiveScreen]}</div>
 

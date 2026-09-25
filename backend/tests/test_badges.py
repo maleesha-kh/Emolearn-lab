@@ -34,11 +34,12 @@ def finish(client, session_id):
     return res.json()
 
 
-def play_session(client, player_id, rounds):
-    """rounds: list of (target_emotion, correct) tuples, 1 to 4 entries."""
+def play_session(client, player_id, correct=()):
+    """Plays one full 4-round session, one round per emotion. correct: the
+    emotions the child got right; every other round is saved as wrong."""
     session_id = start_session(client, player_id)["id"]
-    for i, (emotion, correct) in enumerate(rounds, start=1):
-        save_round(client, session_id, i, emotion, correct)
+    for i, emotion in enumerate(EMOTIONS, start=1):
+        save_round(client, session_id, i, emotion, emotion in correct)
     return finish(client, session_id)
 
 
@@ -52,47 +53,47 @@ def badge_ids(client, player_id):
 
 def test_first_star_awarded_on_one_correct_round(client):
     player_id = create_player(client)["id"]
-    result = play_session(client, player_id, [("happy", True)])
+    result = play_session(client, player_id, {"happy"})
     assert "first-star" in result["new_badges"]
     assert "first-star" in badge_ids(client, player_id)
 
 
 def test_emo_explorer_awarded_for_all_four_emotions(client):
     player_id = create_player(client)["id"]
-    result = play_session(client, player_id, [("happy", True), ("sad", True), ("angry", True), ("surprised", True)])
+    result = play_session(client, player_id, EMOTIONS)
     assert "emo-explorer" in result["new_badges"]
 
 
 def test_happy_champ_awarded_for_five_correct_happy(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", True)])
-    result = play_session(client, player_id, [("happy", True)])
+    for _ in range(4):
+        play_session(client, player_id, {"happy"})
+    result = play_session(client, player_id, {"happy"})  # happy = 5
     assert "happy-champ" in result["new_badges"]
 
 
 def test_wow_expert_awarded_for_five_correct_surprised(client):
     player_id = create_player(client)["id"]
-    play_session(
-        client, player_id, [("surprised", True), ("surprised", True), ("surprised", True), ("surprised", True)]
-    )
-    result = play_session(client, player_id, [("surprised", True)])
+    for _ in range(4):
+        play_session(client, player_id, {"surprised"})
+    result = play_session(client, player_id, {"surprised"})  # surprised = 5
     assert "wow-expert" in result["new_badges"]
 
 
 def test_calm_master_awarded_for_five_sad_and_five_angry(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("sad", True), ("sad", True), ("sad", True), ("sad", True)])
-    play_session(client, player_id, [("angry", True), ("angry", True), ("angry", True), ("angry", True)])
-    result = play_session(client, player_id, [("sad", True), ("angry", True)])  # sad=5, angry=5
+    for _ in range(4):
+        play_session(client, player_id, {"sad", "angry"})
+    result = play_session(client, player_id, {"sad", "angry"})  # sad=5, angry=5
 
     assert "calm-master" in result["new_badges"]
 
 
 def test_calm_master_not_awarded_with_five_sad_and_only_four_angry(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("sad", True), ("sad", True), ("sad", True), ("sad", True)])
-    play_session(client, player_id, [("sad", True)])  # sad = 5
-    play_session(client, player_id, [("angry", True), ("angry", True), ("angry", True), ("angry", True)])  # angry=4
+    for _ in range(4):
+        play_session(client, player_id, {"sad", "angry"})
+    play_session(client, player_id, {"sad"})  # sad=5, angry=4
 
     assert "calm-master" not in badge_ids(client, player_id)
 
@@ -100,28 +101,22 @@ def test_calm_master_not_awarded_with_five_sad_and_only_four_angry(client):
 def test_five_sessions_awarded_after_five_finished_sessions(client):
     player_id = create_player(client)["id"]
     for _ in range(4):
-        play_session(client, player_id, [])
-    result = play_session(client, player_id, [])
+        play_session(client, player_id)
+    result = play_session(client, player_id)
     assert "five-sessions" in result["new_badges"]
 
 
 def test_perfect_game_awarded_for_a_session_with_score_four(client):
     player_id = create_player(client)["id"]
-    result = play_session(
-        client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", True)]
-    )
+    result = play_session(client, player_id, EMOTIONS)
     assert "perfect-game" in result["new_badges"]
 
 
 def test_super_teacher_awarded_for_twenty_correct_rounds(client):
     player_id = create_player(client)["id"]
     for _ in range(4):
-        play_session(
-            client, player_id, [("happy", True), ("sad", True), ("angry", True), ("surprised", True)]
-        )
-    result = play_session(
-        client, player_id, [("happy", True), ("sad", True), ("angry", True), ("surprised", True)]
-    )
+        play_session(client, player_id, EMOTIONS)
+    result = play_session(client, player_id, EMOTIONS)
     assert "super-teacher" in result["new_badges"]
 
 
@@ -129,10 +124,10 @@ def test_super_teacher_awarded_for_twenty_correct_rounds(client):
 
 def test_badge_never_awarded_twice(client):
     player_id = create_player(client)["id"]
-    first = play_session(client, player_id, [("happy", True)])
+    first = play_session(client, player_id, {"happy"})
     assert "first-star" in first["new_badges"]
 
-    second = play_session(client, player_id, [("happy", True)])
+    second = play_session(client, player_id, {"happy"})
     assert "first-star" not in second["new_badges"]
 
     ids = [b["badge_id"] for b in client.get(f"/players/{player_id}/badges").json()]
@@ -162,33 +157,27 @@ def test_unfinished_session_never_earns_badges(client):
 
 def test_comeback_kid_awarded_low_then_higher_score(client):
     player_id = create_player(client)["id"]
-    play_session(
-        client, player_id, [("happy", True), ("happy", True), ("happy", False), ("happy", False)]
-    )  # score 2
+    play_session(client, player_id, {"happy", "sad"})  # score 2
     result = play_session(
-        client, player_id, [("happy", True), ("happy", True), ("happy", False), ("happy", False)]
+        client, player_id, {"happy", "sad"}
     )  # score 2, equal (not higher) than the previous session
     assert "comeback-kid" not in result["new_badges"]
 
-    result2 = play_session(
-        client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", False)]
-    )  # score 3, follows a score of 2
+    result2 = play_session(client, player_id, {"happy", "sad", "angry"})  # score 3, follows a score of 2
     assert "comeback-kid" in result2["new_badges"]
 
 
 def test_comeback_kid_not_awarded_high_then_low_score(client):
     player_id = create_player(client)["id"]
-    play_session(
-        client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", True)]
-    )  # score 4
-    result = play_session(client, player_id, [("happy", True), ("happy", False), ("happy", False), ("happy", False)])  # score 1
+    play_session(client, player_id, EMOTIONS)  # score 4
+    result = play_session(client, player_id, {"happy"})  # score 1
     assert "comeback-kid" not in result["new_badges"]
     assert "comeback-kid" not in badge_ids(client, player_id)
 
 
 def test_comeback_kid_not_awarded_by_single_low_score(client):
     player_id = create_player(client)["id"]
-    result = play_session(client, player_id, [("happy", False), ("happy", False), ("happy", False), ("happy", False)])  # score 0
+    result = play_session(client, player_id)  # score 0
     assert "comeback-kid" not in result["new_badges"]
     assert "comeback-kid" not in badge_ids(client, player_id)
 
@@ -209,7 +198,7 @@ def test_best_friend_same_day_sessions_count_as_one_day(db_client):
     client, session_local = db_client
     player_id = create_player(client)["id"]
     for _ in range(3):
-        play_session(client, player_id, [])  # all finished "now", same real day
+        play_session(client, player_id)  # all finished "now", same real day
 
     assert "best-friend" not in badge_ids(client, player_id)
 
@@ -222,15 +211,12 @@ def test_best_friend_awarded_across_five_distinct_local_days(db_client):
     # within +/-12h of UTC (including Sri Lanka, UTC+5:30).
     base = datetime(2026, 1, 1, 6, 0, 0, tzinfo=timezone.utc)
     for day_offset in range(4):
-        session_id = start_session(client, player_id)["id"]
-        save_round(client, session_id, 1, "happy", True)
-        res = client.patch(f"/sessions/{session_id}/finish")
-        assert res.status_code == 200
+        session_id = play_session(client, player_id, {"happy"})["session"]["id"]
         when = base.replace(day=1 + day_offset)
         _set_finished_at(session_local, session_id, when)
 
     assert "best-friend" not in badge_ids(client, player_id)
 
     # 5th session finishes for real, triggering the recompute over all 5.
-    result = play_session(client, player_id, [("happy", True)])
+    result = play_session(client, player_id, {"happy"})
     assert "best-friend" in result["new_badges"]

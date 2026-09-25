@@ -19,11 +19,16 @@ export type EmoE = "happy"|"excited"|"waving"|"curious"|"caring"|"calm"|"magnify
 export type GirlP = "happy"|"sad"|"angry"|"surprised"|"jumping"|"welcoming"|"calm"|"confident"|"celebrating";
 
 export interface Round {
+  emotion: Mood;
   find: string;
   color: string;
   emoji: string;
   opts: Mood[];
-  correct: number;
+}
+
+/** A round as played in one game: opts shuffled, with one image per option. */
+export interface GameRound extends Round {
+  images: string[];
 }
 
 export interface EmotionInfo {

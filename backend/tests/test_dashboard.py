@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from unittest.mock import patch
 
 import pytest
@@ -37,11 +38,12 @@ def finish(client, session_id):
     return res.json()["session"]
 
 
-def play_session(client, player_id, rounds, mood_checkin="happy"):
-    """rounds: list of (target_emotion, correct) tuples, 1 to 4 entries."""
+def play_session(client, player_id, correct=(), mood_checkin="happy"):
+    """Plays one full 4-round session, one round per emotion. correct: the
+    emotions the child got right; every other round is saved as wrong."""
     session_id = start_session(client, player_id, mood_checkin)["id"]
-    for i, (emotion, correct) in enumerate(rounds, start=1):
-        save_round(client, session_id, i, emotion, correct)
+    for i, emotion in enumerate(EMOTIONS, start=1):
+        save_round(client, session_id, i, emotion, emotion in correct)
     return finish(client, session_id)
 
 
@@ -70,9 +72,9 @@ def test_empty_player_dashboard(client):
 
 def test_average_score_over_several_sessions(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", False)])  # 3
-    play_session(client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", True)])  # 4
-    play_session(client, player_id, [("happy", True), ("happy", False), ("happy", False), ("happy", False)])  # 1
+    play_session(client, player_id, {"happy", "sad", "angry"})  # 3
+    play_session(client, player_id, EMOTIONS)  # 4
+    play_session(client, player_id, {"happy"})  # 1
 
     body = dashboard(client, player_id)
     assert body["total_sessions"] == 3
@@ -82,7 +84,9 @@ def test_average_score_over_several_sessions(client):
 
 def test_percent_rounding(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", False), ("happy", False)])
+    play_session(client, player_id, {"happy"})
+    play_session(client, player_id)
+    play_session(client, player_id)
 
     body = dashboard(client, player_id)
     # 1/3 correct = 33.333...% -> 33.3
@@ -91,9 +95,9 @@ def test_percent_rounding(client):
 
 def test_best_and_needs_practice_choice(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", True)])  # 100%
-    play_session(client, player_id, [("sad", True), ("sad", False)])  # 50%
-    play_session(client, player_id, [("angry", False), ("angry", False)])  # 0%
+    # happy 100%, sad 50%, surprised 50%, angry 0%
+    play_session(client, player_id, {"happy", "sad", "surprised"})
+    play_session(client, player_id, {"happy"})
 
     body = dashboard(client, player_id)
     assert body["best_emotion"] == "happy"
@@ -103,8 +107,8 @@ def test_best_and_needs_practice_choice(client):
 
 def test_all_equal_case(client):
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", False)])  # 50%
-    play_session(client, player_id, [("sad", True), ("sad", False)])  # 50%
+    play_session(client, player_id, EMOTIONS)
+    play_session(client, player_id)  # every emotion at 50%
 
     body = dashboard(client, player_id)
     assert body["all_equal"] is True
@@ -112,9 +116,24 @@ def test_all_equal_case(client):
     assert body["needs_practice"] is None
 
 
-def test_single_emotion_tried(client):
+def test_single_emotion_tried(db_client):
+    # The API only finishes full 4-emotion sessions now, so a history where
+    # only one emotion was ever tried has to be written to the db directly.
+    client, session_local = db_client
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True), ("happy", False)])
+    db = session_local()
+    try:
+        session = GameSession(player_id=player_id, finished_at=datetime.now(timezone.utc), score=1, stars=1)
+        db.add(session)
+        db.flush()
+        for round_no, correct in [(1, True), (2, False)]:
+            db.add(Round(
+                session_id=session.id, round_no=round_no, target_emotion="happy",
+                chosen_image="a.png", child_correct=correct,
+            ))
+        db.commit()
+    finally:
+        db.close()
 
     body = dashboard(client, player_id)
     assert body["best_emotion"] == "happy"
@@ -125,10 +144,10 @@ def test_single_emotion_tried(client):
 def test_tie_order_picks_first_in_emotion_order(client):
     player_id = create_player(client)["id"]
     # happy and sad tie for best (80%); angry and surprised tie for worst (20%).
-    play_session(client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", False)])
-    play_session(client, player_id, [("sad", True), ("sad", True), ("sad", True), ("sad", False)])
-    play_session(client, player_id, [("angry", True), ("angry", False), ("angry", False), ("angry", False)])
-    play_session(client, player_id, [("surprised", True), ("surprised", False), ("surprised", False), ("surprised", False)])
+    for _ in range(3):
+        play_session(client, player_id, {"happy", "sad"})
+    play_session(client, player_id, {"happy", "sad", "angry"})
+    play_session(client, player_id, {"surprised"})
 
     body = dashboard(client, player_id)
     assert body["best_emotion"] == "happy"
@@ -175,7 +194,7 @@ def test_patch_missing_player_404(client):
 def test_delete_removes_everything(db_client):
     client, session_local = db_client
     player_id = create_player(client)["id"]
-    session = play_session(client, player_id, [("happy", True), ("happy", True), ("happy", True), ("happy", True)])
+    session = play_session(client, player_id, EMOTIONS)
     session_id = session["id"]
 
     res = client.delete(f"/players/{player_id}")
@@ -202,7 +221,7 @@ def test_delete_interrupted_leaves_player_intact(db_client):
     The route's except-block rollback must undo all of it."""
     client, session_local = db_client
     player_id = create_player(client)["id"]
-    play_session(client, player_id, [("happy", True)])
+    play_session(client, player_id, {"happy"})
 
     with patch.object(SASession, "commit", side_effect=RuntimeError("simulated crash")):
         with pytest.raises(RuntimeError):
@@ -228,11 +247,7 @@ def test_csv_header_only_for_new_player(client):
 
 def test_csv_rows_and_correct_wrong_values(client):
     player_id = create_player(client)["id"]
-    play_session(
-        client, player_id,
-        [("happy", True), ("sad", False), ("angry", True)],
-        mood_checkin="happy",
-    )
+    play_session(client, player_id, {"happy", "angry"}, mood_checkin="happy")
 
     res = client.get(f"/players/{player_id}/report.csv")
     assert res.status_code == 200
@@ -245,15 +260,15 @@ def test_csv_rows_and_correct_wrong_values(client):
     assert row[5] == "Correct"  # Happy
     assert row[6] == "Wrong"  # Sad
     assert row[7] == "Correct"  # Angry
-    assert row[8] == "-"  # Surprised: no round
+    assert row[8] == "Wrong"  # Surprised
 
 
 def test_csv_oldest_first_and_unfinished_excluded(db_client):
     client, session_local = db_client
     player_id = create_player(client)["id"]
 
-    first = play_session(client, player_id, [("happy", True)])
-    second = play_session(client, player_id, [("sad", True)])
+    first = play_session(client, player_id, {"happy"})
+    second = play_session(client, player_id, {"sad"})
 
     # Force a clear, known ordering regardless of real-clock timing.
     db = session_local()

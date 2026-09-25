@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Mood } from "../../types";
-import { ROUNDS } from "../../data/rounds";
+import type { Mood, GameRound } from "../../types";
 import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
@@ -10,13 +9,12 @@ import { playSound } from "../../lib/sounds";
 
 const NEXT_BUTTON_DELAY_MS = 2500;
 
-export function ResultCorrectScreen({round,score,selectedIdx,images,prediction,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
+export function ResultCorrectScreen({round:r,roundIndex,totalRounds,score,selectedIdx,prediction,onNext,onHome,soundOn,onSound}:{round:GameRound;roundIndex:number;totalRounds:number;score:number;selectedIdx:number;prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [showHeat,setShowHeat]=useState(true);
   const [canProceed,setCanProceed]=useState(false);
-  const r=ROUNDS[round];
   const emotion=r.opts[selectedIdx] as Mood;
   const aiAgrees=prediction.emotion===emotion;
-  const isLastRound=round===ROUNDS.length-1;
+  const isLastRound=roundIndex===totalRounds-1;
 
   useEffect(()=>{
     playSound("success",soundOn);
@@ -24,7 +22,7 @@ export function ResultCorrectScreen({round,score,selectedIdx,images,prediction,o
     const t=setTimeout(()=>setCanProceed(true),NEXT_BUTTON_DELAY_MS);
     return ()=>clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[round]);
+  },[roundIndex]);
 
   return(
     <div className="min-h-screen w-full relative" style={{background:"#F1F8E9"}}>
@@ -33,14 +31,14 @@ export function ResultCorrectScreen({round,score,selectedIdx,images,prediction,o
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
         <div className="absolute top-4 right-20 ff rounded-full px-5 py-2 text-white"
           style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
-          ⭐ {score}/{ROUNDS.length}
+          ⭐ {score}/{totalRounds}
         </div>
         <div className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
           style={{background:"#4CAF50",fontSize:"clamp(20px,3vw,36px)",boxShadow:"0 6px 25px rgba(76,175,80,.4)",width:"90%",maxWidth:"700px"}}>
           ✅ CORRECT! ⭐ Amazing teaching!
         </div>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
-          <ResultImage src={images[selectedIdx]} emotion={emotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
+          <ResultImage src={r.images[selectedIdx]} emotion={emotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
           <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #00BCD4",boxShadow:"0 8px 30px rgba(0,188,212,.12)"}}>
             <div className="flex items-start gap-3 mb-3">
               <div className="afb flex-shrink-0"><EmoRobot expression="magnifying" width={80}/></div>

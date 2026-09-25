@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import type { Mood, GirlP } from "../../types";
-import { ROUNDS } from "../../data/rounds";
+import type { Mood, GirlP, GameRound } from "../../types";
 import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
@@ -11,14 +10,13 @@ import { playSound } from "../../lib/sounds";
 
 const NEXT_BUTTON_DELAY_MS = 2500;
 
-export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onNext,onHome,soundOn,onSound}:{round:number;score:number;selectedIdx:number;images:string[];prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
+export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selectedIdx,prediction,onNext,onHome,soundOn,onSound}:{round:GameRound;roundIndex:number;totalRounds:number;score:number;selectedIdx:number;prediction:PredictionResult;onNext:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [showHeat,setShowHeat]=useState(true);
   const [canProceed,setCanProceed]=useState(false);
-  const r=ROUNDS[round];
-  const targetEmotion=r.opts[r.correct] as Mood;
+  const targetEmotion=r.emotion;
   const pickedEmotion=r.opts[selectedIdx] as Mood;
   const aiEmotion=prediction.emotion;
-  const isLastRound=round===ROUNDS.length-1;
+  const isLastRound=roundIndex===totalRounds-1;
 
   useEffect(()=>{
     playSound("chime",soundOn);
@@ -26,7 +24,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onN
     const t=setTimeout(()=>setCanProceed(true),NEXT_BUTTON_DELAY_MS);
     return ()=>clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[round]);
+  },[roundIndex]);
 
   // What the tapped character really shows, and how the AI's view compares
   const teach=aiEmotion===pickedEmotion
@@ -42,7 +40,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onN
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
         <div className="absolute top-4 right-20 ff rounded-full px-5 py-2 text-white"
           style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
-          ⭐ {score}/{ROUNDS.length}
+          ⭐ {score}/{totalRounds}
         </div>
         <div className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
           style={{background:"#FF9800",fontSize:"clamp(18px,2.5vw,32px)",boxShadow:"0 6px 25px rgba(255,152,0,.4)",width:"90%",maxWidth:"700px"}}>
@@ -51,7 +49,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onN
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
           <div className="flex flex-col items-center gap-2">
             <div className="fn font-bold" style={{color:"#6D4C41",fontSize:"15px"}}>You picked:</div>
-            <ResultImage src={images[selectedIdx]} emotion={pickedEmotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
+            <ResultImage src={r.images[selectedIdx]} emotion={pickedEmotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
           </div>
           <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #FF9800",boxShadow:"0 8px 30px rgba(255,152,0,.12)"}}>
             <div className="flex items-start gap-3 mb-3">
@@ -61,7 +59,7 @@ export function ResultWrongScreen({round,score,selectedIdx,images,prediction,onN
             <div className="fn font-bold" style={{fontSize:"17px",color:"#4E342E",lineHeight:1.4}}>{teach}</div>
             <div className="flex items-center gap-3 mt-3 rounded-xl p-2" style={{background:EI[targetEmotion].bg,border:`2px dashed ${EI[targetEmotion].border}`}}>
               <div className="rounded-lg bg-white flex items-center justify-center overflow-hidden flex-shrink-0" style={{width:"64px",height:"80px"}}>
-                <CharacterImage pose={targetEmotion as GirlP} width={52} src={images[r.correct]}/>
+                <CharacterImage pose={targetEmotion as GirlP} width={52} src={r.images[r.opts.indexOf(targetEmotion)]}/>
               </div>
               <div className="fn font-bold" style={{fontSize:"16px",color:EI[targetEmotion].text}}>
                 The {targetEmotion.toUpperCase()} {EI[targetEmotion].emoji} character was this one!

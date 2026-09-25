@@ -1,3 +1,7 @@
+import pytest
+
+from app.db.models import GameSession, Round
+
 EMOTIONS = ["happy", "sad", "angry", "surprised"]
 
 
@@ -189,6 +193,58 @@ def test_round_rejected_after_finish(client):
         f"/sessions/{session_id}/rounds",
         json={"round_no": 4, "target_emotion": "happy", "chosen_image": "a.png", "child_correct": True},
     )
+    assert res.status_code == 409
+
+
+# --- only complete 4-emotion sessions can be finished -----------------
+
+@pytest.mark.parametrize("round_count", [0, 1, 3])
+def test_finish_rejected_with_fewer_than_four_rounds(client, round_count):
+    player_id = create_player(client).json()["id"]
+    session_id = play_full_session(client, player_id, [True] * round_count)
+
+    res = client.patch(f"/sessions/{session_id}/finish")
+    assert res.status_code == 409
+
+    profile = client.get(f"/players/{player_id}/profile").json()
+    assert profile["sessions_played"] == 0
+
+
+def test_finish_rejected_with_repeated_emotions(db_client):
+    # The rounds route already blocks repeats, so the rounds are written to
+    # the db directly to check finish's own guard.
+    client, session_local = db_client
+    player_id = create_player(client).json()["id"]
+    session_id = start_session(client, player_id).json()["id"]
+    db = session_local()
+    try:
+        for round_no, emotion in enumerate(["happy", "happy", "sad", "angry"], start=1):
+            db.add(Round(
+                session_id=session_id, round_no=round_no, target_emotion=emotion,
+                chosen_image="a.png", child_correct=True,
+            ))
+        db.commit()
+    finally:
+        db.close()
+
+    res = client.patch(f"/sessions/{session_id}/finish")
+    assert res.status_code == 409
+
+    db = session_local()
+    try:
+        assert db.get(GameSession, session_id).finished_at is None
+    finally:
+        db.close()
+
+
+def test_round_with_repeated_emotion_rejected(client):
+    player_id = create_player(client).json()["id"]
+    session_id = start_session(client, player_id).json()["id"]
+    first = {"round_no": 1, "target_emotion": "happy", "chosen_image": "a.png", "child_correct": True}
+    repeat = {"round_no": 2, "target_emotion": "happy", "chosen_image": "b.png", "child_correct": False}
+
+    assert client.post(f"/sessions/{session_id}/rounds", json=first).status_code == 201
+    res = client.post(f"/sessions/{session_id}/rounds", json=repeat)
     assert res.status_code == 409
 
 

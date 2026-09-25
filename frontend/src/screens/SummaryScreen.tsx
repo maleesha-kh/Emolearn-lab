@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { ROUNDS } from "../data/rounds";
+import type { GameRound } from "../types";
 import { TopBar, Btn, BgDeco, Confetti, Stars } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { CharacterImage } from "../components/character/CharacterImage";
 
-export function SummaryScreen({playerName,score,roundResults,onPlayAgain,onBye,onHome,soundOn,onSound}:{playerName:string;score:number;roundResults:boolean[];onPlayAgain:()=>void;onBye:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
+export function SummaryScreen({playerName,score,rounds,roundResults,onPlayAgain,onBye,onHome,soundOn,onSound}:{playerName:string;score:number;rounds:GameRound[];roundResults:boolean[];onPlayAgain:()=>void;onBye:()=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
   const [moodBooster,setMoodBooster]=useState(false);
-  const emotions=ROUNDS.map((r,i)=>({...r,correct_ans:roundResults[i]}));
+  const emotions=rounds.map((r,i)=>({...r,correct_ans:roundResults[i]}));
   return(
     <div className="min-h-screen w-full relative" style={{background:"#FFF8F0"}}>
       {score>=4&&<Confetti count={45}/>}

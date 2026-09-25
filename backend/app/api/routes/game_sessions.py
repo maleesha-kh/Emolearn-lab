@@ -10,6 +10,8 @@ from app.db.database import get_db, to_utc_iso
 from app.db.models import GameSession, Player, PlayerBadge, Round
 from app.schemas.sessions import FinishSessionOut, RoundCreate, RoundOut, SessionCreate, SessionOut
 
+ROUNDS_PER_SESSION = 4
+
 router = APIRouter(prefix="/sessions", tags=["sessions"])
 
 
@@ -42,6 +44,16 @@ def save_round(session_id: str, payload: RoundCreate, db: Session = Depends(get_
     if existing is not None:
         raise HTTPException(status_code=409, detail=f"Round {payload.round_no} was already saved")
 
+    same_emotion = (
+        db.query(Round)
+        .filter(Round.session_id == session_id, Round.target_emotion == payload.target_emotion)
+        .first()
+    )
+    if same_emotion is not None:
+        raise HTTPException(
+            status_code=409, detail=f"A {payload.target_emotion} round was already saved in this session"
+        )
+
     round_ = Round(
         session_id=session_id,
         round_no=payload.round_no,
@@ -72,6 +84,13 @@ def finish_session(session_id: str, db: Session = Depends(get_db)):
 
     if session.finished_at is not None:
         return FinishSessionOut(session=_session_out(session), new_badges=[])
+
+    rounds = db.query(Round).filter(Round.session_id == session_id).all()
+    if len(rounds) != ROUNDS_PER_SESSION or len({r.target_emotion for r in rounds}) != ROUNDS_PER_SESSION:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Session needs exactly {ROUNDS_PER_SESSION} rounds with different emotions to finish",
+        )
 
     correct_count = (
         db.query(Round)
