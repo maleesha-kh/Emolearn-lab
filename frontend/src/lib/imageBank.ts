@@ -1,18 +1,24 @@
 import type { Mood, GirlP } from "../types";
 
-// Single character set (the VRoid "Nara" model), 8 pose/photo variants per
-// emotion, backgrounds already stripped by scripts/remove_bg.py — see
+// Per emotion: 8 dataset variants (the VRoid "Nara" model) followed by 10
+// game variants, backgrounds already stripped by scripts/remove_bg.py — see
 // public/images/characters/<Mood>/.
+const DATASET_VARIANTS = 8;
+const GAME_VARIANTS = 10;
 const VARIANTS_PER_EMOTION: Record<Mood, number> = {
-  happy: 8,
-  sad: 8,
-  angry: 8,
-  surprised: 8,
+  happy: DATASET_VARIANTS + GAME_VARIANTS,
+  sad: DATASET_VARIANTS + GAME_VARIANTS,
+  angry: DATASET_VARIANTS + GAME_VARIANTS,
+  surprised: DATASET_VARIANTS + GAME_VARIANTS,
 };
 
 function fileName(emotion: Mood, variant: number): string {
-  // matches the dataset's original naming: <emotion>_v<n>_5.png
-  return `${emotion}_v${variant}_5.png`;
+  if (variant <= DATASET_VARIANTS) {
+    // matches the dataset's original naming: <emotion>_v<n>_5.png
+    return `${emotion}_v${variant}_5.png`;
+  }
+  const gameNumber = String(variant - DATASET_VARIANTS).padStart(2, "0");
+  return `${emotion}_game_${gameNumber}.png`;
 }
 
 export function imagePath(emotion: Mood, variant: number): string {

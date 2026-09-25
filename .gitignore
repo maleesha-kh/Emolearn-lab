@@ -22,3 +22,9 @@ backend/eval_data/test_original/
 # Frontend build caches
 frontend/.vite/
 *.tsbuildinfo
+
+# Original game images (kept locally, processed copies live in frontend/public)
+game_images_raw/
+
+# Face crops saved by check_game_images.py
+backend/eval_crops/
