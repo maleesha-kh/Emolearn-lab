@@ -25,6 +25,10 @@ export function imagePath(emotion: Mood, variant: number): string {
   return `/images/characters/${emotion}/${fileName(emotion, variant)}`;
 }
 
+export function characterImages(emotion: Mood): string[] {
+  return Array.from({ length: VARIANTS_PER_EMOTION[emotion] }, (_, i) => imagePath(emotion, i + 1));
+}
+
 // Decorative "poses" (jumping, welcoming, calm, confident, celebrating) used
 // on non-game screens don't exist as real photos — we map each to the
 // closest real emotion folder so every AnimeGirl/CharacterImage call site

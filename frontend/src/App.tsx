@@ -343,7 +343,7 @@ export default function App() {
       />
     ),
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} />,
     pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
     parent: (
       <ParentScreen
