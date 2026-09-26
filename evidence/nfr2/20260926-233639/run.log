@@ -1,0 +1,79 @@
+[WebServer] 2026-09-26 23:36:42.519642: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[WebServer] 2026-09-26 23:36:43.567388: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[WebServer] INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+[WebServer] INFO:     Started server process [12116]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+[WebServer] W0000 00:00:1790446007.455259   15548 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[WebServer] W0000 00:00:1790446007.473139   15548 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[WebServer] 2026-09-26 23:36:48.785568: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+[WebServer] To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     Warm-up prediction took 2.0 s
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+[WebServer] INFO:     127.0.0.1:7068 - "GET / HTTP/1.1" 200 OK
+
+Running 1 test using 1 worker
+
+[WebServer] INFO:     127.0.0.1:10198 - "GET /players HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /players HTTP/1.1" 201 Created
+[WebServer] INFO:     127.0.0.1:10198 - "POST /players/aec1c9bfed114d57a7257252a25cdf9c/diary HTTP/1.1" 201 Created
+[WebServer] INFO:     127.0.0.1:10198 - "POST /sessions HTTP/1.1" 201 Created
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     127.0.0.1:10198 - "POST /predict HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /sessions/f2dd94796a684be690cff10ada086c40/rounds HTTP/1.1" 201 Created
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     127.0.0.1:10198 - "POST /predict HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /sessions/f2dd94796a684be690cff10ada086c40/rounds HTTP/1.1" 201 Created
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     127.0.0.1:10198 - "POST /predict HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /sessions/f2dd94796a684be690cff10ada086c40/rounds HTTP/1.1" 201 Created
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     127.0.0.1:10198 - "POST /predict HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /sessions/f2dd94796a684be690cff10ada086c40/rounds HTTP/1.1" 201 Created
+[WebServer] INFO:     127.0.0.1:10198 - "PATCH /sessions/f2dd94796a684be690cff10ada086c40/finish HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/dictionary HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /players/aec1c9bfed114d57a7257252a25cdf9c/buddy/ask HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/profile HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "GET /parent/pin/status HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "POST /parent/pin/setup HTTP/1.1" 201 Created
+[WebServer] INFO:     127.0.0.1:10198 - "GET /players HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:1158 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/dashboard HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:1158 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/report.csv HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:1158 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/diary?limit=50 HTTP/1.1" 200 OK
+[WebServer] INFO:     127.0.0.1:10198 - "GET /players/aec1c9bfed114d57a7257252a25cdf9c/buddy/messages?limit=30 HTTP/1.1" 200 OK
+  ✓  1 [chromium] › e2e\nfr2-privacy-audit.spec.ts:123:1 › NFR2: no biometric data is captured, stored or sent (32.2s)
+
+  1 passed (48.6s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m
+[cleanup] All tests passed; deleted D:\Emolearn-lab\backend\data\e2e\run-20260926180640-8ddc9689

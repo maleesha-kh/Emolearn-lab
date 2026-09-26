@@ -1,0 +1,11 @@
+{
+ "NFR2 diary note 1790446015577 zebra-lantern": [
+  "POST http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/diary"
+ ],
+ "Why do I feel happy when I play?": [
+  "POST http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/buddy/ask"
+ ],
+ "NFR2 Kid 9689348": [
+  "POST http://127.0.0.1:8001/players"
+ ]
+}

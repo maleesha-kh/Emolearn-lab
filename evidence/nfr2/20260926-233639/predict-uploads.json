@@ -1,0 +1,67 @@
+{
+ "bundledImages": 72,
+ "uploads": [
+  {
+   "seq": 97,
+   "filename": "character.png",
+   "bytes": 214680,
+   "sha256": "95556857c746a0d0ca10eb867c09155c8280e3700295fb4967132cc44cf96c00",
+   "bundled": "happy/happy_game_05.png",
+   "routeSha256": "95556857c746a0d0ca10eb867c09155c8280e3700295fb4967132cc44cf96c00",
+   "wireBodySize": 214866,
+   "expectedBodySize": 214866
+  },
+  {
+   "seq": 104,
+   "filename": "character.png",
+   "bytes": 222133,
+   "sha256": "feb79a718095714c2a740ae065777bf73550ea1b93c0ea46fda5ac10f4025b51",
+   "bundled": "surprised/surprised_v2_5.png",
+   "routeSha256": "feb79a718095714c2a740ae065777bf73550ea1b93c0ea46fda5ac10f4025b51",
+   "wireBodySize": 222319,
+   "expectedBodySize": 222319
+  },
+  {
+   "seq": 114,
+   "filename": "character.png",
+   "bytes": 519646,
+   "sha256": "5bd758c0a486cc6fffd6cf3d554d64eab33e813b00b8d20da8bda10603a66851",
+   "bundled": "sad/sad_game_09.png",
+   "routeSha256": "5bd758c0a486cc6fffd6cf3d554d64eab33e813b00b8d20da8bda10603a66851",
+   "wireBodySize": 519832,
+   "expectedBodySize": 519832
+  },
+  {
+   "seq": 122,
+   "filename": "character.png",
+   "bytes": 204276,
+   "sha256": "324f5c29fed1c345c62f337b1a7663093158e666ed8cd76699eb61ba3b813f46",
+   "bundled": "angry/angry_v4_5.png",
+   "routeSha256": "324f5c29fed1c345c62f337b1a7663093158e666ed8cd76699eb61ba3b813f46",
+   "wireBodySize": 204462,
+   "expectedBodySize": 204462
+  }
+ ],
+ "heatmapsReturned": [
+  {
+   "seq": 97,
+   "sha256": "5294cc992af7f44fe442f9aea848da1b34000d703d3648d174d34416dd479c72",
+   "length": 78274
+  },
+  {
+   "seq": 104,
+   "sha256": "b8ec0d2d55a41b3bd99b2a454ad6fc6380c4b92b99cfa13aa6d800272a56eac3",
+   "length": 32542
+  },
+  {
+   "seq": 114,
+   "sha256": "65ef536be7969e8ba572ca182c90fce7f379dcb5a26b6540044d7737805f0b36",
+   "length": 234182
+  },
+  {
+   "seq": 122,
+   "sha256": "ac6fd393384df33bdfc669ae021f305b96eb4cada2339195ce81c85b6ff65404",
+   "length": 61750
+  }
+ ]
+}

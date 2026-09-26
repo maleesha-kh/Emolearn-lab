@@ -1,0 +1,17 @@
+{
+ "backend": {
+  "added": [],
+  "changed": [
+   "data\\e2e\\run-20260926180640-8ddc9689\\test.db"
+  ],
+  "runDbFolder": "data\\e2e\\run-20260926180640-8ddc9689"
+ },
+ "debugOutputs": [],
+ "temp": {
+  "folder": "C:\\Users\\USER\\AppData\\Local\\Temp",
+  "added": [
+   "88f13b19-6080-4623-830b-20b06408853c.tmp"
+  ],
+  "changed": []
+ }
+}

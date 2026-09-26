@@ -1,0 +1,1223 @@
+[
+ {
+  "seq": 1,
+  "method": "GET",
+  "url": "http://localhost:5173/",
+  "host": "localhost:5173",
+  "resourceType": "document",
+  "status": 200
+ },
+ {
+  "seq": 2,
+  "method": "GET",
+  "url": "http://localhost:5173/@vite/client",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 3,
+  "method": "GET",
+  "url": "http://localhost:5173/src/main.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 4,
+  "method": "GET",
+  "url": "http://localhost:5173/@react-refresh",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 5,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 6,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 7,
+  "method": "GET",
+  "url": "http://localhost:5173/src/App.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 8,
+  "method": "GET",
+  "url": "http://localhost:5173/src/styles/index.css",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 9,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/vite/dist/client/env.mjs",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 10,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/chunk-2YIMICFJ.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 11,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/chunk-BCXODTBQ.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 12,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/react.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 13,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/game.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 14,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/api.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 15,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/storage.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 16,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/sessionState.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 17,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/avatars.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 18,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/badges.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 19,
+  "method": "GET",
+  "url": "http://localhost:5173/src/styles/animations.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 20,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/BadgeModal.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 21,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/BottomNav.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 22,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/WelcomeScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 23,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/HowToPlayScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 24,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/MoodCheckInScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 25,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/DiaryScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 26,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/AskEmoScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 27,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/responses/HappyResponseScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 28,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/responses/SadResponseScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 29,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/responses/AngryResponseScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 30,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/responses/SurprisedResponseScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 31,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/GameStartScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 32,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/GameRoundScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 33,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/LoadingScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 34,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/ResultCorrectScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 35,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/ResultWrongScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 36,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/TransCorrectScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 37,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/game/TransWrongScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 38,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/SummaryScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 39,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/ProfileScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 40,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/AchievementsScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 41,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/DictionaryScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 42,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/PinScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 43,
+  "method": "GET",
+  "url": "http://localhost:5173/src/screens/ParentScreen.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 44,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/rounds.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 45,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/imageBank.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 46,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/emotions.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 47,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/UI.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 48,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/EmoRobot.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 49,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/character/CharacterImage.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 50,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/Avatar.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 51,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/version.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 52,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/diary.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 53,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/sounds.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 54,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/buddy.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 55,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/surprisedFacts.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 56,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/predictionClient.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 57,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/game/ResultParts.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 58,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/format.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 59,
+  "method": "GET",
+  "url": "http://localhost:5173/src/data/emotionDictionary.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 60,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/FeelingPicker.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 61,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/EmotionPage.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 62,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/Sticker.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 63,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/pinLock.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 64,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/common/RecoveryCodeView.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 65,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/.vite/deps/recharts.js?v=e9eb0c49",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 66,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/parent/ChildSelector.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 67,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/parent/DiaryView.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 68,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/parent/AboutView.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 69,
+  "method": "GET",
+  "url": "http://localhost:5173/package.json?import",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 70,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/mockModel.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 71,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/MeetTheFeeling.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 72,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/SpotTheClues.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 73,
+  "method": "GET",
+  "url": "http://localhost:5173/src/components/dictionary/FactFlipCard.tsx",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 74,
+  "method": "GET",
+  "url": "http://localhost:5173/src/lib/speech.ts",
+  "host": "localhost:5173",
+  "resourceType": "script",
+  "status": 200
+ },
+ {
+  "seq": 75,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 76,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/@fontsource/fredoka-one/files/fredoka-one-latin-400-normal.woff2",
+  "host": "localhost:5173",
+  "resourceType": "font",
+  "status": 200
+ },
+ {
+  "seq": 77,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/@fontsource/nunito/files/nunito-latin-600-normal.woff2",
+  "host": "localhost:5173",
+  "resourceType": "font",
+  "status": 200
+ },
+ {
+  "seq": 78,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/@fontsource/nunito/files/nunito-latin-400-normal.woff2",
+  "host": "localhost:5173",
+  "resourceType": "font",
+  "status": 200
+ },
+ {
+  "seq": 79,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/@fontsource/nunito/files/nunito-latin-700-normal.woff2",
+  "host": "localhost:5173",
+  "resourceType": "font",
+  "status": 200
+ },
+ {
+  "seq": 80,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/players",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"nickname\":\"NFR2 Kid 9689348\",\"avatar_id\":\"avatar-4\"}",
+  "status": 201
+ },
+ {
+  "seq": 81,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v6_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 82,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_01.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 83,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v8_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 84,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_game_06.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 85,
+  "method": "GET",
+  "url": "http://localhost:5173/sounds/pop.mp3",
+  "host": "localhost:5173",
+  "resourceType": "media",
+  "status": 206
+ },
+ {
+  "seq": 86,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/diary",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"emotion\":\"happy\",\"intensity\":\"little\",\"reason_tags\":[\"playing\"],\"note\":\"NFR2 diary note 1790446015577 zebra-lantern\"}",
+  "status": 201
+ },
+ {
+  "seq": 87,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v2_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 88,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/happy/happy_screen1.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 89,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/happy/happy_screen2.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 90,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/happy/happy_screen3.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 91,
+  "method": "GET",
+  "url": "http://localhost:5173/sounds/success.mp3",
+  "host": "localhost:5173",
+  "resourceType": "media",
+  "status": 206
+ },
+ {
+  "seq": 92,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/sessions",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"player_id\":\"aec1c9bfed114d57a7257252a25cdf9c\",\"mood_checkin\":\"happy\"}",
+  "status": 201
+ },
+ {
+  "seq": 93,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_07.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 94,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_05.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 95,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_game_03.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 96,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_05.png",
+  "host": "localhost:5173",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 97,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/predict",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "<image upload; see predict-uploads.json>",
+  "status": 200
+ },
+ {
+  "seq": 98,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/sessions/f2dd94796a684be690cff10ada086c40/rounds",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"round_no\":1,\"target_emotion\":\"happy\",\"chosen_image\":\"/images/characters/happy/happy_game_05.png\",\"child_correct\":true,\"predicted_emotion\":\"happy\",\"confidence\":0.6794}",
+  "status": 201
+ },
+ {
+  "seq": 99,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_05.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 100,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v5_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 101,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v2_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 102,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_game_03.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 103,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v2_5.png",
+  "host": "localhost:5173",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 104,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/predict",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "<image upload; see predict-uploads.json>",
+  "status": 200
+ },
+ {
+  "seq": 105,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/sessions/f2dd94796a684be690cff10ada086c40/rounds",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"round_no\":2,\"target_emotion\":\"angry\",\"chosen_image\":\"/images/characters/surprised/surprised_v2_5.png\",\"child_correct\":false,\"predicted_emotion\":\"surprised\",\"confidence\":0.4984}",
+  "status": 201
+ },
+ {
+  "seq": 106,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v2_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 107,
+  "method": "GET",
+  "url": "http://localhost:5173/node_modules/@fontsource/nunito/files/nunito-latin-900-normal.woff2",
+  "host": "localhost:5173",
+  "resourceType": "font",
+  "status": 200
+ },
+ {
+  "seq": 108,
+  "method": "GET",
+  "url": "http://localhost:5173/sounds/chime.mp3",
+  "host": "localhost:5173",
+  "resourceType": "media",
+  "status": 206
+ },
+ {
+  "seq": 109,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_08.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 110,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 111,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v3_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 112,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v3_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 113,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 114,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/predict",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "<image upload; see predict-uploads.json>",
+  "status": 200
+ },
+ {
+  "seq": 115,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/sessions/f2dd94796a684be690cff10ada086c40/rounds",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"round_no\":3,\"target_emotion\":\"sad\",\"chosen_image\":\"/images/characters/sad/sad_game_09.png\",\"child_correct\":true,\"predicted_emotion\":\"sad\",\"confidence\":0.4922}",
+  "status": 201
+ },
+ {
+  "seq": 116,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 117,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v7_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 118,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v4_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 119,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v8_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 120,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_v5_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 121,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v4_5.png",
+  "host": "localhost:5173",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 122,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/predict",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "<image upload; see predict-uploads.json>",
+  "status": 200
+ },
+ {
+  "seq": 123,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/sessions/f2dd94796a684be690cff10ada086c40/rounds",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"round_no\":4,\"target_emotion\":\"surprised\",\"chosen_image\":\"/images/characters/angry/angry_v4_5.png\",\"child_correct\":false,\"predicted_emotion\":\"angry\",\"confidence\":0.9471}",
+  "status": 201
+ },
+ {
+  "seq": 124,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v4_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 125,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v8_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 126,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_03.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 127,
+  "method": "PATCH",
+  "url": "http://127.0.0.1:8001/sessions/f2dd94796a684be690cff10ada086c40/finish",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 128,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 129,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/dictionary",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 130,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_v1_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 131,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_v4_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 132,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_v5_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 133,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_game_05.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 134,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_v1_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 135,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/sad/sad_screen1.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 136,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/sad/sad_screen2.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 137,
+  "method": "GET",
+  "url": "http://localhost:5173/images/responses/sad/sad_screen3.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 138,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_v2_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 139,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/happy/happy_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 140,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/sad/sad_game_09.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 141,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/angry/angry_game_02.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 142,
+  "method": "GET",
+  "url": "http://localhost:5173/images/characters/surprised/surprised_v6_5.png",
+  "host": "localhost:5173",
+  "resourceType": "image",
+  "status": 200
+ },
+ {
+  "seq": 143,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/buddy/ask",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"question\":\"Why do I feel happy when I play?\"}",
+  "status": 200
+ },
+ {
+  "seq": 144,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/profile",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 145,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/parent/pin/status",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 146,
+  "method": "POST",
+  "url": "http://127.0.0.1:8001/parent/pin/setup",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "body": "{\"pin\":\"3847\"}",
+  "status": 201
+ },
+ {
+  "seq": 147,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 148,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/dashboard",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 149,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/report.csv",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 150,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/diary?limit=50",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ },
+ {
+  "seq": 151,
+  "method": "GET",
+  "url": "http://127.0.0.1:8001/players/aec1c9bfed114d57a7257252a25cdf9c/buddy/messages?limit=30",
+  "host": "127.0.0.1:8001",
+  "resourceType": "fetch",
+  "status": 200
+ }
+]

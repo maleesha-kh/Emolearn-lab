@@ -1,0 +1,413 @@
+{
+ "tables": [
+  "buddy_messages",
+  "diary_entries",
+  "dictionary_progress",
+  "parent_tips",
+  "player_badges",
+  "players",
+  "rounds",
+  "sessions",
+  "settings"
+ ],
+ "schema": {
+  "buddy_messages": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "player_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "question",
+    "type": "VARCHAR(150)"
+   },
+   {
+    "name": "answer",
+    "type": "TEXT"
+   },
+   {
+    "name": "matched_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "score",
+    "type": "FLOAT"
+   },
+   {
+    "name": "concern_level",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "concern_categories",
+    "type": "JSON"
+   },
+   {
+    "name": "created_at",
+    "type": "DATETIME"
+   }
+  ],
+  "diary_entries": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "player_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "created_at",
+    "type": "DATETIME"
+   },
+   {
+    "name": "emotion",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "reason_tags",
+    "type": "JSON"
+   },
+   {
+    "name": "note",
+    "type": "VARCHAR(200)"
+   },
+   {
+    "name": "intensity",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "reason_used",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "reason_source",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "reason_confidence",
+    "type": "FLOAT"
+   },
+   {
+    "name": "sentiment",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "sentiment_confidence",
+    "type": "FLOAT"
+   },
+   {
+    "name": "bot_reply",
+    "type": "TEXT"
+   },
+   {
+    "name": "concern_flag",
+    "type": "BOOLEAN"
+   },
+   {
+    "name": "concern_level",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "concern_categories",
+    "type": "JSON"
+   }
+  ],
+  "dictionary_progress": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "player_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "emotion",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "completed_at",
+    "type": "DATETIME"
+   }
+  ],
+  "parent_tips": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "diary_entry_id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "summary",
+    "type": "TEXT"
+   },
+   {
+    "name": "tips",
+    "type": "JSON"
+   },
+   {
+    "name": "talk_starter",
+    "type": "TEXT"
+   },
+   {
+    "name": "source",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "created_at",
+    "type": "DATETIME"
+   }
+  ],
+  "player_badges": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "player_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "badge_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "earned_at",
+    "type": "DATETIME"
+   }
+  ],
+  "players": [
+   {
+    "name": "id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "nickname",
+    "type": "VARCHAR(20)"
+   },
+   {
+    "name": "avatar_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "created_at",
+    "type": "DATETIME"
+   }
+  ],
+  "rounds": [
+   {
+    "name": "id",
+    "type": "INTEGER"
+   },
+   {
+    "name": "session_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "round_no",
+    "type": "INTEGER"
+   },
+   {
+    "name": "target_emotion",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "chosen_image",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "child_correct",
+    "type": "BOOLEAN"
+   },
+   {
+    "name": "predicted_emotion",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "confidence",
+    "type": "FLOAT"
+   },
+   {
+    "name": "created_at",
+    "type": "DATETIME"
+   }
+  ],
+  "sessions": [
+   {
+    "name": "id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "player_id",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "mood_checkin",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "started_at",
+    "type": "DATETIME"
+   },
+   {
+    "name": "finished_at",
+    "type": "DATETIME"
+   },
+   {
+    "name": "score",
+    "type": "INTEGER"
+   },
+   {
+    "name": "stars",
+    "type": "INTEGER"
+   }
+  ],
+  "settings": [
+   {
+    "name": "key",
+    "type": "VARCHAR"
+   },
+   {
+    "name": "value",
+    "type": "VARCHAR"
+   }
+  ]
+ },
+ "row_counts": {
+  "buddy_messages": 1,
+  "diary_entries": 1,
+  "dictionary_progress": 0,
+  "parent_tips": 0,
+  "player_badges": 1,
+  "players": 1,
+  "rounds": 4,
+  "sessions": 1,
+  "settings": 2
+ },
+ "rows": {
+  "buddy_messages": [
+   {
+    "id": 1,
+    "player_id": "aec1c9bfed114d57a7257252a25cdf9c",
+    "question": "Why do I feel happy when I play?",
+    "answer": "Happy is a warm, bright feeling you get when something good happens. You might smile, laugh or feel like jumping! 😊",
+    "matched_id": "what-is-happy",
+    "score": 0.546,
+    "concern_level": "none",
+    "concern_categories": "[]",
+    "created_at": "2026-09-26 18:07:24.911316"
+   }
+  ],
+  "diary_entries": [
+   {
+    "id": 1,
+    "player_id": "aec1c9bfed114d57a7257252a25cdf9c",
+    "created_at": "2026-09-26 18:06:57.592229",
+    "emotion": "happy",
+    "reason_tags": "[\"playing\"]",
+    "note": "NFR2 diary note 1790446015577 zebra-lantern",
+    "intensity": "little",
+    "reason_used": "playing",
+    "reason_source": "chip",
+    "reason_confidence": null,
+    "sentiment": "negative",
+    "sentiment_confidence": 0.6339,
+    "bot_reply": "I love that you had a happy time playing today.",
+    "concern_flag": 0,
+    "concern_level": "none",
+    "concern_categories": "[]"
+   }
+  ],
+  "dictionary_progress": [],
+  "parent_tips": [],
+  "player_badges": [
+   {
+    "id": 1,
+    "player_id": "aec1c9bfed114d57a7257252a25cdf9c",
+    "badge_id": "first-star",
+    "earned_at": "2026-09-26 18:07:21.263381"
+   }
+  ],
+  "players": [
+   {
+    "id": "aec1c9bfed114d57a7257252a25cdf9c",
+    "nickname": "NFR2 Kid 9689348",
+    "avatar_id": "avatar-4",
+    "created_at": "2026-09-26 18:06:56.449312"
+   }
+  ],
+  "rounds": [
+   {
+    "id": 1,
+    "session_id": "f2dd94796a684be690cff10ada086c40",
+    "round_no": 1,
+    "target_emotion": "happy",
+    "chosen_image": "/images/characters/happy/happy_game_05.png",
+    "child_correct": 1,
+    "predicted_emotion": "happy",
+    "confidence": 0.6794,
+    "created_at": "2026-09-26 18:07:03.763350"
+   },
+   {
+    "id": 2,
+    "session_id": "f2dd94796a684be690cff10ada086c40",
+    "round_no": 2,
+    "target_emotion": "angry",
+    "chosen_image": "/images/characters/surprised/surprised_v2_5.png",
+    "child_correct": 0,
+    "predicted_emotion": "surprised",
+    "confidence": 0.4984,
+    "created_at": "2026-09-26 18:07:08.587122"
+   },
+   {
+    "id": 3,
+    "session_id": "f2dd94796a684be690cff10ada086c40",
+    "round_no": 3,
+    "target_emotion": "sad",
+    "chosen_image": "/images/characters/sad/sad_game_09.png",
+    "child_correct": 1,
+    "predicted_emotion": "sad",
+    "confidence": 0.4922,
+    "created_at": "2026-09-26 18:07:13.327596"
+   },
+   {
+    "id": 4,
+    "session_id": "f2dd94796a684be690cff10ada086c40",
+    "round_no": 4,
+    "target_emotion": "surprised",
+    "chosen_image": "/images/characters/angry/angry_v4_5.png",
+    "child_correct": 0,
+    "predicted_emotion": "angry",
+    "confidence": 0.9471,
+    "created_at": "2026-09-26 18:07:18.022404"
+   }
+  ],
+  "sessions": [
+   {
+    "id": "f2dd94796a684be690cff10ada086c40",
+    "player_id": "aec1c9bfed114d57a7257252a25cdf9c",
+    "mood_checkin": "happy",
+    "started_at": "2026-09-26 18:07:01.126562",
+    "finished_at": "2026-09-26 18:07:21.069879",
+    "score": 2,
+    "stars": 2
+   }
+  ],
+  "settings": [
+   {
+    "key": "parent_pin_hash",
+    "value": "82e547e81293c669dab5edd7f206b36c$aaa2eb6d231afb5856a85aef87a338dfa0b28262499de440111bf5de31e31cdf"
+   },
+   {
+    "key": "parent_recovery_hash",
+    "value": "8d8c219899c1366244f6aff1c74523c2$84ac4ca2d14b32112cce1141fd255fe214ab98a365f50f0b1ad156caf0a67646"
+   }
+  ]
+ },
+ "findings": []
+}

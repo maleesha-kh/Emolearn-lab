@@ -1,0 +1,13 @@
+{
+ "localStorage": {
+  "emolearn_sound_on": "true",
+  "emolearn_player_id": "aec1c9bfed114d57a7257252a25cdf9c"
+ },
+ "sessionStorage": {
+  "emolearn_session_state": "{\"playerId\":\"aec1c9bfed114d57a7257252a25cdf9c\",\"screen\":\"parent\",\"parentView\":\"diary\",\"parentEntry\":\"profile\",\"mood\":null}"
+ },
+ "indexedDB": [],
+ "documentCookie": "",
+ "cacheStorage": [],
+ "contextCookies": []
+}
