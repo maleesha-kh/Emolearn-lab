@@ -260,13 +260,18 @@ function ChildRow({
 export type ParentView = "overview" | "children" | "diary" | "settings" | "about";
 
 export function ParentScreen({
-  currentPlayerId, parentPin, onPinChanged, onPinRejected, onBack, onPlayerUpdated, onPlayerDeleted, initialView = "overview",
+  currentPlayerId, parentPin, onPinChanged, onPinRejected, onBack, onPlayerUpdated, onPlayerDeleted, initialView = "overview", onViewChange,
 }: {
   currentPlayerId: string; parentPin: string; onPinChanged: (pin: string) => void; onPinRejected: () => void;
   onBack: () => void; onPlayerUpdated: (player: Player) => void; onPlayerDeleted: (playerId: string) => void;
-  initialView?: ParentView;
+  initialView?: ParentView; onViewChange?: (view: ParentView) => void;
 }) {
   const [view, setView] = useState<ParentView>(initialView);
+
+  useEffect(() => {
+    onViewChange?.(view);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [view]);
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
   const tabRowRef = useRef<HTMLDivElement>(null);
 

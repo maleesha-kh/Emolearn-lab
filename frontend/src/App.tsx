@@ -4,6 +4,7 @@ import { buildGameRounds } from "./lib/game";
 import type { PredictionResult } from "./lib/predictionClient";
 import { getPlayer, startSession, saveRound, finishSession } from "./lib/api";
 import { safeGet, safeRemove, safeSet } from "./lib/storage";
+import { readSessionState, saveSessionState, type ParentEntry } from "./lib/sessionState";
 import { AVATARS } from "./data/avatars";
 import { BADGES } from "./data/badges";
 import { GLOBAL_STYLES } from "./styles/animations";
@@ -32,14 +33,18 @@ import { ProfileScreen } from "./screens/ProfileScreen";
 import { AchievementsScreen } from "./screens/AchievementsScreen";
 import { DictionaryScreen } from "./screens/DictionaryScreen";
 import { PinScreen } from "./screens/PinScreen";
-import { ParentScreen } from "./screens/ParentScreen";
+import { ParentScreen, type ParentView } from "./screens/ParentScreen";
 
 const PLAYER_ID_KEY = "emolearn_player_id";
 const SOUND_ON_KEY = "emolearn_sound_on";
 const SCREENS_WITHOUT_PLAYER: Scr[] = ["welcome", "pin", "parent"];
 
 export default function App() {
-  const [screen, setScreen] = useState<Scr>("welcome");
+  // Read once: where the app was before a page refresh
+  const [restore] = useState(readSessionState);
+  // The parent area needs no child, so without a player it can go straight to the PIN
+  const [screen, setScreen] = useState<Scr>(() => (restore && !restore.playerId ? restore.screen : "welcome"));
+  const [restoring, setRestoring] = useState(() => !!restore?.playerId);
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [savedPlayer, setSavedPlayer] = useState<Player | null>(null);
   const [checkingSavedPlayer, setCheckingSavedPlayer] = useState(
@@ -59,7 +64,8 @@ export default function App() {
   // Kept only in memory while the parent area is open; the diary API needs it
   const [parentPin, setParentPin] = useState<string | null>(null);
   // Where the parent area was opened from, so its Back buttons return there
-  const [parentEntry, setParentEntry] = useState<"welcome" | "profile">("profile");
+  const [parentEntry, setParentEntry] = useState<ParentEntry>(() => restore?.parentEntry ?? "profile");
+  const [parentView, setParentView] = useState<ParentView>(() => restore?.parentView ?? "overview");
 
   // Ref (not state) because saveRound/finishSession must await the exact
   // in-flight start/save calls, not a possibly-stale state value, and the
@@ -90,8 +96,9 @@ export default function App() {
   const go = (s: Scr) => setScreen(s);
   const home = () => go("welcome");
 
-  const openParentArea = (from: "welcome" | "profile") => {
+  const openParentArea = (from: ParentEntry) => {
     setParentEntry(from);
+    setParentView(from === "welcome" ? "children" : "overview");
     go("pin");
   };
 
@@ -151,8 +158,8 @@ export default function App() {
   };
 
   // The only place a game and its session are created.
-  const startNewGame = (mood: Mood | null) => {
-    if (!currentPlayer) return;
+  const startNewGame = (mood: Mood | null, player = currentPlayer) => {
+    if (!player) return;
     resumeScreenRef.current = "gamestart";
     setGameRounds(buildGameRounds());
     setCurrentRound(0);
@@ -163,7 +170,7 @@ export default function App() {
     setLastCorrect(false);
     clearBadges();
     roundPromisesRef.current = [];
-    sessionPromiseRef.current = startSession({ player_id: currentPlayer.id, mood_checkin: mood });
+    sessionPromiseRef.current = startSession({ player_id: player.id, mood_checkin: mood });
     sessionPromiseRef.current.then((res) => {
       if (res.kind !== "ok") console.warn("startSession failed", res.status);
     });
@@ -326,7 +333,7 @@ export default function App() {
   const screens: Record<Scr, React.ReactNode> = {
     welcome: (
       <WelcomeScreen
-        checking={checkingSavedPlayer}
+        checking={checkingSavedPlayer || restoring}
         savedPlayer={savedPlayer}
         onLogin={loginPlayer}
         onForget={forgetSavedPlayer}
@@ -399,7 +406,8 @@ export default function App() {
         onBack={() => go(currentPlayer && parentEntry === "profile" ? "profile" : "welcome")}
         onPlayerUpdated={handleCurrentPlayerUpdated}
         onPlayerDeleted={handleCurrentPlayerDeleted}
-        initialView={parentEntry === "welcome" ? "children" : "overview"}
+        initialView={parentView}
+        onViewChange={setParentView}
       />
     ),
   };
@@ -413,6 +421,28 @@ export default function App() {
   useEffect(() => {
     if (effectiveScreen !== "parent") setParentPin(null);
   }, [effectiveScreen]);
+
+  useEffect(() => {
+    if (!restore?.playerId) return;
+    getPlayer(restore.playerId).then((res) => {
+      if (res.kind === "ok") {
+        setCurrentPlayer(res.data);
+        setSelectedMood(restore.mood);
+        if (restore.screen === "gamestart") startNewGame(null, res.data);
+        else go(restore.screen);
+      } else if (restore.screen === "pin") {
+        go("pin");
+      }
+      setRestoring(false);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Skipped while restoring, so a second refresh during loading keeps the saved state
+  useEffect(() => {
+    if (restoring) return;
+    saveSessionState({ playerId: currentPlayer?.id ?? null, screen: effectiveScreen, parentView, parentEntry, mood: selectedMood });
+  }, [restoring, currentPlayer, effectiveScreen, parentView, parentEntry, selectedMood]);
 
   return (
     <div className="min-h-screen w-full font-nunito" style={{ fontFamily: "'Nunito',sans-serif" }}>
