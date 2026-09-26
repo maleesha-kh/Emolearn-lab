@@ -35,6 +35,16 @@ prediction. See `app/schemas/prediction.py` for the response shape.
 venv\Scripts\python.exe -m pytest tests
 ```
 
+Tests marked `slow` load the real models and are skipped by default. They
+check that all 72 bundled characters are accepted by `/predict` and that
+plain images and simple shapes get 422 (about 2.5 minutes):
+
+```
+venv\Scripts\python.exe -m pytest tests -m slow
+```
+
+Or set `EMOLEARN_SLOW_TESTS=1` to include them in a full run.
+
 ## Parent PIN
 
 If a parent forgets their PIN and their recovery code, delete both so

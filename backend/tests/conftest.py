@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -12,6 +14,19 @@ from app.api.routes.parent import router as parent_router
 from app.api.routes.players import router as players_router
 from app.db.database import Base, get_db
 from app.services import diary_ml
+
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "slow: loads the real models; run with -m slow or EMOLEARN_SLOW_TESTS=1")
+
+
+def pytest_collection_modifyitems(config, items):
+    if os.environ.get("EMOLEARN_SLOW_TESTS") == "1" or "slow" in (config.getoption("markexpr") or ""):
+        return
+    skip = pytest.mark.skip(reason="slow test; run with -m slow or EMOLEARN_SLOW_TESTS=1")
+    for item in items:
+        if "slow" in item.keywords:
+            item.add_marker(skip)
 
 
 @pytest.fixture(autouse=True)

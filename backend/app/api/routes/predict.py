@@ -33,6 +33,11 @@ DEBUG_DIR = os.path.join(config.APP_DIR, "..", "debug_outputs")
 ALLOWED_CONTENT_TYPES = {"image/png", "image/jpeg"}
 MAX_FILE_BYTES = 10 * 1024 * 1024
 MIN_CHARACTER_ALPHA_FRACTION = 0.01
+# Share of the foreground that background removal is sure about (alpha > 224).
+# A real cut-out is decisive; on a blank or plain image rembg returns a hazy,
+# half-transparent mask. Measured: bundled characters 0.94-0.99, plain
+# white/grey/skin-tone images 0.02-0.08, a stick figure 0.58.
+MIN_DECISIVE_FOREGROUND = 0.75
 
 
 @router.post("/predict", response_model=PredictionResponse)
@@ -63,7 +68,24 @@ def predict_emotion(file: UploadFile = File(...)):
 
 
 class NoCharacterError(Exception):
-    """Background removal left almost nothing of the image."""
+    """The image doesn't show a full-body character."""
+
+
+def looks_like_character(alpha: np.ndarray, landmarks) -> bool:
+    """False for images the models would otherwise give a confident but made-up answer.
+
+    Needs enough foreground, a decisive background-removal mask, and body
+    landmarks. The app is built for full-body characters: all 72 bundled images
+    have landmarks, while plain images and simple shapes have none.
+    """
+    foreground = alpha > 128
+    share = float(foreground.mean())
+    if share < MIN_CHARACTER_ALPHA_FRACTION:
+        return False
+    decisive = float((alpha > 224).mean()) / share
+    if decisive < MIN_DECISIVE_FOREGROUND:
+        return False
+    return landmarks is not None
 
 
 def run_prediction(pil_image: Image.Image, *, save_debug: bool, started: Optional[float] = None) -> PredictionResponse:
@@ -77,9 +99,7 @@ def run_prediction(pil_image: Image.Image, *, save_debug: bool, started: Optiona
     prepared = prepare_image(pil_image)
     prep_time = time.perf_counter() - prep_start
 
-    alpha = np.array(prepared.rgba)[:, :, 3]
-    character_fraction = float((alpha > 128).mean())
-    if character_fraction < MIN_CHARACTER_ALPHA_FRACTION:
+    if not looks_like_character(np.array(prepared.rgba)[:, :, 3], prepared.landmarks):
         raise NoCharacterError()
 
     face_crop, crop_box = crop_face_with_box(prepared.rgba, prepared.landmarks)
