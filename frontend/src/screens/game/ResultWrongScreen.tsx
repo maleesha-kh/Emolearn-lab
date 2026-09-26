@@ -38,14 +38,14 @@ export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selected
       <BgDeco items={["💛","❤️","✨","💕","💛","⭐","💕"]} opacity={.28}/>
       <TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/>
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
-        <div className="absolute top-4 right-20 ff rounded-full px-5 py-2 text-white"
+        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2 text-white"
           style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
           ⭐ {score}/{totalRounds}
         </div>
-        <div className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
+        <h1 className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
           style={{background:"#FF9800",fontSize:"clamp(18px,2.5vw,32px)",boxShadow:"0 6px 25px rgba(255,152,0,.4)",width:"90%",maxWidth:"700px"}}>
           💛 Good try! Let us learn together!
-        </div>
+        </h1>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
           <div className="flex flex-col items-center gap-2">
             <div className="fn font-bold" style={{color:"#6D4C41",fontSize:"15px"}}>You picked:</div>
@@ -69,7 +69,7 @@ export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selected
             {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
-                style={{background:"#FFF3E0",color:"#E65100",border:"2px solid #FF9800",fontSize:"14px",cursor:"pointer"}}>
+                style={{background:"#FFF3E0",color:"#E65100",border:"2px solid #FF9800",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
                 {showHeat?"Hide AI Vision":"Show AI Vision 🔍"}
               </button>
             </div>}

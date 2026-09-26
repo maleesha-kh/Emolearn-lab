@@ -69,7 +69,7 @@ export function WelcomeScreen({
       <div className="relative z-10 flex min-h-screen" style={{ flexWrap: "wrap", paddingBottom: "40px" }}>
         {/* LEFT column */}
         <div className="flex flex-col justify-center py-16" style={{ padding: "4rem 3rem 4rem 5rem", width: "55%", minWidth: "340px", flexShrink: 0 }}>
-          <div className="ff mb-2" style={{ fontSize: "clamp(36px,4.5vw,58px)", color: "#00838F", lineHeight: 1.1 }}>EmoLearn Lab ✨</div>
+          <h1 className="ff mb-2" style={{ fontSize: "clamp(36px,4.5vw,58px)", color: "#00838F", lineHeight: 1.1 }}>EmoLearn Lab ✨</h1>
           <div className="fn mb-8 font-semibold" style={{ fontSize: "clamp(16px,2vw,22px)", color: "#546E7A" }}>Learn Emotions Through Play!</div>
 
           {checking && (
@@ -82,7 +82,7 @@ export function WelcomeScreen({
               <div className="ff mt-4 mb-6" style={HEADING_STYLE}>Hi {savedPlayer.nickname}! 👋</div>
               <button
                 onClick={() => onLogin(savedPlayer)}
-                className="ff font-bold rounded-full mb-3 transition-all hover:brightness-110 active:scale-95"
+                className="ff font-bold rounded-full mb-1 transition-all hover:brightness-110 active:scale-95"
                 style={{
                   width: "100%", height: "68px", background: "#FF9800", color: "white",
                   boxShadow: "0 8px 28px rgba(255,152,0,.45), 0 4px 0 #E65100", fontSize: "clamp(18px,2vw,22px)", cursor: "pointer",
@@ -93,7 +93,7 @@ export function WelcomeScreen({
               <button
                 onClick={onForget}
                 className="fn font-bold"
-                style={{ background: "none", border: "none", color: "#00838F", fontSize: "14px", cursor: "pointer", textDecoration: "underline" }}
+                style={{ background: "none", border: "none", padding: "0 8px 0 0", minHeight: "44px", color: "#00838F", fontSize: "14px", cursor: "pointer", textDecoration: "underline" }}
               >
                 Not you?
               </button>
@@ -101,8 +101,8 @@ export function WelcomeScreen({
               {onManagePlayers && (
                 <button
                   onClick={onManagePlayers}
-                  className="fn mt-3"
-                  style={{ background: "none", border: "none", padding: "4px 0", minHeight: "24px", color: "#455A64", fontSize: "13px", cursor: "pointer", textDecoration: "underline" }}
+                  className="fn"
+                  style={{ background: "none", border: "none", padding: "0 8px 0 0", minHeight: "44px", color: "#455A64", fontSize: "13px", cursor: "pointer", textDecoration: "underline" }}
                 >
                   Manage players
                 </button>
@@ -174,8 +174,8 @@ export function WelcomeScreen({
               {playersState.status === "loaded" && playersState.players.length > 0 && onManagePlayers && (
                 <button
                   onClick={onManagePlayers}
-                  className="fn font-bold self-start mb-2"
-                  style={{ background: "none", border: "none", padding: 0, color: "#00838F", fontSize: "14px", cursor: "pointer", textDecoration: "underline" }}
+                  className="fn font-bold self-start"
+                  style={{ background: "none", border: "none", padding: "0 8px 0 0", minHeight: "44px", color: "#00838F", fontSize: "14px", cursor: "pointer", textDecoration: "underline" }}
                 >
                   👨‍👩‍👧 Manage players
                 </button>

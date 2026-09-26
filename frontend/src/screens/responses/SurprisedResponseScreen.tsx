@@ -58,7 +58,7 @@ export function SurprisedResponseScreen({onReady,onHome,soundOn,onSound}:{onRead
           <div className="flex items-end gap-4">
             <CharacterImage pose="surprised" width={140}/>
             <Btn ch={allRevealed?"I am curious! Let us explore! 🌟":`Reveal ${facts.length-revealedCount} more fact${facts.length-revealedCount===1?"":"s"} first`}
-              onClick={()=>allRevealed&&onReady()} color="#9C27B0" disabled={!allRevealed} w="340px"/>
+              onClick={()=>allRevealed&&onReady()} color="#9C27B0" disabled={!allRevealed} w="min(100%,340px)"/>
           </div>
         </div>
       </div>

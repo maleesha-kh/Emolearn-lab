@@ -78,7 +78,7 @@ export function AngryResponseScreen({onReady,onHome,soundOn,onSound}:{onReady:()
           <div className="flex flex-col items-center gap-4 w-full">
             <img src={current.img} alt="angry character step" width={140} style={{width:140,height:"auto"}}/>
             <Btn ch={canFinish?"I feel calmer! Let us play! 💚":`Complete ${2-doneCount} more step${2-doneCount===1?"":"s"} first`}
-              onClick={()=>canFinish&&onReady()} disabled={!canFinish} w="380px"/>
+              onClick={()=>canFinish&&onReady()} disabled={!canFinish} w="min(100%,380px)"/>
           </div>
         </div>
       </div>

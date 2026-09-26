@@ -395,15 +395,18 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
 
             {/* Keypad */}
             <div className="grid grid-cols-3 gap-3 w-full mb-4">
-              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "⌫"].map((k, i) => (
-                <button key={i} onClick={() => (k === "⌫" ? del() : k ? press(k) : undefined)}
-                  disabled={!k || busy || locked}
+              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "⌫"].map((k, i) =>
+                // The gap left of 0 is only a spacer, not a key
+                !k ? <div key={i} aria-hidden="true" /> : (
+                <button key={i} onClick={() => (k === "⌫" ? del() : press(k))}
+                  disabled={busy || locked}
+                  aria-label={k === "⌫" ? "Delete last digit" : undefined}
                   className="rounded-xl fn font-bold transition-all hover:brightness-95 active:scale-95"
-                  style={{ height: "56px", background: k ? "white" : "transparent",
-                    border: k ? "1.5px solid #ECEFF1" : "none", fontSize: "20px", color: "#37474F",
-                    boxShadow: k ? "0 2px 8px rgba(0,0,0,.06)" : "none",
-                    cursor: k && !busy && !locked ? "pointer" : "default",
-                    opacity: k && locked ? 0.4 : 1 }}>
+                  style={{ height: "56px", background: "white",
+                    border: "1.5px solid #ECEFF1", fontSize: "20px", color: "#37474F",
+                    boxShadow: "0 2px 8px rgba(0,0,0,.06)",
+                    cursor: !busy && !locked ? "pointer" : "default",
+                    opacity: locked ? 0.4 : 1 }}>
                   {k}
                 </button>
               ))}
@@ -411,7 +414,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
 
             {mode === "verify" && (
               <button onClick={openRecover} className="fn font-bold"
-                style={{ color: "#00838F", fontSize: "14px", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+                style={{ color: "#00838F", fontSize: "14px", minHeight: "44px", padding: "0 8px", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
                 Forgot PIN?
               </button>
             )}

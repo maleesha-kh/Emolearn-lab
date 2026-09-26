@@ -63,7 +63,7 @@ export function AiReason({prediction,accent}:{prediction:PredictionResult;accent
         </span>}
       </div>}
       {ex&&ex.evidence.length>0&&<div className="mt-2">
-        <button onClick={()=>setShowWhy(w=>!w)} className="fn font-semibold underline" style={{color:"#607D8B",fontSize:"13px",cursor:"pointer",background:"none",border:"none",padding:0}}>
+        <button onClick={()=>setShowWhy(w=>!w)} className="fn font-semibold underline" style={{color:"#607D8B",fontSize:"13px",minHeight:"44px",cursor:"pointer",background:"none",border:"none",padding:"0 8px 0 0"}}>
           {showWhy?"Hide details":"How did the AI decide? 🤖"}
         </button>
         {showWhy&&<ul className="fn mt-1 pl-4" style={{color:"#455A64",fontSize:"13px",listStyle:"disc"}}>

@@ -3,7 +3,7 @@
 export type ControlInfo = { label: string; tag: string; x: number; y: number; width: number; height: number };
 export type LayoutResult = {
   viewport: { width: number; height: number };
-  horizontalScroll: { scrollWidth: number; clientWidth: number; overflows: boolean };
+  horizontalScroll: { scrollWidth: number; clientWidth: number; overflows: boolean; widestOffenders: { element: string; right: number }[] };
   controls: number;
   outOfView: ControlInfo[];
   cutOff: (ControlInfo & { clippedBy: string })[];
@@ -48,10 +48,28 @@ export function runLayoutChecks(): LayoutResult {
       scrollWidth: document.documentElement.scrollWidth,
       clientWidth: document.documentElement.clientWidth,
       overflows: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      widestOffenders: [],
     },
     controls: controls.length, outOfView: [], cutOff: [], reachableByScrolling: [], under24: [], under44: [],
     covered: [], paintedOver: [], textOverlaps: [], decorativeTextElements: 0, modalOnly: !!modal,
   };
+
+  // What sticks out past the right edge (ignoring anything inside a clipping ancestor)
+  if (result.horizontalScroll.overflows) {
+    const clipped = (el: Element) => {
+      for (let node = el.parentElement; node && node !== document.body; node = node.parentElement) {
+        const style = getComputedStyle(node);
+        if (style.overflowX !== "visible") return true;
+      }
+      return false;
+    };
+    result.horizontalScroll.widestOffenders = Array.from(document.body.querySelectorAll("*"))
+      .map((el) => ({ el, right: el.getBoundingClientRect().right + scrollX }))
+      .filter(({ el, right }) => right > document.documentElement.clientWidth + 1 && !clipped(el))
+      .sort((a, b) => b.right - a.right)
+      .slice(0, 5)
+      .map(({ el, right }) => ({ element: describe(el), right: round(right) }));
+  }
 
   scrollTo(0, 0);
   for (const el of controls) {

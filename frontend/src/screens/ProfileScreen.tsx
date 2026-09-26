@@ -91,7 +91,7 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
                 <div className="w-full mb-6">
                   <div className="ff mb-3" style={{fontSize:"18px",color:"#00838F"}}>My Sessions</div>
                   {profile.recent_sessions.map(s=>(
-                    <div key={s.id} className="flex items-center gap-3 mb-2 rounded-xl px-4 py-3 fn font-bold"
+                    <div key={s.id} className="flex flex-wrap items-center gap-3 mb-2 rounded-xl px-4 py-3 fn font-bold"
                       style={{background:"#F8F9FA",border:"1.5px solid #E0E0E0",fontSize:"15px"}}>
                       <span style={{color:"#546E7A",minWidth:"55px"}}>{s.finished_at?formatShortDate(s.finished_at):""}</span>
                       <Stars total={4} filled={s.stars??0} size={18}/>
@@ -114,15 +114,16 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
           )}
 
           <Btn ch="Start New Game 🎮" onClick={onNewGame} className="w-full mb-3"/>
-          <button onClick={onAchievements} className="fn font-bold text-center w-full mb-2"
-            style={{color:"#00838F",fontSize:"16px",background:"none",border:"none",cursor:"pointer",textDecoration:"underline"}}>
+          <button onClick={onAchievements} className="fn font-bold text-center w-full"
+            style={{color:"#00838F",fontSize:"16px",minHeight:"44px",background:"none",border:"none",cursor:"pointer",textDecoration:"underline"}}>
             View Achievements 🏆
           </button>
-          <div className="flex justify-between items-center w-full mt-1">
-            <button onClick={onSwitchPlayer} className="fn font-bold" style={{color:"#9E9E9E",fontSize:"14px",background:"none",border:"none",cursor:"pointer"}}>
+          <div className="flex justify-between items-center w-full">
+            <button onClick={onSwitchPlayer} className="fn font-bold" style={{color:"#9E9E9E",fontSize:"14px",minHeight:"44px",paddingRight:"8px",background:"none",border:"none",cursor:"pointer"}}>
               Switch Player
             </button>
-            <button onClick={onParent} className="text-2xl hover:scale-110 transition-transform" title="Parent/Teacher">⚙️</button>
+            <button onClick={onParent} className="text-2xl hover:scale-110 transition-transform inline-flex items-center justify-center" title="Parent/Teacher"
+              style={{width:"44px",height:"44px"}}>⚙️</button>
           </div>
         </div>
       </div>

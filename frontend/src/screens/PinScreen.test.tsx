@@ -115,7 +115,7 @@ describe("PinScreen verify", () => {
     await enter("2468");
 
     expect(key("5")).toBeDisabled();
-    expect(key("⌫")).toBeDisabled();
+    expect(key("Delete last digit")).toBeDisabled();
     fireEvent.click(key("5"));
     expect(verifyMock).toHaveBeenCalledOnce();
 

@@ -29,14 +29,14 @@ export function ResultCorrectScreen({round:r,roundIndex,totalRounds,score,select
       <BgDeco items={["✅","⭐","🎉","✨","💚","⭐","🎊"]} opacity={.3}/>
       <TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/>
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
-        <div className="absolute top-4 right-20 ff rounded-full px-5 py-2 text-white"
+        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2 text-white"
           style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
           ⭐ {score}/{totalRounds}
         </div>
-        <div className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
+        <h1 className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
           style={{background:"#4CAF50",fontSize:"clamp(20px,3vw,36px)",boxShadow:"0 6px 25px rgba(76,175,80,.4)",width:"90%",maxWidth:"700px"}}>
           ✅ CORRECT! ⭐ Amazing teaching!
-        </div>
+        </h1>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
           <ResultImage src={r.images[selectedIdx]} emotion={emotion} heatmapBase64={prediction.heatmapBase64} showHeat={showHeat}/>
           <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #00BCD4",boxShadow:"0 8px 30px rgba(0,188,212,.12)"}}>
@@ -52,7 +52,7 @@ export function ResultCorrectScreen({round:r,roundIndex,totalRounds,score,select
             {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
-                style={{background:"#E0F7FA",color:"#00838F",border:"2px solid #00BCD4",fontSize:"14px",cursor:"pointer"}}>
+                style={{background:"#E0F7FA",color:"#00838F",border:"2px solid #00BCD4",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
                 {showHeat?"Hide AI Vision":"Show AI Vision 🔍"}
               </button>
             </div>}

@@ -25,7 +25,7 @@ export function GameRoundScreen({round:r,roundIndex,totalRounds,score,onSelect,o
         {/* Speech bubble */}
         <div className="relative mb-4 rounded-3xl px-8 py-5 text-white ff text-center"
           style={{background:"#FF9800",fontSize:"32px",boxShadow:"0 8px 30px rgba(255,152,0,.4)",maxWidth:"520px",width:"90%"}}>
-          Find the <span style={{textDecoration:"underline"}}>{r.find}</span> character! {r.emoji}
+          <h1>Find the <span style={{textDecoration:"underline"}}>{r.find}</span> character! {r.emoji}</h1>
           <div className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-0 h-0"
             style={{borderLeft:"18px solid transparent",borderRight:"18px solid transparent",borderTop:`18px solid #FF9800`}}/>
         </div>

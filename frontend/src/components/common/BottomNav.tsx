@@ -15,7 +15,8 @@ export const SCREENS_WITHOUT_NAV: Scr[] = ["welcome", "pin", "parent", "loading"
 
 export function BottomNav({ screen, onNavigate }: { screen: Scr; onNavigate: (s: Scr) => void }) {
   return (
-    <div
+    <nav
+      aria-label="Main"
       className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-2 pt-1 gap-2"
       style={{ background: "rgba(255,255,255,.92)", backdropFilter: "blur(8px)", borderTop: "1.5px solid rgba(0,188,212,.15)" }}
     >
@@ -35,6 +36,6 @@ export function BottomNav({ screen, onNavigate }: { screen: Scr; onNavigate: (s:
           {item.label}
         </button>
       ))}
-    </div>
+    </nav>
   );
 }

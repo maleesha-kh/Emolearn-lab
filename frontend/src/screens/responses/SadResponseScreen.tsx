@@ -77,7 +77,7 @@ export function SadResponseScreen({onReady,onHome,soundOn,onSound}:{onReady:()=>
           <div className="flex items-end gap-6">
             <img src={current.img} alt="sad character step" width={160} style={{width:160,height:"auto"}}/>
             <Btn ch={canFinish?"I feel better! Let us play! 😊":`Try ${2-doneCount} more step${2-doneCount===1?"":"s"} first`}
-              onClick={()=>canFinish&&onReady()} disabled={!canFinish} w="340px"/>
+              onClick={()=>canFinish&&onReady()} disabled={!canFinish} w="min(100%,340px)"/>
           </div>
         </div>
       </div>

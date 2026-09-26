@@ -83,7 +83,7 @@ export function HappyResponseScreen({playerName,onReady,onHome,soundOn,onSound}:
           )}
 
           <Btn ch={allDone?"I'm ready to play! 🚀":`Complete ${ACTIVITIES.length-doneCount} more activit${ACTIVITIES.length-doneCount===1?"y":"ies"} first`}
-            onClick={()=>allDone&&onReady()} disabled={!allDone} w="400px"/>
+            onClick={()=>allDone&&onReady()} disabled={!allDone} w="min(100%,400px)"/>
         </div>
         <div className="absolute right-4 bottom-0 opacity-30 pointer-events-none hidden xl:block">
           <CharacterImage pose="jumping" width={220}/>

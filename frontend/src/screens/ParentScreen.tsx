@@ -581,7 +581,8 @@ function OverviewView({
                 </div>
               )}
             </div>
-            <div className="overflow-x-auto">
+            {/* Focusable so the table can be scrolled sideways with the keyboard on small screens */}
+            <div className="overflow-x-auto" tabIndex={0} role="region" aria-label="Session history">
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr style={{ background: "#F8F9FA" }}>

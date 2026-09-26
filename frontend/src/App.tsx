@@ -450,7 +450,7 @@ export default function App() {
 
       {showNav && <BottomNav screen={effectiveScreen === "askemo" ? "dictionary" : effectiveScreen} onNavigate={handleNavigate} />}
 
-      <div style={{ paddingBottom: showNav ? `${NAV_HEIGHT_PX}px` : "0" }}>{screens[effectiveScreen]}</div>
+      <main style={{ paddingBottom: showNav ? `${NAV_HEIGHT_PX}px` : "0" }}>{screens[effectiveScreen]}</main>
 
       {currentBadge && <BadgeModal badge={currentBadge} onClose={handleBadgeModalClose} />}
     </div>

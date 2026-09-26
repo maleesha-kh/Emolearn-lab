@@ -9,7 +9,7 @@ export function HowToPlayScreen({onStart,onHome,soundOn,onSound}:{onStart:()=>vo
       <div className="relative z-10 flex justify-center items-start gap-6 pb-10 px-4" style={{paddingTop:"8px"}}>
         {/* card */}
         <div className="rounded-3xl p-8 bg-white" style={{width:"min(600px,90vw)",border:"3px solid #FFC107",boxShadow:"0 20px 60px rgba(255,193,7,.2)"}}>
-          <div className="ff text-center mb-7" style={{fontSize:"40px",color:"#00838F"}}>How to Play! 🎮</div>
+          <h1 className="ff text-center mb-7" style={{fontSize:"40px",color:"#00838F"}}>How to Play! 🎮</h1>
           {[
             {num:1,emoji:"😊",text:"Tell Emo how you feel today",         bg:"#FFF9C4",border:"#FFC107"},
             {num:2,emoji:"🌟",text:"Emo gives you a surprise activity!",   bg:"#E3F2FD",border:"#00BCD4"},
