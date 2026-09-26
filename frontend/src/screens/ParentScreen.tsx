@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell, LabelList } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { ChildSelector } from "../components/parent/ChildSelector";
 import { DiaryView } from "../components/parent/DiaryView";
@@ -511,27 +511,38 @@ function OverviewView({
           {/* Bar chart */}
           <div className="rounded-2xl p-6 bg-white mb-8" style={{ border: "1.5px solid #E0E0E0", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
             <h2 className="fn font-bold mb-4" style={{ fontSize: "20px", color: "#212121" }}>Emotion Accuracy</h2>
-            <ResponsiveContainer width="100%" height={220}>
-              <BarChart
-                data={EMOTION_ORDER.map(m => ({
+            {(() => {
+              const data = EMOTION_ORDER.map(m => {
+                const percent = dashboardData.emotion_accuracy[m].percent;
+                return {
                   name: EI[m].label,
-                  accuracy: dashboardData.emotion_accuracy[m].percent ?? 0,
+                  accuracy: percent ?? 0,
                   color: EI[m].color,
-                  notTried: dashboardData.emotion_accuracy[m].percent === null,
-                }))}
-                margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" />
-                <XAxis dataKey="name" tick={{ fontSize: 14, fontFamily: "Nunito", fontWeight: 600 }} />
-                <YAxis unit="%" tick={{ fontSize: 13 }} />
-                <Tooltip formatter={(value: number, _name: string, entry: any) => (entry?.payload?.notTried ? "Not tried yet" : `${value}%`)} />
-                <Bar dataKey="accuracy" radius={[8, 8, 0, 0]}>
-                  {EMOTION_ORDER.map((m, i) => (
-                    <Cell key={i} fill={EI[m].color} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
+                  notTried: percent === null,
+                  // "–" keeps the label short enough for a 375px screen
+                  label: percent === null ? "–" : `${percent}%`,
+                };
+              });
+              const summary = data.map(d => `${d.name} ${d.notTried ? "not tried yet" : d.label}`).join(", ");
+              return (
+                <div role="img" aria-label={`Emotion accuracy: ${summary}`}>
+                  <ResponsiveContainer width="100%" height={220}>
+                    <BarChart data={data} margin={{ top: 22, right: 20, left: 0, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#F0F0F0" />
+                      <XAxis dataKey="name" tick={{ fontSize: 14, fontFamily: "Nunito", fontWeight: 600 }} />
+                      <YAxis unit="%" tick={{ fontSize: 13 }} />
+                      <Tooltip formatter={(value: number, _name: string, entry: any) => (entry?.payload?.notTried ? "Not tried yet" : `${value}%`)} />
+                      <Bar dataKey="accuracy" radius={[8, 8, 0, 0]}>
+                        {EMOTION_ORDER.map((m, i) => (
+                          <Cell key={i} fill={EI[m].color} />
+                        ))}
+                        <LabelList dataKey="label" position="top" style={{ fontSize: 13, fontWeight: 700, fill: "#455A64" }} />
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              );
+            })()}
           </div>
 
           {/* Badges earned */}
