@@ -15,7 +15,7 @@ import {
   getDashboard,
   getPlayers,
   regenerateRecoveryCode,
-  reportCsvUrl,
+  downloadReportCsv,
   updatePlayer,
 } from "../lib/api";
 import type { DashboardData, Mood, Player } from "../types";
@@ -23,6 +23,10 @@ import type { DashboardData, Mood, Player } from "../types";
 const EMOTION_ORDER: Mood[] = ["happy", "sad", "angry", "surprised"];
 const SESSIONS_PAGE_SIZE = 10;
 const CANT_CONNECT = "Emo can't connect right now 🔌";
+
+function isPinRejected(status: number | null) {
+  return status === 401 || status === 403;
+}
 
 function digitsOnly(v: string) {
   return v.replace(/\D/g, "").slice(0, 4);
@@ -135,10 +139,11 @@ function RegenerateRecoveryCodeForm({ onCodeReady }: { onCodeReady: (code: strin
 }
 
 function ChildRow({
-  player, isCurrent, onReload, onCurrentUpdated, onCurrentDeleted,
+  player, isCurrent, onReload, onCurrentUpdated, onCurrentDeleted, pin, onPinRejected,
 }: {
   player: Player; isCurrent: boolean; onReload: () => void;
   onCurrentUpdated: (p: Player) => void; onCurrentDeleted: (id: string) => void;
+  pin: string; onPinRejected: () => void;
 }) {
   const [mode, setMode] = useState<"view" | "rename" | "avatar" | "delete-confirm">("view");
   const [nicknameInput, setNicknameInput] = useState(player.nickname);
@@ -148,12 +153,14 @@ function ChildRow({
   const applyUpdate = (payload: { nickname?: string; avatar_id?: string }) => {
     setBusy(true);
     setError(null);
-    updatePlayer(player.id, payload).then(res => {
+    updatePlayer(player.id, payload, pin).then(res => {
       setBusy(false);
       if (res.kind === "ok") {
         setMode("view");
         if (isCurrent) onCurrentUpdated(res.data);
         onReload();
+      } else if (isPinRejected(res.status)) {
+        onPinRejected();
       } else if (res.status === 409) {
         setError("That name and picture are already used");
       } else {
@@ -165,11 +172,13 @@ function ChildRow({
   const handleDelete = () => {
     setBusy(true);
     setError(null);
-    deletePlayer(player.id).then(res => {
+    deletePlayer(player.id, pin).then(res => {
       setBusy(false);
       if (res.kind === "ok") {
         if (isCurrent) onCurrentDeleted(player.id);
         onReload();
+      } else if (isPinRejected(res.status)) {
+        onPinRejected();
       } else {
         setError(CANT_CONNECT);
         setMode("view");
@@ -319,13 +328,15 @@ export function ParentScreen({
     if (!selectedPlayerId) { setDashboardStatus("idle"); return; }
     let cancelled = false;
     setDashboardStatus("loading");
-    getDashboard(selectedPlayerId).then(res => {
+    getDashboard(selectedPlayerId, parentPin).then(res => {
       if (cancelled) return;
       if (res.kind === "ok") { setDashboardData(res.data); setDashboardStatus("loaded"); }
+      else if (isPinRejected(res.status)) onPinRejected();
       else setDashboardStatus("error");
     });
     return () => { cancelled = true; };
-  }, [selectedPlayerId, dashboardReloadTick]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedPlayerId, parentPin, dashboardReloadTick]);
 
   if (recoveryCode) {
     return <RecoveryCodeView code={recoveryCode} onContinue={() => setRecoveryCode(null)} />;
@@ -389,6 +400,7 @@ export function ParentScreen({
             dashboardData={dashboardData} dashboardStatus={dashboardStatus}
             onReloadDashboard={() => setDashboardReloadTick(t => t + 1)}
             showAllSessions={showAllSessions} onShowAllSessions={() => setShowAllSessions(true)}
+            pin={parentPin} onPinRejected={onPinRejected}
           />
         )}
 
@@ -404,6 +416,7 @@ export function ParentScreen({
           <ChildrenView
             players={players} status={playersStatus} onReload={reloadPlayers}
             currentPlayerId={currentPlayerId} onCurrentUpdated={onPlayerUpdated} onCurrentDeleted={onPlayerDeleted}
+            pin={parentPin} onPinRejected={onPinRejected}
           />
         )}
 
@@ -417,12 +430,13 @@ function OverviewView({
   players, playersStatus, onReloadPlayers,
   selectedPlayerId, onSelectPlayer,
   dashboardData, dashboardStatus, onReloadDashboard,
-  showAllSessions, onShowAllSessions,
+  showAllSessions, onShowAllSessions, pin, onPinRejected,
 }: {
   players: Player[]; playersStatus: "loading" | "error" | "loaded"; onReloadPlayers: () => void;
   selectedPlayerId: string; onSelectPlayer: (id: string) => void;
   dashboardData: DashboardData | null; dashboardStatus: "idle" | "loading" | "error" | "loaded"; onReloadDashboard: () => void;
   showAllSessions: boolean; onShowAllSessions: () => void;
+  pin: string; onPinRejected: () => void;
 }) {
   if (playersStatus === "loading") {
     return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading...</p>;
@@ -542,11 +556,7 @@ function OverviewView({
             <div className="flex justify-between items-center p-5 border-b flex-wrap gap-3" style={{ borderColor: "#F0F0F0" }}>
               <h2 className="fn font-bold" style={{ fontSize: "20px", color: "#212121" }}>Session History</h2>
               {dashboardData.total_sessions > 0 ? (
-                <a href={reportCsvUrl(selectedPlayerId)}
-                  className="fn font-bold rounded-full px-4 py-2 text-white cursor-pointer"
-                  style={{ background: "#FF9800", fontSize: "14px", boxShadow: "0 3px 12px rgba(255,152,0,.4)", textDecoration: "none" }}>
-                  Download Report CSV
-                </a>
+                <DownloadCsvButton playerId={selectedPlayerId} pin={pin} onPinRejected={onPinRejected} />
               ) : (
                 <div className="flex items-center gap-2">
                   <button disabled className="fn font-bold rounded-full px-4 py-2 text-white"
@@ -605,10 +615,11 @@ function OverviewView({
 }
 
 function ChildrenView({
-  players, status, onReload, currentPlayerId, onCurrentUpdated, onCurrentDeleted,
+  players, status, onReload, currentPlayerId, onCurrentUpdated, onCurrentDeleted, pin, onPinRejected,
 }: {
   players: Player[]; status: "loading" | "error" | "loaded"; onReload: () => void;
   currentPlayerId: string; onCurrentUpdated: (p: Player) => void; onCurrentDeleted: (id: string) => void;
+  pin: string; onPinRejected: () => void;
 }) {
   if (status === "loading") {
     return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading...</p>;
@@ -632,8 +643,35 @@ function ChildrenView({
     <div style={{ maxWidth: "560px" }}>
       {players.map(p => (
         <ChildRow key={p.id} player={p} isCurrent={p.id === currentPlayerId}
-          onReload={onReload} onCurrentUpdated={onCurrentUpdated} onCurrentDeleted={onCurrentDeleted} />
+          onReload={onReload} onCurrentUpdated={onCurrentUpdated} onCurrentDeleted={onCurrentDeleted}
+          pin={pin} onPinRejected={onPinRejected} />
       ))}
+    </div>
+  );
+}
+
+function DownloadCsvButton({ playerId, pin, onPinRejected }: { playerId: string; pin: string; onPinRejected: () => void }) {
+  const [state, setState] = useState<"idle" | "downloading" | "error">("idle");
+
+  const handleDownload = async () => {
+    setState("downloading");
+    const res = await downloadReportCsv(playerId, pin);
+    if (res.kind === "ok") setState("idle");
+    else if (isPinRejected(res.status)) onPinRejected();
+    else setState("error");
+  };
+
+  return (
+    <div className="flex items-center gap-2 flex-wrap">
+      {state === "error" && <span className="fn font-bold" style={{ fontSize: "13px", color: "#EF5350" }}>{CANT_CONNECT}</span>}
+      <button onClick={handleDownload} disabled={state === "downloading"}
+        className="fn font-bold rounded-full px-4 py-2 text-white"
+        style={{
+          background: "#FF9800", fontSize: "14px", boxShadow: "0 3px 12px rgba(255,152,0,.4)", border: "none",
+          cursor: state === "downloading" ? "wait" : "pointer", opacity: state === "downloading" ? 0.8 : 1,
+        }}>
+        {state === "downloading" ? "Downloading..." : "Download Report CSV"}
+      </button>
     </div>
   );
 }

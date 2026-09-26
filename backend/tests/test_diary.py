@@ -226,6 +226,7 @@ def test_delete_entry_removes_its_parent_tip(db_client):
 
 def test_delete_player_removes_diary_and_tips(db_client):
     client, session_local = db_client
+    setup_pin(client)
     player_id = create_player(client)["id"]
     entry_id = post_entry(client, player_id).json()["id"]
     post_entry(client, player_id, note="my uncle hit me")
@@ -233,7 +234,7 @@ def test_delete_player_removes_diary_and_tips(db_client):
         db.add(ParentTip(diary_entry_id=entry_id, summary="s", tips=[], talk_starter="t", source="concern"))
         db.commit()
 
-    assert client.delete(f"/players/{player_id}").status_code == 204
+    assert client.delete(f"/players/{player_id}", headers=PARENT).status_code == 204
     with session_local() as db:
         assert db.query(DiaryEntry).count() == 0
         assert db.query(ParentTip).count() == 0

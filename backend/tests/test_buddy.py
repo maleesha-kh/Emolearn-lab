@@ -371,10 +371,11 @@ def test_deleting_questions_frees_up_the_daily_limit(client, player_id):
 
 def test_delete_player_removes_messages(db_client):
     client, session_local = db_client
+    assert client.post("/parent/pin/setup", json={"pin": PIN}).status_code == 201
     player_id = create_player(client)
     ask(client, player_id, "why do we cry")
     ask(client, player_id, "i want to die")
-    assert client.delete(f"/players/{player_id}").status_code == 204
+    assert client.delete(f"/players/{player_id}", headers=PARENT).status_code == 204
     with session_local() as db:
         assert db.query(BuddyMessage).count() == 0
 

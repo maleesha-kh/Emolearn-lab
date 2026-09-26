@@ -7,6 +7,13 @@ from sqlalchemy.orm import Session as SASession
 from app.db.models import GameSession, Player, PlayerBadge, Round
 
 EMOTIONS = ["happy", "sad", "angry", "surprised"]
+PIN = "1234"
+PARENT = {"X-Parent-Pin": PIN}
+
+
+@pytest.fixture(autouse=True)
+def parent_pin(client):
+    assert client.post("/parent/pin/setup", json={"pin": PIN}).status_code == 201
 
 
 def create_player(client, nickname="Amara", avatar_id="fox"):
@@ -48,7 +55,7 @@ def play_session(client, player_id, correct=(), mood_checkin="happy"):
 
 
 def dashboard(client, player_id):
-    res = client.get(f"/players/{player_id}/dashboard")
+    res = client.get(f"/players/{player_id}/dashboard", headers=PARENT)
     assert res.status_code == 200
     return res.json()
 
@@ -169,7 +176,7 @@ def test_unfinished_sessions_ignored_in_dashboard(client):
 
 def test_rename_works(client):
     player_id = create_player(client, nickname="Amara", avatar_id="fox")["id"]
-    res = client.patch(f"/players/{player_id}", json={"nickname": "Nova"})
+    res = client.patch(f"/players/{player_id}", headers=PARENT, json={"nickname": "Nova"})
     assert res.status_code == 200
     assert res.json() == {"id": player_id, "nickname": "Nova", "avatar_id": "fox"}
 
@@ -180,12 +187,12 @@ def test_rename_duplicate_gives_409(client):
     create_player(client, nickname="Amara", avatar_id="fox")
     other_id = create_player(client, nickname="Nova", avatar_id="owl")["id"]
 
-    res = client.patch(f"/players/{other_id}", json={"nickname": "amara", "avatar_id": "fox"})
+    res = client.patch(f"/players/{other_id}", headers=PARENT, json={"nickname": "amara", "avatar_id": "fox"})
     assert res.status_code == 409
 
 
 def test_patch_missing_player_404(client):
-    res = client.patch("/players/missing-id", json={"nickname": "Nova"})
+    res = client.patch("/players/missing-id", headers=PARENT, json={"nickname": "Nova"})
     assert res.status_code == 404
 
 
@@ -197,7 +204,7 @@ def test_delete_removes_everything(db_client):
     session = play_session(client, player_id, EMOTIONS)
     session_id = session["id"]
 
-    res = client.delete(f"/players/{player_id}")
+    res = client.delete(f"/players/{player_id}", headers=PARENT)
     assert res.status_code == 204
 
     db = session_local()
@@ -211,7 +218,7 @@ def test_delete_removes_everything(db_client):
 
 
 def test_delete_missing_gives_404(client):
-    res = client.delete("/players/missing-id")
+    res = client.delete("/players/missing-id", headers=PARENT)
     assert res.status_code == 404
 
 
@@ -225,7 +232,7 @@ def test_delete_interrupted_leaves_player_intact(db_client):
 
     with patch.object(SASession, "commit", side_effect=RuntimeError("simulated crash")):
         with pytest.raises(RuntimeError):
-            client.delete(f"/players/{player_id}")
+            client.delete(f"/players/{player_id}", headers=PARENT)
 
     db = session_local()
     try:
@@ -239,7 +246,7 @@ def test_delete_interrupted_leaves_player_intact(db_client):
 
 def test_csv_header_only_for_new_player(client):
     player_id = create_player(client)["id"]
-    res = client.get(f"/players/{player_id}/report.csv")
+    res = client.get(f"/players/{player_id}/report.csv", headers=PARENT)
     assert res.status_code == 200
     lines = res.text.strip("﻿").strip().splitlines()
     assert lines == ["Date,Time,Mood,Score,Stars,Happy,Sad,Angry,Surprised"]
@@ -249,7 +256,7 @@ def test_csv_rows_and_correct_wrong_values(client):
     player_id = create_player(client)["id"]
     play_session(client, player_id, {"happy", "angry"}, mood_checkin="happy")
 
-    res = client.get(f"/players/{player_id}/report.csv")
+    res = client.get(f"/players/{player_id}/report.csv", headers=PARENT)
     assert res.status_code == 200
     lines = res.text.strip("﻿").strip().splitlines()
     assert len(lines) == 2
@@ -286,7 +293,7 @@ def test_csv_oldest_first_and_unfinished_excluded(db_client):
     unfinished_id = start_session(client, player_id)["id"]
     save_round(client, unfinished_id, 1, "angry", True)
 
-    res = client.get(f"/players/{player_id}/report.csv")
+    res = client.get(f"/players/{player_id}/report.csv", headers=PARENT)
     lines = res.text.strip("﻿").strip().splitlines()
     assert len(lines) == 3  # header + 2 finished sessions
     assert "2026-01-01" in lines[1]
@@ -295,12 +302,12 @@ def test_csv_oldest_first_and_unfinished_excluded(db_client):
 
 def test_csv_filename_header_present(client):
     player_id = create_player(client, nickname="Amara")["id"]
-    res = client.get(f"/players/{player_id}/report.csv")
+    res = client.get(f"/players/{player_id}/report.csv", headers=PARENT)
     assert "Content-Disposition" in res.headers
     assert "emolearn_Amara_" in res.headers["Content-Disposition"]
     assert res.headers["Content-Disposition"].endswith('.csv"')
 
 
 def test_csv_missing_player_404(client):
-    res = client.get("/players/missing-id/report.csv")
+    res = client.get("/players/missing-id/report.csv", headers=PARENT)
     assert res.status_code == 404

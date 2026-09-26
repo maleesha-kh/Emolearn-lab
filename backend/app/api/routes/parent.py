@@ -41,11 +41,7 @@ def require_parent_pin(
     x_parent_pin: Optional[str] = Header(default=None),
     db: Session = Depends(get_db),
 ) -> None:
-    """Dependency for parent-only endpoints; expects the PIN in X-Parent-Pin.
-
-    TODO: /players/{id}/dashboard and /players/{id}/report.csv should use
-    this too once the frontend sends the header.
-    """
+    """Dependency for parent-only endpoints; expects the PIN in X-Parent-Pin."""
     if not x_parent_pin:
         raise HTTPException(status_code=401, detail="Parent PIN required")
     if _get_setting(db, PIN_SETTING_KEY) is None:

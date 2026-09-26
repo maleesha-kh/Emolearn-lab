@@ -4,6 +4,8 @@ from sqlalchemy.exc import IntegrityError
 from app.db.models import DictionaryProgress
 
 EMOTIONS = ["happy", "sad", "angry", "surprised"]
+PIN = "1234"
+PARENT = {"X-Parent-Pin": PIN}
 
 
 def create_player(client, nickname="Amara", avatar_id="fox"):
@@ -14,6 +16,10 @@ def complete(client, player_id, emotion):
     res = client.post(f"/players/{player_id}/dictionary/{emotion}/complete")
     assert res.status_code == 200
     return res.json()
+
+
+def setup_pin(client):
+    assert client.post("/parent/pin/setup", json={"pin": PIN}).status_code == 201
 
 
 def completed_emotions(body):
@@ -121,20 +127,22 @@ def test_session_badges_still_awarded_from_complete_endpoint(client):
 
 def test_delete_player_removes_dictionary_rows(db_client):
     client, session_local = db_client
+    setup_pin(client)
     player_id = create_player(client)["id"]
     for emotion in EMOTIONS:
         complete(client, player_id, emotion)
 
-    assert client.delete(f"/players/{player_id}").status_code == 204
+    assert client.delete(f"/players/{player_id}", headers=PARENT).status_code == 204
     with session_local() as db:
         assert db.query(DictionaryProgress).filter_by(player_id=player_id).count() == 0
 
 
 def test_dashboard_dictionary_completed_count(client):
+    setup_pin(client)
     player_id = create_player(client)["id"]
 
     def dashboard_count():
-        res = client.get(f"/players/{player_id}/dashboard")
+        res = client.get(f"/players/{player_id}/dashboard", headers=PARENT)
         assert res.status_code == 200
         return res.json()["dictionary_completed"]
 

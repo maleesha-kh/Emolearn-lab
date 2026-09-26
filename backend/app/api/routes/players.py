@@ -11,6 +11,7 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.api.routes.parent import require_parent_pin
 from app.core.badge_awards import award_new_badges
 from app.core.config import EMOTION_CLASSES
 from app.db.database import get_db, to_utc_iso
@@ -82,7 +83,11 @@ def get_player(player_id: str, db: Session = Depends(get_db)):
     return PlayerOut(id=player.id, nickname=player.nickname, avatar_id=player.avatar_id)
 
 
-@router.patch("/{player_id}", response_model=PlayerOut)
+@router.patch(
+    "/{player_id}",
+    response_model=PlayerOut,
+    dependencies=[Depends(require_parent_pin)],
+)
 def update_player(player_id: str, payload: PlayerUpdate, db: Session = Depends(get_db)):
     player = db.get(Player, player_id)
     if player is None:
@@ -109,7 +114,11 @@ def update_player(player_id: str, payload: PlayerUpdate, db: Session = Depends(g
     return PlayerOut(id=player.id, nickname=player.nickname, avatar_id=player.avatar_id)
 
 
-@router.delete("/{player_id}", status_code=204)
+@router.delete(
+    "/{player_id}",
+    status_code=204,
+    dependencies=[Depends(require_parent_pin)],
+)
 def delete_player(player_id: str, db: Session = Depends(get_db)):
     player = db.get(Player, player_id)
     if player is None:
@@ -222,7 +231,11 @@ def complete_dictionary_emotion(player_id: str, emotion: str, db: Session = Depe
     )
 
 
-@router.get("/{player_id}/dashboard", response_model=DashboardOut)
+@router.get(
+    "/{player_id}/dashboard",
+    response_model=DashboardOut,
+    dependencies=[Depends(require_parent_pin)],
+)
 def get_dashboard(player_id: str, db: Session = Depends(get_db)):
     player = db.get(Player, player_id)
     if player is None:
@@ -269,7 +282,10 @@ def get_dashboard(player_id: str, db: Session = Depends(get_db)):
     )
 
 
-@router.get("/{player_id}/report.csv")
+@router.get(
+    "/{player_id}/report.csv",
+    dependencies=[Depends(require_parent_pin)],
+)
 def get_report_csv(player_id: str, db: Session = Depends(get_db)):
     player = db.get(Player, player_id)
     if player is None:

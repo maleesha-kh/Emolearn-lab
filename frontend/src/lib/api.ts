@@ -73,20 +73,42 @@ export function getPlayer(playerId: string) {
   return request<Player>(`/players/${playerId}`);
 }
 
-export function updatePlayer(playerId: string, payload: { nickname?: string; avatar_id?: string }) {
-  return request<Player>(`/players/${playerId}`, { method: "PATCH", body: JSON.stringify(payload) });
+export function updatePlayer(playerId: string, payload: { nickname?: string; avatar_id?: string }, pin: string) {
+  return request<Player>(`/players/${playerId}`, { method: "PATCH", body: JSON.stringify(payload), headers: parentHeaders(pin) });
 }
 
-export function deletePlayer(playerId: string) {
-  return request<undefined>(`/players/${playerId}`, { method: "DELETE" });
+export function deletePlayer(playerId: string, pin: string) {
+  return request<undefined>(`/players/${playerId}`, { method: "DELETE", headers: parentHeaders(pin) });
 }
 
-export function getDashboard(playerId: string) {
-  return request<DashboardData>(`/players/${playerId}/dashboard`);
+export function getDashboard(playerId: string, pin: string) {
+  return request<DashboardData>(`/players/${playerId}/dashboard`, { headers: parentHeaders(pin) });
 }
 
-export function reportCsvUrl(playerId: string) {
-  return `${API_URL}/players/${playerId}/report.csv`;
+// A plain link can't send the PIN header, so the file is fetched and then saved
+export async function downloadReportCsv(playerId: string, pin: string): Promise<ApiResult<undefined>> {
+  let response: Response;
+  let blob: Blob;
+  try {
+    response = await fetch(`${API_URL}/players/${playerId}/report.csv`, { headers: { "X-Parent-Pin": pin } });
+    if (!response.ok) return { kind: "error", status: response.status };
+    blob = await response.blob();
+  } catch {
+    return { kind: "error", status: null };
+  }
+
+  const disposition = response.headers.get("Content-Disposition") ?? "";
+  const filename = disposition.match(/filename="([^"]+)"/)?.[1] ?? "emolearn_report.csv";
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+  return { kind: "ok", data: undefined };
 }
 
 export function getProfile(playerId: string) {

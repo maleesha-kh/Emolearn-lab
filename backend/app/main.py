@@ -35,6 +35,8 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    # Lets the parent area read the CSV report's filename
+    expose_headers=["Content-Disposition"],
 )
 
 app.include_router(predict_router)
