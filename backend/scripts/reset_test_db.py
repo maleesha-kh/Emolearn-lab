@@ -11,7 +11,7 @@ from pathlib import Path
 import sqlite3
 
 
-def checked_path(path: str) -> str:
+def checked_path(path: str, action: str = "reset") -> str:
     backend = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     allowed = os.path.realpath(os.path.join(backend, "data", "e2e"))
     normal = os.path.realpath(os.path.join(backend, "data", "emolearn.db"))
@@ -21,7 +21,7 @@ def checked_path(path: str) -> str:
     if os.path.normcase(resolved) == os.path.normcase(normal) or (
         os.path.exists(normal) and os.path.samefile(resolved, normal)
     ):
-        raise ValueError("Refusing to reset the normal emolearn.db database.")
+        raise ValueError(f"Refusing to {action} the normal emolearn.db database.")
     try:
         inside = os.path.normcase(os.path.commonpath([allowed, resolved])) == os.path.normcase(allowed)
     except ValueError:
@@ -29,7 +29,7 @@ def checked_path(path: str) -> str:
     if not inside:
         raise ValueError("Database must resolve inside backend/data/e2e/.")
     if os.stat(resolved).st_nlink > 1:
-        raise ValueError("Refusing to reset a database with hard links.")
+        raise ValueError(f"Refusing to {action} a database with hard links.")
     return resolved
 
 

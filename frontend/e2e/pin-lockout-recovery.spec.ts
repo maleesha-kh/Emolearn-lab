@@ -1,4 +1,4 @@
-import { test, expect, createPlayer, uniqueName, enterPin, navTab } from "./fixtures";
+import { test, expect, createPlayer, uniqueName, enterPin } from "./fixtures";
 import type { Page } from "@playwright/test";
 
 const OLD_PIN = "1357";
@@ -13,15 +13,6 @@ const children = (page: Page) => page.getByRole("heading", { name: "Children ðŸ‘
 async function openParentArea(page: Page) {
   await page.getByRole("button", { name: /Manage players/ }).click();
   await expect(page.getByRole("heading", { name: /^(Parent Access|Create Parent PIN)$/ })).toBeVisible();
-}
-
-// After a refresh the player is remembered and Welcome no longer lists players,
-// so the parent area is reached from the child's Me screen instead
-async function openParentAreaFromMe(page: Page) {
-  await page.getByRole("button", { name: /Let's Play/ }).click();
-  await navTab(page, "Me").click();
-  await page.getByTitle("Parent/Teacher").click();
-  await expect(page.getByRole("heading", { name: "Parent Access" })).toBeVisible();
 }
 
 async function wrongTry(page: Page) {
@@ -102,8 +93,10 @@ test("wrong PINs lock the keypad, and recovery replaces the PIN and code", async
   expect(newCode).not.toBe(oldCode);
   await page.getByRole("button", { name: "Back to Game" }).click();
 
-  // The old PIN no longer works
-  await openParentAreaFromMe(page);
+  // The old PIN no longer works (after the refresh Welcome shows the remembered
+  // player, whose screen has its own Manage players link)
+  await expect(page.getByRole("button", { name: "Not you?" })).toBeVisible();
+  await openParentArea(page);
   const oldPinCheck = page.waitForResponse((r) => r.url().endsWith("/parent/pin/verify"));
   await enterPin(page, OLD_PIN);
   expect(await (await oldPinCheck).json()).toEqual({ valid: false });
@@ -119,6 +112,5 @@ test("wrong PINs lock the keypad, and recovery replaces the PIN and code", async
   const newPinCheck = page.waitForResponse((r) => r.url().endsWith("/parent/pin/verify"));
   await enterPin(page, NEW_PIN);
   expect(await (await newPinCheck).json()).toEqual({ valid: true });
-  // Opened from Me, the parent area starts on the overview
-  await expect(page.getByRole("heading", { name: "Session Overview ðŸ“Š" })).toBeVisible();
+  await expect(children(page)).toBeVisible();
 });

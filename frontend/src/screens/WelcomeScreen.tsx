@@ -97,6 +97,16 @@ export function WelcomeScreen({
               >
                 Not you?
               </button>
+              {/* Kept small and grey so children aren't drawn to it */}
+              {onManagePlayers && (
+                <button
+                  onClick={onManagePlayers}
+                  className="fn mt-3"
+                  style={{ background: "none", border: "none", padding: "4px 0", minHeight: "24px", color: "#455A64", fontSize: "13px", cursor: "pointer", textDecoration: "underline" }}
+                >
+                  Manage players
+                </button>
+              )}
             </div>
           )}
 

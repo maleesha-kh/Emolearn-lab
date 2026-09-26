@@ -63,7 +63,7 @@ def main() -> None:
     parser.add_argument("player_id", nargs="+")
     args = parser.parse_args()
     try:
-        resolved = checked_path(args.db_path)
+        resolved = checked_path(args.db_path, action="read")
         with closing(sqlite3.connect(Path(resolved).as_uri() + "?mode=ro", uri=True)) as connection:
             graph = paths_to_players(connection)
             result = {
