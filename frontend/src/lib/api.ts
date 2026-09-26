@@ -1,5 +1,7 @@
 import type {
   BadgeRecord,
+  BuddyAnswer,
+  BuddyMessage,
   DashboardData,
   DictionaryCompleteResult,
   DictionaryProgress,
@@ -170,4 +172,12 @@ export function deleteDiaryEntry(playerId: string, entryId: number, pin: string)
 
 export function getDiaryTips(playerId: string, entryId: number, pin: string) {
   return request<DiaryTips>(`/players/${playerId}/diary/${entryId}/tips`, { method: "POST", headers: parentHeaders(pin) });
+}
+
+export function askEmo(playerId: string, question: string) {
+  return request<BuddyAnswer>(`/players/${playerId}/buddy/ask`, { method: "POST", body: JSON.stringify({ question }) });
+}
+
+export function getBuddyMessages(playerId: string, pin: string, limit = 30) {
+  return request<BuddyMessage[]>(`/players/${playerId}/buddy/messages?limit=${limit}`, { headers: parentHeaders(pin) });
 }

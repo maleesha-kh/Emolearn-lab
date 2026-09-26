@@ -14,6 +14,7 @@ import { WelcomeScreen } from "./screens/WelcomeScreen";
 import { HowToPlayScreen } from "./screens/HowToPlayScreen";
 import { MoodCheckInScreen } from "./screens/MoodCheckInScreen";
 import { DiaryScreen } from "./screens/DiaryScreen";
+import { AskEmoScreen } from "./screens/AskEmoScreen";
 import { HappyResponseScreen } from "./screens/responses/HappyResponseScreen";
 import { SadResponseScreen } from "./screens/responses/SadResponseScreen";
 import { AngryResponseScreen } from "./screens/responses/AngryResponseScreen";
@@ -371,7 +372,8 @@ export default function App() {
       />
     ),
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    dictionary: <DictionaryScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} onNewBadges={showNewBadges} />,
+    dictionary: <DictionaryScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} onNewBadges={showNewBadges} onAskEmo={() => go("askemo")} />,
+    askemo: <AskEmoScreen playerId={currentPlayer?.id ?? ""} onBack={() => go("dictionary")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     pin: <PinScreen onSuccess={(pin) => { setParentPin(pin); go("parent"); }} onBack={() => go("profile")} />,
     parent: (
       <ParentScreen
@@ -400,7 +402,7 @@ export default function App() {
     <div className="min-h-screen w-full font-nunito" style={{ fontFamily: "'Nunito',sans-serif" }}>
       <style>{GLOBAL_STYLES}</style>
 
-      {showNav && <BottomNav screen={effectiveScreen} onNavigate={handleNavigate} />}
+      {showNav && <BottomNav screen={effectiveScreen === "askemo" ? "dictionary" : effectiveScreen} onNavigate={handleNavigate} />}
 
       <div style={{ paddingBottom: showNav ? "72px" : "0" }}>{screens[effectiveScreen]}</div>
 

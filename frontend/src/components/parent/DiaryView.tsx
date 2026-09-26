@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { EI } from "../../data/emotions";
 import { CONCERN_CATEGORY_TEXT, DIARY_CHIPS } from "../../data/diary";
-import { deleteDiaryEntry, getDiary, getDiaryTips } from "../../lib/api";
-import type { DiaryEntry, DiaryTips, Player } from "../../types";
+import { deleteDiaryEntry, getBuddyMessages, getDiary, getDiaryTips } from "../../lib/api";
+import type { BuddyMessage, ConcernLevel, DiaryEntry, DiaryTips, Player } from "../../types";
 import { ChildSelector } from "./ChildSelector";
 
 const CANT_CONNECT = "Emo can't connect right now 🔌";
@@ -41,6 +41,9 @@ export function DiaryView({
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null);
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [deleteError, setDeleteError] = useState<number | null>(null);
+  const [questions, setQuestions] = useState<BuddyMessage[]>([]);
+  const [questionsStatus, setQuestionsStatus] = useState<"idle" | "loading" | "error" | "loaded">("idle");
+  const [questionsReloadTick, setQuestionsReloadTick] = useState(0);
 
   useEffect(() => {
     setTips({});
@@ -58,6 +61,20 @@ export function DiaryView({
     return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPlayerId, pin, reloadTick]);
+
+  useEffect(() => {
+    if (!selectedPlayerId) { setQuestionsStatus("idle"); return; }
+    let cancelled = false;
+    setQuestionsStatus("loading");
+    getBuddyMessages(selectedPlayerId, pin).then(res => {
+      if (cancelled) return;
+      if (res.kind === "ok") { setQuestions(res.data); setQuestionsStatus("loaded"); }
+      else if (isPinRejected(res.status)) onPinRejected();
+      else setQuestionsStatus("error");
+    });
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedPlayerId, pin, questionsReloadTick]);
 
   const loadTips = async (entryId: number) => {
     setTips(t => ({ ...t, [entryId]: { status: "loading" } }));
@@ -93,11 +110,23 @@ export function DiaryView({
   }
 
   const childName = players.find(p => p.id === selectedPlayerId)?.nickname ?? "your child";
-  const highCount = entries.filter(e => e.concern_level === "high").length;
+  const highEntries = status === "loaded" ? entries.filter(e => e.concern_level === "high").length : 0;
+  const highQuestions = questionsStatus === "loaded" ? questions.filter(q => q.concern_level === "high").length : 0;
+  const attentionParts = [
+    highEntries > 0 && `${highEntries} diary ${highEntries === 1 ? "entry" : "entries"}`,
+    highQuestions > 0 && `${highQuestions} ${highQuestions === 1 ? "question" : "questions"} to Emo`,
+  ].filter(Boolean);
 
   return (
     <>
       <ChildSelector players={players} selectedPlayerId={selectedPlayerId} onSelect={onSelectPlayer} />
+
+      {attentionParts.length > 0 && (
+        <div role="alert" className="fn font-bold rounded-2xl px-5 py-4 mb-5"
+          style={{ maxWidth: "760px", background: "#FFEBEE", border: "2px solid #E53935", color: "#B71C1C", fontSize: "17px" }}>
+          ⚠️ Needs your attention: {attentionParts.join(", ")}
+        </div>
+      )}
 
       {status === "loading" && (
         <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading diary...</p>
@@ -113,13 +142,6 @@ export function DiaryView({
 
       {status === "loaded" && entries.length > 0 && (
         <div style={{ maxWidth: "760px" }}>
-          {highCount > 0 && (
-            <div role="alert" className="fn font-bold rounded-2xl px-5 py-4 mb-5"
-              style={{ background: "#FFEBEE", border: "2px solid #E53935", color: "#B71C1C", fontSize: "17px" }}>
-              ⚠️ Needs your attention: {highCount} {highCount === 1 ? "entry" : "entries"}
-            </div>
-          )}
-
           <div className="flex flex-col gap-4">
             {entries.map(entry => (
               <EntryCard key={entry.id} entry={entry}
@@ -133,7 +155,61 @@ export function DiaryView({
           </div>
         </div>
       )}
+
+      <h2 className="fn font-bold mt-10 mb-4" style={{ fontSize: "22px", color: "#212121" }}>Questions asked to Emo 🤖</h2>
+
+      {questionsStatus === "loading" && (
+        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading questions...</p>
+      )}
+
+      {questionsStatus === "error" && <ErrorRetry onRetry={() => setQuestionsReloadTick(t => t + 1)} />}
+
+      {questionsStatus === "loaded" && questions.length === 0 && (
+        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>{childName} hasn't asked Emo anything yet.</p>
+      )}
+
+      {questionsStatus === "loaded" && questions.length > 0 && (
+        <div className="flex flex-col gap-3" style={{ maxWidth: "760px" }}>
+          {questions.map((q, i) => <QuestionCard key={`${q.created_at}-${i}`} message={q} />)}
+        </div>
+      )}
     </>
+  );
+}
+
+function ConcernLabel({ level, categories }: { level: ConcernLevel; categories: string[] }) {
+  if (level === "none") return null;
+  const high = level === "high";
+  const words = categories.map(c => CONCERN_CATEGORY_TEXT[c] ?? c);
+  return (
+    <div className="font-bold rounded-xl px-3 py-2 mb-3"
+      style={{
+        background: high ? "#FFEBEE" : "#FFF8E1", color: high ? "#B71C1C" : "#8D6E00",
+        border: `1.5px solid ${high ? "#E53935" : "#FFC107"}`, fontSize: "14px",
+      }}>
+      {high ? "⚠️ Needs your attention" : "👀 Worth a look"}
+      {words.length > 0 && <span className="font-semibold"> · {words.join(", ")}</span>}
+    </div>
+  );
+}
+
+function QuestionCard({ message }: { message: BuddyMessage }) {
+  const high = message.concern_level === "high";
+  return (
+    <div className="rounded-2xl p-4 bg-white fn"
+      style={{
+        border: high ? "3px solid #E53935" : "1.5px solid #E0E0E0",
+        boxShadow: high ? "0 4px 18px rgba(229,57,53,.15)" : "0 4px 15px rgba(0,0,0,.05)",
+      }}>
+      <ConcernLabel level={message.concern_level} categories={message.concern_categories} />
+      <div className="flex flex-wrap items-start gap-2 mb-1">
+        <p className="font-bold flex-1" style={{ color: "#212121", fontSize: "16px", overflowWrap: "anywhere" }}>
+          "{message.question}"
+        </p>
+        <span style={{ color: "#78909C", fontSize: "13px" }}>{formatEntryDate(message.created_at)}</span>
+      </div>
+      <p style={{ color: "#90A4AE", fontSize: "13px" }}>Emo answered: {message.answer}</p>
+    </div>
   );
 }
 
@@ -158,9 +234,7 @@ function EntryCard({
 }) {
   const e = EI[entry.emotion];
   const high = entry.concern_level === "high";
-  const watch = entry.concern_level === "watch";
   const surprise = surpriseTag(entry);
-  const categories = entry.concern_categories.map(c => CONCERN_CATEGORY_TEXT[c] ?? c);
 
   return (
     <div className="rounded-2xl p-5 bg-white fn"
@@ -168,16 +242,7 @@ function EntryCard({
         border: high ? "3px solid #E53935" : "1.5px solid #E0E0E0",
         boxShadow: high ? "0 4px 18px rgba(229,57,53,.15)" : "0 4px 15px rgba(0,0,0,.05)",
       }}>
-      {(high || watch) && (
-        <div className="font-bold rounded-xl px-3 py-2 mb-3"
-          style={{
-            background: high ? "#FFEBEE" : "#FFF8E1", color: high ? "#B71C1C" : "#8D6E00",
-            border: `1.5px solid ${high ? "#E53935" : "#FFC107"}`, fontSize: "14px",
-          }}>
-          {high ? "⚠️ Needs your attention" : "👀 Worth a look"}
-          {categories.length > 0 && <span className="font-semibold"> · {categories.join(", ")}</span>}
-        </div>
-      )}
+      <ConcernLabel level={entry.concern_level} categories={entry.concern_categories} />
 
       <div className="flex flex-wrap items-center gap-2 mb-3">
         <span className="font-bold rounded-full px-3 py-1"

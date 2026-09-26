@@ -5,7 +5,7 @@ export type Scr =
   | "r-correct" | "r-wrong"
   | "t-correct" | "t-wrong"
   | "summary" | "profile" | "achievements" | "dictionary"
-  | "pin" | "parent" | "diary";
+  | "pin" | "parent" | "diary" | "askemo";
 
 // Real emotion classes — these map 1:1 to /public/images/characters/<Mood>/
 export type Mood = "happy" | "sad" | "angry" | "surprised";
@@ -230,5 +230,26 @@ export interface DiaryTips {
   talk_starter: string;
   source: "tip_bank" | "concern";
   concern_level: ConcernLevel;
+  created_at: string;
+}
+
+export interface BuddySuggestion {
+  id: string;
+  question: string;
+}
+
+export interface BuddyAnswer {
+  answer: string;
+  suggestions: BuddySuggestion[];
+  related: BuddySuggestion[];
+  remaining_today: number;
+  resting: boolean;
+}
+
+export interface BuddyMessage {
+  question: string;
+  answer: string;
+  concern_level: ConcernLevel;
+  concern_categories: string[];
   created_at: string;
 }

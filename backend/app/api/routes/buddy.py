@@ -28,7 +28,7 @@ def ask(player_id: str, payload: BuddyAsk, db: Session = Depends(get_db)):
         return BuddyAnswerOut(answer=CONCERN_REPLY, suggestions=[], related=[], remaining_today=_remaining(used))
 
     if used >= buddy.DAILY_LIMIT:
-        return BuddyAnswerOut(answer=buddy.RESTING_REPLY, suggestions=[], related=[], remaining_today=0)
+        return BuddyAnswerOut(answer=buddy.RESTING_REPLY, suggestions=[], related=[], remaining_today=0, resting=True)
 
     item, score = buddy.match(payload.question)
     if item is not None:

@@ -12,7 +12,7 @@ const AGAIN_MESSAGE_MS = 3000;
 
 type Celebration = { emotion: Mood; newBadges: string[] };
 
-export function DictionaryScreen({playerId,onHome,soundOn,onSound,onPractice,onNewBadges}:{playerId:string;onHome:()=>void;soundOn:boolean;onSound:()=>void;onPractice:()=>void;onNewBadges:(ids:string[])=>void}){
+export function DictionaryScreen({playerId,onHome,soundOn,onSound,onPractice,onNewBadges,onAskEmo}:{playerId:string;onHome:()=>void;soundOn:boolean;onSound:()=>void;onPractice:()=>void;onNewBadges:(ids:string[])=>void;onAskEmo:()=>void}){
   const [selected,setSelected]=useState<Mood|null>(null);
   const [completed,setCompleted]=useState<Mood[]>([]);
   const [celebration,setCelebration]=useState<Celebration|null>(null);
@@ -90,7 +90,14 @@ export function DictionaryScreen({playerId,onHome,soundOn,onSound,onPractice,onN
         {selected
           ?<EmotionPage key={selected} emotion={selected} soundOn={soundOn} onBack={()=>open(null)} onPractice={onPractice}
               onExplored={()=>handleExplored(selected)}/>
-          :<FeelingPicker completed={completed} onPick={pick}/>}
+          :<>
+            <FeelingPicker completed={completed} onPick={pick}/>
+            <button onClick={onAskEmo}
+              className="ff rounded-full mt-8 px-8 text-white transition-transform hover:scale-105 active:scale-95"
+              style={{minHeight:"64px",fontSize:"24px",background:"#00BCD4",boxShadow:"0 8px 24px rgba(0,188,212,.35)"}}>
+              Ask Emo 🤖
+            </button>
+          </>}
       </div>
 
       {showAgain&&selected&&(

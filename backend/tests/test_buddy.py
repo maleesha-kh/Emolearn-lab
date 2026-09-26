@@ -54,7 +54,7 @@ def test_exact_question_matches(client, player_id):
     body = ask(client, player_id, "What does happy mean?")
     assert body["answer"] == FAQ_BY_ID["what-is-happy"]["answer"]
     assert body["suggestions"] == []
-    assert set(body) == {"answer", "suggestions", "related", "remaining_today"}
+    assert set(body) == {"answer", "suggestions", "related", "remaining_today", "resting"}
 
 
 @pytest.mark.parametrize("question, faq_id", [
@@ -183,7 +183,7 @@ def test_high_question_gets_concern_reply_even_over_limit(client, player_id):
     assert body["answer"] == CONCERN_REPLY
     assert body["suggestions"] == []
     assert body["related"] == []
-    assert set(body) == {"answer", "suggestions", "related", "remaining_today"}
+    assert set(body) == {"answer", "suggestions", "related", "remaining_today", "resting"}
 
     saved = messages(client, player_id)[0]
     assert saved["question"] == "i want to die"
@@ -215,9 +215,24 @@ def test_remaining_counts_down_and_eleventh_is_resting(db_client):
     assert remaining == list(range(buddy.DAILY_LIMIT - 1, -1, -1))
 
     body = ask(client, player_id, "what does happy mean")
-    assert body == {"answer": buddy.RESTING_REPLY, "suggestions": [], "related": [], "remaining_today": 0}
+    assert body == {
+        "answer": buddy.RESTING_REPLY, "suggestions": [], "related": [], "remaining_today": 0, "resting": True,
+    }
     with session_local() as db:
         assert db.query(BuddyMessage).filter_by(player_id=player_id).count() == buddy.DAILY_LIMIT
+
+
+def test_resting_flag_is_true_only_for_the_over_limit_reply(client, player_id):
+    flags = [ask(client, player_id, "why do we cry")["resting"] for _ in range(buddy.DAILY_LIMIT)]
+    assert flags == [False] * buddy.DAILY_LIMIT
+    assert ask(client, player_id, "what is 5 plus 5")["resting"] is True
+    high = ask(client, player_id, "my uncle hit me")
+    assert high["resting"] is False
+    assert high["answer"] == CONCERN_REPLY
+
+
+def test_resting_flag_is_false_for_no_match(client, player_id):
+    assert ask(client, player_id, "what is 5 plus 5")["resting"] is False
 
 
 def test_limit_resets_at_sri_lanka_midnight(client, player_id, fixed_clock):

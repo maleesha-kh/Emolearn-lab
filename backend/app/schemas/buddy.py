@@ -27,6 +27,8 @@ class BuddyAnswerOut(BaseModel):
     suggestions: List[BuddySuggestion]
     related: List[BuddySuggestion]
     remaining_today: int
+    # True only for the over-limit reply, so the app doesn't have to match its text
+    resting: bool = False
 
 
 class BuddyMessageOut(BaseModel):
