@@ -192,6 +192,7 @@ export function WelcomeScreen({
                 {AVATARS.map((a) => (
                   <button
                     key={a.id} onClick={() => setAvatarId(a.id)}
+                    aria-label={`Avatar: ${a.name}`} aria-pressed={avatarId === a.id}
                     className="rounded-full transition-all"
                     style={{ padding: "4px", border: avatarId === a.id ? "3px solid #FF9800" : "3px solid transparent", cursor: "pointer" }}
                   >

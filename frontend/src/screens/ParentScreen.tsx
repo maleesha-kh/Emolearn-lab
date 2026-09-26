@@ -234,6 +234,7 @@ function ChildRow({
         <div className="flex gap-2 mt-3 flex-wrap items-center">
           {AVATARS.map(a => (
             <button key={a.id} onClick={() => applyUpdate({ avatar_id: a.id })} disabled={busy}
+              aria-label={`Avatar: ${a.name}`} aria-pressed={a.id === player.avatar_id}
               style={{ padding: "3px", borderRadius: "999px", border: a.id === player.avatar_id ? "3px solid #FF9800" : "3px solid transparent", background: "none", cursor: "pointer" }}>
               <Avatar avatarId={a.id} size={40} />
             </button>

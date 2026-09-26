@@ -50,6 +50,7 @@ export interface Badge {
 
 export interface AvatarOption {
   id: string;
+  name: string;
   emoji: string;
   color: string;
   image?: string;
