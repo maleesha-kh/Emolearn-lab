@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
+import { ChildSelector } from "../components/parent/ChildSelector";
+import { DiaryView } from "../components/parent/DiaryView";
 import { Avatar } from "../components/common/Avatar";
 import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
 import { AVATARS } from "../data/avatars";
@@ -30,7 +32,7 @@ function formatSessionDate(iso: string): string {
   return `${d.toLocaleDateString("en-US", { month: "short" })} ${d.getDate()} ${d.getFullYear()}`;
 }
 
-function ChangePinForm() {
+function ChangePinForm({ onChanged }: { onChanged: (newPin: string) => void }) {
   const [currentPin, setCurrentPin] = useState("");
   const [newPin, setNewPin] = useState("");
   const [confirmPin, setConfirmPin] = useState("");
@@ -49,6 +51,7 @@ function ChangePinForm() {
     setSaving(false);
     if (res.kind === "ok") {
       setMessage({ text: "PIN changed! ✅", ok: true });
+      onChanged(newPin);
       setCurrentPin(""); setNewPin(""); setConfirmPin("");
     } else if (res.status === 403) {
       setMessage({ text: "Current PIN is wrong", ok: false });
@@ -254,12 +257,12 @@ function ChildRow({
 }
 
 export function ParentScreen({
-  currentPlayerId, onBack, onPlayerUpdated, onPlayerDeleted,
+  currentPlayerId, parentPin, onPinChanged, onPinRejected, onBack, onPlayerUpdated, onPlayerDeleted,
 }: {
-  currentPlayerId: string; onBack: () => void;
-  onPlayerUpdated: (player: Player) => void; onPlayerDeleted: (playerId: string) => void;
+  currentPlayerId: string; parentPin: string; onPinChanged: (pin: string) => void; onPinRejected: () => void;
+  onBack: () => void; onPlayerUpdated: (player: Player) => void; onPlayerDeleted: (playerId: string) => void;
 }) {
-  const [view, setView] = useState<"overview" | "children" | "settings">("overview");
+  const [view, setView] = useState<"overview" | "children" | "diary" | "settings">("overview");
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
 
   const [players, setPlayers] = useState<Player[]>([]);
@@ -312,7 +315,9 @@ export function ParentScreen({
     return <RecoveryCodeView code={recoveryCode} onContinue={() => setRecoveryCode(null)} />;
   }
 
-  const heading = view === "overview" ? "Session Overview 📊" : view === "children" ? "Children 👧" : "Settings ⚙️";
+  const heading = {
+    overview: "Session Overview 📊", children: "Children 👧", diary: "Diary 📔", settings: "Settings ⚙️",
+  }[view];
 
   return (
     <div className="min-h-screen w-full flex" style={{ background: "#FAFAFA" }}>
@@ -322,6 +327,7 @@ export function ParentScreen({
         {([
           { key: "overview", label: "📊 Overview" },
           { key: "children", label: "👧 Children" },
+          { key: "diary", label: "📔 Diary" },
           { key: "settings", label: "⚙️ Settings" },
         ] as const).map(item => (
           <button key={item.key} onClick={() => setView(item.key)}
@@ -349,7 +355,11 @@ export function ParentScreen({
 
         {view === "settings" && (
           <>
-            <ChangePinForm />
+            <div className="rounded-2xl p-5 bg-white mb-6 fn" style={{ maxWidth: "420px", border: "1.5px solid #E0E0E0", fontSize: "14px", color: "#455A64" }}>
+              <span className="font-bold">🔒 Privacy: </span>
+              Diary entries are stored only in EmoLearn Lab's own database and are never sent to outside services.
+            </div>
+            <ChangePinForm onChanged={onPinChanged} />
             <RegenerateRecoveryCodeForm onCodeReady={setRecoveryCode} />
           </>
         )}
@@ -361,6 +371,14 @@ export function ParentScreen({
             dashboardData={dashboardData} dashboardStatus={dashboardStatus}
             onReloadDashboard={() => setDashboardReloadTick(t => t + 1)}
             showAllSessions={showAllSessions} onShowAllSessions={() => setShowAllSessions(true)}
+          />
+        )}
+
+        {view === "diary" && (
+          <DiaryView
+            players={players} playersStatus={playersStatus} onReloadPlayers={reloadPlayers}
+            selectedPlayerId={selectedPlayerId} onSelectPlayer={setSelectedPlayerId}
+            pin={parentPin} onPinRejected={onPinRejected}
           />
         )}
 
@@ -406,21 +424,7 @@ function OverviewView({
 
   return (
     <>
-      {/* Child selector */}
-      <div className="flex gap-3 mb-6 flex-wrap">
-        {players.map(p => (
-          <button key={p.id} onClick={() => onSelectPlayer(p.id)}
-            className="flex flex-col items-center gap-1 rounded-2xl p-2 transition-all"
-            style={{
-              background: p.id === selectedPlayerId ? "#E0F7FA" : "white",
-              border: p.id === selectedPlayerId ? "2px solid #00BCD4" : "2px solid #E0E0E0",
-              cursor: "pointer", minWidth: "72px",
-            }}>
-            <Avatar avatarId={p.avatar_id} size={44} />
-            <span className="fn font-bold" style={{ fontSize: "12px", color: "#37474F" }}>{p.nickname}</span>
-          </button>
-        ))}
-      </div>
+      <ChildSelector players={players} selectedPlayerId={selectedPlayerId} onSelect={onSelectPlayer} />
 
       {dashboardStatus === "loading" && (
         <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading dashboard...</p>

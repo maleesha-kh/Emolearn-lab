@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { DiaryIntensity, DiaryReason, EmoE, Mood } from "../types";
 import { EI } from "../data/emotions";
+import { DIARY_CHIPS } from "../data/diary";
 import { createDiaryEntry } from "../lib/api";
 import { playSound } from "../lib/sounds";
 import { TopBar, Btn, BgDeco } from "../components/common/UI";
@@ -9,15 +10,6 @@ import { EmoRobot } from "../components/common/EmoRobot";
 const NOTE_MAX = 200;
 const SAVE_FAILED_TEXT = "Your diary is resting, let's keep playing! 🌈";
 const FALLBACK_REPLY = "Thank you for sharing with me! 💛";
-
-const CHIPS: { reason: DiaryReason; label: string; emoji: string }[] = [
-  { reason: "school", label: "School", emoji: "🏫" },
-  { reason: "friends", label: "Friends", emoji: "👫" },
-  { reason: "family", label: "Family", emoji: "👨‍👩‍👧" },
-  { reason: "playing", label: "Playing", emoji: "🎮" },
-  { reason: "pets", label: "Pets", emoji: "🐾" },
-  { reason: "other", label: "Something else", emoji: "✏️" },
-];
 
 const INTENSITIES: { value: DiaryIntensity; label: string }[] = [
   { value: "little", label: "A little" },
@@ -98,7 +90,7 @@ export function DiaryScreen({playerId,mood,onDone,onBack,onHome,soundOn,onSound}
                 </h1>
 
                 <div role="group" aria-label="Why do you feel this way? Pick one or more" className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-6">
-                  {CHIPS.map(c=>{
+                  {DIARY_CHIPS.map(c=>{
                     const on=tags.includes(c.reason);
                     return(
                       <button key={c.reason} onClick={()=>toggleChip(c.reason)} aria-pressed={on}

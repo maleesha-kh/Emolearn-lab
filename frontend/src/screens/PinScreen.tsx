@@ -26,7 +26,7 @@ function digitsOnly(v: string): string {
   return v.replace(/\D/g, "").slice(0, 4);
 }
 
-export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack: () => void }) {
+export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => void; onBack: () => void }) {
   const [mode, setMode] = useState<Mode>("loading");
   const [hasRecoveryCode, setHasRecoveryCode] = useState(false);
   const [digits, setDigits] = useState(["", "", "", ""]);
@@ -37,6 +37,8 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
 
   // A code just returned by setup/recover/regenerate — shown once, full-screen.
   const [recoveryCodeToShow, setRecoveryCodeToShow] = useState<string | null>(null);
+  // The PIN that was just set or confirmed, handed on once the code has been shown.
+  const [pinForSuccess, setPinForSuccess] = useState<string | null>(null);
 
   // The one-time "you have no recovery code yet" prompt after a correct PIN.
   const [showRecoveryPrompt, setShowRecoveryPrompt] = useState(false);
@@ -131,6 +133,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
       const res = await setupPin(entered);
       setBusy(false);
       if (res.kind === "ok") {
+        setPinForSuccess(entered);
         setRecoveryCodeToShow(res.data.recovery_code);
       } else {
         setError(true);
@@ -156,7 +159,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
           setVerifiedPin(entered);
           setShowRecoveryPrompt(true);
         } else {
-          onSuccess();
+          onSuccess(entered);
         }
         return;
       }
@@ -224,6 +227,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
     if (res.kind === "ok") {
       resetLock();
       setShowRecover(false);
+      setPinForSuccess(recoverNewPin);
       setRecoveryCodeToShow(res.data.recovery_code);
       return;
     }
@@ -245,8 +249,9 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
     setPromptBusy(true);
     const res = await regenerateRecoveryCode(verifiedPin);
     setPromptBusy(false);
-    setVerifiedPin(null);
     if (res.kind === "ok") {
+      setPinForSuccess(verifiedPin);
+      setVerifiedPin(null);
       setShowRecoveryPrompt(false);
       setRecoveryCodeToShow(res.data.recovery_code);
     } else {
@@ -255,9 +260,10 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
   };
 
   const handleSkipRecoveryPrompt = () => {
+    const pin = verifiedPin;
     setVerifiedPin(null);
     setShowRecoveryPrompt(false);
-    onSuccess();
+    if (pin) onSuccess(pin);
   };
 
   if (recoveryCodeToShow) {
@@ -266,7 +272,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: () => void; onBack
         code={recoveryCodeToShow}
         onContinue={() => {
           setRecoveryCodeToShow(null);
-          onSuccess();
+          if (pinForSuccess) onSuccess(pinForSuccess);
         }}
       />
     );

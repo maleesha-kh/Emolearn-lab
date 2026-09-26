@@ -52,6 +52,8 @@ export default function App() {
   const [newBadges, setNewBadges] = useState<string[]>([]);
   const [badgeIndex, setBadgeIndex] = useState(0);
   const [badgePopupReady, setBadgePopupReady] = useState(false);
+  // Kept only in memory while the parent area is open; the diary API needs it
+  const [parentPin, setParentPin] = useState<string | null>(null);
 
   // Ref (not state) because saveRound/finishSession must await the exact
   // in-flight start/save calls, not a possibly-stale state value, and the
@@ -370,10 +372,13 @@ export default function App() {
     ),
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     dictionary: <DictionaryScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} onNewBadges={showNewBadges} />,
-    pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
+    pin: <PinScreen onSuccess={(pin) => { setParentPin(pin); go("parent"); }} onBack={() => go("profile")} />,
     parent: (
       <ParentScreen
         currentPlayerId={currentPlayer?.id ?? ""}
+        parentPin={parentPin ?? ""}
+        onPinChanged={setParentPin}
+        onPinRejected={() => go("pin")}
         onBack={() => go(currentPlayer ? "profile" : "welcome")}
         onPlayerUpdated={handleCurrentPlayerUpdated}
         onPlayerDeleted={handleCurrentPlayerDeleted}
@@ -385,6 +390,11 @@ export default function App() {
   // covers stale navigation state (e.g. BottomNav) after a switch-player.
   const effectiveScreen: Scr = !currentPlayer && screen !== "welcome" ? "welcome" : screen;
   const showNav = !SCREENS_WITHOUT_NAV.includes(effectiveScreen);
+
+  // Leaving the parent area by any route forgets the PIN
+  useEffect(() => {
+    if (effectiveScreen !== "parent") setParentPin(null);
+  }, [effectiveScreen]);
 
   return (
     <div className="min-h-screen w-full font-nunito" style={{ fontFamily: "'Nunito',sans-serif" }}>
