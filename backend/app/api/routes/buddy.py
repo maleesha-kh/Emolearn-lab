@@ -1,5 +1,5 @@
 """Ask Emo routes: a child asks a feelings question and gets an FAQ answer;
-a parent (PIN) can read the questions."""
+a parent (PIN) can read and delete the questions."""
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -63,6 +63,7 @@ def list_messages(
     )
     return [
         BuddyMessageOut(
+            id=m.id,
             question=m.question,
             answer=m.answer,
             concern_level=m.concern_level,
@@ -71,6 +72,36 @@ def list_messages(
         )
         for m in messages
     ]
+
+
+@router.delete(
+    "/{player_id}/buddy/messages/{message_id}",
+    status_code=204,
+    dependencies=[Depends(require_parent_pin)],
+)
+def delete_message(player_id: str, message_id: int, db: Session = Depends(get_db)):
+    _get_player_or_404(db, player_id)
+
+    message = db.get(BuddyMessage, message_id)
+    if message is None or message.player_id != player_id:
+        raise HTTPException(status_code=404, detail="Message not found")
+
+    db.delete(message)
+    db.commit()
+    return None
+
+
+@router.delete(
+    "/{player_id}/buddy/messages",
+    status_code=204,
+    dependencies=[Depends(require_parent_pin)],
+)
+def clear_messages(player_id: str, db: Session = Depends(get_db)):
+    _get_player_or_404(db, player_id)
+    # Deleted questions no longer count toward today's limit
+    db.query(BuddyMessage).filter(BuddyMessage.player_id == player_id).delete(synchronize_session=False)
+    db.commit()
+    return None
 
 
 def _questions_used_today(db: Session, player_id: str) -> int:

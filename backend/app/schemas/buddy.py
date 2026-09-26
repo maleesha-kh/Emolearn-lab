@@ -32,6 +32,7 @@ class BuddyAnswerOut(BaseModel):
 
 
 class BuddyMessageOut(BaseModel):
+    id: int
     question: str
     answer: str
     concern_level: str

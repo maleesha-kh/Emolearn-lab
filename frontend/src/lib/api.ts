@@ -181,3 +181,11 @@ export function askEmo(playerId: string, question: string) {
 export function getBuddyMessages(playerId: string, pin: string, limit = 30) {
   return request<BuddyMessage[]>(`/players/${playerId}/buddy/messages?limit=${limit}`, { headers: parentHeaders(pin) });
 }
+
+export function deleteBuddyMessage(playerId: string, messageId: number, pin: string) {
+  return request<undefined>(`/players/${playerId}/buddy/messages/${messageId}`, { method: "DELETE", headers: parentHeaders(pin) });
+}
+
+export function clearBuddyMessages(playerId: string, pin: string) {
+  return request<undefined>(`/players/${playerId}/buddy/messages`, { method: "DELETE", headers: parentHeaders(pin) });
+}

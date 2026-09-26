@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { EI } from "../../data/emotions";
 import { CONCERN_CATEGORY_TEXT, DIARY_CHIPS } from "../../data/diary";
-import { deleteDiaryEntry, getBuddyMessages, getDiary, getDiaryTips } from "../../lib/api";
+import { clearBuddyMessages, deleteBuddyMessage, deleteDiaryEntry, getBuddyMessages, getDiary, getDiaryTips } from "../../lib/api";
 import type { BuddyMessage, ConcernLevel, DiaryEntry, DiaryTips, Player } from "../../types";
 import { ChildSelector } from "./ChildSelector";
 
@@ -44,6 +44,10 @@ export function DiaryView({
   const [questions, setQuestions] = useState<BuddyMessage[]>([]);
   const [questionsStatus, setQuestionsStatus] = useState<"idle" | "loading" | "error" | "loaded">("idle");
   const [questionsReloadTick, setQuestionsReloadTick] = useState(0);
+  const [confirmQuestionId, setConfirmQuestionId] = useState<number | null>(null);
+  const [deletingQuestionId, setDeletingQuestionId] = useState<number | null>(null);
+  const [questionDeleteError, setQuestionDeleteError] = useState<number | null>(null);
+  const [clearState, setClearState] = useState<"idle" | "confirm" | "clearing" | "error">("idle");
 
   useEffect(() => {
     setTips({});
@@ -63,6 +67,9 @@ export function DiaryView({
   }, [selectedPlayerId, pin, reloadTick]);
 
   useEffect(() => {
+    setConfirmQuestionId(null);
+    setQuestionDeleteError(null);
+    setClearState("idle");
     if (!selectedPlayerId) { setQuestionsStatus("idle"); return; }
     let cancelled = false;
     setQuestionsStatus("loading");
@@ -96,6 +103,35 @@ export function DiaryView({
       onPinRejected();
     } else {
       setDeleteError(entryId);
+    }
+  };
+
+  const confirmDeleteQuestion = async (messageId: number) => {
+    setDeletingQuestionId(messageId);
+    setQuestionDeleteError(null);
+    const res = await deleteBuddyMessage(selectedPlayerId, messageId, pin);
+    setDeletingQuestionId(null);
+    if (res.kind === "ok" || res.status === 404) {
+      setQuestions(qs => qs.filter(q => q.id !== messageId));
+      setConfirmQuestionId(null);
+    } else if (isPinRejected(res.status)) {
+      onPinRejected();
+    } else {
+      setQuestionDeleteError(messageId);
+    }
+  };
+
+  const confirmClearQuestions = async () => {
+    setClearState("clearing");
+    const res = await clearBuddyMessages(selectedPlayerId, pin);
+    if (res.kind === "ok") {
+      setQuestions([]);
+      setConfirmQuestionId(null);
+      setClearState("idle");
+    } else if (isPinRejected(res.status)) {
+      onPinRejected();
+    } else {
+      setClearState("error");
     }
   };
 
@@ -156,7 +192,37 @@ export function DiaryView({
         </div>
       )}
 
-      <h2 className="fn font-bold mt-10 mb-4" style={{ fontSize: "22px", color: "#212121" }}>Questions asked to Emo 🤖</h2>
+      <div className="flex flex-wrap items-center justify-between gap-3 mt-10 mb-4" style={{ maxWidth: "760px" }}>
+        <h2 className="fn font-bold" style={{ fontSize: "22px", color: "#212121" }}>Questions asked to Emo 🤖</h2>
+        {questionsStatus === "loaded" && questions.length > 0 && clearState === "idle" && (
+          <button onClick={() => setClearState("confirm")}
+            className="fn font-bold rounded-full px-4 py-2"
+            style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#78909C", cursor: "pointer", fontSize: "14px" }}>
+            🗑️ Clear all questions
+          </button>
+        )}
+      </div>
+
+      {questionsStatus === "loaded" && questions.length > 0 && clearState !== "idle" && (
+        <div className="fn rounded-xl p-3 mb-4" style={{ maxWidth: "760px", background: "#FFF3F3", border: "1.5px solid #FFCDD2" }}>
+          <p className="font-bold mb-2" style={{ color: "#B71C1C", fontSize: "14px" }}>
+            Delete all of {childName}'s questions to Emo? This can't be undone.
+          </p>
+          {clearState === "error" && <p className="font-bold mb-2" style={{ color: "#EF5350", fontSize: "13px" }}>{CANT_CONNECT}</p>}
+          <div className="flex gap-2">
+            <button onClick={confirmClearQuestions} disabled={clearState === "clearing"}
+              className="font-bold rounded-full px-4 py-2 text-white"
+              style={{ background: "#E53935", border: "none", cursor: clearState === "clearing" ? "not-allowed" : "pointer", fontSize: "14px" }}>
+              {clearState === "clearing" ? "Deleting..." : "Delete all"}
+            </button>
+            <button onClick={() => setClearState("idle")} disabled={clearState === "clearing"}
+              className="font-bold rounded-full px-4 py-2"
+              style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#455A64", cursor: "pointer", fontSize: "14px" }}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
 
       {questionsStatus === "loading" && (
         <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading questions...</p>
@@ -170,7 +236,14 @@ export function DiaryView({
 
       {questionsStatus === "loaded" && questions.length > 0 && (
         <div className="flex flex-col gap-3" style={{ maxWidth: "760px" }}>
-          {questions.map((q, i) => <QuestionCard key={`${q.created_at}-${i}`} message={q} />)}
+          {questions.map(q => (
+            <QuestionCard key={q.id} message={q}
+              confirming={confirmQuestionId === q.id} deleting={deletingQuestionId === q.id}
+              deleteFailed={questionDeleteError === q.id}
+              onAskDelete={() => { setConfirmQuestionId(q.id); setQuestionDeleteError(null); }}
+              onCancelDelete={() => setConfirmQuestionId(null)}
+              onConfirmDelete={() => confirmDeleteQuestion(q.id)} />
+          ))}
         </div>
       )}
     </>
@@ -193,7 +266,12 @@ function ConcernLabel({ level, categories }: { level: ConcernLevel; categories: 
   );
 }
 
-function QuestionCard({ message }: { message: BuddyMessage }) {
+function QuestionCard({
+  message, confirming, deleting, deleteFailed, onAskDelete, onCancelDelete, onConfirmDelete,
+}: {
+  message: BuddyMessage; confirming: boolean; deleting: boolean; deleteFailed: boolean;
+  onAskDelete: () => void; onCancelDelete: () => void; onConfirmDelete: () => void;
+}) {
   const high = message.concern_level === "high";
   return (
     <div className="rounded-2xl p-4 bg-white fn"
@@ -208,7 +286,32 @@ function QuestionCard({ message }: { message: BuddyMessage }) {
         </p>
         <span style={{ color: "#78909C", fontSize: "13px" }}>{formatEntryDate(message.created_at)}</span>
       </div>
-      <p style={{ color: "#90A4AE", fontSize: "13px" }}>Emo answered: {message.answer}</p>
+      <p className="mb-3" style={{ color: "#90A4AE", fontSize: "13px" }}>Emo answered: {message.answer}</p>
+
+      {confirming ? (
+        <div className="rounded-xl p-3" style={{ background: "#FFF3F3", border: "1.5px solid #FFCDD2" }}>
+          <p className="font-bold mb-2" style={{ color: "#B71C1C", fontSize: "14px" }}>Delete this question? This can't be undone.</p>
+          {deleteFailed && <p className="font-bold mb-2" style={{ color: "#EF5350", fontSize: "13px" }}>{CANT_CONNECT}</p>}
+          <div className="flex gap-2">
+            <button onClick={onConfirmDelete} disabled={deleting}
+              className="font-bold rounded-full px-4 py-2 text-white"
+              style={{ background: "#E53935", border: "none", cursor: deleting ? "not-allowed" : "pointer", fontSize: "14px" }}>
+              {deleting ? "Deleting..." : "Delete"}
+            </button>
+            <button onClick={onCancelDelete} disabled={deleting}
+              className="font-bold rounded-full px-4 py-2"
+              style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#455A64", cursor: "pointer", fontSize: "14px" }}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      ) : (
+        <button onClick={onAskDelete} aria-label="Delete this question"
+          className="font-bold rounded-full px-4 py-2"
+          style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#78909C", cursor: "pointer", fontSize: "14px" }}>
+          🗑️ Delete
+        </button>
+      )}
     </div>
   );
 }

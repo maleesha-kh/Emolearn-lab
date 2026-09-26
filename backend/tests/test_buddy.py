@@ -292,7 +292,81 @@ def test_parent_messages_need_pin_and_hide_model_fields(client, player_id, fixed
     listed = messages(client, player_id)
     assert [m["question"] for m in listed] == ["what does happy mean", "why do we cry"]
     for m in listed:
-        assert set(m) == {"question", "answer", "concern_level", "concern_categories", "created_at"}
+        assert set(m) == {"id", "question", "answer", "concern_level", "concern_categories", "created_at"}
+
+
+def test_delete_one_message(client, player_id):
+    ask(client, player_id, "why do we cry")
+    ask(client, player_id, "what does happy mean")
+    gone, keep = messages(client, player_id)
+
+    url = f"/players/{player_id}/buddy/messages/{gone['id']}"
+    assert client.delete(url, headers=PARENT).status_code == 204
+    assert messages(client, player_id) == [keep]
+    assert client.delete(url, headers=PARENT).status_code == 404
+
+
+def test_delete_message_of_another_player_gives_404(client, player_id):
+    other_id = create_player(client, nickname="Nimal")
+    ask(client, other_id, "why do we cry")
+    other_message = messages(client, other_id)[0]
+
+    res = client.delete(f"/players/{player_id}/buddy/messages/{other_message['id']}", headers=PARENT)
+    assert res.status_code == 404
+    assert messages(client, other_id) == [other_message]
+
+
+def test_delete_unknown_message_or_player_gives_404(client, player_id):
+    ask(client, player_id, "why do we cry")
+    message_id = messages(client, player_id)[0]["id"]
+    assert client.delete(f"/players/{player_id}/buddy/messages/99999", headers=PARENT).status_code == 404
+    assert client.delete(f"/players/nope/buddy/messages/{message_id}", headers=PARENT).status_code == 404
+    assert client.delete("/players/nope/buddy/messages", headers=PARENT).status_code == 404
+    assert len(messages(client, player_id)) == 1
+
+
+def test_clear_all_messages_keeps_other_players(client, player_id):
+    other_id = create_player(client, nickname="Nimal")
+    ask(client, player_id, "why do we cry")
+    ask(client, player_id, "i want to die")
+    ask(client, other_id, "what does happy mean")
+
+    url = f"/players/{player_id}/buddy/messages"
+    assert client.delete(url, headers=PARENT).status_code == 204
+    assert messages(client, player_id) == []
+    assert [m["question"] for m in messages(client, other_id)] == ["what does happy mean"]
+    assert client.delete(url, headers=PARENT).status_code == 204
+
+
+def test_delete_and_clear_need_pin(client, player_id):
+    ask(client, player_id, "why do we cry")
+    message_id = messages(client, player_id)[0]["id"]
+    url_one = f"/players/{player_id}/buddy/messages/{message_id}"
+    url_all = f"/players/{player_id}/buddy/messages"
+
+    for res in [client.delete(url_one), client.delete(url_all)]:
+        assert res.status_code == 401
+        assert res.json()["detail"] == "Parent PIN required"
+
+    wrong = {"X-Parent-Pin": "0000"}
+    for res in [client.delete(url_one, headers=wrong), client.delete(url_all, headers=wrong)]:
+        assert res.status_code == 403
+        assert res.json()["detail"] == "Wrong parent PIN"
+
+    assert len(messages(client, player_id)) == 1
+
+
+def test_deleting_questions_frees_up_the_daily_limit(client, player_id):
+    for _ in range(buddy.DAILY_LIMIT):
+        ask(client, player_id, "why do we cry")
+    assert ask(client, player_id, "why do we cry")["resting"] is True
+
+    first = messages(client, player_id)[-1]
+    assert client.delete(f"/players/{player_id}/buddy/messages/{first['id']}", headers=PARENT).status_code == 204
+    assert ask(client, player_id, "why do we cry")["remaining_today"] == 0
+
+    assert client.delete(f"/players/{player_id}/buddy/messages", headers=PARENT).status_code == 204
+    assert ask(client, player_id, "why do we cry")["remaining_today"] == buddy.DAILY_LIMIT - 1
 
 
 def test_delete_player_removes_messages(db_client):

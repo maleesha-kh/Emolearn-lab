@@ -247,6 +247,7 @@ export interface BuddyAnswer {
 }
 
 export interface BuddyMessage {
+  id: number;
   question: string;
   answer: string;
   concern_level: ConcernLevel;
