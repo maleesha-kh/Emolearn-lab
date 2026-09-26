@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 from sqlalchemy.exc import IntegrityError
 
+from app.data.tip_bank import TIP_BANK
 from app.db.models import DiaryEntry, ParentTip
 from app.services.safety import CONCERN_REPLY, HIGH_PHRASES, WATCH_PHRASES, check_concern, normalize
 
@@ -48,9 +49,12 @@ def test_create_with_chips_only(client, player_id):
     assert body["reason_tags"] == ["school", "pets"]
     assert body["note"] is None
     assert body["concern_flag"] is False
-    assert body["bot_reply"] is None
     assert body["created_at"]
-    for field in ["reason_used", "reason_source", "reason_confidence", "sentiment", "sentiment_confidence"]:
+    assert body["reason_used"] == "school"
+    assert body["reason_source"] == "chip"
+    assert body["sentiment"] == "negative"
+    assert body["bot_reply"] in TIP_BANK[("sad", "school")]["child_replies"]
+    for field in ["reason_confidence", "sentiment_confidence"]:
         assert body[field] is None
 
 
@@ -118,12 +122,12 @@ def test_high_note_sets_flag_and_fixed_reply(client, player_id):
     assert body["bot_reply"] == "Thank you for telling me. Please tell a grown-up you trust right away. 💙"
 
 
-def test_watch_note_is_recorded_without_flag_or_reply(client, player_id):
+def test_watch_note_is_recorded_without_flag_and_gets_normal_reply(client, player_id):
     body = post_entry(client, player_id, emotion="sad", note="my dog ran away").json()
     assert body["concern_flag"] is False
     assert body["concern_level"] == "watch"
     assert body["concern_categories"] == ["danger"]
-    assert body["bot_reply"] is None
+    assert body["bot_reply"] in TIP_BANK[("sad", "friends")]["child_replies"]
 
     listed = list_entries(client, player_id)[0]
     assert listed["concern_level"] == "watch"

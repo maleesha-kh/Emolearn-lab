@@ -10,6 +10,14 @@ from app.api.routes.game_sessions import router as game_sessions_router
 from app.api.routes.parent import router as parent_router
 from app.api.routes.players import router as players_router
 from app.db.database import Base, get_db
+from app.services import diary_ml
+
+
+@pytest.fixture(autouse=True)
+def no_diary_models(monkeypatch):
+    """Tests never load the real diary models unless they ask for them;
+    by default the app behaves as if the model files were missing."""
+    monkeypatch.setattr(diary_ml, "_get_models", lambda: None)
 
 
 @pytest.fixture()

@@ -54,3 +54,13 @@ class DiaryEntryOut(BaseModel):
     concern_flag: bool
     concern_level: str
     concern_categories: List[str]
+
+
+class ParentTipOut(BaseModel):
+    diary_entry_id: int
+    summary: str
+    tips: List[str]
+    talk_starter: str
+    source: str
+    concern_level: str
+    created_at: str
