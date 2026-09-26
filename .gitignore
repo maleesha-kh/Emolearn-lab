@@ -28,3 +28,6 @@ game_images_raw/
 
 # Face crops saved by check_game_images.py
 backend/eval_crops/
+
+# Local developer tools and screenshots (never committed)
+dev-tools/

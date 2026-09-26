@@ -4,7 +4,8 @@ export function TopBar({onHome,onSound,soundOn}:{onHome:()=>void;onSound:()=>voi
       <button onClick={onHome} title="Home"
         className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-2xl transition-transform hover:scale-110 active:scale-95"
         style={{boxShadow:"0 4px 16px rgba(0,0,0,.12)"}}>🏠</button>
-      <div className="ff text-2xl" style={{color:"#00838F"}}>EmoLearn Lab ✨</div>
+      {/* Full 24px from 375px wide; shrinks below that so it stays on one line between the buttons */}
+      <div className="ff text-2xl" style={{color:"#00838F",fontSize:"clamp(16px, calc(11.7vw - 19.5px), 24px)",whiteSpace:"nowrap"}}>EmoLearn Lab ✨</div>
       <button onClick={onSound} title="Sound"
         className="w-14 h-14 rounded-full bg-white flex items-center justify-center text-2xl transition-transform hover:scale-110 active:scale-95"
         style={{boxShadow:"0 4px 16px rgba(0,0,0,.12)"}}>
