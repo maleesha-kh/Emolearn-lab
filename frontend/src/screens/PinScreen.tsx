@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { getPinStatus, recoverPin, regenerateRecoveryCode, setupPin, verifyPin } from "../lib/api";
-import { safeGet, safeRemove, safeSet } from "../lib/storage";
+import { safeGet, safeSet } from "../lib/storage";
+import { clearPinLock, LOCKED_UNTIL_KEY, WRONG_COUNT_KEY } from "../lib/pinLock";
 import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
 
 type Mode = "loading" | "setup-enter" | "setup-confirm" | "verify" | "error";
 
 const MAX_ATTEMPTS = 5;
 const LOCKOUT_SECONDS = 30;
-const WRONG_COUNT_KEY = "emolearn_pin_wrong_count";
-const LOCKED_UNTIL_KEY = "emolearn_pin_locked_until";
 
 const TITLES: Record<Mode, { title: string; subtitle: string }> = {
   loading: { title: "Parent Access", subtitle: "Checking..." },
@@ -55,18 +54,16 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
   const [recoverMessage, setRecoverMessage] = useState<string | null>(null);
   const [recoverBusy, setRecoverBusy] = useState(false);
 
-  // Wrong-try lockout: kept in localStorage (not just state), so it survives
-  // leaving and re-entering the parent area — it can't be reset by navigating away.
-  // If storage is blocked it is kept in memory and only a refresh clears it.
-  const [wrongCount, setWrongCount] = useState<number>(() =>
-    readStoredLockedUntil() === null ? 0 : Number(safeGet(WRONG_COUNT_KEY)) || 0
-  );
+  // Wrong-try lockout: the count and the lock are kept in localStorage (not just
+  // state), so they survive leaving and re-entering the parent area — neither can
+  // be reset by navigating away. If storage is blocked they are kept in memory
+  // and only a refresh clears them.
+  const [wrongCount, setWrongCount] = useState<number>(() => Number(safeGet(WRONG_COUNT_KEY)) || 0);
   const [lockedUntil, setLockedUntil] = useState<number | null>(readStoredLockedUntil);
   const [now, setNow] = useState(() => Date.now());
 
   const resetLock = () => {
-    safeRemove(WRONG_COUNT_KEY);
-    safeRemove(LOCKED_UNTIL_KEY);
+    clearPinLock();
     setWrongCount(0);
     setLockedUntil(null);
   };

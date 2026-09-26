@@ -18,6 +18,7 @@ import {
   downloadReportCsv,
   updatePlayer,
 } from "../lib/api";
+import { clearPinLock } from "../lib/pinLock";
 import type { DashboardData, Mood, Player } from "../types";
 
 const EMOTION_ORDER: Mood[] = ["happy", "sad", "angry", "surprised"];
@@ -55,6 +56,7 @@ function ChangePinForm({ onChanged }: { onChanged: (newPin: string) => void }) {
     const res = await changePin(currentPin, newPin);
     setSaving(false);
     if (res.kind === "ok") {
+      clearPinLock();
       setMessage({ text: "PIN changed! ✅", ok: true });
       onChanged(newPin);
       setCurrentPin(""); setNewPin(""); setConfirmPin("");
