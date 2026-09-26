@@ -42,7 +42,7 @@ export default defineConfig({
   retries: 0,
   timeout: 120_000,
   expect: { timeout: 15_000 },
-  reporter: [["list"], ["html", { open: "never" }]],
+  reporter: [["list"], ["html", { open: "never" }], ["./e2e/cleanup-reporter.ts"]],
   use: {
     baseURL: "http://localhost:5173",
     screenshot: "only-on-failure",

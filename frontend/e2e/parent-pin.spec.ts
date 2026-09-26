@@ -1,15 +1,7 @@
-import { test, expect, createPlayer, uniqueName } from "./fixtures";
+import { test, expect, createPlayer, uniqueName, enterPin } from "./fixtures";
 import type { Page } from "@playwright/test";
 
 const PIN = "2580";
-
-async function enterPin(page: Page, pin: string) {
-  for (const digit of pin) {
-    const key = page.getByRole("button", { name: digit, exact: true });
-    await expect(key).toBeEnabled();
-    await key.click();
-  }
-}
 
 async function verifyPin(page: Page) {
   await expect(page.getByText("Enter the 4-digit PIN to continue")).toBeVisible();
