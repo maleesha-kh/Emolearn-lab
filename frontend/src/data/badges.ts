@@ -11,4 +11,5 @@ export const BADGES: Badge[] = [
   { id: "super-teacher", name: "Super Teacher",     emoji: "🤖", color: "#26C6DA", hint: "Teach Emo 20 times" },
   { id: "comeback-kid",  name: "Comeback Kid",      emoji: "💪", color: "#4CAF50", hint: "Try again and beat your score!" },
   { id: "best-friend",   name: "Emo's Best Friend", emoji: "❤️", color: "#E91E63", hint: "Play with Emo on 5 days" },
+  { id: "feelings-explorer", name: "Feelings Explorer", emoji: "📖", color: "#5C6BC0", hint: "Explore all 4 feelings in Learn" },
 ];

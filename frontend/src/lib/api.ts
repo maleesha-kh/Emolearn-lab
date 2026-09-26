@@ -1,7 +1,13 @@
 import type {
   BadgeRecord,
   DashboardData,
+  DictionaryCompleteResult,
+  DictionaryProgress,
+  DiaryEntry,
+  DiaryEntryCreate,
+  DiaryTips,
   FinishSessionOut,
+  Mood,
   PinStatus,
   PinVerifyResult,
   Player,
@@ -93,6 +99,14 @@ export function getPlayerBadges(playerId: string) {
   return request<BadgeRecord[]>(`/players/${playerId}/badges`);
 }
 
+export function getDictionaryProgress(playerId: string) {
+  return request<DictionaryProgress>(`/players/${playerId}/dictionary`);
+}
+
+export function completeDictionaryEmotion(playerId: string, emotion: Mood) {
+  return request<DictionaryCompleteResult>(`/players/${playerId}/dictionary/${emotion}/complete`, { method: "POST" });
+}
+
 export function startSession(payload: { player_id: string; mood_checkin?: string | null }) {
   return request<SessionOut>("/sessions", { method: "POST", body: JSON.stringify(payload) });
 }
@@ -136,4 +150,24 @@ export function regenerateRecoveryCode(pin: string) {
     method: "POST",
     body: JSON.stringify({ pin }),
   });
+}
+
+function parentHeaders(pin: string) {
+  return { "Content-Type": "application/json", "X-Parent-Pin": pin };
+}
+
+export function createDiaryEntry(playerId: string, payload: DiaryEntryCreate) {
+  return request<DiaryEntry>(`/players/${playerId}/diary`, { method: "POST", body: JSON.stringify(payload) });
+}
+
+export function getDiary(playerId: string, pin: string, limit = 50) {
+  return request<DiaryEntry[]>(`/players/${playerId}/diary?limit=${limit}`, { headers: parentHeaders(pin) });
+}
+
+export function deleteDiaryEntry(playerId: string, entryId: number, pin: string) {
+  return request<undefined>(`/players/${playerId}/diary/${entryId}`, { method: "DELETE", headers: parentHeaders(pin) });
+}
+
+export function getDiaryTips(playerId: string, entryId: number, pin: string) {
+  return request<DiaryTips>(`/players/${playerId}/diary/${entryId}/tips`, { method: "POST", headers: parentHeaders(pin) });
 }

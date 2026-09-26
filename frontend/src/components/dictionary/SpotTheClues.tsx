@@ -2,23 +2,26 @@ import { useState } from "react";
 import type { EmotionDictionaryEntry } from "../../data/emotionDictionary";
 import { playSound } from "../../lib/sounds";
 
-type ClueTab = "face" | "body";
+export type ClueTab = "face" | "body";
 
 const TABS: { id: ClueTab; label: string }[] = [
   { id: "face", label: "👀 Face" },
   { id: "body", label: "🧍 Body" },
 ];
 
-export function SpotTheClues({entry,soundOn}:{entry:EmotionDictionaryEntry;soundOn:boolean}){
+export function clueKey(tab:ClueTab,i:number){
+  return `${tab}-${i}`;
+}
+
+export function SpotTheClues({entry,soundOn,ticked,onTick}:{entry:EmotionDictionaryEntry;soundOn:boolean;ticked:Record<string,boolean>;onTick:(key:string)=>void}){
   const {info}=entry;
   const [tab,setTab]=useState<ClueTab>("face");
-  const [ticked,setTicked]=useState<Record<string,boolean>>({});
   const clues=tab==="face"?entry.faceClues:entry.bodyClues;
 
   function tick(key:string){
     if(ticked[key])return;
     playSound("chime",soundOn);
-    setTicked(t=>({...t,[key]:true}));
+    onTick(key);
   }
 
   return(
@@ -38,7 +41,7 @@ export function SpotTheClues({entry,soundOn}:{entry:EmotionDictionaryEntry;sound
       </div>
       <div className="flex flex-col gap-3 w-full" style={{maxWidth:"460px"}}>
         {clues.map((clue,i)=>{
-          const key=`${tab}-${i}`;
+          const key=clueKey(tab,i);
           const done=!!ticked[key];
           return(
             <button key={key} onClick={()=>tick(key)} aria-pressed={done}

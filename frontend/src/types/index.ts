@@ -5,7 +5,7 @@ export type Scr =
   | "r-correct" | "r-wrong"
   | "t-correct" | "t-wrong"
   | "summary" | "profile" | "achievements" | "dictionary"
-  | "pin" | "parent";
+  | "pin" | "parent" | "diary";
 
 // Real emotion classes — these map 1:1 to /public/images/characters/<Mood>/
 export type Mood = "happy" | "sad" | "angry" | "surprised";
@@ -176,4 +176,59 @@ export interface DashboardData {
   all_equal: boolean;
   badges: BadgeRecord[];
   sessions: DashboardSession[];
+  dictionary_completed: number;
+}
+
+export interface DictionaryEntry {
+  emotion: Mood;
+  completed_at: string;
+}
+
+export interface DictionaryProgress {
+  completed: DictionaryEntry[];
+}
+
+export interface DictionaryCompleteResult extends DictionaryProgress {
+  new_badges: string[];
+  newly_completed: boolean;
+}
+
+export type DiaryReason = "school" | "friends" | "family" | "playing" | "pets" | "other";
+export type DiaryIntensity = "little" | "lot";
+export type ConcernLevel = "none" | "watch" | "high";
+
+export interface DiaryEntryCreate {
+  emotion: Mood;
+  intensity: DiaryIntensity;
+  reason_tags: DiaryReason[];
+  note?: string | null;
+}
+
+export interface DiaryEntry {
+  id: number;
+  player_id: string;
+  created_at: string;
+  emotion: Mood;
+  reason_tags: DiaryReason[];
+  note: string | null;
+  intensity: DiaryIntensity;
+  reason_used: DiaryReason | null;
+  reason_source: "chip" | "model" | "default" | null;
+  reason_confidence: number | null;
+  sentiment: "positive" | "negative" | null;
+  sentiment_confidence: number | null;
+  bot_reply: string | null;
+  concern_flag: boolean;
+  concern_level: ConcernLevel;
+  concern_categories: string[];
+}
+
+export interface DiaryTips {
+  diary_entry_id: number;
+  summary: string;
+  tips: string[];
+  talk_starter: string;
+  source: "tip_bank" | "concern";
+  concern_level: ConcernLevel;
+  created_at: string;
 }

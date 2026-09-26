@@ -1,10 +1,16 @@
 import { useState } from "react";
 import type { EmotionInfo } from "../../types";
 
-export function FactFlipCard({fact,info}:{fact:string;info:EmotionInfo}){
+export function FactFlipCard({fact,info,onFlip}:{fact:string;info:EmotionInfo;onFlip:()=>void}){
   const [flipped,setFlipped]=useState(false);
+
+  function flip(){
+    if(!flipped)onFlip();
+    setFlipped(f=>!f);
+  }
+
   return(
-    <button onClick={()=>setFlipped(f=>!f)} aria-pressed={flipped} aria-label={flipped?fact:"Did you know? Tap to flip"}
+    <button onClick={flip} aria-pressed={flipped} aria-label={flipped?fact:"Did you know? Tap to flip"}
       className="relative w-full" style={{height:"190px",perspective:"1000px",cursor:"pointer"}}>
       <div className="absolute inset-0 rounded-2xl transition-transform duration-500"
         style={{transformStyle:"preserve-3d",transform:flipped?"rotateY(180deg)":"rotateY(0deg)"}}>

@@ -47,12 +47,12 @@ export function AchievementsScreen({playerId,onHome,soundOn,onSound}:{playerId:s
         )}
 
         {status==="loaded"&&(
-          <div className="grid gap-6 justify-items-center" style={{gridTemplateColumns:"repeat(auto-fill,minmax(140px,1fr))",maxWidth:"820px",width:"95%"}}>
+          <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"820px",width:"95%"}}>
             {BADGES.map(b=>{
               const record=earned.find(e=>e.badge_id===b.id);
               const unlocked=!!record;
               return(
-                <div key={b.id} className="flex flex-col items-center gap-2">
+                <div key={b.id} className="flex flex-col items-center gap-2" style={{width:"140px"}}>
                   <div className="relative flex items-center justify-center rounded-full transition-all hover:scale-110"
                     style={{width:"140px",height:"140px",
                       background:unlocked?`radial-gradient(circle at 30% 30%, ${b.color}88, ${b.color})`:"#9E9E9E",

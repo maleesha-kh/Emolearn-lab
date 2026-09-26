@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import type { Mood } from "../../types";
 import { DICTIONARY_ORDER, EMOTION_DICTIONARY } from "../../data/emotionDictionary";
+import { Sticker } from "./Sticker";
 
 function randomItem<T>(items: T[]): T {
   return items[Math.floor(Math.random() * items.length)];
 }
 
-export function FeelingPicker({onPick}:{onPick:(m:Mood)=>void}){
+export function FeelingPicker({completed,onPick}:{completed:Mood[];onPick:(m:Mood)=>void}){
   const images=useMemo(()=>Object.fromEntries(
     DICTIONARY_ORDER.map(m=>[m,randomItem(EMOTION_DICTIONARY[m].characterImages)])
   ) as Record<Mood,string>,[]);
@@ -19,8 +20,13 @@ export function FeelingPicker({onPick}:{onPick:(m:Mood)=>void}){
         {DICTIONARY_ORDER.map((m,i)=>{
           const e=EMOTION_DICTIONARY[m].info;
           return(
-            <div key={m} className="api" style={{opacity:0,animationDelay:`${i*.12}s`}}>
-              <button onClick={()=>onPick(m)} aria-label={`Learn about ${e.label}`}
+            <div key={m} className="api relative" style={{opacity:0,animationDelay:`${i*.12}s`}}>
+              {completed.includes(m)&&(
+                <div className="absolute pointer-events-none" style={{top:"-10px",right:"-6px",zIndex:2}}>
+                  <Sticker emotion={m} size={52}/>
+                </div>
+              )}
+              <button onClick={()=>onPick(m)} aria-label={`Learn about ${e.label}${completed.includes(m)?" (explored)":""}`}
                 className="w-full rounded-3xl flex flex-col items-center justify-end pt-3 pb-4 px-2 transition-transform hover:scale-105 active:scale-95"
                 style={{background:e.bg,border:`4px solid ${e.border}`,boxShadow:`0 8px 24px ${e.border}44`,minHeight:"220px",cursor:"pointer"}}>
                 <span className="afb" style={{fontSize:"40px",animationDelay:`${i*.5}s`}}>{e.emoji}</span>

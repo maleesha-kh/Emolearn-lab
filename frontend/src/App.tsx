@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import type { Scr, Mood, Player, RoundCreate, GameRound } from "./types";
 import { buildGameRounds } from "./lib/game";
 import type { PredictionResult } from "./lib/predictionClient";
@@ -13,6 +13,7 @@ import { BottomNav, SCREENS_WITHOUT_NAV } from "./components/common/BottomNav";
 import { WelcomeScreen } from "./screens/WelcomeScreen";
 import { HowToPlayScreen } from "./screens/HowToPlayScreen";
 import { MoodCheckInScreen } from "./screens/MoodCheckInScreen";
+import { DiaryScreen } from "./screens/DiaryScreen";
 import { HappyResponseScreen } from "./screens/responses/HappyResponseScreen";
 import { SadResponseScreen } from "./screens/responses/SadResponseScreen";
 import { AngryResponseScreen } from "./screens/responses/AngryResponseScreen";
@@ -124,8 +125,11 @@ export default function App() {
 
   const handleMood = (m: Mood) => {
     setSelectedMood(m);
-    go(`res-${m}` as Scr);
+    go("diary");
   };
+
+  // Saving, skipping or finishing the diary all continue where Mood used to
+  const leaveDiary = () => go(selectedMood ? (`res-${selectedMood}` as Scr) : "moodcheckin");
 
   const clearBadges = () => {
     setNewBadges([]);
@@ -283,6 +287,15 @@ export default function App() {
   const currentBadgeId = badgePopupReady ? newBadges[badgeIndex] : undefined;
   const currentBadge = currentBadgeId ? BADGES.find((b) => b.id === currentBadgeId) : undefined;
 
+  // Badges earned outside a game (e.g. in Learn) join the same one-at-a-time
+  // queue and show straight away, since there is no Summary screen to wait for.
+  const showNewBadges = useCallback((ids: string[]) => {
+    const known = ids.filter((id) => BADGES.some((b) => b.id === id));
+    if (known.length === 0) return;
+    setNewBadges((queue) => [...queue, ...known]);
+    setBadgePopupReady(true);
+  }, []);
+
   const handleBadgeModalClose = () => {
     if (badgeIndex + 1 < newBadges.length) {
       setBadgeIndex((i) => i + 1);
@@ -303,7 +316,20 @@ export default function App() {
       />
     ),
     howtoplay: <HowToPlayScreen onStart={() => go("moodcheckin")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    moodcheckin: <MoodCheckInScreen onSelect={handleMood} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    moodcheckin: <MoodCheckInScreen onSelect={handleMood} initialMood={selectedMood} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
+    diary: selectedMood && currentPlayer ? (
+      <DiaryScreen
+        playerId={currentPlayer.id}
+        mood={selectedMood}
+        onDone={leaveDiary}
+        onBack={() => go("moodcheckin")}
+        onHome={home}
+        soundOn={soundOn}
+        onSound={toggleSound}
+      />
+    ) : (
+      <MoodCheckInScreen onSelect={handleMood} onHome={home} soundOn={soundOn} onSound={toggleSound} />
+    ),
     "res-happy": <HappyResponseScreen playerName={currentPlayer?.nickname ?? ""} onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "res-sad": <SadResponseScreen onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     "res-angry": <AngryResponseScreen onReady={() => enterGame(selectedMood)} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
@@ -343,7 +369,7 @@ export default function App() {
       />
     ),
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    dictionary: <DictionaryScreen onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} />,
+    dictionary: <DictionaryScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} onNewBadges={showNewBadges} />,
     pin: <PinScreen onSuccess={() => go("parent")} onBack={() => go("profile")} />,
     parent: (
       <ParentScreen

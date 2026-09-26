@@ -6,8 +6,8 @@ import { TopBar, Btn, BgDeco } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { CharacterImage } from "../components/character/CharacterImage";
 
-export function MoodCheckInScreen({onSelect,onHome,soundOn,onSound}:{onSelect:(m:Mood)=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void}){
-  const [sel,setSel]=useState<Mood|null>(null);
+export function MoodCheckInScreen({onSelect,onHome,soundOn,onSound,initialMood=null}:{onSelect:(m:Mood)=>void;onHome:()=>void;soundOn:boolean;onSound:()=>void;initialMood?:Mood|null}){
+  const [sel,setSel]=useState<Mood|null>(initialMood);
   // One random image per emotion, re-rolled fresh every time this screen mounts.
   const [bank]=useState(()=>rollMoodBank());
   const cards:[Mood,GirlP][]=[["happy","happy"],["sad","sad"],["angry","angry"],["surprised","surprised"]];

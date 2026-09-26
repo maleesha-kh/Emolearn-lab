@@ -456,6 +456,7 @@ function OverviewView({
                 { label: "Average Score", value: dashboardData.average_score !== null ? `${dashboardData.average_score}/4` : "-", color: "#FFC107", bg: "#FFF9C4" },
                 { label: "Best Emotion", value: bestLabel, color: "#00BCD4", bg: "#E0F7FA" },
                 { label: "Needs Practice", value: worstLabel, color: "#E91E63", bg: "#FCE4EC" },
+                { label: "Feelings Explored", value: `${dashboardData.dictionary_completed}/4 📖`, color: "#5C6BC0", bg: "#E8EAF6" },
               ];
               return cards.map(c => (
                 <div key={c.label} className="rounded-2xl p-5 fn font-bold" style={{ background: c.bg, border: `2px solid ${c.color}` }}>
