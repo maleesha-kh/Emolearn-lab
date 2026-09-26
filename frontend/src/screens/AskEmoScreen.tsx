@@ -40,7 +40,8 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
     const newest=log?.lastElementChild as HTMLElement|null|undefined;
     if(!log||!newest) return;
     const top=newest.offsetHeight>log.clientHeight?newest.offsetTop-12:log.scrollHeight;
-    log.scrollTo({top,behavior:"smooth"});
+    const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    log.scrollTo({top,behavior:reducedMotion?"auto":"smooth"});
   },[messages,sending]);
 
   async function ask(raw:string){

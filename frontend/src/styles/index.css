@@ -1,3 +1,35 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+.emotion-card {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  padding: 1rem 0 0.75rem;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+.emotion-card:focus-visible,
+.badge-dialog button:focus-visible {
+  outline: 3px solid #006064;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .api,
+  .asu {
+    opacity: 1 !important;
+  }
+}

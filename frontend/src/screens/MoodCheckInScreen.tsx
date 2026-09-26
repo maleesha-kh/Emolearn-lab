@@ -23,16 +23,16 @@ export function MoodCheckInScreen({onSelect,onHome,soundOn,onSound,initialMood=n
           {cards.map(([mood,pose])=>{
             const e=EI[mood]; const isSel=sel===mood;
             return(
-              <div key={mood} onClick={()=>setSel(mood)}
-                className="rounded-3xl cursor-pointer transition-all hover:scale-105 relative flex flex-col items-center pt-4 pb-3"
+              <button key={mood} type="button" onClick={()=>setSel(mood)} aria-label={mood} aria-pressed={isSel}
+                className="emotion-card rounded-3xl cursor-pointer transition-all hover:scale-105 relative flex flex-col items-center pt-4 pb-3"
                 style={{width:"300px",height:"380px",background:e.bg,
                   border:isSel?`5px solid ${e.border}`:`3px solid ${e.border}`,
                   boxShadow:isSel?`0 0 0 5px ${e.border}38,0 14px 45px ${e.border}30`:"0 4px 20px rgba(0,0,0,.08)"}}>
                 <CharacterImage pose={pose} width={215} src={bank[mood]}/>
-                <div className="ff mt-1" style={{fontSize:"28px",color:e.text}}>{e.label} {e.emoji}</div>
-                {isSel&&<div className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-lg api"
-                  style={{background:e.border}}>✓</div>}
-              </div>
+                <span className="ff mt-1" style={{fontSize:"28px",color:e.text}}>{e.label} {e.emoji}</span>
+                {isSel&&<span aria-hidden="true" className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white text-lg api"
+                  style={{background:e.border}}>✓</span>}
+              </button>
             );
           })}
         </div>

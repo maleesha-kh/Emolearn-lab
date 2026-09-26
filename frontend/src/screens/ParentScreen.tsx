@@ -70,13 +70,13 @@ function ChangePinForm({ onChanged }: { onChanged: (newPin: string) => void }) {
       <h2 className="fn font-bold mb-4" style={{ fontSize: "20px", color: "#212121" }}>Change Parent PIN</h2>
 
       {[
-        { label: "Current PIN", value: currentPin, set: setCurrentPin },
-        { label: "New PIN", value: newPin, set: setNewPin },
-        { label: "Confirm New PIN", value: confirmPin, set: setConfirmPin },
+        { id: "change-current-pin", label: "Current PIN", value: currentPin, set: setCurrentPin },
+        { id: "change-new-pin", label: "New PIN", value: newPin, set: setNewPin },
+        { id: "change-confirm-pin", label: "Confirm New PIN", value: confirmPin, set: setConfirmPin },
       ].map(f => (
         <div key={f.label} className="mb-4">
-          <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>{f.label}</label>
-          <input type="password" inputMode="numeric" maxLength={4} value={f.value}
+          <label htmlFor={f.id} className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>{f.label}</label>
+          <input id={f.id} type="password" inputMode="numeric" maxLength={4} value={f.value}
             onChange={e => f.set(digitsOnly(e.target.value))}
             className="fn font-bold rounded-xl outline-none w-full"
             style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />
@@ -119,8 +119,8 @@ function RegenerateRecoveryCodeForm({ onCodeReady }: { onCodeReady: (code: strin
     <div className="rounded-2xl p-6 bg-white mt-4" style={{ maxWidth: "420px", border: "1.5px solid #E0E0E0", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
       <h2 className="fn font-bold mb-4" style={{ fontSize: "20px", color: "#212121" }}>New recovery code</h2>
       <div className="mb-4">
-        <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Current PIN</label>
-        <input type="password" inputMode="numeric" maxLength={4} value={pin}
+        <label htmlFor="regenerate-current-pin" className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Current PIN</label>
+        <input id="regenerate-current-pin" type="password" inputMode="numeric" maxLength={4} value={pin}
           onChange={e => setPin(digitsOnly(e.target.value))}
           className="fn font-bold rounded-xl outline-none w-full"
           style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />

@@ -320,24 +320,24 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
           </p>
 
           <div className="w-full mb-4">
-            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Recovery code</label>
-            <input type="text" value={recoveryCodeInput} onChange={(e) => setRecoveryCodeInput(e.target.value.toUpperCase())}
+            <label htmlFor="recover-code" className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Recovery code</label>
+            <input id="recover-code" type="text" value={recoveryCodeInput} onChange={(e) => setRecoveryCodeInput(e.target.value.toUpperCase())}
               placeholder="XXXX-XXXX-XXXX"
               className="fn font-bold rounded-xl outline-none w-full text-center"
               style={{ height: "52px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "2px", fontFamily: "'Courier New',monospace" }} />
           </div>
 
           <div className="w-full mb-4">
-            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>New PIN</label>
-            <input type="password" inputMode="numeric" maxLength={4} value={recoverNewPin}
+            <label htmlFor="recover-new-pin" className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>New PIN</label>
+            <input id="recover-new-pin" type="password" inputMode="numeric" maxLength={4} value={recoverNewPin}
               onChange={(e) => setRecoverNewPin(digitsOnly(e.target.value))}
               className="fn font-bold rounded-xl outline-none w-full"
               style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />
           </div>
 
           <div className="w-full mb-4">
-            <label className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Confirm new PIN</label>
-            <input type="password" inputMode="numeric" maxLength={4} value={recoverConfirmPin}
+            <label htmlFor="recover-confirm-pin" className="fn font-bold block mb-1" style={{ fontSize: "13px", color: "#546E7A" }}>Confirm new PIN</label>
+            <input id="recover-confirm-pin" type="password" inputMode="numeric" maxLength={4} value={recoverConfirmPin}
               onChange={(e) => setRecoverConfirmPin(digitsOnly(e.target.value))}
               className="fn font-bold rounded-xl outline-none w-full"
               style={{ height: "48px", padding: "0 16px", border: "2px solid #CFD8DC", fontSize: "18px", letterSpacing: "4px" }} />
