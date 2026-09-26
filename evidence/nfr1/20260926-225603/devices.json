@@ -1,0 +1,30 @@
+{
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cuda_visible_devices": "-1",
+  "tensorflow": {
+    "version": "2.19.0",
+    "built_with_cuda": false,
+    "physical_devices": [
+      "CPU:/physical_device:CPU:0"
+    ],
+    "visible_gpus": [],
+    "face_model_weight_devices": [
+      "/job:localhost/replica:0/task:0/device:CPU:0"
+    ]
+  },
+  "onnxruntime": {
+    "version": "1.23.2",
+    "available_providers": [
+      "AzureExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "rembg_session_providers": [
+      "CPUExecutionProvider"
+    ]
+  },
+  "mediapipe": {
+    "version": "0.10.14",
+    "pose_api": "mp.solutions.pose.Pose (legacy solutions graph, runs on CPU)"
+  },
+  "pose_classifier": "scikit-learn RandomForest (CPU only)"
+}

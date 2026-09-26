@@ -1,0 +1,395 @@
+{
+  "nfr": "NFR1: prediction within a few seconds on a CPU-only laptop",
+  "target": {
+    "p95_s": 3.0,
+    "max_s": 5.0,
+    "failures": 0
+  },
+  "method": {
+    "timer": "time.monotonic around each full HTTP request (connect, upload, server work, response read)",
+    "p95": "nearest-rank on sorted measured durations",
+    "requests_per_run": "1 cold + 4 warm-up (not counted) + 72 measured, one at a time",
+    "backend": "uvicorn app.main:app, no --reload, CUDA_VISIBLE_DEVICES=-1, fresh test DB under backend/data/e2e/",
+    "stage_timings": "the backend's own 'predict timings' log line, enabled via --log-config"
+  },
+  "started": "20260926-225604",
+  "images": {
+    "folder": "D:\\Emolearn-lab\\frontend\\public\\images\\characters",
+    "count": 72
+  },
+  "machine": {
+    "cpu": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+    "cpu_base_mhz": 2419,
+    "logical_cpus": 8,
+    "ram_gb": 15.7,
+    "on_mains_power": true,
+    "os": "Windows 11 Home Single Language 25H2 build 26200",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.11",
+    "python_executable": "D:\\Emolearn-lab\\backend\\venv\\Scripts\\python.exe",
+    "libraries": {
+      "tensorflow": "2.19.0",
+      "keras": "3.12.4",
+      "onnxruntime": "1.23.2",
+      "rembg": "2.0.69",
+      "mediapipe": "0.10.14",
+      "scikit-learn": "1.7.2",
+      "numpy": "2.1.3",
+      "pillow": "12.3.0",
+      "fastapi": "0.141.1",
+      "uvicorn": "0.52.1"
+    },
+    "model_files": {
+      "face_weights": {
+        "path": "D:\\Emolearn-lab\\backend\\app\\ml\\face_branch\\models\\face_branch_v4_clean.weights.h5",
+        "exists": true,
+        "bytes": 9480888,
+        "sha256": "4ef8f9ccb619ef7e4d568a5eb05539d959d93e2a85ce1423710cdd9b27cec5d0"
+      },
+      "pose_model": {
+        "path": "D:\\Emolearn-lab\\backend\\app\\ml\\pose_branch\\models\\random_forest_pose_model_bg_removed.pkl",
+        "exists": true,
+        "bytes": 537161,
+        "sha256": "d330346b8ff2dc7c27d425ac17e8780df2ca9b901883caa91f2ccaf4b99128e3"
+      },
+      "pose_label_encoder": {
+        "path": "D:\\Emolearn-lab\\backend\\app\\ml\\pose_branch\\models\\label_encoder_bg_removed.pkl",
+        "exists": true,
+        "bytes": 507,
+        "sha256": "8e5b1d57c5761fe7b631b3ef49d1a3c729e459c83d1d1e1f9e969c44635e0ba0"
+      },
+      "rembg_u2net": {
+        "path": "C:\\Users\\USER\\.u2net\\u2net.onnx",
+        "exists": true,
+        "bytes": 175997641,
+        "sha256": "8d10d2f3bb75ae3b6d527c77944fc5e7dcd94b29809d47a739a7a728a912b491"
+      },
+      "mediapipe_pose_landmark_full": {
+        "path": "D:\\Emolearn-lab\\backend\\venv\\lib\\site-packages\\mediapipe\\modules\\pose_landmark\\pose_landmark_full.tflite",
+        "exists": true,
+        "bytes": 6440512,
+        "sha256": "e9a5c5cb17f736fafd4c2ec1da3b3d331d6edbe8a0d32395855aeb2cdfd64b9f"
+      }
+    },
+    "git_commit": "7c5a942b6f1fb86b58462705b8b6117f1fe2605c",
+    "git_dirty": false
+  },
+  "runs": [
+    {
+      "run": 1,
+      "startup_s": 32.06,
+      "cold_request": {
+        "filename": "angry_game_01.png",
+        "status": 200,
+        "duration_ms": 1766.0,
+        "server_total_ms": 1767.0,
+        "error": ""
+      },
+      "requests": 72,
+      "failures": 0,
+      "failure_rate": 0.0,
+      "client_duration": {
+        "count": 72,
+        "min_ms": 1500.0,
+        "median_ms": 1657.0,
+        "mean_ms": 1666.4,
+        "p95_ms": 1766.0,
+        "max_ms": 1844.0
+      },
+      "server_stages": {
+        "prep": {
+          "count": 72,
+          "min_ms": 767.0,
+          "median_ms": 819.0,
+          "mean_ms": 835.6,
+          "p95_ms": 969.0,
+          "max_ms": 1033.0
+        },
+        "face": {
+          "count": 72,
+          "min_ms": 83.0,
+          "median_ms": 97.5,
+          "mean_ms": 110.3,
+          "p95_ms": 159.0,
+          "max_ms": 175.0
+        },
+        "pose": {
+          "count": 72,
+          "min_ms": 9.0,
+          "median_ms": 18.0,
+          "mean_ms": 17.2,
+          "p95_ms": 24.0,
+          "max_ms": 30.0
+        },
+        "heatmap": {
+          "count": 72,
+          "min_ms": 457.0,
+          "median_ms": 599.5,
+          "mean_ms": 583.6,
+          "p95_ms": 628.0,
+          "max_ms": 650.0
+        },
+        "explain": {
+          "count": 72,
+          "min_ms": 58.0,
+          "median_ms": 73.0,
+          "mean_ms": 79.4,
+          "p95_ms": 107.0,
+          "max_ms": 133.0
+        },
+        "total": {
+          "count": 72,
+          "min_ms": 1494.0,
+          "median_ms": 1642.0,
+          "mean_ms": 1649.0,
+          "p95_ms": 1746.0,
+          "max_ms": 1808.0
+        }
+      },
+      "client_minus_server_total": {
+        "count": 72,
+        "min_ms": -15.0,
+        "median_ms": 17.0,
+        "mean_ms": 17.4,
+        "p95_ms": 37.0,
+        "max_ms": 40.0
+      },
+      "target_met": true
+    },
+    {
+      "run": 2,
+      "startup_s": 16.59,
+      "cold_request": {
+        "filename": "angry_game_01.png",
+        "status": 200,
+        "duration_ms": 1687.0,
+        "server_total_ms": 1675.0,
+        "error": ""
+      },
+      "requests": 72,
+      "failures": 0,
+      "failure_rate": 0.0,
+      "client_duration": {
+        "count": 72,
+        "min_ms": 1016.0,
+        "median_ms": 1625.0,
+        "mean_ms": 1554.1,
+        "p95_ms": 1766.0,
+        "max_ms": 2047.0
+      },
+      "server_stages": {
+        "prep": {
+          "count": 72,
+          "min_ms": 545.0,
+          "median_ms": 835.0,
+          "mean_ms": 810.1,
+          "p95_ms": 939.0,
+          "max_ms": 988.0
+        },
+        "face": {
+          "count": 72,
+          "min_ms": 72.0,
+          "median_ms": 109.5,
+          "mean_ms": 117.1,
+          "p95_ms": 171.0,
+          "max_ms": 214.0
+        },
+        "pose": {
+          "count": 72,
+          "min_ms": 8.0,
+          "median_ms": 17.5,
+          "mean_ms": 17.1,
+          "p95_ms": 28.0,
+          "max_ms": 33.0
+        },
+        "heatmap": {
+          "count": 72,
+          "min_ms": 245.0,
+          "median_ms": 523.0,
+          "mean_ms": 498.9,
+          "p95_ms": 618.0,
+          "max_ms": 778.0
+        },
+        "explain": {
+          "count": 72,
+          "min_ms": 47.0,
+          "median_ms": 73.5,
+          "mean_ms": 76.9,
+          "p95_ms": 119.0,
+          "max_ms": 136.0
+        },
+        "total": {
+          "count": 72,
+          "min_ms": 988.0,
+          "median_ms": 1621.5,
+          "mean_ms": 1540.9,
+          "p95_ms": 1763.0,
+          "max_ms": 2036.0
+        }
+      },
+      "client_minus_server_total": {
+        "count": 72,
+        "min_ms": -7.0,
+        "median_ms": 13.5,
+        "mean_ms": 13.2,
+        "p95_ms": 30.0,
+        "max_ms": 36.0
+      },
+      "target_met": true
+    },
+    {
+      "run": 3,
+      "startup_s": 18.83,
+      "cold_request": {
+        "filename": "angry_game_01.png",
+        "status": 200,
+        "duration_ms": 3078.0,
+        "server_total_ms": 3062.0,
+        "error": ""
+      },
+      "requests": 72,
+      "failures": 0,
+      "failure_rate": 0.0,
+      "client_duration": {
+        "count": 72,
+        "min_ms": 1406.0,
+        "median_ms": 1640.5,
+        "mean_ms": 1646.3,
+        "p95_ms": 1797.0,
+        "max_ms": 1875.0
+      },
+      "server_stages": {
+        "prep": {
+          "count": 72,
+          "min_ms": 754.0,
+          "median_ms": 808.5,
+          "mean_ms": 823.0,
+          "p95_ms": 935.0,
+          "max_ms": 1044.0
+        },
+        "face": {
+          "count": 72,
+          "min_ms": 84.0,
+          "median_ms": 99.0,
+          "mean_ms": 106.9,
+          "p95_ms": 152.0,
+          "max_ms": 199.0
+        },
+        "pose": {
+          "count": 72,
+          "min_ms": 9.0,
+          "median_ms": 18.0,
+          "mean_ms": 17.2,
+          "p95_ms": 25.0,
+          "max_ms": 30.0
+        },
+        "heatmap": {
+          "count": 72,
+          "min_ms": 432.0,
+          "median_ms": 597.0,
+          "mean_ms": 582.3,
+          "p95_ms": 629.0,
+          "max_ms": 639.0
+        },
+        "explain": {
+          "count": 72,
+          "min_ms": 59.0,
+          "median_ms": 72.0,
+          "mean_ms": 78.5,
+          "p95_ms": 117.0,
+          "max_ms": 129.0
+        },
+        "total": {
+          "count": 72,
+          "min_ms": 1402.0,
+          "median_ms": 1624.0,
+          "mean_ms": 1628.8,
+          "p95_ms": 1773.0,
+          "max_ms": 1859.0
+        }
+      },
+      "client_minus_server_total": {
+        "count": 72,
+        "min_ms": -7.0,
+        "median_ms": 16.5,
+        "mean_ms": 17.5,
+        "p95_ms": 37.0,
+        "max_ms": 44.0
+      },
+      "target_met": true
+    }
+  ],
+  "combined": {
+    "requests": 216,
+    "failures": 0,
+    "failure_rate": 0.0,
+    "client_duration": {
+      "count": 216,
+      "min_ms": 1016.0,
+      "median_ms": 1641.0,
+      "mean_ms": 1622.3,
+      "p95_ms": 1766.0,
+      "max_ms": 2047.0
+    },
+    "server_stages": {
+      "prep": {
+        "count": 216,
+        "min_ms": 545.0,
+        "median_ms": 821.0,
+        "mean_ms": 822.9,
+        "p95_ms": 950.0,
+        "max_ms": 1044.0
+      },
+      "face": {
+        "count": 216,
+        "min_ms": 72.0,
+        "median_ms": 102.0,
+        "mean_ms": 111.4,
+        "p95_ms": 163.0,
+        "max_ms": 214.0
+      },
+      "pose": {
+        "count": 216,
+        "min_ms": 8.0,
+        "median_ms": 18.0,
+        "mean_ms": 17.2,
+        "p95_ms": 27.0,
+        "max_ms": 33.0
+      },
+      "heatmap": {
+        "count": 216,
+        "min_ms": 245.0,
+        "median_ms": 589.5,
+        "mean_ms": 554.9,
+        "p95_ms": 628.0,
+        "max_ms": 778.0
+      },
+      "explain": {
+        "count": 216,
+        "min_ms": 47.0,
+        "median_ms": 72.0,
+        "mean_ms": 78.3,
+        "p95_ms": 112.0,
+        "max_ms": 136.0
+      },
+      "total": {
+        "count": 216,
+        "min_ms": 988.0,
+        "median_ms": 1631.0,
+        "mean_ms": 1606.2,
+        "p95_ms": 1763.0,
+        "max_ms": 2036.0
+      }
+    },
+    "client_minus_server_total": {
+      "count": 216,
+      "min_ms": -15.0,
+      "median_ms": 16.0,
+      "mean_ms": 16.0,
+      "p95_ms": 36.0,
+      "max_ms": 44.0
+    },
+    "target_met": true
+  },
+  "target_met": true
+}

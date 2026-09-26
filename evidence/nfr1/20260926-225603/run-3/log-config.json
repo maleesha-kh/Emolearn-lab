@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "plain": {
+      "format": "%(asctime)s %(name)s %(levelname)s %(message)s"
+    }
+  },
+  "handlers": {
+    "file": {
+      "class": "logging.FileHandler",
+      "filename": "C:\\Users\\USER\\AppData\\Local\\Temp\\claude\\d--Emolearn-lab\\1956cc91-7703-499e-9b52-d0a9be63bd12\\scratchpad\\nfr1-20260926-225603\\run-3\\backend.log",
+      "encoding": "utf-8",
+      "formatter": "plain"
+    }
+  },
+  "loggers": {
+    "uvicorn": {
+      "handlers": [
+        "file"
+      ],
+      "level": "INFO",
+      "propagate": false
+    },
+    "uvicorn.access": {
+      "handlers": [
+        "file"
+      ],
+      "level": "WARNING",
+      "propagate": false
+    },
+    "app.api.routes.predict": {
+      "handlers": [
+        "file"
+      ],
+      "level": "INFO",
+      "propagate": false
+    }
+  }
+}
