@@ -1,0 +1,81 @@
+question,expected_id,predicted_id,score
+can you explain the happy feeling to me,what-is-happy,what-is-happy,0.841
+what does being happy feel like inside,what-is-happy,what-is-happy,0.8883
+tell me about being sad,what-is-sad,what-is-sad,1.0
+can you tell me what anger is,what-is-angry,what-is-angry,1.0
+explain the angry feeling,what-is-angry,what-is-angry,0.8076
+whats a surprise feeling,what-is-surprised,what-is-surprised,0.929
+why do my eyes get wet when i am upset,why-do-we-cry,what-is-sad,0.7474
+why does crying happen,why-do-we-cry,why-do-we-cry,0.4922
+is it strange to cry when something good happens,happy-tears,what-is-happy,0.454
+why does anger happen to me,why-get-angry,what-is-angry,0.4889
+i feel like shouting what can i do,when-angry,tell-feelings,0.6597
+how do i handle being angry,when-angry,what-is-angry,0.8644
+how can i feel happy again after being sad,when-sad,when-sad,0.463
+im feeling down what can help,when-sad,who-to-talk-to,0.5053
+what helps when you are frightened,feeling-scared,feeling-scared,0.6062
+i am always worrying about things,feeling-worried,feeling-worried,0.6479
+why does my mind keep worrying,feeling-worried,feeling-worried,0.6353
+the dark room at night scares me,scared-of-dark,scared-of-dark,0.6053
+the other kids wont let me join their game,left-out,none,0.0
+i always play alone at break,left-out,feeling-lonely,0.4964
+my aunty went abroad and i miss her a lot,missing-someone,missing-someone,0.7845
+my sister got a new bike and i feel jealous,feeling-jealous,feeling-jealous,0.7903
+i get shy when i meet new people,feeling-shy,feeling-shy,0.5245
+how do i make a sad friend smile again,cheer-up-friend,when-sad,0.4382
+my classmate is upset how can i help,cheer-up-friend,someone-mean,0.5998
+i broke my friends toy how do i apologize,say-sorry,say-sorry,0.699
+is it alright to be sad sometimes,okay-to-be-sad,what-is-sad,0.6601
+am i allowed to feel sad,okay-to-be-sad,what-is-sad,0.8032
+is getting angry a bad thing,okay-to-be-angry,okay-to-be-angry,0.5619
+does my teacher ever feel sad,grown-ups-feelings,what-is-sad,0.6721
+do parents get upset too,grown-ups-feelings,what-is-sad,0.7424
+why do i feel happy and sad together,mixed-feelings,mixed-feelings,0.5217
+what helps me to calm myself,calm-down,calm-down,0.6271
+how can i get calm quickly,calm-down,calm-down,0.8829
+how do i explain my feelings to my mum,tell-feelings,tell-feelings,0.6598
+who can i go to if i feel bad,who-to-talk-to,okay-to-be-sad,0.4542
+what is the point of emotions,why-feelings,tell-feelings,0.7097
+will this sad feeling ever go away,feelings-pass,feelings-pass,0.719
+do bad feelings stay forever,feelings-pass,okay-to-be-sad,0.595
+i woke up from a scary dream,bad-dream,bad-dream,0.6105
+my friend wont talk to me since yesterday,friend-angry-at-me,who-to-talk-to,0.6367
+i hate losing games,losing-a-game,losing-a-game,0.7892
+tomorrow is my first day at a new school and im nervous,nervous-new-things,nervous-new-things,0.6973
+what does it mean to be proud of yourself,feeling-proud,feeling-proud,0.814
+there is nothing fun to do today,feeling-bored,none,0.0
+i feel all alone,feeling-lonely,left-out,1.0
+i felt so silly when everyone looked at me,embarrassed,embarrassed,0.522
+how can i guess what someone is feeling,reading-faces,tell-feelings,0.7708
+what kind of thing are you,who-is-emo,friend-angry-at-me,0.1966
+are you a person or a robot,who-is-emo,who-is-emo,0.6168
+a girl in my class is being mean to me,someone-mean,feeling-shy,0.5626
+can you teach me how to breathe slowly,belly-breathing,belly-breathing,0.5292
+i feel let down because things did not go my way,disappointed,disappointed,0.7237
+what makes people feel sad,what-is-sad,why-do-we-cry,0.7253
+why do we feel surprised,what-is-surprised,what-is-surprised,0.929
+my best friend is angry at me what do i do,friend-angry-at-me,friend-angry-at-me,1.0
+i feel nervous in a new class,nervous-new-things,nervous-new-things,0.7977
+my cousin went home and i miss him,missing-someone,missing-someone,0.7838
+why do i feel jealous of my brother,feeling-jealous,feeling-jealous,0.8925
+how do i stay calm when im angry,when-angry,when-angry,0.9336
+what is 5 plus 5,none,none,0.0
+tell me a story,none,none,0.0
+whats your favourite colour,none,none,0.0
+what is the capital of sri lanka,none,none,0.0
+how many legs does a spider have,none,none,0.0
+can you do my homework,none,none,0.0
+what time is it,none,none,0.0
+sing me a song,none,none,0.0
+who won the cricket match,none,none,0.0
+how do i make a paper plane,none,none,0.0
+what is the biggest animal,none,none,0.0
+tell me a joke,none,none,0.0
+how far is the moon,none,none,0.0
+what should i eat for lunch,none,none,0.0
+can we play a game,none,none,0.0
+how do you spell elephant,none,none,0.0
+what day is it today,none,none,0.0
+why is the sky blue,none,none,0.0
+how do cars work,none,none,0.0
+where do rainbows come from,none,none,0.0

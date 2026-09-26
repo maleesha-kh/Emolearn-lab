@@ -14,7 +14,16 @@ from sqlalchemy.orm import Session
 from app.core.badge_awards import award_new_badges
 from app.core.config import EMOTION_CLASSES
 from app.db.database import get_db, to_utc_iso
-from app.db.models import DiaryEntry, DictionaryProgress, GameSession, ParentTip, Player, PlayerBadge, Round
+from app.db.models import (
+    BuddyMessage,
+    DiaryEntry,
+    DictionaryProgress,
+    GameSession,
+    ParentTip,
+    Player,
+    PlayerBadge,
+    Round,
+)
 from app.schemas.players import (
     BadgeOut,
     DashboardOut,
@@ -119,6 +128,7 @@ def delete_player(player_id: str, db: Session = Depends(get_db)):
         diary_ids = select(DiaryEntry.id).where(DiaryEntry.player_id == player_id)
         db.query(ParentTip).filter(ParentTip.diary_entry_id.in_(diary_ids)).delete(synchronize_session=False)
         db.query(DiaryEntry).filter(DiaryEntry.player_id == player_id).delete(synchronize_session=False)
+        db.query(BuddyMessage).filter(BuddyMessage.player_id == player_id).delete(synchronize_session=False)
         db.delete(player)
         db.commit()
     except Exception:

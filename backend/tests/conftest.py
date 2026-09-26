@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app.api.routes.buddy import router as buddy_router
 from app.api.routes.diary import router as diary_router
 from app.api.routes.game_sessions import router as game_sessions_router
 from app.api.routes.parent import router as parent_router
@@ -45,6 +46,7 @@ def db_client():
     app.include_router(game_sessions_router)
     app.include_router(parent_router)
     app.include_router(diary_router)
+    app.include_router(buddy_router)
     app.dependency_overrides[get_db] = override_get_db
 
     with TestClient(app) as c:

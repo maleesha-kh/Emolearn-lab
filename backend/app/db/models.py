@@ -1,5 +1,5 @@
 """ORM models: players, game sessions, rounds, badges, dictionary progress,
-and the emotion diary."""
+the emotion diary and Ask Emo messages."""
 import uuid
 from datetime import datetime, timezone
 from typing import List, Optional
@@ -165,6 +165,23 @@ class ParentTip(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
     diary_entry: Mapped["DiaryEntry"] = relationship(back_populates="parent_tip")
+
+
+class BuddyMessage(Base):
+    __tablename__ = "buddy_messages"
+    __table_args__ = (_one_of("concern_level", CONCERN_LEVELS, "ck_buddy_concern_level"),)
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    player_id: Mapped[str] = mapped_column(
+        String, ForeignKey("players.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    question: Mapped[str] = mapped_column(String(150), nullable=False)
+    answer: Mapped[str] = mapped_column(Text, nullable=False)
+    matched_id: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    score: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    concern_level: Mapped[str] = mapped_column(String, nullable=False, default="none")
+    concern_categories: Mapped[List[str]] = mapped_column(JSON, nullable=False, default=list)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow, nullable=False)
 
 
 class Setting(Base):
