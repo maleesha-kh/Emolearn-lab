@@ -1,4 +1,8 @@
-"""Clear an existing SQLite test database under backend/data/e2e/."""
+"""Clear an existing SQLite test database under backend/data/e2e/.
+
+Safe while the backend is running, as long as no requests are in flight: the
+backend keeps no per-user state in memory, and the reset is one transaction.
+"""
 import argparse
 from contextlib import closing
 from graphlib import TopologicalSorter
@@ -70,7 +74,7 @@ def reset_database(path: str) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("db_path", help="Existing database path; stop its backend before resetting.")
+    parser.add_argument("db_path", help="Existing database path; make sure no requests are in flight.")
     args = parser.parse_args()
     try:
         count = reset_database(args.db_path)
