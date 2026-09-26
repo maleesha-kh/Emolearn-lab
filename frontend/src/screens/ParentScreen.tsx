@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { ChildSelector } from "../components/parent/ChildSelector";
 import { DiaryView } from "../components/parent/DiaryView";
+import { AboutView } from "../components/parent/AboutView";
 import { Avatar } from "../components/common/Avatar";
 import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
 import { AVATARS } from "../data/avatars";
@@ -262,8 +263,15 @@ export function ParentScreen({
   currentPlayerId: string; parentPin: string; onPinChanged: (pin: string) => void; onPinRejected: () => void;
   onBack: () => void; onPlayerUpdated: (player: Player) => void; onPlayerDeleted: (playerId: string) => void;
 }) {
-  const [view, setView] = useState<"overview" | "children" | "diary" | "settings">("overview");
+  const [view, setView] = useState<"overview" | "children" | "diary" | "settings" | "about">("overview");
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
+  const tabRowRef = useRef<HTMLDivElement>(null);
+
+  // Matches Tailwind's max-md breakpoint, where the sidebar is a scrollable tab row
+  useEffect(() => {
+    if (!window.matchMedia("(width < 48rem)").matches) return;
+    tabRowRef.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ inline: "nearest", block: "nearest" });
+  }, [view]);
 
   const [players, setPlayers] = useState<Player[]>([]);
   const [playersStatus, setPlayersStatus] = useState<"loading" | "error" | "loaded">("loading");
@@ -316,22 +324,24 @@ export function ParentScreen({
   }
 
   const heading = {
-    overview: "Session Overview 📊", children: "Children 👧", diary: "Diary 📔", settings: "Settings ⚙️",
+    overview: "Session Overview 📊", children: "Children 👧", diary: "Diary 📔", settings: "Settings ⚙️", about: "About ℹ️",
   }[view];
 
   return (
-    <div className="min-h-screen w-full flex" style={{ background: "#FAFAFA" }}>
-      {/* Sidebar */}
-      <div className="flex-shrink-0 flex flex-col py-8 px-6" style={{ width: "240px", background: "#006064", minHeight: "100vh" }}>
-        <div className="ff text-white mb-8" style={{ fontSize: "22px" }}>EmoLearn Lab ✨</div>
+    <div className="min-h-screen w-full flex max-md:flex-col" style={{ background: "#FAFAFA" }}>
+      {/* Sidebar, a scrollable tab row on narrow screens */}
+      <div ref={tabRowRef} className="flex-shrink-0 flex md:flex-col md:w-[240px] md:min-h-screen md:py-8 md:px-6 max-md:sticky max-md:top-0 max-md:z-20 max-md:overflow-x-auto max-md:gap-2 max-md:px-3 max-md:py-2"
+        style={{ background: "#006064" }}>
+        <div className="ff text-white mb-8 max-md:hidden" style={{ fontSize: "22px" }}>EmoLearn Lab ✨</div>
         {([
           { key: "overview", label: "📊 Overview" },
           { key: "children", label: "👧 Children" },
           { key: "diary", label: "📔 Diary" },
           { key: "settings", label: "⚙️ Settings" },
+          { key: "about", label: "ℹ️ About" },
         ] as const).map(item => (
-          <button key={item.key} onClick={() => setView(item.key)}
-            className="fn font-bold text-left py-3 px-4 rounded-xl mb-2 transition-all hover:bg-white hover:bg-opacity-20"
+          <button key={item.key} onClick={() => setView(item.key)} aria-current={view === item.key ? "page" : undefined}
+            className="fn font-bold text-left py-3 px-4 rounded-xl mb-2 transition-all hover:bg-white hover:bg-opacity-20 max-md:mb-0 max-md:flex-shrink-0 max-md:whitespace-nowrap max-md:py-2 max-md:px-3"
             style={{
               color: view === item.key ? "white" : "rgba(255,255,255,.85)",
               background: view === item.key ? "rgba(255,255,255,.18)" : "none",
@@ -340,13 +350,13 @@ export function ParentScreen({
             {item.label}
           </button>
         ))}
-        <div className="mt-auto"><div className="afb"><EmoRobot expression="curious" width={100} /></div></div>
+        <div className="mt-auto max-md:hidden"><div className="afb"><EmoRobot expression="curious" width={100} /></div></div>
       </div>
 
       {/* Main content */}
-      <div className="flex-1 overflow-y-auto p-8">
-        <div className="flex justify-between items-start mb-6">
-          <h1 className="fn font-bold mb-1" style={{ fontSize: "32px", color: "#212121" }}>{heading}</h1>
+      <div className="flex-1 min-w-0 overflow-y-auto p-8 max-md:p-4">
+        <div className="flex justify-between items-start mb-6 max-md:flex-wrap max-md:gap-3 max-md:mb-4">
+          <h1 className="fn font-bold mb-1 text-[32px] max-md:text-[24px]" style={{ color: "#212121" }}>{heading}</h1>
           <button onClick={onBack} className="fn font-bold rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer"
             style={{ background: "#00BCD4", fontSize: "16px", boxShadow: "0 4px 14px rgba(0,188,212,.4)" }}>
             Back to Game
@@ -388,6 +398,8 @@ export function ParentScreen({
             currentPlayerId={currentPlayerId} onCurrentUpdated={onPlayerUpdated} onCurrentDeleted={onPlayerDeleted}
           />
         )}
+
+        {view === "about" && <AboutView />}
       </div>
     </div>
   );

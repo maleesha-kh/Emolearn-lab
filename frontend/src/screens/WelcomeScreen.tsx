@@ -3,6 +3,7 @@ import { BgDeco } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { Avatar } from "../components/common/Avatar";
 import { AVATARS } from "../data/avatars";
+import { APP_VERSION } from "../lib/version";
 import { getPlayers, createPlayer } from "../lib/api";
 import type { Player } from "../types";
 
@@ -63,7 +64,7 @@ export function WelcomeScreen({
   return (
     <div className="min-h-screen w-full relative overflow-hidden" style={{ background: "linear-gradient(140deg,#E0F7FA 0%,#B2DFDB 100%)" }}>
       <BgDeco items={["⭐", "💛", "✨", "❤️", "🌟", "💫", "⭐", "💕", "🌟", "✨", "🎊", "⭐", "💕", "✨", "🌟", "💛", "❤️", "🎉"]} opacity={0.38} />
-      <div className="relative z-10 flex min-h-screen" style={{ flexWrap: "wrap" }}>
+      <div className="relative z-10 flex min-h-screen" style={{ flexWrap: "wrap", paddingBottom: "40px" }}>
         {/* LEFT column */}
         <div className="flex flex-col justify-center py-16" style={{ padding: "4rem 3rem 4rem 5rem", width: "55%", minWidth: "340px", flexShrink: 0 }}>
           <div className="ff mb-2" style={{ fontSize: "clamp(36px,4.5vw,58px)", color: "#00838F", lineHeight: 1.1 }}>EmoLearn Lab ✨</div>
@@ -236,6 +237,9 @@ export function WelcomeScreen({
 
       {/* bottom emotion strip */}
       <div className="absolute bottom-0 left-0 right-0 py-3" style={{ borderTop: "1px solid rgba(0,188,212,.18)", background: "rgba(255,255,255,.25)" }}>
+        <p className="fn text-center px-4 mb-1" style={{ fontSize: "12px", color: "#78909C" }}>
+          🔒 No camera, no photos, nothing shared · EmoLearn Lab v{APP_VERSION}
+        </p>
         <div className="flex gap-8 justify-center opacity-20 overflow-hidden">
           {Array.from({ length: 18 }).map((_, i) => (
             <span key={i} className="text-4xl">{["😊", "😢", "😠", "😲"][i % 4]}</span>
