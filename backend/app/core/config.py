@@ -7,7 +7,10 @@ APP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
-DB_PATH = os.path.join(APP_DIR, "..", "data", "emolearn.db")
+DB_PATH = os.path.abspath(
+    os.environ.get("EMOLEARN_DB_PATH")
+    or os.path.join(APP_DIR, "..", "data", "emolearn.db")
+)
 
 # ---------------------------------------------------------------------------
 # Pose branch (MediaPipe + Random Forest)
