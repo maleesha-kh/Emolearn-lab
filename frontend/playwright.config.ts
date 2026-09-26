@@ -57,7 +57,8 @@ export default defineConfig({
       env: { EMOLEARN_DB_PATH: E2E_DB_PATH },
       reuseExistingServer: false,
       timeout: 180_000,
-      stdout: "ignore",
+      // E2E_BACKEND_STDOUT=pipe also shows uvicorn's access log, e.g. for the NFR2 log audit
+      stdout: process.env.E2E_BACKEND_STDOUT === "pipe" ? "pipe" : "ignore",
       stderr: "pipe",
     },
     {
