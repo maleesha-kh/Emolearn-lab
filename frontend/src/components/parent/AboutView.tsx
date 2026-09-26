@@ -1,10 +1,23 @@
 import type { ReactNode } from "react";
 import { APP_VERSION } from "../../lib/version";
 
+const PRIVACY = [
+  "EmoLearn Lab saves your child's nickname and chosen picture, game results, mood check-ins, badges, Learn progress, diary entries (with Emo's replies and safety flags) and the questions they ask Emo.",
+  "Everything is saved on this computer only. The browser also remembers who played last and whether sound is on.",
+  "The app never sends your child's information to any outside service or company.",
+  "No camera and no photos of your child are used.",
+  "With the PIN, parents can read and delete diary entries and questions to Emo.",
+  "Deleting a child's profile removes everything about them.",
+  "The parent PIN and recovery code are stored in a scrambled (hashed) form.",
+  "A safety check looks for worrying words in diary notes and questions to Emo, and flags them for the parent.",
+  "\"Read to me\" uses your computer's built-in voices. Some browsers may use an online voice if no offline one is installed. It only ever reads the app's own fixed text, never anything your child types.",
+];
+
 const CREDITS = [
   "FERG-DB (Aneja et al., 2016)",
   "MobileNetV2",
   "MediaPipe Pose",
+  "rembg (U²-Net) for background removal",
   "Character images created using an AI image generation tool",
   "Fonts: Fredoka One and Nunito (SIL Open Font License)",
 ];
@@ -28,19 +41,15 @@ export function AboutView() {
 
       <AboutCard title="How Emo decides">
         <p>
-          Emo looks at the character's face and body together. The heatmap shows which parts of the face Emo
-          looked at most.
+          Emo looks at the character's face, and at their body too when it can see it clearly. The heatmap shows
+          which parts of the face Emo looked at most.
         </p>
       </AboutCard>
 
-      <AboutCard title="Your child's privacy">
-        <p>
-          Only a nickname, a chosen picture, game results, diary entries (feelings, reasons and notes) and
-          questions asked to Emo are saved, on this computer only. Diary entries and questions to Emo can only be
-          seen by a parent, with the PIN, and parents can delete diary entries. No camera, no photos of your
-          child, no internet connection and no email are used. The parent PIN and recovery code are stored in a
-          scrambled (hashed) form.
-        </p>
+      <AboutCard title="Your child's privacy" wide>
+        <ul className="list-disc pl-5 space-y-1">
+          {PRIVACY.map(p => <li key={p}>{p}</li>)}
+        </ul>
       </AboutCard>
 
       <AboutCard title="How the diary and Ask Emo work">
@@ -53,12 +62,12 @@ export function AboutView() {
       <AboutCard title="Please note">
         <p>
           EmoLearn Lab is a research prototype for learning. It is not a tool for assessing or diagnosing
-          children. The diary's safety check looks for certain words and can miss things, so it doesn't replace
-          talking with your child.
+          children. The safety check looks for certain words and can miss things, so it doesn't replace talking
+          with your child.
         </p>
       </AboutCard>
 
-      <AboutCard title="Project">
+      <AboutCard title="Project" wide>
         <p>Final-year project, BSc (Hons) Software Engineering, NSBM Green University.</p>
         <p>Developed by Hiruni M. Kooragodage.</p>
         <p className="mt-2" style={{ color: "#78909C" }}>Version {APP_VERSION}</p>
