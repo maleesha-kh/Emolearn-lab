@@ -6,6 +6,7 @@ const CREDITS = [
   "MobileNetV2",
   "MediaPipe Pose",
   "Character images created using an AI image generation tool",
+  "Fonts: Fredoka One and Nunito (SIL Open Font License)",
 ];
 
 function AboutCard({ title, wide, children }: { title: string; wide?: boolean; children: ReactNode }) {
