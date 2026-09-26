@@ -8,7 +8,9 @@ function speechAvailable(): boolean {
 
 function englishVoice(): SpeechSynthesisVoice | undefined {
   const english = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("en"));
-  return english.find((v) => v.default) ?? english[0];
+  const offline = english.filter((v) => v.localService);
+  const pool = offline.length ? offline : english;
+  return pool.find((v) => v.default) ?? pool[0];
 }
 
 /** Reads text aloud with the browser's speech synthesis; silent while muted and stopped on unmount. */
