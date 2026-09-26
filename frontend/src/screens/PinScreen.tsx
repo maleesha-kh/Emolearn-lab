@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPinStatus, recoverPin, regenerateRecoveryCode, setupPin, verifyPin } from "../lib/api";
+import { safeGet, safeRemove, safeSet } from "../lib/storage";
 import { RecoveryCodeView } from "../components/common/RecoveryCodeView";
 
 type Mode = "loading" | "setup-enter" | "setup-confirm" | "verify" | "error";
@@ -18,7 +19,7 @@ const TITLES: Record<Mode, { title: string; subtitle: string }> = {
 };
 
 function readStoredLockedUntil(): number | null {
-  const stored = Number(localStorage.getItem(LOCKED_UNTIL_KEY));
+  const stored = Number(safeGet(LOCKED_UNTIL_KEY));
   return stored && stored > Date.now() ? stored : null;
 }
 
@@ -56,22 +57,23 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
 
   // Wrong-try lockout: kept in localStorage (not just state), so it survives
   // leaving and re-entering the parent area — it can't be reset by navigating away.
+  // If storage is blocked it is kept in memory and only a refresh clears it.
   const [wrongCount, setWrongCount] = useState<number>(() =>
-    readStoredLockedUntil() === null ? 0 : Number(localStorage.getItem(WRONG_COUNT_KEY)) || 0
+    readStoredLockedUntil() === null ? 0 : Number(safeGet(WRONG_COUNT_KEY)) || 0
   );
   const [lockedUntil, setLockedUntil] = useState<number | null>(readStoredLockedUntil);
   const [now, setNow] = useState(() => Date.now());
 
   const resetLock = () => {
-    localStorage.removeItem(WRONG_COUNT_KEY);
-    localStorage.removeItem(LOCKED_UNTIL_KEY);
+    safeRemove(WRONG_COUNT_KEY);
+    safeRemove(LOCKED_UNTIL_KEY);
     setWrongCount(0);
     setLockedUntil(null);
   };
 
   // Purge a lock that already expired while this screen was unmounted.
   useEffect(() => {
-    if (readStoredLockedUntil() === null && localStorage.getItem(LOCKED_UNTIL_KEY) !== null) {
+    if (readStoredLockedUntil() === null && safeGet(LOCKED_UNTIL_KEY) !== null) {
       resetLock();
     }
   }, []);
@@ -172,11 +174,11 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
 
       const nextCount = wrongCount + 1;
       setWrongCount(nextCount);
-      localStorage.setItem(WRONG_COUNT_KEY, String(nextCount));
+      safeSet(WRONG_COUNT_KEY, String(nextCount));
       if (nextCount >= MAX_ATTEMPTS) {
         const until = Date.now() + LOCKOUT_SECONDS * 1000;
         setLockedUntil(until);
-        localStorage.setItem(LOCKED_UNTIL_KEY, String(until));
+        safeSet(LOCKED_UNTIL_KEY, String(until));
       }
     }
   };

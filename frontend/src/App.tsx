@@ -3,6 +3,7 @@ import type { Scr, Mood, Player, RoundCreate, GameRound } from "./types";
 import { buildGameRounds } from "./lib/game";
 import type { PredictionResult } from "./lib/predictionClient";
 import { getPlayer, startSession, saveRound, finishSession } from "./lib/api";
+import { safeGet, safeRemove, safeSet } from "./lib/storage";
 import { AVATARS } from "./data/avatars";
 import { BADGES } from "./data/badges";
 import { GLOBAL_STYLES } from "./styles/animations";
@@ -34,6 +35,7 @@ import { PinScreen } from "./screens/PinScreen";
 import { ParentScreen } from "./screens/ParentScreen";
 
 const PLAYER_ID_KEY = "emolearn_player_id";
+const SOUND_ON_KEY = "emolearn_sound_on";
 const SCREENS_WITHOUT_PLAYER: Scr[] = ["welcome", "pin", "parent"];
 
 export default function App() {
@@ -41,9 +43,9 @@ export default function App() {
   const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
   const [savedPlayer, setSavedPlayer] = useState<Player | null>(null);
   const [checkingSavedPlayer, setCheckingSavedPlayer] = useState(
-    () => !!localStorage.getItem(PLAYER_ID_KEY)
+    () => !!safeGet(PLAYER_ID_KEY)
   );
-  const [soundOn, setSoundOn] = useState(true);
+  const [soundOn, setSoundOn] = useState(() => safeGet(SOUND_ON_KEY) !== "false");
   const [currentRound, setCurrentRound] = useState(0);
   const [score, setScore] = useState(0);
   const [roundResults, setRoundResults] = useState<boolean[]>([]);
@@ -73,13 +75,13 @@ export default function App() {
   const [gameRounds, setGameRounds] = useState<GameRound[]>(() => buildGameRounds());
 
   useEffect(() => {
-    const storedId = localStorage.getItem(PLAYER_ID_KEY);
+    const storedId = safeGet(PLAYER_ID_KEY);
     if (!storedId) return;
     getPlayer(storedId).then((res) => {
       if (res.kind === "ok") {
         setSavedPlayer(res.data);
       } else if (res.status === 404) {
-        localStorage.removeItem(PLAYER_ID_KEY);
+        safeRemove(PLAYER_ID_KEY);
       }
       setCheckingSavedPlayer(false);
     });
@@ -103,20 +105,20 @@ export default function App() {
   const loginPlayer = (player: Player) => {
     if (currentPlayer?.id !== player.id) abandonGame();
     setCurrentPlayer(player);
-    localStorage.setItem(PLAYER_ID_KEY, player.id);
+    safeSet(PLAYER_ID_KEY, player.id);
     go("moodcheckin");
   };
 
   const forgetSavedPlayer = () => {
     setSavedPlayer(null);
-    localStorage.removeItem(PLAYER_ID_KEY);
+    safeRemove(PLAYER_ID_KEY);
   };
 
   const switchPlayer = () => {
     abandonGame();
     setCurrentPlayer(null);
     setSavedPlayer(null);
-    localStorage.removeItem(PLAYER_ID_KEY);
+    safeRemove(PLAYER_ID_KEY);
     go("welcome");
   };
 
@@ -129,8 +131,8 @@ export default function App() {
     if (currentPlayer?.id === playerId) abandonGame();
     setCurrentPlayer((prev) => (prev && prev.id === playerId ? null : prev));
     setSavedPlayer((prev) => (prev && prev.id === playerId ? null : prev));
-    if (localStorage.getItem(PLAYER_ID_KEY) === playerId) {
-      localStorage.removeItem(PLAYER_ID_KEY);
+    if (safeGet(PLAYER_ID_KEY) === playerId) {
+      safeRemove(PLAYER_ID_KEY);
     }
   };
 
@@ -284,6 +286,10 @@ export default function App() {
   };
 
   const toggleSound = () => setSoundOn((s) => !s);
+
+  useEffect(() => {
+    safeSet(SOUND_ON_KEY, String(soundOn));
+  }, [soundOn]);
   const round = gameRounds[currentRound];
   const tappedEmotion: Mood | null = selectedCard !== null ? round.opts[selectedCard] : null;
 
