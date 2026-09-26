@@ -1,0 +1,4293 @@
+{
+ "welcome": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".gap-2.rounded-2xl.p-3:nth-child(2) > .font-bold.fn"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"font-size: 13px; color: rgb(230, 81, 0); text-align: center;\">New Player</span>",
+      "data": {
+       "fgColor": "#e65100",
+       "bgColor": "#fff3e0",
+       "contrastRatio": 3.45,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.45 (foreground color: #e65100, background color: #fff3e0, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Page should contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Page must have a level-one heading"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff.mb-2"
+      ],
+      "html": "<div class=\"ff mb-2\" style=\"font-size: clamp(36px, 4.5vw, 58px); color: rgb(0, 131, 143); line-height: 1.1;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-8"
+      ],
+      "html": "<div class=\"fn mb-8 font-semibold\" style=\"font-size: clamp(16px, 2vw, 22px); color: rgb(84, 110, 122);\">Learn Emotions Through Play!</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff.mb-6"
+      ],
+      "html": "<div class=\"ff mb-6\" style=\"font-size: clamp(22px, 2.5vw, 32px); color: rgb(0, 77, 64); line-height: 1.3;\">Hi there! I'm Emo, your AI friend!<br><span style=\"font-size: clamp(18px, 2vw, 26px);\">Who's ",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".asr"
+      ],
+      "html": "<div class=\"absolute asr\" style=\"width: 320px; height: 320px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".bottom-0"
+      ],
+      "html": "<div class=\"absolute bottom-0 left-0 right-0 py-3\" style=\"border-top: 1px solid rgba(0, 188, 212, 0.18); background: rgba(255, 255, 255, 0.25);\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 7
+   }
+  ],
+  "passes": 12,
+  "engine": "4.13.0"
+ },
+ "mood-selection": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xl"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer \" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width: 280px; box",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-center mb-2\" style=\"font-size: clamp(28px, 3.5vw, 40px); color: rgb(0, 77, 64);\">How are you feeling today? 🌞</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center mb-4 font-semibold\" style=\"font-size: 20px; color: rgb(84, 110, 122);\">Tap the picture that matches how you feel!</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 12
+   }
+  ],
+  "passes": 22,
+  "engine": "4.13.0"
+ },
+ "diary": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       "#diary-note-count"
+      ],
+      "html": "<div id=\"diary-note-count\" class=\"fn self-end mt-1 mb-6\" style=\"font-size: 15px; color: rgb(120, 144, 156);\">0/200</div>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".ff.hover\\:scale-105.active\\:scale-95:nth-child(1)"
+      ],
+      "html": "<button aria-pressed=\"true\" class=\"ff rounded-2xl transition-all hover:scale-105 active:scale-95\" style=\"min-height: 64px; font-size: 22px; color: white; background: rgb(255, 193, 7); border: 3px soli",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ffc107",
+       "contrastRatio": 1.63,
+       "fontSize": "16.5pt (22px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.63 (foreground color: #ffffff, background color: #ffc107, font size: 16.5pt (22px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".ff.hover\\:scale-105.active\\:scale-95:nth-child(2)"
+      ],
+      "html": "<button aria-pressed=\"false\" class=\"ff rounded-2xl transition-all hover:scale-105 active:scale-95\" style=\"min-height: 64px; font-size: 22px; color: rgb(230, 81, 0); background: rgb(255, 249, 196); bor",
+      "data": {
+       "fgColor": "#e65100",
+       "bgColor": "#fff9c4",
+       "contrastRatio": 3.53,
+       "fontSize": "16.5pt (22px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.53 (foreground color: #e65100, background color: #fff9c4, font size: 16.5pt (22px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center mb-5\" style=\"font-size: 16px; color: rgb(120, 144, 156);\">Your grown-up can read your diary 💛</p>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".cursor-pointer"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer \" style=\"background: rgb(144, 164, 174); color: white; height: 64px; width: min(100%",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#90a4ae",
+       "contrastRatio": 2.59,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.59 (foreground color: #ffffff, background color: #90a4ae, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-center mb-5\" style=\"font-size: clamp(26px, 5vw, 36px); color: rgb(230, 81, 0);\">Why do you feel happy today? 😊</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".sm\\:grid-cols-3"
+      ],
+      "html": "<div role=\"group\" aria-label=\"Why do you feel this way? Pick one or more\" class=\"grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-6\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "label"
+      ],
+      "html": "<label for=\"diary-note\" class=\"fn font-bold self-start mb-2\" style=\"font-size: 19px; color: rgb(69, 90, 100);\">Tell me more (you can skip!)</label>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "#diary-note"
+      ],
+      "html": "<textarea id=\"diary-note\" maxlength=\"200\" rows=\"3\" aria-describedby=\"diary-note-count\" class=\"fn w-full rounded-2xl px-4 py-3 outline-none focus:ring-4\" style=\"font-size: 19px; border: 3px solid rgb(2",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "#diary-note-count"
+      ],
+      "html": "<div id=\"diary-note-count\" class=\"fn self-end mt-1 mb-6\" style=\"font-size: 15px; color: rgb(120, 144, 156);\">0/200</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "div[aria-label=\"How big is this feeling?\"]"
+      ],
+      "html": "<div role=\"group\" aria-label=\"How big is this feeling?\" class=\"w-full mb-5\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center mb-5\" style=\"font-size: 16px; color: rgb(120, 144, 156);\">Your grown-up can read your diary 💛</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   }
+  ],
+  "passes": 29,
+  "engine": "4.13.0"
+ },
+ "mood-activity": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-1 > span"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"font-size: 13px; color: rgb(230, 81, 0);\">1/3 activities done</span>",
+      "data": {
+       "fgColor": "#e65100",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.78,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.78 (foreground color: #e65100, background color: #ffffff, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".fixed.inset-0.overflow-hidden"
+      ],
+      "html": "<div class=\"fixed inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 4;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".inset-0.overflow-hidden.pointer-events-none:nth-child(2)"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff.text-2xl"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-center mb-2\" style=\"font-size: 38px; color: rgb(0, 77, 64);\">You feel HAPPY today! 🎉</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center mb-4 font-semibold\" style=\"font-size: 22px; color: rgb(84, 110, 122);\">Let's make your happy feeling even BIGGER!</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".gap-1"
+      ],
+      "html": "<div class=\"w-full mb-6 flex flex-col gap-1\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 5
+   }
+  ],
+  "passes": 15,
+  "engine": "4.13.0"
+ },
+ "game-round": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.fn:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.fn:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.fn:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mb-4"
+      ],
+      "html": "<div class=\"relative mb-4 rounded-3xl px-8 py-5 text-white ff text-center\" style=\"background: rgb(255, 152, 0); font-size: 32px; box-shadow: rgba(255, 152, 0, 0.4) 0px 8px 30px; max-width: 520px; widt",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "24.0pt (32px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 24.0pt (32px), font weight: normal). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".mb-4 > span"
+      ],
+      "html": "<span style=\"text-decoration: underline;\">ANGRY</span>",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "24.0pt (32px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 24.0pt (32px), font weight: normal). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Page should contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Page must have a level-one heading"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-1"
+      ],
+      "html": "<div class=\"flex items-center gap-3 mb-1\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-3"
+      ],
+      "html": "<p class=\"ff mb-3\" style=\"font-size: 22px; color: rgb(0, 131, 143);\">Round 1 of 4</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-4"
+      ],
+      "html": "<div class=\"relative mb-4 rounded-3xl px-8 py-5 text-white ff text-center\" style=\"background: rgb(255, 152, 0); font-size: 32px; box-shadow: rgba(255, 152, 0, 0.4) 0px 8px 30px; max-width: 520px; widt",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".py-2"
+      ],
+      "html": "<div class=\"rounded-2xl px-4 py-2 fn font-bold\" style=\"background: white; border: 2px solid rgb(0, 188, 212); font-size: 16px; color: rgb(0, 131, 143);\">Teach the AI! 🤖</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-3"
+      ],
+      "html": "<p class=\"fn mt-3 font-semibold\" style=\"color: rgb(0, 131, 143); font-size: 16px;\">Tap a character to select! 👆</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 8
+   }
+  ],
+  "passes": 19,
+  "engine": "4.13.0"
+ },
+ "feedback-correct": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.flex-col.px-4:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.flex-col.px-4:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.flex-col.px-4:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.flex-col.px-4:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.flex-col.px-4:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".top-4"
+      ],
+      "html": "<div class=\"absolute top-4 right-20 ff rounded-full px-5 py-2 text-white\" style=\"background: rgb(255, 152, 0); font-size: 18px; box-shadow: rgba(255, 152, 0, 0.4) 0px 4px 15px;\">⭐ 1/4</div>",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".px-8"
+      ],
+      "html": "<div class=\"rounded-2xl py-4 px-8 mb-8 ff text-white text-center\" style=\"background: rgb(76, 175, 80); font-size: clamp(20px, 3vw, 36px); box-shadow: rgba(76, 175, 80, 0.4) 0px 6px 25px; width: 90%; m",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#4caf50",
+       "contrastRatio": 2.77,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 15.0pt (20px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".font-semibold"
+      ],
+      "html": "<button class=\"fn font-semibold underline\" style=\"color: rgb(96, 125, 139); font-size: 13px; cursor: pointer; background: none; border-width: medium; border-style: none; border-color: currentcolor; bo",
+      "data": {
+       "fgColor": "#607d8b",
+       "bgColor": "#ffffff",
+       "contrastRatio": 4.37,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #607d8b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mt-2.fn.font-bold"
+      ],
+      "html": "<div class=\"fn font-bold mt-2\" style=\"font-size: 18px; color: rgb(233, 30, 99);\">The AI agrees with you — you are such a great AI teacher! 🌟</div>",
+      "data": {
+       "fgColor": "#e91e63",
+       "bgColor": "#ffffff",
+       "contrastRatio": 4.34,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.34 (foreground color: #e91e63, background color: #ffffff, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:brightness-110.py-2.px-4"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110\" style=\"background: rgb(224, 247, 250); color: rgb(0, 131, 143); border: 2px solid rgb(0, 188, 212); font-size: 1",
+      "data": {
+       "fgColor": "#00838f",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 4.06,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.06 (foreground color: #00838f, background color: #e0f7fa, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xl"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer mt-4\" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width: 100%; ",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Page should contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Page must have a level-one heading"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".pointer-events-none"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".top-4"
+      ],
+      "html": "<div class=\"absolute top-4 right-20 ff rounded-full px-5 py-2 text-white\" style=\"background: rgb(255, 152, 0); font-size: 18px; box-shadow: rgba(255, 152, 0, 0.4) 0px 4px 15px;\">⭐ 1/4</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".px-8"
+      ],
+      "html": "<div class=\"rounded-2xl py-4 px-8 mb-8 ff text-white text-center\" style=\"background: rgb(76, 175, 80); font-size: clamp(20px, 3vw, 36px); box-shadow: rgba(76, 175, 80, 0.4) 0px 6px 25px; width: 90%; m",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".overflow-hidden.flex-shrink-0.relative"
+      ],
+      "html": "<div class=\"relative rounded-2xl overflow-hidden flex-shrink-0\" style=\"width: 300px; height: 380px; border: 3px solid rgb(239, 83, 80); box-shadow: rgba(239, 83, 80, 0.267) 0px 0px 0px 3px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-xs"
+      ],
+      "html": "<div class=\"ff text-xs mb-2\" style=\"color: rgb(0, 131, 143); letter-spacing: 1px;\">THE AI NOTICED:</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".inline-flex"
+      ],
+      "html": "<div class=\"inline-flex items-center gap-2 rounded-full px-3 py-1 mb-2 fn font-bold\" style=\"background: rgb(255, 235, 238); color: rgb(183, 28, 28); border: 2px solid rgb(239, 83, 80); font-size: 15px",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff:nth-child(3)"
+      ],
+      "html": "<div class=\"ff\" style=\"font-size: 19px; color: rgb(0, 77, 64); line-height: 1.4;\">I looked closely at the eyes, and they were narrow and glaring, and the way the head were placed looked angry. I'm ver",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".flex-wrap.gap-2.mt-2"
+      ],
+      "html": "<div class=\"flex flex-wrap gap-2 mt-2\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-2.fn.font-bold"
+      ],
+      "html": "<div class=\"fn font-bold mt-2\" style=\"font-size: 18px; color: rgb(233, 30, 99);\">The AI agrees with you — you are such a great AI teacher! 🌟</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   }
+  ],
+  "passes": 14,
+  "engine": "4.13.0"
+ },
+ "feedback-wrong": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.transition-all:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.transition-all:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.transition-all:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.transition-all:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.transition-all:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".top-4"
+      ],
+      "html": "<div class=\"absolute top-4 right-20 ff rounded-full px-5 py-2 text-white\" style=\"background: rgb(255, 152, 0); font-size: 18px; box-shadow: rgba(255, 152, 0, 0.4) 0px 4px 15px;\">⭐ 1/4</div>",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".px-8"
+      ],
+      "html": "<div class=\"rounded-2xl py-4 px-8 mb-8 ff text-white text-center\" style=\"background: rgb(255, 152, 0); font-size: clamp(18px, 2.5vw, 32px); box-shadow: rgba(255, 152, 0, 0.4) 0px 6px 25px; width: 90%;",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xs"
+      ],
+      "html": "<div class=\"ff text-xs mb-2\" style=\"color: rgb(255, 152, 0); letter-spacing: 1px;\">THE AI NOTICED:</div>",
+      "data": {
+       "fgColor": "#ff9800",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.15,
+       "fontSize": "9.0pt (12px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ff9800, background color: #ffffff, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".font-semibold"
+      ],
+      "html": "<button class=\"fn font-semibold underline\" style=\"color: rgb(96, 125, 139); font-size: 13px; cursor: pointer; background: none; border-width: medium; border-style: none; border-color: currentcolor; bo",
+      "data": {
+       "fgColor": "#607d8b",
+       "bgColor": "#ffffff",
+       "contrastRatio": 4.37,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.37 (foreground color: #607d8b, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mt-3.fn.font-bold"
+      ],
+      "html": "<div class=\"fn font-bold mt-3\" style=\"font-size: 16px; color: rgb(233, 30, 99);\">You are getting better! Keep going! 💪</div>",
+      "data": {
+       "fgColor": "#e91e63",
+       "bgColor": "#ffffff",
+       "contrastRatio": 4.34,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.34 (foreground color: #e91e63, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:brightness-110.py-2.px-4"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110\" style=\"background: rgb(255, 243, 224); color: rgb(230, 81, 0); border: 2px solid rgb(255, 152, 0); font-size: 14",
+      "data": {
+       "fgColor": "#e65100",
+       "bgColor": "#fff3e0",
+       "contrastRatio": 3.45,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.45 (foreground color: #e65100, background color: #fff3e0, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xl"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer mt-4\" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width: 100%; ",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Page should contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Page must have a level-one heading"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".pointer-events-none"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".top-4"
+      ],
+      "html": "<div class=\"absolute top-4 right-20 ff rounded-full px-5 py-2 text-white\" style=\"background: rgb(255, 152, 0); font-size: 18px; box-shadow: rgba(255, 152, 0, 0.4) 0px 4px 15px;\">⭐ 1/4</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".px-8"
+      ],
+      "html": "<div class=\"rounded-2xl py-4 px-8 mb-8 ff text-white text-center\" style=\"background: rgb(255, 152, 0); font-size: clamp(18px, 2.5vw, 32px); box-shadow: rgba(255, 152, 0, 0.4) 0px 6px 25px; width: 90%;",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".gap-2.flex-col.items-center"
+      ],
+      "html": "<div class=\"flex flex-col items-center gap-2\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-xs"
+      ],
+      "html": "<div class=\"ff text-xs mb-2\" style=\"color: rgb(255, 152, 0); letter-spacing: 1px;\">THE AI NOTICED:</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".inline-flex"
+      ],
+      "html": "<div class=\"inline-flex items-center gap-2 rounded-full px-3 py-1 mb-2 fn font-bold\" style=\"background: rgb(255, 235, 238); color: rgb(183, 28, 28); border: 2px solid rgb(239, 83, 80); font-size: 15px",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff:nth-child(3)"
+      ],
+      "html": "<div class=\"ff\" style=\"font-size: 19px; color: rgb(0, 77, 64); line-height: 1.4;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".flex-wrap.mt-2.gap-2"
+      ],
+      "html": "<div class=\"flex flex-wrap gap-2 mt-2\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".p-6 > .fn.font-bold:nth-child(2)"
+      ],
+      "html": "<div class=\"fn font-bold\" style=\"font-size: 17px; color: rgb(78, 52, 46); line-height: 1.4;\">This character is really <b style=\"color: rgb(21, 101, 192);\">SAD</b> — the AI is still learning this one!<",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".rounded-xl"
+      ],
+      "html": "<div class=\"flex items-center gap-3 mt-3 rounded-xl p-2\" style=\"background: rgb(243, 229, 245); border: 2px dashed rgb(171, 71, 188);\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-3.fn.font-bold"
+      ],
+      "html": "<div class=\"fn font-bold mt-3\" style=\"font-size: 16px; color: rgb(233, 30, 99);\">You are getting better! Keep going! 💪</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   }
+  ],
+  "passes": 14,
+  "engine": "4.13.0"
+ },
+ "summary-badge": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.px-4:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-3.mb-4.items-center:nth-child(2) > .fn.font-bold:nth-child(3)"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"min-width: 40px; font-size: 16px; color: rgb(76, 175, 80);\">1/1</span>",
+      "data": {
+       "fgColor": "#4caf50",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.77,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #4caf50, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-3.mb-4.items-center:nth-child(3) > .fn.font-bold:nth-child(3)"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"min-width: 40px; font-size: 16px; color: rgb(239, 83, 80);\">0/1</span>",
+      "data": {
+       "fgColor": "#ef5350",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.48,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.48 (foreground color: #ef5350, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-3.mb-4.items-center:nth-child(4) > .fn.font-bold:nth-child(3)"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"min-width: 40px; font-size: 16px; color: rgb(76, 175, 80);\">1/1</span>",
+      "data": {
+       "fgColor": "#4caf50",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.77,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #4caf50, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-3.mb-4.items-center:nth-child(5) > .fn.font-bold:nth-child(3)"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"min-width: 40px; font-size: 16px; color: rgb(76, 175, 80);\">1/1</span>",
+      "data": {
+       "fgColor": "#4caf50",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.77,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #4caf50, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mb-2"
+      ],
+      "html": "<div class=\"ff mb-2\" style=\"font-size: 20px; color: rgb(233, 30, 99);\">Emo has a funny surprise for you! 😄</div>",
+      "data": {
+       "fgColor": "#e91e63",
+       "bgColor": "#ffffff",
+       "contrastRatio": 4.34,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.34 (foreground color: #e91e63, background color: #ffffff, font size: 15.0pt (20px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".px-5"
+      ],
+      "html": "<button class=\"ff rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer\" style=\"background: rgb(0, 188, 212); font-size: 16px; box-shadow: rgba(0, 188, 212, 0.4) 0px 4px",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xl.hover\\:brightness-110.cursor-pointer:nth-child(2)"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer \" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width: 220px; box",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       "#\\:rn\\:"
+      ],
+      "html": "<div id=\":rn:\" class=\"ff text-center mb-1\" style=\"font-size: 26px; color: rgb(255, 215, 0);\">New Badge Unlocked! 🎉</div>",
+      "data": {
+       "fgColor": "#ffd700",
+       "bgColor": "#ffffff",
+       "contrastRatio": 1.4,
+       "fontSize": "19.5pt (26px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.4 (foreground color: #ffd700, background color: #ffffff, font size: 19.5pt (26px), font weight: normal). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".badge-dialog > .text-xl.hover\\:brightness-110.cursor-pointer"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer \" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width: 200px; box",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".min-h-screen.w-full.relative > .pointer-events-none.inset-0.overflow-hidden"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".overflow-hidden.justify-center.rounded-full"
+      ],
+      "html": "<div class=\"rounded-full overflow-hidden flex items-center justify-center\" style=\"width: 160px; height: 160px; border: 5px solid rgb(255, 193, 7); box-shadow: rgba(255, 193, 7, 0.3) 0px 8px 30px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-center mb-4\" style=\"font-size: 40px; color: rgb(0, 131, 143);\">Amazing job, NFR3 Kid 17e4570! 🎉</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".z-10 > .gap-2.justify-center.flex"
+      ],
+      "html": "<div class=\"flex gap-2 justify-center\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".p-6"
+      ],
+      "html": "<div class=\"rounded-2xl p-6 bg-white mt-8 mb-5\" style=\"max-width: 520px; width: 95%; border: 3px solid rgb(0, 188, 212); box-shadow: rgba(0, 188, 212, 0.12) 0px 8px 30px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-2"
+      ],
+      "html": "<div class=\"ff mb-2\" style=\"font-size: 20px; color: rgb(233, 30, 99);\">Emo has a funny surprise for you! 😄</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 3
+   }
+  ],
+  "passes": 30,
+  "engine": "4.13.0"
+ },
+ "learn": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.rounded-2xl.transition-all:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fffffd",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #fffffd, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.rounded-2xl.transition-all:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.rounded-2xl.transition-all:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fffffd",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #fffffd, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mt-8"
+      ],
+      "html": "<button class=\"ff rounded-full mt-8 px-8 text-white transition-transform hover:scale-105 active:scale-95\" style=\"min-height: 64px; font-size: 24px; background: rgb(0, 188, 212); box-shadow: rgba(0, 18",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "18.0pt (24px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 18.0pt (24px), font weight: normal). Expected contrast ratio of 3:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-center mb-2\" style=\"font-size: clamp(28px, 6vw, 40px); color: rgb(0, 131, 143);\">Pick a feeling 📖</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn font-bold text-center mb-6\" style=\"font-size: 18px; color: rgb(84, 110, 122);\">Tap a card to learn all about it!</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   }
+  ],
+  "passes": 23,
+  "engine": "4.13.0"
+ },
+ "learn-feeling": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.py-1:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.py-1:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.py-1:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.py-1:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".hover\\:bg-cyan-50.px-4.py-1:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".overflow-hidden"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "section:nth-child(3) > h2"
+      ],
+      "html": "<h2 class=\"ff text-center mb-5\" style=\"font-size: clamp(24px, 5vw, 30px); color: rgb(21, 101, 192);\">Meet the feeling</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-2"
+      ],
+      "html": "<p class=\"fn font-bold mt-2 mb-4\" style=\"font-size: 14px; color: rgb(21, 101, 192);\">👆 Tap the picture to see another one (1/18)</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff mb-2\" style=\"font-size: clamp(36px, 8vw, 48px); color: rgb(21, 101, 192);\">Sad 😢</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p:nth-child(4)"
+      ],
+      "html": "<p class=\"fn font-bold mb-5\" style=\"font-size: 20px; color: rgb(69, 90, 100); max-width: 560px; line-height: 1.45;\">Sad is a heavy feeling you get when you lose something or things don't go your way.<",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "section:nth-child(4) > h2"
+      ],
+      "html": "<h2 class=\"ff text-center mb-5\" style=\"font-size: clamp(24px, 5vw, 30px); color: rgb(21, 101, 192);\">Spot the clues 🔍</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "div[role=\"tablist\"]"
+      ],
+      "html": "<div class=\"flex gap-3 mb-5\" role=\"tablist\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-5"
+      ],
+      "html": "<p class=\"fn font-bold text-center mt-5\" style=\"font-size: 17px; color: rgb(0, 131, 143);\">🤖 Emo looks at the face AND the body, just like you!</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "section:nth-child(5) > h2"
+      ],
+      "html": "<h2 class=\"ff text-center mb-5\" style=\"font-size: clamp(24px, 5vw, 30px); color: rgb(21, 101, 192);\">Did you know?</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "section:nth-child(6)"
+      ],
+      "html": "<section class=\"asu rounded-3xl bg-white p-5 sm:p-7 w-full\" style=\"border: 3px solid rgb(66, 165, 245); box-shadow: rgba(66, 165, 245, 0.133) 0px 8px 30px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "section:nth-child(7) > h2"
+      ],
+      "html": "<h2 class=\"ff text-center mb-5\" style=\"font-size: clamp(24px, 5vw, 30px); color: rgb(21, 101, 192);\">What can I do?</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".-mt-3"
+      ],
+      "html": "<p class=\"fn font-bold text-center -mt-3 mb-4\" style=\"font-size: 16px; color: rgb(84, 110, 122);\">Tap a card when you try it!</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 7
+   }
+  ],
+  "passes": 29,
+  "engine": "4.13.0"
+ },
+ "ask-emo": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.rounded-2xl:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fdfeff",
+       "contrastRatio": 2.65,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #9e9e9e, background color: #fdfeff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.rounded-2xl:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fdfeff",
+       "contrastRatio": 2.65,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #9e9e9e, background color: #fdfeff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.rounded-2xl:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fdfeff",
+       "contrastRatio": 2.65,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #9e9e9e, background color: #fdfeff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.rounded-2xl:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.rounded-2xl:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fdfeff",
+       "contrastRatio": 2.65,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #9e9e9e, background color: #fdfeff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".items-start.self-start.gap-2:nth-child(4) > .min-w-0.gap-2.flex-col > .gap-2.flex-col.flex > span"
+      ],
+      "html": "<span class=\"fn font-bold\" style=\"font-size: 14px; color: rgb(120, 144, 156);\">You can also ask:</span>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       "#ask-emo-count"
+      ],
+      "html": "<span id=\"ask-emo-count\" class=\"fn\" style=\"font-size: 13px; color: rgb(120, 144, 156);\">0/150</span>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center\" style=\"font-size: 14px; color: rgb(120, 144, 156);\">Emo can answer 9 more questions today</p>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff.text-2xl"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff\" style=\"font-size: clamp(22px, 5vw, 30px); color: rgb(0, 131, 143);\">Ask Emo 🤖</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".items-baseline"
+      ],
+      "html": "<div class=\"flex justify-between items-baseline gap-2\"><label for=\"ask-emo-input\" class=\"fn font-bold\" style=\"font-size: 16px; color: rgb(69, 90, 100);\">Type your question</label><span id=\"ask-emo-cou",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "#ask-emo-input"
+      ],
+      "html": "<input id=\"ask-emo-input\" type=\"text\" maxlength=\"150\" autocomplete=\"off\" aria-describedby=\"ask-emo-count\" class=\"fn flex-1 min-w-0 rounded-2xl px-3 outline-none focus:ring-4\" value=\"\" style=\"min-heigh",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"fn text-center\" style=\"font-size: 14px; color: rgb(120, 144, 156);\">Emo can answer 9 more questions today</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 2
+   }
+  ],
+  "passes": 31,
+  "engine": "4.13.0"
+ },
+ "me": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.transition-all:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.transition-all:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fffdfe",
+       "contrastRatio": 2.64,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9e9e9e, background color: #fffdfe, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.transition-all:nth-child(3)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.transition-all:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#fefdfe",
+       "contrastRatio": 2.64,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #9e9e9e, background color: #fefdfe, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.hover\\:bg-cyan-50.transition-all:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".px-5"
+      ],
+      "html": "<div class=\"ff rounded-full px-5 py-2 text-white mb-6\" style=\"background: rgb(0, 188, 212); font-size: 18px;\">Learning Stars ⭐ 3 total</div>",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(1)"
+      ],
+      "html": "<div class=\"rounded-2xl p-3 text-center fn font-bold\" style=\"background: rgb(255, 249, 196); border: 2px solid rgb(255, 193, 7); font-size: 15px; color: rgb(255, 193, 7);\">Happy 😊<br><span class=\"ff ",
+      "data": {
+       "fgColor": "#ffc107",
+       "bgColor": "#fff9c4",
+       "contrastRatio": 1.52,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.52 (foreground color: #ffc107, background color: #fff9c4, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(1) > .text-2xl.ff"
+      ],
+      "html": "<span class=\"ff text-2xl\" style=\"color: rgb(255, 193, 7);\">1/1</span>",
+      "data": {
+       "fgColor": "#ffc107",
+       "bgColor": "#fff9c4",
+       "contrastRatio": 1.52,
+       "fontSize": "18.0pt (24px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.52 (foreground color: #ffc107, background color: #fff9c4, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(2)"
+      ],
+      "html": "<div class=\"rounded-2xl p-3 text-center fn font-bold\" style=\"background: rgb(227, 242, 253); border: 2px solid rgb(66, 165, 245); font-size: 15px; color: rgb(66, 165, 245);\">Sad 😢<br><span class=\"ff ",
+      "data": {
+       "fgColor": "#42a5f5",
+       "bgColor": "#e3f2fd",
+       "contrastRatio": 2.31,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.31 (foreground color: #42a5f5, background color: #e3f2fd, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(2) > .text-2xl.ff"
+      ],
+      "html": "<span class=\"ff text-2xl\" style=\"color: rgb(66, 165, 245);\">1/1</span>",
+      "data": {
+       "fgColor": "#42a5f5",
+       "bgColor": "#e3f2fd",
+       "contrastRatio": 2.31,
+       "fontSize": "18.0pt (24px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.31 (foreground color: #42a5f5, background color: #e3f2fd, font size: 18.0pt (24px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(3)"
+      ],
+      "html": "<div class=\"rounded-2xl p-3 text-center fn font-bold\" style=\"background: rgb(255, 235, 238); border: 2px solid rgb(239, 83, 80); font-size: 15px; color: rgb(239, 83, 80);\">Angry 😠<br><span class=\"ff ",
+      "data": {
+       "fgColor": "#ef5350",
+       "bgColor": "#ffebee",
+       "contrastRatio": 3.04,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.04 (foreground color: #ef5350, background color: #ffebee, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-3.text-center.rounded-2xl:nth-child(4)"
+      ],
+      "html": "<div class=\"rounded-2xl p-3 text-center fn font-bold\" style=\"background: rgb(243, 229, 245); border: 2px solid rgb(171, 71, 188); font-size: 15px; color: rgb(171, 71, 188);\">Surprised 😲<br><span clas",
+      "data": {
+       "fgColor": "#ab47bc",
+       "bgColor": "#f3e5f5",
+       "contrastRatio": 3.97,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.97 (foreground color: #ab47bc, background color: #f3e5f5, font size: 11.3pt (15px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".text-xl"
+      ],
+      "html": "<button class=\"ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 cursor-pointer w-full mb-3\" style=\"background: rgb(255, 152, 0); color: white; height: 64px; width:",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "15.0pt (20px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 15.0pt (20px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".mt-1 > button:nth-child(1)"
+      ],
+      "html": "<button class=\"fn font-bold\" style=\"color: rgb(158, 158, 158); font-size: 14px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: poin",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.67,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.67 (foreground color: #9e9e9e, background color: #ffffff, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".px-6 > .text-2xl.ff"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"ff text-white text-center mb-6\" style=\"font-size: 32px; text-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;\">My Profile 👤</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-4.overflow-hidden.rounded-full"
+      ],
+      "html": "<div class=\"rounded-full overflow-hidden mb-4\" style=\"width: 140px; height: 140px; border: 4px solid rgb(255, 193, 7); box-shadow: rgba(255, 193, 7, 0.3) 0px 8px 25px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-3.ff:nth-child(2)"
+      ],
+      "html": "<div class=\"ff mb-3\" style=\"font-size: 42px; color: rgb(0, 77, 64);\">NFR3 Kid 17e4570</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".px-5"
+      ],
+      "html": "<div class=\"ff rounded-full px-5 py-2 text-white mb-6\" style=\"background: rgb(0, 188, 212); font-size: 18px;\">Learning Stars ⭐ 3 total</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-6.w-full:nth-child(4)"
+      ],
+      "html": "<div class=\"w-full mb-6\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-4.w-full"
+      ],
+      "html": "<div class=\"w-full mb-4\"><div class=\"ff mb-2\" style=\"font-size: 20px; color: rgb(0, 131, 143);\">Sessions Played</div><div class=\"ff text-center\" style=\"font-size: 56px; color: rgb(0, 188, 212);\">1</di",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-6.w-full:nth-child(6)"
+      ],
+      "html": "<div class=\"w-full mb-6\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 4
+   }
+  ],
+  "passes": 15,
+  "engine": "4.13.0"
+ },
+ "badges": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(2)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#f7f7f7",
+       "contrastRatio": 2.5,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.5 (foreground color: #9e9e9e, background color: #f7f7f7, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(4)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(158, 158, 158); background: transparent; min-width: 60p",
+      "data": {
+       "fgColor": "#9e9e9e",
+       "bgColor": "#f7f7f7",
+       "contrastRatio": 2.5,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.5 (foreground color: #9e9e9e, background color: #f7f7f7, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".py-1.rounded-2xl.hover\\:bg-cyan-50:nth-child(5)"
+      ],
+      "html": "<button class=\"fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50\" style=\"font-size: 11px; color: rgb(0, 188, 212); background: rgb(224, 247, 250); min-width",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "8.3pt (11px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 8.3pt (11px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".overflow-hidden"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".ff.text-2xl"
+      ],
+      "html": "<div class=\"ff text-2xl\" style=\"color: rgb(0, 131, 143); font-size: clamp(16px, -19.5px + 11.7vw, 24px); white-space: nowrap;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".z-10"
+      ],
+      "html": "<div class=\"relative z-10 flex flex-col items-center px-4 pb-12\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 31
+   }
+  ],
+  "passes": 14,
+  "engine": "4.13.0"
+ },
+ "welcome-remembered": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".mb-3"
+      ],
+      "html": "<button class=\"ff font-bold rounded...\" style=\"width: 100%; height:...\">",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "13.5pt (18px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 13.5pt (18px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "page-has-heading-one",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Page should contain a level-one heading",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/page-has-heading-one?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Page must have a level-one heading"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".inset-0"
+      ],
+      "html": "<div class=\"absolute inset-0 overflow-hidden pointer-events-none\" style=\"z-index: 0;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-2"
+      ],
+      "html": "<div class=\"ff mb-2\" style=\"font-size: clamp(36px, 4.5vw, 58px); color: rgb(0, 131, 143); line-height: 1.1;\">EmoLearn Lab ✨</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-8"
+      ],
+      "html": "<div class=\"fn mb-8 font-semibold\" style=\"font-size: clamp(16px, 2vw, 22px); color: rgb(84, 110, 122);\">Learn Emotions Through Play!</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".flex-shrink-0"
+      ],
+      "html": "<div class=\"rounded-full flex items-center justify-center overflow-hidden flex-shrink-0\" style=\"width: 90px; height: 90px; background: rgb(255, 171, 145);\"><span style=\"font-size: 49.5px;\">🦊</span></",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mt-4"
+      ],
+      "html": "<div class=\"ff mt-4 mb-6\" style=\"font-size: clamp(22px, 2.5vw, 32px); color: rgb(0, 77, 64); line-height: 1.3;\">Hi NFR3 Kid 17e4570! 👋</div>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".asr"
+      ],
+      "html": "<div class=\"absolute asr\" style=\"width: 320px; height: 320px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".bottom-0"
+      ],
+      "html": "<div class=\"absolute bottom-0 left-0 right-0 py-3\" style=\"border-top: 1px solid rgba(0, 188, 212, 0.18); background: rgba(255, 255, 255, 0.25);\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 7
+   }
+  ],
+  "passes": 11,
+  "engine": "4.13.0"
+ },
+ "pin-keypad": {
+  "violations": [
+   {
+    "id": "button-name",
+    "impact": "critical",
+    "tags": [
+     "cat.name-role-value",
+     "wcag2a",
+     "wcag412",
+     "section508",
+     "section508.22.a",
+     "TTv5",
+     "TT6.a",
+     "EN-301-549",
+     "EN-9.4.1.2",
+     "ACT",
+     "RGAAv4",
+     "RGAA-11.9.1"
+    ],
+    "help": "Buttons must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/button-name?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".transition-all.hover\\:brightness-95.active\\:scale-95:nth-child(10)"
+      ],
+      "html": "<button disabled=\"\" class=\"rounded-xl fn font-b...\" style=\"height: 56px; backgr...\">",
+      "data": null,
+      "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "span"
+      ],
+      "html": "<span class=\"text-5xl mb-4\" style=\"color: rgb(0, 131, 143);\">🔒</span>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"text-center mb-2\" style=\"font-family: system-ui, sans-serif; font-size: 28px; font-weight: 600; color: rgb(55, 71, 79);\">Parent Access</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "p"
+      ],
+      "html": "<p class=\"text-center mb-8\" style=\"font-family: system-ui, sans-serif; font-size: 16px; color: rgb(120, 144, 156);\">Enter the 4-digit PIN to continue</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 5
+   }
+  ],
+  "passes": 15,
+  "engine": "4.13.0"
+ },
+ "parent-overview": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".px-5"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer\" style=\"background: rgb(0, 188, 212); font-size: 16px; box-shadow: rgba(0, 188, 212, 0.",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".font-semibold"
+      ],
+      "html": "<p class=\"fn font-semibold mb-6\" style=\"font-size: 16px; color: rgb(117, 117, 117);\">NFR3 Kid 17e4570 · 1 session</p>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#fafafa",
+       "contrastRatio": 4.41,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.41 (foreground color: #757575, background color: #fafafa, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(1) > div:nth-child(1)"
+      ],
+      "html": "<div style=\"font-size: 13px; color: rgb(117, 117, 117); margin-bottom: 6px;\">Total Sessions</div>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#e8f5e9",
+       "contrastRatio": 4.09,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.09 (foreground color: #757575, background color: #e8f5e9, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(2) > div:nth-child(1)"
+      ],
+      "html": "<div style=\"font-size: 13px; color: rgb(117, 117, 117); margin-bottom: 6px;\">Average Score</div>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#fff9c4",
+       "contrastRatio": 4.3,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #757575, background color: #fff9c4, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(2) > div:nth-child(2)"
+      ],
+      "html": "<div style=\"font-size: 22px; color: rgb(255, 193, 7);\">3/4</div>",
+      "data": {
+       "fgColor": "#ffc107",
+       "bgColor": "#fff9c4",
+       "contrastRatio": 1.52,
+       "fontSize": "16.5pt (22px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.52 (foreground color: #ffc107, background color: #fff9c4, font size: 16.5pt (22px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(3) > div:nth-child(1)"
+      ],
+      "html": "<div style=\"font-size: 13px; color: rgb(117, 117, 117); margin-bottom: 6px;\">Best Emotion</div>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 4.13,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #757575, background color: #e0f7fa, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(3) > div:nth-child(2)"
+      ],
+      "html": "<div style=\"font-size: 22px; color: rgb(0, 188, 212);\">Happy 😊</div>",
+      "data": {
+       "fgColor": "#00bcd4",
+       "bgColor": "#e0f7fa",
+       "contrastRatio": 2.06,
+       "fontSize": "16.5pt (22px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "3:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.06 (foreground color: #00bcd4, background color: #e0f7fa, font size: 16.5pt (22px), font weight: bold). Expected contrast ratio of 3:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(4) > div:nth-child(1)"
+      ],
+      "html": "<div style=\"font-size: 13px; color: rgb(117, 117, 117); margin-bottom: 6px;\">Needs Practice</div>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#fce4ec",
+       "contrastRatio": 3.82,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.82 (foreground color: #757575, background color: #fce4ec, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".p-5.rounded-2xl.font-bold:nth-child(5) > div:nth-child(1)"
+      ],
+      "html": "<div style=\"font-size: 13px; color: rgb(117, 117, 117); margin-bottom: 6px;\">Feelings Explored</div>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#e8eaf6",
+       "contrastRatio": 3.84,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.84 (foreground color: #757575, background color: #e8eaf6, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-2.flex-wrap.items-center > .py-2.text-white.rounded-full"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-4 py-2 text-white\" style=\"background: rgb(255, 152, 0); font-size: 14px; box-shadow: rgba(255, 152, 0, 0.4) 0px 3px 12px; border-width: medium; border-style",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#ff9800",
+       "contrastRatio": 2.15,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #ffffff, background color: #ff9800, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"fn font-bold mb-1 text-[32px] max-md:text-[24px]\" style=\"color: rgb(33, 33, 33);\">Session Overview 📊</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".font-semibold"
+      ],
+      "html": "<p class=\"fn font-semibold mb-6\" style=\"font-size: 16px; color: rgb(117, 117, 117);\">NFR3 Kid 17e4570 · 1 session</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".grid"
+      ],
+      "html": "<div class=\"grid gap-4 mb-8\" style=\"grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".p-6.bg-white.mb-8:nth-child(5)"
+      ],
+      "html": "<div class=\"rounded-2xl p-6 bg-white mb-8\" style=\"border: 1.5px solid rgb(224, 224, 224); box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 15px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".p-6.bg-white.mb-8:nth-child(6)"
+      ],
+      "html": "<div class=\"rounded-2xl p-6 bg-white mb-8\" style=\"border: 1.5px solid rgb(224, 224, 224); box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 15px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".border-b > h2"
+      ],
+      "html": "<h2 class=\"fn font-bold\" style=\"font-size: 20px; color: rgb(33, 33, 33);\">Session History</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".overflow-x-auto"
+      ],
+      "html": "<div class=\"overflow-x-auto\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   },
+   {
+    "id": "scrollable-region-focusable",
+    "impact": "serious",
+    "tags": [
+     "cat.keyboard",
+     "wcag2a",
+     "wcag211",
+     "wcag213",
+     "TTv5",
+     "TT4.a",
+     "EN-301-549",
+     "EN-9.2.1.1",
+     "EN-9.2.1.3",
+     "RGAAv4",
+     "RGAA-7.3.2"
+    ],
+    "help": "Scrollable region must have keyboard access",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".overflow-x-auto"
+      ],
+      "html": "<div class=\"overflow-x-auto\">",
+      "data": null,
+      "summary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 11
+   }
+  ],
+  "passes": 31,
+  "engine": "4.13.0"
+ },
+ "parent-diary": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".px-5"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer\" style=\"background: rgb(0, 188, 212); font-size: 16px; box-shadow: rgba(0, 188, 212, 0.",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".min-w-0 > p"
+      ],
+      "html": "<p class=\"fn font-bold\" style=\"color: rgb(117, 117, 117); font-size: 16px;\">No diary entries yet. They'll appear after NFR3 Kid 17e4570 checks in their mood.</p>",
+      "data": {
+       "fgColor": "#757575",
+       "bgColor": "#fafafa",
+       "contrastRatio": 4.41,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.41 (foreground color: #757575, background color: #fafafa, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mt-10 > .py-2.rounded-full.px-4"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-4 py-2\" style=\"background: white; border: 1.5px solid rgb(207, 216, 220); color: rgb(120, 144, 156); cursor: pointer; font-size: 14px;\">🗑️ Clear all questi",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".gap-2 > span"
+      ],
+      "html": "<span style=\"color: rgb(120, 144, 156); font-size: 13px;\">Sep 27, 2026 · 12:13 AM</span>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mb-3"
+      ],
+      "html": "<p class=\"mb-3\" style=\"color: rgb(144, 164, 174); font-size: 13px;\">Emo answered: Sad is a heavy feeling when something hurts or we miss something. You might feel quiet or want to cry, and that's okay",
+      "data": {
+       "fgColor": "#90a4ae",
+       "bgColor": "#ffffff",
+       "contrastRatio": 2.59,
+       "fontSize": "9.8pt (13px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.59 (foreground color: #90a4ae, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       "button[aria-label=\"Delete this question\"]"
+      ],
+      "html": "<button aria-label=\"Delete this question\" class=\"font-bold rounded-full px-4 py-2\" style=\"background: white; border: 1.5px solid rgb(207, 216, 220); color: rgb(120, 144, 156); cursor: pointer; font-si",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "10.5pt (14px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"fn font-bold mb-1 text-[32px] max-md:text-[24px]\" style=\"color: rgb(33, 33, 33);\">Diary 📔</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".min-w-0 > p"
+      ],
+      "html": "<p class=\"fn font-bold\" style=\"color: rgb(117, 117, 117); font-size: 16px;\">No diary entries yet. They'll appear after NFR3 Kid 17e4570 checks in their mood.</p>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       "h2"
+      ],
+      "html": "<h2 class=\"fn font-bold\" style=\"font-size: 22px; color: rgb(33, 33, 33);\">Questions asked to Emo 🤖</h2>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".gap-2"
+      ],
+      "html": "<div class=\"flex flex-wrap items-start gap-2 mb-1\"><p class=\"font-bold flex-1\" style=\"color: rgb(33, 33, 33); font-size: 16px; overflow-wrap: anywhere;\">\"Why do I feel sad sometimes?\"</p><span style=\"",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".mb-3"
+      ],
+      "html": "<p class=\"mb-3\" style=\"color: rgb(144, 164, 174); font-size: 13px;\">Emo answered: Sad is a heavy feeling when something hurts or we miss something. You might feel quiet or want to cry, and that's okay",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   }
+  ],
+  "passes": 22,
+  "engine": "4.13.0"
+ },
+ "parent-about": {
+  "violations": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+     "cat.color",
+     "wcag2aa",
+     "wcag143",
+     "TTv5",
+     "TT13.c",
+     "EN-301-549",
+     "EN-9.1.4.3",
+     "ACT",
+     "RGAAv4",
+     "RGAA-3.2.1"
+    ],
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       ".rounded-full"
+      ],
+      "html": "<button class=\"fn font-bold rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer\" style=\"background: rgb(0, 188, 212); font-size: 16px; box-shadow: rgba(0, 188, 212, 0.",
+      "data": {
+       "fgColor": "#ffffff",
+       "bgColor": "#00bcd4",
+       "contrastRatio": 2.29,
+       "fontSize": "12.0pt (16px)",
+       "fontWeight": "bold",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.29 (foreground color: #ffffff, background color: #00bcd4, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+     },
+     {
+      "target": [
+       ".mt-2"
+      ],
+      "html": "<p class=\"mt-2\" style=\"color: rgb(120, 144, 156);\">Version 1.0.0</p>",
+      "data": {
+       "fgColor": "#78909c",
+       "bgColor": "#ffffff",
+       "contrastRatio": 3.35,
+       "fontSize": "11.3pt (15px)",
+       "fontWeight": "normal",
+       "messageKey": null,
+       "expectedContrastRatio": "4.5:1"
+      },
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #78909c, background color: #ffffff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+     }
+    ]
+   },
+   {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+     "cat.semantics",
+     "best-practice"
+    ],
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "html"
+      ],
+      "html": "<html lang=\"en\">",
+      "data": null,
+      "summary": "Fix all of the following:\n  Document does not have a main landmark"
+     }
+    ]
+   },
+   {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+     "cat.keyboard",
+     "best-practice",
+     "RGAAv4",
+     "RGAA-9.2.1"
+    ],
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+     {
+      "target": [
+       "h1"
+      ],
+      "html": "<h1 class=\"fn font-bold mb-1 text-[32px] max-md:text-[24px]\" style=\"color: rgb(33, 33, 33);\">About ℹ️</h1>",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     },
+     {
+      "target": [
+       ".grid"
+      ],
+      "html": "<div class=\"grid gap-4 lg:grid-cols-2\" style=\"max-width: 1100px;\">",
+      "data": {
+       "isIframe": false
+      },
+      "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+     }
+    ]
+   }
+  ],
+  "incomplete": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "nodes": 1
+   }
+  ],
+  "passes": 24,
+  "engine": "4.13.0"
+ }
+}

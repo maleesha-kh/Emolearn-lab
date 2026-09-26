@@ -1,0 +1,164 @@
+[
+ {
+  "n": 1,
+  "state": "welcome",
+  "label": "Welcome (player list)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/01-welcome.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 2,
+  "state": "mood-selection",
+  "label": "Mood check-in (a feeling selected)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/02-mood-selection.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 3,
+  "state": "diary",
+  "label": "Diary",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/03-diary.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 4,
+  "state": "mood-activity",
+  "label": "Mood activity (Happy, 1 of 3 done)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/04-mood-activity.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 5,
+  "state": "game-round",
+  "label": "Game round",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/05-game-round.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 6,
+  "state": "feedback-correct",
+  "label": "Correct feedback",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/06-feedback-correct.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 7,
+  "state": "feedback-wrong",
+  "label": "Wrong feedback",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/07-feedback-wrong.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 8,
+  "state": "summary-badge",
+  "label": "Summary with the First Star badge",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/08-summary-badge.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 9,
+  "state": "learn",
+  "label": "Learn (feeling picker)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/09-learn.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 10,
+  "state": "learn-feeling",
+  "label": "Learn (a feeling page)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/10-learn-feeling.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 11,
+  "state": "ask-emo",
+  "label": "Ask Emo (after one answer)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/11-ask-emo.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 12,
+  "state": "me",
+  "label": "Me (profile)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/12-me.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 13,
+  "state": "badges",
+  "label": "Badges",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/13-badges.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 14,
+  "state": "welcome-remembered",
+  "label": "Welcome (remembered player)",
+  "child": true,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/14-welcome-remembered.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 15,
+  "state": "pin-keypad",
+  "label": "Parent PIN keypad",
+  "child": false,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/15-pin-keypad.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 16,
+  "state": "parent-overview",
+  "label": "Parent Overview",
+  "child": false,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/16-parent-overview.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 17,
+  "state": "parent-diary",
+  "label": "Parent Diary",
+  "child": false,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/17-parent-diary.png",
+  "animationsSettled": true
+ },
+ {
+  "n": 18,
+  "state": "parent-about",
+  "label": "Parent About",
+  "child": false,
+  "url": "http://localhost:5173/",
+  "screenshot": "screens/1280x800/18-parent-about.png",
+  "animationsSettled": true
+ }
+]

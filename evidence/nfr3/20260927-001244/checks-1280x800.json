@@ -1,0 +1,616 @@
+{
+ "welcome": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold.self-start \"👨‍👩‍👧 Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 565.8,
+    "width": 124.4,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.self-start \"👨‍👩‍👧 Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 565.8,
+    "width": 124.4,
+    "height": 21
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "mood-selection": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 9,
+  "modalOnly": false
+ },
+ "diary": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 19,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 14,
+  "modalOnly": false
+ },
+ "mood-activity": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 49,
+  "modalOnly": false
+ },
+ "game-round": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "feedback-correct": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 711,
+    "y": 478.5,
+    "width": 158.4,
+    "height": 19.5
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 711,
+    "y": 478.5,
+    "width": 158.4,
+    "height": 19.5
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Hide AI Vision\"",
+    "tag": "button",
+    "x": 619,
+    "y": 584.5,
+    "width": 129.3,
+    "height": 41
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "feedback-wrong": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 711,
+    "y": 472.5,
+    "width": 158.4,
+    "height": 19.5
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 711,
+    "y": 472.5,
+    "width": 158.4,
+    "height": 19.5
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Hide AI Vision\"",
+    "tag": "button",
+    "x": 619,
+    "y": 688.3,
+    "width": 129.3,
+    "height": 41
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "summary-badge": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 1,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [
+   {
+    "label": "button.ff.text-xl.font-bold \"Nice! ✨\"",
+    "tag": "button",
+    "x": 540,
+    "y": 496.5,
+    "width": 200,
+    "height": 64,
+    "paintedBy": "div.fixed.inset-0.overflow-hidden \"● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ \"",
+    "opacity": 1
+   }
+  ],
+  "textOverlaps": [],
+  "decorativeTextElements": 30,
+  "modalOnly": true
+ },
+ "learn": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "learn-feeling": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 21,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "ask-emo": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 15,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 8,
+  "modalOnly": false
+ },
+ "me": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Switch Player\"",
+    "tag": "button",
+    "x": 406,
+    "y": 1117.5,
+    "width": 89.6,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.text-center \"View Achievements 🏆\"",
+    "tag": "button",
+    "x": 406,
+    "y": 1076,
+    "width": 468,
+    "height": 24
+   },
+   {
+    "label": "button.fn.font-bold \"Switch Player\"",
+    "tag": "button",
+    "x": 406,
+    "y": 1117.5,
+    "width": 89.6,
+    "height": 21
+   },
+   {
+    "label": "button.text-2xl.hover:scale-110.transition-transform \"⚙️\"",
+    "tag": "button",
+    "x": 841,
+    "y": 1112,
+    "width": 33,
+    "height": 32
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "badges": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 7,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 12,
+  "modalOnly": false
+ },
+ "welcome-remembered": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Not you?\"",
+    "tag": "button",
+    "x": 80,
+    "y": 543.7,
+    "width": 57.3,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold \"Not you?\"",
+    "tag": "button",
+    "x": 80,
+    "y": 543.7,
+    "width": 57.3,
+    "height": 21
+   },
+   {
+    "label": "button.fn.mt-3 \"Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 576.7,
+    "width": 92.8,
+    "height": 27.5
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "pin-keypad": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 14,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Forgot PIN?\"",
+    "tag": "button",
+    "x": 601.7,
+    "y": 682.5,
+    "width": 76.7,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.self-start \"← Back\"",
+    "tag": "button",
+    "x": 460,
+    "y": 96.5,
+    "width": 56.2,
+    "height": 24
+   },
+   {
+    "label": "button.fn.font-bold \"Forgot PIN?\"",
+    "tag": "button",
+    "x": 601.7,
+    "y": 682.5,
+    "width": 76.7,
+    "height": 21
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "parent-overview": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 9,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Download Report CSV\"",
+    "tag": "button",
+    "x": 1047.5,
+    "y": 946.5,
+    "width": 179.5,
+    "height": 37
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-diary": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"🗑️ Clear all questions\"",
+    "tag": "button",
+    "x": 853.1,
+    "y": 282,
+    "width": 178.9,
+    "height": 39
+   },
+   {
+    "label": "button.font-bold.rounded-full.px-4 \"Delete this question\"",
+    "tag": "button",
+    "x": 289,
+    "y": 433,
+    "width": 100.1,
+    "height": 39
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-about": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false
+  },
+  "controls": 6,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ }
+}

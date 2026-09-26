@@ -1,0 +1,858 @@
+{
+ "welcome": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold.self-start \"👨‍👩‍👧 Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 632.1,
+    "width": 124.4,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.self-start \"👨‍👩‍👧 Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 632.1,
+    "width": 124.4,
+    "height": 21
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "mood-selection": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 9,
+  "modalOnly": false
+ },
+ "diary": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 19,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 14,
+  "modalOnly": false
+ },
+ "mood-activity": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 11,
+  "outOfView": [
+   {
+    "label": "button.ff.text-xl.font-bold \"Complete 2 more activities first\"",
+    "tag": "button",
+    "x": -12.5,
+    "y": 925,
+    "width": 400,
+    "height": 64
+   }
+  ],
+  "cutOff": [
+   {
+    "label": "button.ff.text-xl.font-bold \"Complete 2 more activities first\"",
+    "tag": "button",
+    "x": -12.5,
+    "y": 925,
+    "width": 400,
+    "height": 64,
+    "clippedBy": "div.min-h-screen.w-full.relative \"● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ \""
+   }
+  ],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 49,
+  "modalOnly": false
+ },
+ "game-round": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "feedback-correct": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 143.6,
+    "y": 1024.8,
+    "width": 158.4,
+    "height": 19.5
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 143.6,
+    "y": 1024.8,
+    "width": 158.4,
+    "height": 19.5
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Hide AI Vision\"",
+    "tag": "button",
+    "x": 51.6,
+    "y": 1130.8,
+    "width": 129.3,
+    "height": 41
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [
+   {
+    "a": "div.absolute.top-4.right-20 \"⭐ 1/4\"",
+    "b": "div.rounded-2xl.py-4.px-8 \"✅ CORRECT! ⭐ Amazing teaching!\"",
+    "overlap": {
+     "width": 6,
+     "height": 17
+    }
+   }
+  ],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "feedback-wrong": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 143.6,
+    "y": 1182.2,
+    "width": 158.4,
+    "height": 19.5
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-semibold.underline \"How did the AI decide? 🤖\"",
+    "tag": "button",
+    "x": 143.6,
+    "y": 1182.2,
+    "width": 158.4,
+    "height": 19.5
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Hide AI Vision\"",
+    "tag": "button",
+    "x": 51.6,
+    "y": 1445.8,
+    "width": 129.3,
+    "height": 41
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [
+   {
+    "a": "div.absolute.top-4.right-20 \"⭐ 1/4\"",
+    "b": "div.rounded-2xl.py-4.px-8 \"💛 Good try! Let us learn together!\"",
+    "overlap": {
+     "width": 10.7,
+     "height": 14
+    }
+   }
+  ],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "summary-badge": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 1,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [
+   {
+    "label": "button.ff.text-xl.font-bold \"Nice! ✨\"",
+    "tag": "button",
+    "x": 87.5,
+    "y": 502.5,
+    "width": 200,
+    "height": 64,
+    "paintedBy": "div.fixed.inset-0.overflow-hidden \"● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ \"",
+    "opacity": 1
+   }
+  ],
+  "textOverlaps": [],
+  "decorativeTextElements": 30,
+  "modalOnly": true
+ },
+ "learn": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "learn-feeling": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 21,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "ask-emo": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 15,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"What does happy mean?\"",
+    "tag": "button",
+    "x": 84,
+    "y": -47.9,
+    "width": 220.7,
+    "height": 48,
+    "scrollContainer": "div.relative.flex-1.min-h-0 \"Chat with Emo\""
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"What does surprised mean?\"",
+    "tag": "button",
+    "x": 84,
+    "y": 8.1,
+    "width": 237.5,
+    "height": 52,
+    "scrollContainer": "div.relative.flex-1.min-h-0 \"Chat with Emo\""
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"What does sad mean?\"",
+    "tag": "button",
+    "x": 84,
+    "y": 68.1,
+    "width": 201.3,
+    "height": 48,
+    "scrollContainer": "div.relative.flex-1.min-h-0 \"Chat with Emo\""
+   }
+  ],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 8,
+  "modalOnly": false
+ },
+ "me": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 381,
+   "clientWidth": 375,
+   "overflows": true
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Switch Player\"",
+    "tag": "button",
+    "x": 60.6,
+    "y": 1207.5,
+    "width": 89.6,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.text-center \"View Achievements 🏆\"",
+    "tag": "button",
+    "x": 60.6,
+    "y": 1166,
+    "width": 253.8,
+    "height": 24
+   },
+   {
+    "label": "button.fn.font-bold \"Switch Player\"",
+    "tag": "button",
+    "x": 60.6,
+    "y": 1207.5,
+    "width": 89.6,
+    "height": 21
+   },
+   {
+    "label": "button.text-2xl.hover:scale-110.transition-transform \"⚙️\"",
+    "tag": "button",
+    "x": 281.5,
+    "y": 1202,
+    "width": 33,
+    "height": 32
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "badges": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 7,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 12,
+  "modalOnly": false
+ },
+ "welcome-remembered": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Not you?\"",
+    "tag": "button",
+    "x": 80,
+    "y": 498.4,
+    "width": 57.3,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold \"Not you?\"",
+    "tag": "button",
+    "x": 80,
+    "y": 498.4,
+    "width": 57.3,
+    "height": 21
+   },
+   {
+    "label": "button.fn.mt-3 \"Manage players\"",
+    "tag": "button",
+    "x": 80,
+    "y": 531.4,
+    "width": 92.8,
+    "height": 27.5
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "pin-keypad": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 14,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [
+   {
+    "label": "button.fn.font-bold \"Forgot PIN?\"",
+    "tag": "button",
+    "x": 149.2,
+    "y": 688.5,
+    "width": 76.7,
+    "height": 21
+   }
+  ],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.self-start \"← Back\"",
+    "tag": "button",
+    "x": 18.8,
+    "y": 102.5,
+    "width": 56.2,
+    "height": 24
+   },
+   {
+    "label": "button.fn.font-bold \"Forgot PIN?\"",
+    "tag": "button",
+    "x": 149.2,
+    "y": 688.5,
+    "width": 76.7,
+    "height": 21
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "parent-overview": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 9,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [
+   {
+    "label": "button.fn.font-bold.text-left \"⚙️ Settings\"",
+    "tag": "button",
+    "x": 361.2,
+    "y": 8,
+    "width": 112,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"ℹ️ About\"",
+    "tag": "button",
+    "x": 481.2,
+    "y": 8,
+    "width": 96.4,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   }
+  ],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.text-left \"📊 Overview\"",
+    "tag": "button",
+    "x": 12,
+    "y": 8,
+    "width": 121.3,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"👧 Children\"",
+    "tag": "button",
+    "x": 141.3,
+    "y": 8,
+    "width": 113.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"📔 Diary\"",
+    "tag": "button",
+    "x": 262.7,
+    "y": 8,
+    "width": 90.5,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"⚙️ Settings\"",
+    "tag": "button",
+    "x": 361.2,
+    "y": 8,
+    "width": 112,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"ℹ️ About\"",
+    "tag": "button",
+    "x": 481.2,
+    "y": 8,
+    "width": 96.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 16,
+    "y": 124,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Download Report CSV\"",
+    "tag": "button",
+    "x": 37,
+    "y": 1534.5,
+    "width": 179.5,
+    "height": 37
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-diary": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [
+   {
+    "label": "button.fn.font-bold.text-left \"📊 Overview\"",
+    "tag": "button",
+    "x": -191,
+    "y": 8,
+    "width": 121.3,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"👧 Children\"",
+    "tag": "button",
+    "x": -61.7,
+    "y": 8,
+    "width": 113.4,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   }
+  ],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.text-left \"📊 Overview\"",
+    "tag": "button",
+    "x": -191,
+    "y": 8,
+    "width": 121.3,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"👧 Children\"",
+    "tag": "button",
+    "x": -61.7,
+    "y": 8,
+    "width": 113.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"📔 Diary\"",
+    "tag": "button",
+    "x": 59.7,
+    "y": 8,
+    "width": 90.5,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"⚙️ Settings\"",
+    "tag": "button",
+    "x": 158.2,
+    "y": 8,
+    "width": 112,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"ℹ️ About\"",
+    "tag": "button",
+    "x": 278.2,
+    "y": 8,
+    "width": 96.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 215.9,
+    "y": 72,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"🗑️ Clear all questions\"",
+    "tag": "button",
+    "x": 16,
+    "y": 371,
+    "width": 178.9,
+    "height": 39
+   },
+   {
+    "label": "button.font-bold.rounded-full.px-4 \"Delete this question\"",
+    "tag": "button",
+    "x": 33,
+    "y": 565.5,
+    "width": 100.1,
+    "height": 39
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-about": {
+  "viewport": {
+   "width": 375,
+   "height": 812
+  },
+  "horizontalScroll": {
+   "scrollWidth": 375,
+   "clientWidth": 375,
+   "overflows": false
+  },
+  "controls": 6,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [
+   {
+    "label": "button.fn.font-bold.text-left \"📊 Overview\"",
+    "tag": "button",
+    "x": -191,
+    "y": 8,
+    "width": 121.3,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"👧 Children\"",
+    "tag": "button",
+    "x": -61.7,
+    "y": 8,
+    "width": 113.4,
+    "height": 40,
+    "scrollContainer": "div.flex-shrink-0.flex.md:flex-col \"📊 Overview 👧 Children 📔 Diary ⚙️ Settings ℹ️ Ab\""
+   }
+  ],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.text-left \"📊 Overview\"",
+    "tag": "button",
+    "x": -191,
+    "y": 8,
+    "width": 121.3,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"👧 Children\"",
+    "tag": "button",
+    "x": -61.7,
+    "y": 8,
+    "width": 113.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"📔 Diary\"",
+    "tag": "button",
+    "x": 59.7,
+    "y": 8,
+    "width": 90.5,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"⚙️ Settings\"",
+    "tag": "button",
+    "x": 158.2,
+    "y": 8,
+    "width": 112,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.text-left \"ℹ️ About\"",
+    "tag": "button",
+    "x": 278.2,
+    "y": 8,
+    "width": 96.4,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 215.9,
+    "y": 72,
+    "width": 143.1,
+    "height": 40
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ }
+}
