@@ -12,6 +12,7 @@ from app.db.database import init_db
 from app.ml.face_branch.inference import load_face_model
 from app.ml.pose_branch.inference import load_pose_model
 from app.ml.preprocessing import load_rembg_session
+from app.ml.warmup import warm_up
 
 
 @asynccontextmanager
@@ -23,6 +24,8 @@ async def lifespan(app: FastAPI):
     load_pose_model()
     load_face_model()
     load_rembg_session()
+    # Before the server answers anything, so readiness checks wait for it too
+    warm_up()
     yield
     # Shutdown: no cleanup needed for this project
 

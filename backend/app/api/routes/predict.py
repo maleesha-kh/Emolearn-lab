@@ -7,6 +7,7 @@ import logging
 import os
 import time
 from datetime import datetime
+from typing import Optional
 
 import numpy as np
 from fastapi import APIRouter, File, HTTPException, UploadFile
@@ -55,6 +56,23 @@ def predict_emotion(file: UploadFile = File(...)):
 
     downscale(pil_image)
 
+    try:
+        return run_prediction(pil_image, save_debug=config.DEBUG_SAVE_IMAGES, started=total_start)
+    except NoCharacterError:
+        raise HTTPException(status_code=422, detail="No character found in the image")
+
+
+class NoCharacterError(Exception):
+    """Background removal left almost nothing of the image."""
+
+
+def run_prediction(pil_image: Image.Image, *, save_debug: bool, started: Optional[float] = None) -> PredictionResponse:
+    """The model part of /predict, shared with the startup warm-up.
+
+    Expects an RGB image that has already been downscaled.
+    """
+    total_start = started if started is not None else time.perf_counter()
+
     prep_start = time.perf_counter()
     prepared = prepare_image(pil_image)
     prep_time = time.perf_counter() - prep_start
@@ -62,7 +80,7 @@ def predict_emotion(file: UploadFile = File(...)):
     alpha = np.array(prepared.rgba)[:, :, 3]
     character_fraction = float((alpha > 128).mean())
     if character_fraction < MIN_CHARACTER_ALPHA_FRACTION:
-        raise HTTPException(status_code=422, detail="No character found in the image")
+        raise NoCharacterError()
 
     face_crop, crop_box = crop_face_with_box(prepared.rgba, prepared.landmarks)
 
@@ -98,7 +116,7 @@ def predict_emotion(file: UploadFile = File(...)):
         explanation = None
     explain_time = time.perf_counter() - explain_start
 
-    if config.DEBUG_SAVE_IMAGES:
+    if save_debug:
         _save_debug_images(prepared, face_crop, heatmap)
 
     logger.info(
