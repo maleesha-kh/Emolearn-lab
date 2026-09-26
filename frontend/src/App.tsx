@@ -8,7 +8,7 @@ import { BADGES } from "./data/badges";
 import { GLOBAL_STYLES } from "./styles/animations";
 
 import { BadgeModal } from "./components/common/BadgeModal";
-import { BottomNav, SCREENS_WITHOUT_NAV } from "./components/common/BottomNav";
+import { BottomNav, NAV_HEIGHT_PX, SCREENS_WITHOUT_NAV } from "./components/common/BottomNav";
 
 import { WelcomeScreen } from "./screens/WelcomeScreen";
 import { HowToPlayScreen } from "./screens/HowToPlayScreen";
@@ -404,7 +404,7 @@ export default function App() {
 
       {showNav && <BottomNav screen={effectiveScreen === "askemo" ? "dictionary" : effectiveScreen} onNavigate={handleNavigate} />}
 
-      <div style={{ paddingBottom: showNav ? "72px" : "0" }}>{screens[effectiveScreen]}</div>
+      <div style={{ paddingBottom: showNav ? `${NAV_HEIGHT_PX}px` : "0" }}>{screens[effectiveScreen]}</div>
 
       {currentBadge && <BadgeModal badge={currentBadge} onClose={handleBadgeModalClose} />}
     </div>

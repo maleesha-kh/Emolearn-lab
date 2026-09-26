@@ -8,6 +8,9 @@ const NAV_ITEMS: { s: Scr; label: string; emoji: string }[] = [
   { s: "achievements", label: "Badges", emoji: "🏆" },
 ];
 
+// Space kept free under screens that show the nav
+export const NAV_HEIGHT_PX = 72;
+
 export const SCREENS_WITHOUT_NAV: Scr[] = ["welcome", "pin", "parent", "loading", "t-correct", "t-wrong"];
 
 export function BottomNav({ screen, onNavigate }: { screen: Scr; onNavigate: (s: Scr) => void }) {

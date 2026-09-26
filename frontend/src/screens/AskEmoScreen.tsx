@@ -5,6 +5,7 @@ import { playSound } from "../lib/sounds";
 import { STARTER_QUESTIONS } from "../data/buddy";
 import { TopBar, BgDeco } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
+import { NAV_HEIGHT_PX } from "../components/common/BottomNav";
 
 const QUESTION_MAX = 150;
 const GREETING = "Hi! Ask me anything about feelings 💛";
@@ -30,10 +31,16 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
   const [resting,setResting]=useState(false);
   // A ref as well as state, so a double tap can't send the same question twice
   const sendingRef=useRef(false);
-  const endRef=useRef<HTMLDivElement>(null);
+  const logRef=useRef<HTMLDivElement>(null);
 
+  // Scrolls only the chat log, never the page. If the newest message is taller
+  // than the log (small phones), show its start instead of its last chips.
   useEffect(()=>{
-    endRef.current?.scrollIntoView({behavior:"smooth",block:"end"});
+    const log=logRef.current;
+    const newest=log?.lastElementChild as HTMLElement|null|undefined;
+    if(!log||!newest) return;
+    const top=newest.offsetHeight>log.clientHeight?newest.offsetTop-12:log.scrollHeight;
+    log.scrollTo({top,behavior:"smooth"});
   },[messages,sending]);
 
   async function ask(raw:string){
@@ -64,25 +71,27 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
   const canSend=input.trim().length>0&&!sending;
 
   return(
-    <div className="min-h-screen w-full relative overflow-x-hidden" style={{background:"linear-gradient(140deg,#E0F7FA 0%,#FFFDE7 100%)"}}>
+    // Fills the screen above the bottom nav: only the chat log scrolls, the input stays at the bottom
+    <div className="w-full relative overflow-hidden flex flex-col"
+      style={{height:`calc(100dvh - ${NAV_HEIGHT_PX}px)`,background:"linear-gradient(140deg,#E0F7FA 0%,#FFFDE7 100%)"}}>
       <BgDeco items={["💬","⭐","💛","✨","🤖","💬","⭐","💙"]} opacity={.2}/>
-      <TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/>
-      <div className="relative z-10 flex flex-col items-center px-4 pb-10">
-        <div className="w-full" style={{maxWidth:"720px"}}>
-          <button onClick={onBack}
-            className="fn font-bold rounded-full bg-white px-5 mb-3 transition-transform hover:scale-105 active:scale-95"
-            style={{minHeight:"48px",fontSize:"18px",color:"#00838F",boxShadow:"0 4px 16px rgba(0,0,0,.1)"}}>
-            ← Back
-          </button>
+      <div className="flex-shrink-0"><TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/></div>
+      <div className="relative z-10 flex-1 min-h-0 flex flex-col items-center px-3 sm:px-4 pb-3">
+        <div className="w-full flex-1 min-h-0 flex flex-col" style={{maxWidth:"720px"}}>
+          <div className="flex-shrink-0 flex items-center gap-3 mb-2">
+            <button onClick={onBack}
+              className="fn font-bold rounded-full bg-white px-5 transition-transform hover:scale-105 active:scale-95"
+              style={{minHeight:"48px",fontSize:"18px",color:"#00838F",boxShadow:"0 4px 16px rgba(0,0,0,.1)"}}>
+              ← Back
+            </button>
+            <h1 className="ff" style={{fontSize:"clamp(22px,5vw,30px)",color:"#00838F"}}>Ask Emo 🤖</h1>
+          </div>
 
-          <div className="rounded-3xl bg-white w-full flex flex-col px-4 py-6 sm:px-6"
+          <div className="rounded-3xl bg-white w-full flex-1 min-h-0 flex flex-col"
             style={{border:"4px solid #00BCD4",boxShadow:"0 14px 45px rgba(0,188,212,.18)"}}>
-            <div className="flex flex-col items-center mb-4">
-              <div className="afb"><EmoRobot expression="waving" width={120}/></div>
-              <h1 className="ff text-center mt-1" style={{fontSize:"clamp(26px,5vw,34px)",color:"#00838F"}}>Ask Emo 🤖</h1>
-            </div>
-
-            <div role="log" aria-live="polite" aria-label="Chat with Emo" className="flex flex-col gap-4 mb-5">
+            <div ref={logRef} role="log" aria-live="polite" aria-label="Chat with Emo"
+              className="relative flex-1 min-h-0 overflow-y-auto overflow-x-hidden flex flex-col gap-4 px-3 pt-4 pb-3 sm:px-5">
+              <div className="flex justify-center"><div className="afb"><EmoRobot expression="waving" width={96}/></div></div>
               <EmoBubble text={GREETING} chips={starters} chipsLabel="Try one of these:" disabled={sending} onChip={ask}/>
               {messages.map((m,i)=>m.from==="child"
                 ?<ChildBubble key={i} text={m.text}/>
@@ -92,33 +101,36 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
                   Emo is thinking... 💭
                 </div>
               )}
-              <div ref={endRef}/>
             </div>
 
-            <form onSubmit={ev=>{ev.preventDefault();ask(input);}} className="flex flex-col gap-2">
-              <label htmlFor="ask-emo-input" className="fn font-bold" style={{fontSize:"17px",color:"#455A64"}}>
-                Type your question
-              </label>
-              <div className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={ev=>{ev.preventDefault();ask(input);}}
+              className="flex-shrink-0 flex flex-col gap-1 px-3 pt-3 pb-3 sm:px-5"
+              style={{borderTop:"2px solid #E0F7FA"}}>
+              <div className="flex justify-between items-baseline gap-2">
+                <label htmlFor="ask-emo-input" className="fn font-bold" style={{fontSize:"16px",color:"#455A64"}}>
+                  Type your question
+                </label>
+                <span id="ask-emo-count" className="fn" style={{fontSize:"13px",color:"#78909C"}}>
+                  {input.length}/{QUESTION_MAX}
+                </span>
+              </div>
+              <div className="flex gap-2">
                 <input id="ask-emo-input" type="text" value={input} onChange={ev=>setInput(ev.target.value)}
                   maxLength={QUESTION_MAX} autoComplete="off" aria-describedby="ask-emo-count"
-                  className="fn flex-1 min-w-0 rounded-2xl px-4 outline-none focus:ring-4"
-                  style={{minHeight:"60px",fontSize:"19px",border:"3px solid #00BCD4",color:"#37474F"}}/>
+                  className="fn flex-1 min-w-0 rounded-2xl px-3 outline-none focus:ring-4"
+                  style={{minHeight:"56px",fontSize:"18px",border:"3px solid #00BCD4",color:"#37474F"}}/>
                 <button type="submit" disabled={!canSend}
-                  className="ff rounded-full text-white transition-all active:scale-95"
-                  style={{minHeight:"60px",minWidth:"130px",fontSize:"22px",
+                  className="ff flex-shrink-0 rounded-full text-white px-5 transition-all active:scale-95"
+                  style={{minHeight:"56px",fontSize:"20px",
                     background:canSend?"#FF9800":"#ccc",cursor:canSend?"pointer":"not-allowed",
                     boxShadow:canSend?"0 6px 22px rgba(255,152,0,.35)":"none"}}>
                   {sending?"...":"Send"}
                 </button>
               </div>
-              <div id="ask-emo-count" className="fn self-end" style={{fontSize:"14px",color:"#78909C"}}>
-                {input.length}/{QUESTION_MAX}
-              </div>
               {resting?(
-                <p className="fn font-bold text-center" style={{fontSize:"15px",color:"#6A1B9A"}}>{RESTING_NOTE}</p>
+                <p className="fn font-bold text-center" style={{fontSize:"14px",color:"#6A1B9A"}}>{RESTING_NOTE}</p>
               ):remaining!==null&&(
-                <p className="fn text-center" style={{fontSize:"15px",color:"#78909C"}}>
+                <p className="fn text-center" style={{fontSize:"14px",color:"#78909C"}}>
                   Emo can answer {remaining} more question{remaining===1?"":"s"} today
                 </p>
               )}
