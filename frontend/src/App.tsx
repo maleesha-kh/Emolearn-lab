@@ -34,6 +34,7 @@ import { PinScreen } from "./screens/PinScreen";
 import { ParentScreen } from "./screens/ParentScreen";
 
 const PLAYER_ID_KEY = "emolearn_player_id";
+const SCREENS_WITHOUT_PLAYER: Scr[] = ["welcome", "pin", "parent"];
 
 export default function App() {
   const [screen, setScreen] = useState<Scr>("welcome");
@@ -55,6 +56,8 @@ export default function App() {
   const [badgePopupReady, setBadgePopupReady] = useState(false);
   // Kept only in memory while the parent area is open; the diary API needs it
   const [parentPin, setParentPin] = useState<string | null>(null);
+  // Where the parent area was opened from, so its Back buttons return there
+  const [parentEntry, setParentEntry] = useState<"welcome" | "profile">("profile");
 
   // Ref (not state) because saveRound/finishSession must await the exact
   // in-flight start/save calls, not a possibly-stale state value, and the
@@ -84,6 +87,11 @@ export default function App() {
 
   const go = (s: Scr) => setScreen(s);
   const home = () => go("welcome");
+
+  const openParentArea = (from: "welcome" | "profile") => {
+    setParentEntry(from);
+    go("pin");
+  };
 
   const abandonGame = () => {
     resumeScreenRef.current = null;
@@ -316,6 +324,7 @@ export default function App() {
         savedPlayer={savedPlayer}
         onLogin={loginPlayer}
         onForget={forgetSavedPlayer}
+        onManagePlayers={() => openParentArea("welcome")}
       />
     ),
     howtoplay: <HowToPlayScreen onStart={() => go("moodcheckin")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
@@ -366,7 +375,7 @@ export default function App() {
         onHome={home}
         soundOn={soundOn}
         onSound={toggleSound}
-        onParent={() => go("pin")}
+        onParent={() => openParentArea("profile")}
         onAchievements={() => go("achievements")}
         onSwitchPlayer={switchPlayer}
       />
@@ -374,23 +383,24 @@ export default function App() {
     achievements: <AchievementsScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
     dictionary: <DictionaryScreen playerId={currentPlayer?.id ?? ""} onHome={home} soundOn={soundOn} onSound={toggleSound} onPractice={() => enterGame(null)} onNewBadges={showNewBadges} onAskEmo={() => go("askemo")} />,
     askemo: <AskEmoScreen playerId={currentPlayer?.id ?? ""} onBack={() => go("dictionary")} onHome={home} soundOn={soundOn} onSound={toggleSound} />,
-    pin: <PinScreen onSuccess={(pin) => { setParentPin(pin); go("parent"); }} onBack={() => go("profile")} />,
+    pin: <PinScreen onSuccess={(pin) => { setParentPin(pin); go("parent"); }} onBack={() => go(parentEntry)} />,
     parent: (
       <ParentScreen
         currentPlayerId={currentPlayer?.id ?? ""}
         parentPin={parentPin ?? ""}
         onPinChanged={setParentPin}
         onPinRejected={() => go("pin")}
-        onBack={() => go(currentPlayer ? "profile" : "welcome")}
+        onBack={() => go(currentPlayer && parentEntry === "profile" ? "profile" : "welcome")}
         onPlayerUpdated={handleCurrentPlayerUpdated}
         onPlayerDeleted={handleCurrentPlayerDeleted}
+        initialView={parentEntry === "welcome" ? "children" : "overview"}
       />
     ),
   };
 
-  // Guard: without a logged-in player, only the welcome screen may show —
-  // covers stale navigation state (e.g. BottomNav) after a switch-player.
-  const effectiveScreen: Scr = !currentPlayer && screen !== "welcome" ? "welcome" : screen;
+  // Guard: without a logged-in player, only the welcome screen and the parent
+  // area may show — covers stale navigation state (e.g. BottomNav) after a switch-player.
+  const effectiveScreen: Scr = !currentPlayer && !SCREENS_WITHOUT_PLAYER.includes(screen) ? "welcome" : screen;
   const showNav = !SCREENS_WITHOUT_NAV.includes(effectiveScreen);
 
   // Leaving the parent area by any route forgets the PIN

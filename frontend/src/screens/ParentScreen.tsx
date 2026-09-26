@@ -257,13 +257,16 @@ function ChildRow({
   );
 }
 
+export type ParentView = "overview" | "children" | "diary" | "settings" | "about";
+
 export function ParentScreen({
-  currentPlayerId, parentPin, onPinChanged, onPinRejected, onBack, onPlayerUpdated, onPlayerDeleted,
+  currentPlayerId, parentPin, onPinChanged, onPinRejected, onBack, onPlayerUpdated, onPlayerDeleted, initialView = "overview",
 }: {
   currentPlayerId: string; parentPin: string; onPinChanged: (pin: string) => void; onPinRejected: () => void;
   onBack: () => void; onPlayerUpdated: (player: Player) => void; onPlayerDeleted: (playerId: string) => void;
+  initialView?: ParentView;
 }) {
-  const [view, setView] = useState<"overview" | "children" | "diary" | "settings" | "about">("overview");
+  const [view, setView] = useState<ParentView>(initialView);
   const [recoveryCode, setRecoveryCode] = useState<string | null>(null);
   const tabRowRef = useRef<HTMLDivElement>(null);
 

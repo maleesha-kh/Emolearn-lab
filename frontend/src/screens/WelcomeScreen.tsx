@@ -16,11 +16,13 @@ export function WelcomeScreen({
   savedPlayer,
   onLogin,
   onForget,
+  onManagePlayers,
 }: {
   checking: boolean;
   savedPlayer: Player | null;
   onLogin: (player: Player) => void;
   onForget: () => void;
+  onManagePlayers?: () => void;
 }) {
   const [mode, setMode] = useState<"pick" | "new">("pick");
   const [playersState, setPlayersState] = useState<PlayersState>({ status: "loading" });
@@ -157,6 +159,16 @@ export function WelcomeScreen({
                     <span className="fn font-bold" style={{ fontSize: "13px", color: "#E65100", textAlign: "center" }}>New Player</span>
                   </button>
                 </div>
+              )}
+
+              {playersState.status === "loaded" && playersState.players.length > 0 && onManagePlayers && (
+                <button
+                  onClick={onManagePlayers}
+                  className="fn font-bold self-start mb-2"
+                  style={{ background: "none", border: "none", padding: 0, color: "#00838F", fontSize: "14px", cursor: "pointer", textDecoration: "underline" }}
+                >
+                  👨‍👩‍👧 Manage players
+                </button>
               )}
             </>
           )}
