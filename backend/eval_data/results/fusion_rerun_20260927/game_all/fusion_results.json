@@ -1,0 +1,931 @@
+{
+  "test_dir": "frontend/public/images/characters",
+  "total_images": 72,
+  "face_only_mode_count": 0,
+  "face_only_files": [],
+  "branches": {
+    "face": {
+      "labels": [
+        "angry",
+        "happy",
+        "sad",
+        "surprised"
+      ],
+      "accuracy": 0.8611111111111112,
+      "macro_precision": 0.8925,
+      "macro_recall": 0.861111111111111,
+      "macro_f1": 0.8614139554625498,
+      "classification_report": {
+        "angry": {
+          "precision": 0.72,
+          "recall": 1.0,
+          "f1-score": 0.8372093023255814,
+          "support": 18.0
+        },
+        "happy": {
+          "precision": 0.85,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.8947368421052632,
+          "support": 18.0
+        },
+        "sad": {
+          "precision": 1.0,
+          "recall": 0.7222222222222222,
+          "f1-score": 0.8387096774193549,
+          "support": 18.0
+        },
+        "surprised": {
+          "precision": 1.0,
+          "recall": 0.7777777777777778,
+          "f1-score": 0.875,
+          "support": 18.0
+        },
+        "accuracy": 0.8611111111111112,
+        "macro avg": {
+          "precision": 0.8925,
+          "recall": 0.861111111111111,
+          "f1-score": 0.8614139554625498,
+          "support": 72.0
+        },
+        "weighted avg": {
+          "precision": 0.8924999999999998,
+          "recall": 0.8611111111111112,
+          "f1-score": 0.8614139554625498,
+          "support": 72.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          17,
+          0,
+          0
+        ],
+        [
+          5,
+          0,
+          13,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          14
+        ]
+      ]
+    },
+    "pose": {
+      "labels": [
+        "angry",
+        "happy",
+        "sad",
+        "surprised",
+        "none"
+      ],
+      "accuracy": 0.5416666666666666,
+      "macro_precision": 0.5872596153846154,
+      "macro_recall": 0.5416666666666666,
+      "macro_f1": 0.5447559406537734,
+      "classification_report": {
+        "angry": {
+          "precision": 0.55,
+          "recall": 0.6111111111111112,
+          "f1-score": 0.5789473684210527,
+          "support": 18.0
+        },
+        "happy": {
+          "precision": 0.46153846153846156,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5454545454545454,
+          "support": 18.0
+        },
+        "sad": {
+          "precision": 0.9,
+          "recall": 0.5,
+          "f1-score": 0.6428571428571429,
+          "support": 18.0
+        },
+        "surprised": {
+          "precision": 0.4375,
+          "recall": 0.3888888888888889,
+          "f1-score": 0.4117647058823529,
+          "support": 18.0
+        },
+        "none": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        },
+        "accuracy": 0.5416666666666666,
+        "macro avg": {
+          "precision": 0.46980769230769226,
+          "recall": 0.4333333333333333,
+          "f1-score": 0.43580475252301876,
+          "support": 72.0
+        },
+        "weighted avg": {
+          "precision": 0.5872596153846154,
+          "recall": 0.5416666666666666,
+          "f1-score": 0.5447559406537734,
+          "support": 72.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          11,
+          2,
+          0,
+          5,
+          0
+        ],
+        [
+          4,
+          12,
+          0,
+          2,
+          0
+        ],
+        [
+          4,
+          3,
+          9,
+          2,
+          0
+        ],
+        [
+          1,
+          9,
+          1,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "fused": {
+      "labels": [
+        "angry",
+        "happy",
+        "sad",
+        "surprised"
+      ],
+      "accuracy": 0.9305555555555556,
+      "macro_precision": 0.9456521739130435,
+      "macro_recall": 0.9305555555555556,
+      "macro_f1": 0.9311193379790941,
+      "classification_report": {
+        "angry": {
+          "precision": 0.782608695652174,
+          "recall": 1.0,
+          "f1-score": 0.8780487804878049,
+          "support": 18.0
+        },
+        "happy": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 18.0
+        },
+        "sad": {
+          "precision": 1.0,
+          "recall": 0.7777777777777778,
+          "f1-score": 0.875,
+          "support": 18.0
+        },
+        "surprised": {
+          "precision": 1.0,
+          "recall": 0.9444444444444444,
+          "f1-score": 0.9714285714285714,
+          "support": 18.0
+        },
+        "accuracy": 0.9305555555555556,
+        "macro avg": {
+          "precision": 0.9456521739130435,
+          "recall": 0.9305555555555556,
+          "f1-score": 0.9311193379790941,
+          "support": 72.0
+        },
+        "weighted avg": {
+          "precision": 0.9456521739130435,
+          "recall": 0.9305555555555556,
+          "f1-score": 0.9311193379790941,
+          "support": 72.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          18,
+          0,
+          0
+        ],
+        [
+          4,
+          0,
+          14,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          17
+        ]
+      ]
+    }
+  },
+  "fusion_fixed_broke": {
+    "fixed_count": 35,
+    "broke_count": 2,
+    "fixed": [
+      "angry/angry_game_01.png",
+      "angry/angry_game_03.png",
+      "angry/angry_game_04.png",
+      "angry/angry_game_06.png",
+      "angry/angry_game_07.png",
+      "angry/angry_game_09.png",
+      "angry/angry_v7_5.png",
+      "happy/happy_game_02.png",
+      "happy/happy_game_03.png",
+      "happy/happy_game_04.png",
+      "happy/happy_game_06.png",
+      "happy/happy_game_07.png",
+      "happy/happy_game_10.png",
+      "happy/happy_v5_5.png",
+      "sad/sad_game_01.png",
+      "sad/sad_game_02.png",
+      "sad/sad_game_06.png",
+      "sad/sad_game_08.png",
+      "sad/sad_game_09.png",
+      "sad/sad_v6_5.png",
+      "sad/sad_v8_5.png",
+      "surprised/surprised_game_01.png",
+      "surprised/surprised_game_02.png",
+      "surprised/surprised_game_03.png",
+      "surprised/surprised_game_04.png",
+      "surprised/surprised_game_05.png",
+      "surprised/surprised_game_06.png",
+      "surprised/surprised_game_07.png",
+      "surprised/surprised_game_08.png",
+      "surprised/surprised_game_09.png",
+      "surprised/surprised_game_10.png",
+      "surprised/surprised_v1_5.png",
+      "surprised/surprised_v2_5.png",
+      "surprised/surprised_v4_5.png",
+      "surprised/surprised_v5_5.png"
+    ],
+    "broke": [
+      "sad/sad_game_10.png",
+      "surprised/surprised_v8_5.png"
+    ],
+    "vs_face": {
+      "fixed": [
+        "happy/happy_v5_5.png",
+        "sad/sad_game_09.png",
+        "sad/sad_v6_5.png",
+        "surprised/surprised_v1_5.png",
+        "surprised/surprised_v2_5.png",
+        "surprised/surprised_v5_5.png"
+      ],
+      "broke": [
+        "sad/sad_game_10.png"
+      ]
+    },
+    "vs_pose": {
+      "fixed": [
+        "angry/angry_game_01.png",
+        "angry/angry_game_03.png",
+        "angry/angry_game_04.png",
+        "angry/angry_game_06.png",
+        "angry/angry_game_07.png",
+        "angry/angry_game_09.png",
+        "angry/angry_v7_5.png",
+        "happy/happy_game_02.png",
+        "happy/happy_game_03.png",
+        "happy/happy_game_04.png",
+        "happy/happy_game_06.png",
+        "happy/happy_game_07.png",
+        "happy/happy_game_10.png",
+        "sad/sad_game_01.png",
+        "sad/sad_game_02.png",
+        "sad/sad_game_06.png",
+        "sad/sad_game_08.png",
+        "sad/sad_v8_5.png",
+        "surprised/surprised_game_01.png",
+        "surprised/surprised_game_02.png",
+        "surprised/surprised_game_03.png",
+        "surprised/surprised_game_04.png",
+        "surprised/surprised_game_05.png",
+        "surprised/surprised_game_06.png",
+        "surprised/surprised_game_07.png",
+        "surprised/surprised_game_08.png",
+        "surprised/surprised_game_09.png",
+        "surprised/surprised_game_10.png",
+        "surprised/surprised_v4_5.png"
+      ],
+      "broke": [
+        "surprised/surprised_v8_5.png"
+      ]
+    },
+    "both_branches_right": 32,
+    "all_three_wrong": 3
+  },
+  "per_image": [
+    {
+      "file": "angry/angry_game_01.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_02.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_03.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "happy",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_04.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_05.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_06.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_07.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_08.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_09.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_game_10.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v1_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v2_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v3_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v4_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v5_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v6_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v7_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "happy",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "angry/angry_v8_5.png",
+      "true": "angry",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_01.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_02.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "surprised",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_03.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "angry",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_04.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "angry",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_05.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_06.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "surprised",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_07.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "angry",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_08.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_09.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_game_10.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "angry",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v1_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v2_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v3_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v4_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v5_5.png",
+      "true": "happy",
+      "face": "angry",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v6_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v7_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "happy/happy_v8_5.png",
+      "true": "happy",
+      "face": "happy",
+      "pose": "happy",
+      "fused": "happy",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_01.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "surprised",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_02.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "happy",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_03.png",
+      "true": "sad",
+      "face": "angry",
+      "pose": "happy",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_04.png",
+      "true": "sad",
+      "face": "angry",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_05.png",
+      "true": "sad",
+      "face": "angry",
+      "pose": "happy",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_06.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "angry",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_07.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_08.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "angry",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_09.png",
+      "true": "sad",
+      "face": "angry",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_game_10.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "angry",
+      "fused": "angry",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v1_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v2_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v3_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v4_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v5_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v6_5.png",
+      "true": "sad",
+      "face": "angry",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v7_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "sad",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "sad/sad_v8_5.png",
+      "true": "sad",
+      "face": "sad",
+      "pose": "surprised",
+      "fused": "sad",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_01.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_02.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_03.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_04.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "angry",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_05.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_06.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_07.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_08.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_09.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_game_10.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "happy",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v1_5.png",
+      "true": "surprised",
+      "face": "happy",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v2_5.png",
+      "true": "surprised",
+      "face": "happy",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v3_5.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v4_5.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "sad",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v5_5.png",
+      "true": "surprised",
+      "face": "happy",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v6_5.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v7_5.png",
+      "true": "surprised",
+      "face": "surprised",
+      "pose": "surprised",
+      "fused": "surprised",
+      "mode": "fused"
+    },
+    {
+      "file": "surprised/surprised_v8_5.png",
+      "true": "surprised",
+      "face": "angry",
+      "pose": "surprised",
+      "fused": "angry",
+      "mode": "fused"
+    }
+  ]
+}

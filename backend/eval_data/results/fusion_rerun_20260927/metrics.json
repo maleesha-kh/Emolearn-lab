@@ -1,0 +1,108 @@
+{
+  "run_at": "2026-09-27T23:04:44",
+  "fusion_weights": {
+    "Wf": 0.37758933195235633,
+    "Wp": 0.6224106680476438,
+    "source": "computed in app/core/fusion.py as Wi = Ai / (Af + Ap) from config values",
+    "Af_FACE_BRANCH_ACCURACY": 0.5833,
+    "Ap_POSE_BRANCH_ACCURACY": 0.9615
+  },
+  "sets": {
+    "fusion_test": {
+      "total_images": 24,
+      "face_only_mode_count": 0,
+      "fixed_count": 4,
+      "broke_count": 4,
+      "face": {
+        "accuracy": 0.5,
+        "macro_precision": 0.3988095238095238,
+        "macro_recall": 0.5,
+        "macro_f1": 0.41666666666666663
+      },
+      "pose": {
+        "accuracy": 0.5,
+        "macro_precision": 0.7136363636363636,
+        "macro_recall": 0.5,
+        "macro_f1": 0.4684873949579832
+      },
+      "fused": {
+        "accuracy": 0.5,
+        "macro_precision": 0.3988095238095238,
+        "macro_recall": 0.5,
+        "macro_f1": 0.41666666666666663
+      }
+    },
+    "game_all": {
+      "total_images": 72,
+      "face_only_mode_count": 0,
+      "fixed_count": 35,
+      "broke_count": 2,
+      "face": {
+        "accuracy": 0.8611111111111112,
+        "macro_precision": 0.8925,
+        "macro_recall": 0.861111111111111,
+        "macro_f1": 0.8614139554625498
+      },
+      "pose": {
+        "accuracy": 0.5416666666666666,
+        "macro_precision": 0.5872596153846154,
+        "macro_recall": 0.5416666666666666,
+        "macro_f1": 0.5447559406537734
+      },
+      "fused": {
+        "accuracy": 0.9305555555555556,
+        "macro_precision": 0.9456521739130435,
+        "macro_recall": 0.9305555555555556,
+        "macro_f1": 0.9311193379790941
+      }
+    },
+    "game_old": {
+      "total_images": 32,
+      "face_only_mode_count": 0,
+      "fixed_count": 8,
+      "broke_count": 1,
+      "face": {
+        "accuracy": 0.8125,
+        "macro_precision": 0.8568181818181818,
+        "macro_recall": 0.8125,
+        "macro_f1": 0.8049707602339181
+      },
+      "pose": {
+        "accuracy": 0.90625,
+        "macro_precision": 0.9097222222222222,
+        "macro_recall": 0.90625,
+        "macro_f1": 0.9061274509803922
+      },
+      "fused": {
+        "accuracy": 0.96875,
+        "macro_precision": 0.9722222222222222,
+        "macro_recall": 0.96875,
+        "macro_f1": 0.9686274509803923
+      }
+    },
+    "game_new": {
+      "total_images": 40,
+      "face_only_mode_count": 0,
+      "fixed_count": 27,
+      "broke_count": 1,
+      "face": {
+        "accuracy": 0.9,
+        "macro_precision": 0.9285714285714286,
+        "macro_recall": 0.9,
+        "macro_f1": 0.8958333333333334
+      },
+      "pose": {
+        "accuracy": 0.25,
+        "macro_precision": 0.38574660633484165,
+        "macro_recall": 0.25,
+        "macro_f1": 0.24436392914653782
+      },
+      "fused": {
+        "accuracy": 0.9,
+        "macro_precision": 0.9285714285714286,
+        "macro_recall": 0.9,
+        "macro_f1": 0.8958333333333334
+      }
+    }
+  }
+}

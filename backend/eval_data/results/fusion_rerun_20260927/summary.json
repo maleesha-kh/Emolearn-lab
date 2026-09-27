@@ -1,0 +1,147 @@
+{
+  "run_at": "2026-09-27T23:04:44",
+  "scripts": [
+    "rerun_fusion.py",
+    "overlap.py"
+  ],
+  "previous_results": {
+    "path": "backend/eval_data/results/fusion_test/",
+    "written": "2026-09-23 21:13 (+0530), committed fc9a76b",
+    "reproduced": "fusion_test confusion matrices identical for face, pose and fused"
+  },
+  "models_changed_since_previous": false,
+  "models_note": "face_branch_v4_clean.weights.h5 (2026-09-23 15:02) and random_forest_pose_model_bg_removed.pkl / label_encoder_bg_removed.pkl (2026-09-23 15:41) predate the previous results; later code changes (crop_face refactor, pose explanation helpers, DB config) do not change predictions.",
+  "fusion_weights": {
+    "Wf": 0.37758933195235633,
+    "Wp": 0.6224106680476438,
+    "source": "computed in app/core/fusion.py as Wi = Ai / (Af + Ap) from config values",
+    "Af_FACE_BRANCH_ACCURACY": 0.5833,
+    "Ap_POSE_BRANCH_ACCURACY": 0.9615
+  },
+  "fusion_weights_note": "Ap = 0.9615 was measured on a split of the 128 pose images, which contain near-duplicate frames; pose accuracy on fair sets here is 0.25-0.50.",
+  "image_sets": {
+    "fusion_test": {
+      "fair_test": true,
+      "source": "24 images (<emotion>_fresh_1..6.png) generated with ChatGPT (OpenAI gpt-image, C2PA credentials); added 2026-09-23 in fc9a76b",
+      "overlap": "none; no exact match, nearest training image thumb_mad [0.0672, 0.1159]; same character design as training, but separate renders"
+    },
+    "game_new": {
+      "fair_test": true,
+      "source": "40 *_game_*.png added 2026-09-25 in c97ef3e; originals in game_images_raw/ generated with ChatGPT (OpenAI C2PA), background removed with rembg",
+      "overlap": "none; no exact match, nearest training image thumb_mad [0.0396, 0.2506]; closest pair angry_game_05 vs pose angry_v8_1 checked visually: same character and similar stance, but a separate render (different generator), not a duplicate"
+    },
+    "game_old": {
+      "fair_test": false,
+      "source": "32 *_v{1-8}_5.png added 2026-08-06 in 91b1e3f; Gemini-generated, same generation grids as the pose training images *_v{1-8}_{1-4}",
+      "overlap": "near-duplicates of pose training images from the same v* grid (thumb_mad [0.0037, 0.0892], no byte-identical file); face Stage 2 fine-tuned on crops of those same pose images, and Downloads/test2 holds these 32 as the old face held-out set"
+    },
+    "game_all": {
+      "fair_test": false,
+      "note": "includes the 32 game_old images"
+    }
+  },
+  "not_checked": [
+    "FERG-DB (Google Drive only)",
+    "Stage 2 face crops (Google Drive only)"
+  ],
+  "exact_matches_with_training": 0,
+  "results": {
+    "fusion_test": {
+      "total_images": 24,
+      "face_only_mode_count": 0,
+      "fixed_count": 4,
+      "broke_count": 4,
+      "face": {
+        "accuracy": 0.5,
+        "macro_precision": 0.3988095238095238,
+        "macro_recall": 0.5,
+        "macro_f1": 0.41666666666666663
+      },
+      "pose": {
+        "accuracy": 0.5,
+        "macro_precision": 0.7136363636363636,
+        "macro_recall": 0.5,
+        "macro_f1": 0.4684873949579832
+      },
+      "fused": {
+        "accuracy": 0.5,
+        "macro_precision": 0.3988095238095238,
+        "macro_recall": 0.5,
+        "macro_f1": 0.41666666666666663
+      }
+    },
+    "game_all": {
+      "total_images": 72,
+      "face_only_mode_count": 0,
+      "fixed_count": 35,
+      "broke_count": 2,
+      "face": {
+        "accuracy": 0.8611111111111112,
+        "macro_precision": 0.8925,
+        "macro_recall": 0.861111111111111,
+        "macro_f1": 0.8614139554625498
+      },
+      "pose": {
+        "accuracy": 0.5416666666666666,
+        "macro_precision": 0.5872596153846154,
+        "macro_recall": 0.5416666666666666,
+        "macro_f1": 0.5447559406537734
+      },
+      "fused": {
+        "accuracy": 0.9305555555555556,
+        "macro_precision": 0.9456521739130435,
+        "macro_recall": 0.9305555555555556,
+        "macro_f1": 0.9311193379790941
+      }
+    },
+    "game_old": {
+      "total_images": 32,
+      "face_only_mode_count": 0,
+      "fixed_count": 8,
+      "broke_count": 1,
+      "face": {
+        "accuracy": 0.8125,
+        "macro_precision": 0.8568181818181818,
+        "macro_recall": 0.8125,
+        "macro_f1": 0.8049707602339181
+      },
+      "pose": {
+        "accuracy": 0.90625,
+        "macro_precision": 0.9097222222222222,
+        "macro_recall": 0.90625,
+        "macro_f1": 0.9061274509803922
+      },
+      "fused": {
+        "accuracy": 0.96875,
+        "macro_precision": 0.9722222222222222,
+        "macro_recall": 0.96875,
+        "macro_f1": 0.9686274509803923
+      }
+    },
+    "game_new": {
+      "total_images": 40,
+      "face_only_mode_count": 0,
+      "fixed_count": 27,
+      "broke_count": 1,
+      "face": {
+        "accuracy": 0.9,
+        "macro_precision": 0.9285714285714286,
+        "macro_recall": 0.9,
+        "macro_f1": 0.8958333333333334
+      },
+      "pose": {
+        "accuracy": 0.25,
+        "macro_precision": 0.38574660633484165,
+        "macro_recall": 0.25,
+        "macro_f1": 0.24436392914653782
+      },
+      "fused": {
+        "accuracy": 0.9,
+        "macro_precision": 0.9285714285714286,
+        "macro_recall": 0.9,
+        "macro_f1": 0.8958333333333334
+      }
+    }
+  },
+  "conclusion": "On the fair sets (fusion_test, game_new) fused accuracy equals face-only accuracy; the fusion gain on game_all comes from game_old, which is not a fair test."
+}

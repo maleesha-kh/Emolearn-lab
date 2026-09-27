@@ -1,0 +1,2733 @@
+{
+  "method": "sha256 exact match; nearest by 32x32 greyscale thumbnail mean abs diff (0-1), with 64-bit dHash Hamming distance",
+  "train_sets_checked": {
+    "pose_raw_128": "D:\\Emolearn-lab\\backend\\app\\ml\\pose_branch\\data\\raw_images",
+    "pose_bg_removed_128": "D:\\Emolearn-lab\\backend\\app\\ml\\pose_branch\\data\\raw_images_bg_removed",
+    "fixed_split_train": "C:\\Users\\USER\\Downloads\\fixed_train_test_split\\fixed_split\\new_images_for_train",
+    "fixed_split_test": "C:\\Users\\USER\\Downloads\\fixed_train_test_split\\fixed_split\\new_images_for_fixed_test",
+    "downloads_test2": "C:\\Users\\USER\\Downloads\\test2"
+  },
+  "skipped_missing": [],
+  "not_checked": [
+    "FERG-DB (Google Drive only)",
+    "Stage 2 face crops (Google Drive only)"
+  ],
+  "c2pa_generator_counts": {
+    "fusion_test": {
+      "openai": 24
+    },
+    "game": {
+      "none": 72
+    },
+    "pose_raw_128": {
+      "google": 12,
+      "none": 116
+    },
+    "pose_bg_removed_128": {
+      "none": 128
+    },
+    "fixed_split_train": {
+      "none": 75
+    },
+    "fixed_split_test": {
+      "none": 9
+    },
+    "downloads_test2": {
+      "none": 32
+    },
+    "game_images_raw": {
+      "openai": 40
+    }
+  },
+  "exact_matches": 0,
+  "matches": [
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_1.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.085,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.0858,
+          "dhash_hamming": 16,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0928,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_2.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0929,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.0953,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0981,
+          "dhash_hamming": 30,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_3.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.0853,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0922,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0965,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_4.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.1127,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.1181,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.1204,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0672,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0686,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.0886,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "angry/angry_fresh_6.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.1001,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.1021,
+          "dhash_hamming": 34,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.103,
+          "dhash_hamming": 33,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_1.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0846,
+          "dhash_hamming": 30,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0875,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.0904,
+          "dhash_hamming": 33,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_2.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0875,
+          "dhash_hamming": 34,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0991,
+          "dhash_hamming": 37,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.1042,
+          "dhash_hamming": 27,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_3.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0899,
+          "dhash_hamming": 29,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0975,
+          "dhash_hamming": 32,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.1059,
+          "dhash_hamming": 30,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_4.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.081,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0927,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.1009,
+          "dhash_hamming": 30,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0816,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.093,
+          "dhash_hamming": 32,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0946,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "happy/happy_fresh_6.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.075,
+          "dhash_hamming": 26,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0831,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v3_5.jpg",
+          "thumb_mad": 0.0864,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_1.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.09,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.0972,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1069,
+          "dhash_hamming": 29,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_2.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0888,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.104,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1048,
+          "dhash_hamming": 33,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_3.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0788,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.0928,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0992,
+          "dhash_hamming": 30,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_4.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0822,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1028,
+          "dhash_hamming": 33,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.1076,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.073,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v6_5.jpg",
+          "thumb_mad": 0.0975,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0978,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "sad/sad_fresh_6.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.1019,
+          "dhash_hamming": 34,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1094,
+          "dhash_hamming": 35,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.1171,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_1.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0803,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "angry/angry_v8_5.jpg",
+          "thumb_mad": 0.1011,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1071,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_2.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0765,
+          "dhash_hamming": 27,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0861,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.0978,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_3.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.1159,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.1181,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1216,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_4.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0841,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0932,
+          "dhash_hamming": 36,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.1096,
+          "dhash_hamming": 33,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0848,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.1067,
+          "dhash_hamming": 26,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.1102,
+          "dhash_hamming": 28,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "fusion_test",
+      "file": "surprised/surprised_fresh_6.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v7_5.jpg",
+          "thumb_mad": 0.0714,
+          "dhash_hamming": 31,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v1_5.jpg",
+          "thumb_mad": 0.0807,
+          "dhash_hamming": 26,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "suprised/suprised_v8_5.jpg",
+          "thumb_mad": 0.0913,
+          "dhash_hamming": 34,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_01.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_1.png",
+          "thumb_mad": 0.0409,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0428,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0429,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_02.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_4.png",
+          "thumb_mad": 0.0786,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_4.png",
+          "thumb_mad": 0.0796,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_3.png",
+          "thumb_mad": 0.0802,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_03.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_4.png",
+          "thumb_mad": 0.0485,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0496,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0497,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_04.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_1.png",
+          "thumb_mad": 0.0985,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_3.png",
+          "thumb_mad": 0.0987,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_2.png",
+          "thumb_mad": 0.0988,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_05.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_1.png",
+          "thumb_mad": 0.0396,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0416,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0418,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_06.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v6_5.jpg",
+          "thumb_mad": 0.0664,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_4.png",
+          "thumb_mad": 0.0673,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0674,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_07.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0467,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0467,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_4.png",
+          "thumb_mad": 0.0469,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_08.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_4.png",
+          "thumb_mad": 0.0548,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.058,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0582,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_09.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_2.png",
+          "thumb_mad": 0.0429,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v3_5.jpg",
+          "thumb_mad": 0.0432,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_4.png",
+          "thumb_mad": 0.0434,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_game_10.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_1.png",
+          "thumb_mad": 0.0527,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_2.png",
+          "thumb_mad": 0.0532,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_2.png",
+          "thumb_mad": 0.0534,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v1_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v2_1.png",
+          "thumb_mad": 0.019,
+          "dhash_hamming": 8,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v2_4.png",
+          "thumb_mad": 0.0194,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v3_1.png",
+          "thumb_mad": 0.0196,
+          "dhash_hamming": 6,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v2_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v2_3.png",
+          "thumb_mad": 0.0046,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v2_2.png",
+          "thumb_mad": 0.0053,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v2_1.png",
+          "thumb_mad": 0.0079,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v3_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v3_4.png",
+          "thumb_mad": 0.0226,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v3_2.png",
+          "thumb_mad": 0.024,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v4_3.png",
+          "thumb_mad": 0.0241,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v4_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v4_3.png",
+          "thumb_mad": 0.0098,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v4_4.png",
+          "thumb_mad": 0.0101,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v4_2.png",
+          "thumb_mad": 0.0116,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v5_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_1.png",
+          "thumb_mad": 0.0182,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_2.png",
+          "thumb_mad": 0.0184,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v5_1.png",
+          "thumb_mad": 0.0189,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v6_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_4.png",
+          "thumb_mad": 0.056,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_2.png",
+          "thumb_mad": 0.06,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_1.png",
+          "thumb_mad": 0.0603,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v7_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_3.png",
+          "thumb_mad": 0.0398,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v6_5.jpg",
+          "thumb_mad": 0.041,
+          "dhash_hamming": 8,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_4.png",
+          "thumb_mad": 0.0411,
+          "dhash_hamming": 6,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "angry/angry_v8_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_4.png",
+          "thumb_mad": 0.0205,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0216,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0219,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_01.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_1.png",
+          "thumb_mad": 0.0673,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_2.png",
+          "thumb_mad": 0.0679,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v8_5.jpg",
+          "thumb_mad": 0.0696,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_02.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_1.png",
+          "thumb_mad": 0.0617,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_2.png",
+          "thumb_mad": 0.0626,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_3.png",
+          "thumb_mad": 0.0633,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_03.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_2.png",
+          "thumb_mad": 0.0953,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_3.png",
+          "thumb_mad": 0.0956,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_4.png",
+          "thumb_mad": 0.0958,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_04.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.1026,
+          "dhash_hamming": 26,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_3.png",
+          "thumb_mad": 0.104,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.1042,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_05.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_2.png",
+          "thumb_mad": 0.0724,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_1.png",
+          "thumb_mad": 0.0724,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0797,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_06.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_4.png",
+          "thumb_mad": 0.0906,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_1.png",
+          "thumb_mad": 0.0915,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_1.png",
+          "thumb_mad": 0.0919,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_07.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v8_5.jpg",
+          "thumb_mad": 0.0884,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.091,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_1.png",
+          "thumb_mad": 0.0914,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_08.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_3.png",
+          "thumb_mad": 0.0926,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_1.png",
+          "thumb_mad": 0.093,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_2.png",
+          "thumb_mad": 0.0934,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_09.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_1.png",
+          "thumb_mad": 0.0869,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_2.png",
+          "thumb_mad": 0.0902,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_2.png",
+          "thumb_mad": 0.0919,
+          "dhash_hamming": 24,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_game_10.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_2.png",
+          "thumb_mad": 0.0804,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_3.png",
+          "thumb_mad": 0.0814,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_1.png",
+          "thumb_mad": 0.0821,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v1_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v1_5.jpg",
+          "thumb_mad": 0.0053,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v1_4.png",
+          "thumb_mad": 0.0288,
+          "dhash_hamming": 6,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v1_1.png",
+          "thumb_mad": 0.0397,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v2_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v2_5.jpg",
+          "thumb_mad": 0.005,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_1.png",
+          "thumb_mad": 0.0266,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_4.png",
+          "thumb_mad": 0.0292,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v3_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_4.png",
+          "thumb_mad": 0.0051,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v3_5.jpg",
+          "thumb_mad": 0.0055,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v3_3.png",
+          "thumb_mad": 0.0065,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v4_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v4_5.jpg",
+          "thumb_mad": 0.0069,
+          "dhash_hamming": 6,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_1.png",
+          "thumb_mad": 0.0149,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_2.png",
+          "thumb_mad": 0.0421,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v5_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v5_5.jpg",
+          "thumb_mad": 0.0064,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v5_4.png",
+          "thumb_mad": 0.0072,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v4_2.png",
+          "thumb_mad": 0.0138,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v6_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_4.png",
+          "thumb_mad": 0.0037,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v6_5.jpg",
+          "thumb_mad": 0.0052,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_2.png",
+          "thumb_mad": 0.018,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v7_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v7_5.jpg",
+          "thumb_mad": 0.0063,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v7_4.png",
+          "thumb_mad": 0.0166,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v7_3.png",
+          "thumb_mad": 0.0256,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "happy/happy_v8_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v8_1.png",
+          "thumb_mad": 0.0199,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v8_5.jpg",
+          "thumb_mad": 0.0223,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v8_4.png",
+          "thumb_mad": 0.0248,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_01.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0916,
+          "dhash_hamming": 16,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0936,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0938,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_02.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0963,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0978,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_4.png",
+          "thumb_mad": 0.0985,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_03.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0789,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0796,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_4.png",
+          "thumb_mad": 0.0803,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_04.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_2.png",
+          "thumb_mad": 0.0865,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0891,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0894,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_05.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0804,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0805,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0811,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_06.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0851,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0861,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0868,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_07.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_3.png",
+          "thumb_mad": 0.1545,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_1.png",
+          "thumb_mad": 0.1572,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v4_1.png",
+          "thumb_mad": 0.1579,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_08.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0852,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0852,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0858,
+          "dhash_hamming": 11,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_09.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "fixed_split_train",
+          "file": "sad/sad_new2_r1c3.png",
+          "thumb_mad": 0.2506,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v5_4.png",
+          "thumb_mad": 0.2537,
+          "dhash_hamming": 25,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v6_2.png",
+          "thumb_mad": 0.2561,
+          "dhash_hamming": 26,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_game_10.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.0772,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0783,
+          "dhash_hamming": 8,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0786,
+          "dhash_hamming": 8,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v1_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v1_4.png",
+          "thumb_mad": 0.0222,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_4.png",
+          "thumb_mad": 0.0237,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_3.png",
+          "thumb_mad": 0.0255,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v2_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_4.png",
+          "thumb_mad": 0.0144,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_3.png",
+          "thumb_mad": 0.0198,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_1.png",
+          "thumb_mad": 0.0235,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v3_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0055,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_3.png",
+          "thumb_mad": 0.0075,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v3_5.jpg",
+          "thumb_mad": 0.013,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v4_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v4_1.png",
+          "thumb_mad": 0.0101,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_4.png",
+          "thumb_mad": 0.0231,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_3.png",
+          "thumb_mad": 0.0244,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v5_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v5_2.png",
+          "thumb_mad": 0.0202,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_1.png",
+          "thumb_mad": 0.0209,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v2_2.png",
+          "thumb_mad": 0.0219,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v6_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "downloads_test2",
+          "file": "sad/sad_v6_5.jpg",
+          "thumb_mad": 0.0076,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v7_2.png",
+          "thumb_mad": 0.0127,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v7_1.png",
+          "thumb_mad": 0.0133,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v7_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v7_4.png",
+          "thumb_mad": 0.0081,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v7_3.png",
+          "thumb_mad": 0.0086,
+          "dhash_hamming": 0,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v7_2.png",
+          "thumb_mad": 0.0134,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "sad/sad_v8_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v1_3.png",
+          "thumb_mad": 0.0258,
+          "dhash_hamming": 8,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v1_2.png",
+          "thumb_mad": 0.0265,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0283,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_01.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.084,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_4.png",
+          "thumb_mad": 0.0849,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_1.png",
+          "thumb_mad": 0.0857,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_02.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_3.png",
+          "thumb_mad": 0.0993,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_2.png",
+          "thumb_mad": 0.1006,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v4_2.png",
+          "thumb_mad": 0.1018,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_03.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v4_2.png",
+          "thumb_mad": 0.0911,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v4_3.png",
+          "thumb_mad": 0.092,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v4_4.png",
+          "thumb_mad": 0.0921,
+          "dhash_hamming": 14,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_04.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_4.png",
+          "thumb_mad": 0.0659,
+          "dhash_hamming": 15,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_3.png",
+          "thumb_mad": 0.066,
+          "dhash_hamming": 16,
+          "identical_bytes": false
+        },
+        {
+          "set": "downloads_test2",
+          "file": "happy/happy_v6_5.jpg",
+          "thumb_mad": 0.0663,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_05.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_1.png",
+          "thumb_mad": 0.0801,
+          "dhash_hamming": 16,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_2.png",
+          "thumb_mad": 0.0803,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v8_3.png",
+          "thumb_mad": 0.0805,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_06.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_3.png",
+          "thumb_mad": 0.1346,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_2.png",
+          "thumb_mad": 0.1346,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_4.png",
+          "thumb_mad": 0.1347,
+          "dhash_hamming": 17,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_07.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_1.png",
+          "thumb_mad": 0.088,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "angry/angry_v7_3.png",
+          "thumb_mad": 0.0891,
+          "dhash_hamming": 16,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_2.png",
+          "thumb_mad": 0.0893,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_08.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v5_2.png",
+          "thumb_mad": 0.095,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_3.png",
+          "thumb_mad": 0.0989,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v2_1.png",
+          "thumb_mad": 0.0999,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_09.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_3.png",
+          "thumb_mad": 0.103,
+          "dhash_hamming": 19,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_2.png",
+          "thumb_mad": 0.1059,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "happy/happy_v6_1.png",
+          "thumb_mad": 0.1081,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_game_10.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_2.png",
+          "thumb_mad": 0.0774,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v3_4.png",
+          "thumb_mad": 0.0777,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "sad/sad_v1_2.png",
+          "thumb_mad": 0.0782,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v1_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_4.png",
+          "thumb_mad": 0.0153,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_3.png",
+          "thumb_mad": 0.0178,
+          "dhash_hamming": 4,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_2.png",
+          "thumb_mad": 0.0406,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v2_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_4.png",
+          "thumb_mad": 0.0396,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v2_3.png",
+          "thumb_mad": 0.0403,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v3_2.png",
+          "thumb_mad": 0.1078,
+          "dhash_hamming": 22,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v3_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v3_1.png",
+          "thumb_mad": 0.0129,
+          "dhash_hamming": 3,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v3_4.png",
+          "thumb_mad": 0.0231,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v3_3.png",
+          "thumb_mad": 0.0417,
+          "dhash_hamming": 12,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v4_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v3_2.png",
+          "thumb_mad": 0.0892,
+          "dhash_hamming": 20,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_4.png",
+          "thumb_mad": 0.0893,
+          "dhash_hamming": 23,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v1_3.png",
+          "thumb_mad": 0.0905,
+          "dhash_hamming": 21,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v5_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v5_4.png",
+          "thumb_mad": 0.04,
+          "dhash_hamming": 7,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v5_1.png",
+          "thumb_mad": 0.0709,
+          "dhash_hamming": 13,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v5_3.png",
+          "thumb_mad": 0.089,
+          "dhash_hamming": 18,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v6_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_2.png",
+          "thumb_mad": 0.0322,
+          "dhash_hamming": 9,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_4.png",
+          "thumb_mad": 0.0327,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_3.png",
+          "thumb_mad": 0.0331,
+          "dhash_hamming": 10,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v7_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_4.png",
+          "thumb_mad": 0.0167,
+          "dhash_hamming": 5,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_1.png",
+          "thumb_mad": 0.017,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v7_2.png",
+          "thumb_mad": 0.0176,
+          "dhash_hamming": 6,
+          "identical_bytes": false
+        }
+      ]
+    },
+    {
+      "eval_set": "game",
+      "file": "surprised/surprised_v8_5.png",
+      "exact_match": false,
+      "nearest": [
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v8_2.png",
+          "thumb_mad": 0.0076,
+          "dhash_hamming": 2,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v8_3.png",
+          "thumb_mad": 0.009,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        },
+        {
+          "set": "pose_bg_removed_128",
+          "file": "surprised/surprised_v8_4.png",
+          "thumb_mad": 0.0092,
+          "dhash_hamming": 1,
+          "identical_bytes": false
+        }
+      ]
+    }
+  ]
+}
