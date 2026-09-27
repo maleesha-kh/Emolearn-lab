@@ -116,7 +116,9 @@ add("### Horizontal scrolling\n")
 hs = criteria["No horizontal scrolling"]
 add("None.\n" if not hs else "\n".join(
     f"- {info[s]['label']} at {vp}: page is {checks[vp][s]['horizontalScroll']['scrollWidth']} px wide in a "
-    f"{checks[vp][s]['horizontalScroll']['clientWidth']} px viewport." for vp, s in hs) + "\n")
+    f"{checks[vp][s]['horizontalScroll']['clientWidth']} px viewport. Widest elements past the edge: "
+    + ("; ".join(f"`{esc(x['element'][:60])}` (right edge {x['right']} px)" for x in checks[vp][s]['horizontalScroll'].get('widestOffenders', [])) or "not recorded")
+    for vp, s in hs) + "\n")
 add("### Controls cut off or out of view\n")
 cut = defaultdict(list)
 for vp, s in rows:
