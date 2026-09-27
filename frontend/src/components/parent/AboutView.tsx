@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { COLORS } from "../../styles/colors";
 import { APP_VERSION } from "../../lib/version";
 
 const PRIVACY = [
@@ -70,7 +71,7 @@ export function AboutView() {
       <AboutCard title="Project" wide>
         <p>Final-year project, BSc (Hons) Software Engineering, NSBM Green University.</p>
         <p>Developed by Hiruni M. Kooragodage.</p>
-        <p className="mt-2" style={{ color: "#78909C" }}>Version {APP_VERSION}</p>
+        <p className="mt-2" style={{ color: COLORS.textMuted }}>Version {APP_VERSION}</p>
       </AboutCard>
 
       <AboutCard title="Credits" wide>

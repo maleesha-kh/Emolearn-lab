@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { COLORS } from "../styles/colors";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell, LabelList } from "recharts";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { ChildSelector } from "../components/parent/ChildSelector";
@@ -86,11 +87,11 @@ function ChangePinForm({ onChanged }: { onChanged: (newPin: string) => void }) {
       ))}
 
       {message && (
-        <p className="fn font-bold mb-4" style={{ color: message.ok ? "#4CAF50" : "#EF5350", fontSize: "14px" }}>{message.text}</p>
+        <p className="fn font-bold mb-4" style={{ color: message.ok ? COLORS.success : COLORS.error, fontSize: "14px" }}>{message.text}</p>
       )}
 
       <button onClick={handleSubmit} disabled={!canSubmit}
-        className="fn font-bold rounded-full w-full" style={{ height: "52px", background: canSubmit ? "#00BCD4" : "#ccc", color: "white", border: "none", cursor: canSubmit ? "pointer" : "not-allowed" }}>
+        className="fn font-bold rounded-full w-full" style={{ height: "52px", background: canSubmit ? COLORS.tealButton : "#ccc", color: "white", border: "none", cursor: canSubmit ? "pointer" : "not-allowed" }}>
         {saving ? "Saving..." : "Change PIN"}
       </button>
     </div>
@@ -129,11 +130,11 @@ function RegenerateRecoveryCodeForm({ onCodeReady }: { onCodeReady: (code: strin
       </div>
 
       {message && (
-        <p className="fn font-bold mb-4" style={{ color: message.ok ? "#4CAF50" : "#EF5350", fontSize: "14px" }}>{message.text}</p>
+        <p className="fn font-bold mb-4" style={{ color: message.ok ? COLORS.success : COLORS.error, fontSize: "14px" }}>{message.text}</p>
       )}
 
       <button onClick={handleSubmit} disabled={pin.length !== 4 || saving}
-        className="fn font-bold rounded-full w-full" style={{ height: "52px", background: pin.length === 4 ? "#00BCD4" : "#ccc", color: "white", border: "none", cursor: pin.length === 4 ? "pointer" : "not-allowed" }}>
+        className="fn font-bold rounded-full w-full" style={{ height: "52px", background: pin.length === 4 ? COLORS.tealButton : "#ccc", color: "white", border: "none", cursor: pin.length === 4 ? "pointer" : "not-allowed" }}>
         {saving ? "Generating..." : "Generate new code"}
       </button>
     </div>
@@ -207,7 +208,7 @@ function ChildRow({
               Rename
             </button>
             <button onClick={() => { setMode("avatar"); setError(null); }}
-              className="fn font-bold rounded-full px-3 py-1" style={{ fontSize: "13px", color: "#E65100", background: "#FFF3E0", border: "none", cursor: "pointer" }}>
+              className="fn font-bold rounded-full px-3 py-1" style={{ fontSize: "13px", color: COLORS.orangeText, background: "#FFF3E0", border: "none", cursor: "pointer" }}>
               Change picture
             </button>
             <button onClick={() => { setMode("delete-confirm"); setError(null); }}
@@ -219,7 +220,7 @@ function ChildRow({
         {mode === "rename" && (
           <div className="flex gap-2">
             <button onClick={() => nicknameInput.trim() && applyUpdate({ nickname: nicknameInput.trim() })} disabled={busy}
-              className="fn font-bold rounded-full px-3 py-1" style={{ fontSize: "13px", color: "white", background: "#00BCD4", border: "none", cursor: "pointer" }}>
+              className="fn font-bold rounded-full px-3 py-1" style={{ fontSize: "13px", color: "white", background: COLORS.tealButton, border: "none", cursor: "pointer" }}>
               Save
             </button>
             <button onClick={() => { setMode("view"); setError(null); }} disabled={busy}
@@ -240,7 +241,7 @@ function ChildRow({
             </button>
           ))}
           <button onClick={() => { setMode("view"); setError(null); }} disabled={busy}
-            className="fn font-bold" style={{ color: "#78909C", fontSize: "13px", background: "none", border: "none", cursor: "pointer" }}>
+            className="fn font-bold" style={{ color: COLORS.textMuted, fontSize: "13px", background: "none", border: "none", cursor: "pointer" }}>
             Cancel
           </button>
         </div>
@@ -253,7 +254,7 @@ function ChildRow({
           </p>
           <div className="flex gap-2">
             <button onClick={handleDelete} disabled={busy}
-              className="fn font-bold rounded-full px-4 py-2" style={{ fontSize: "13px", color: "white", background: "#EF5350", border: "none", cursor: "pointer" }}>
+              className="fn font-bold rounded-full px-4 py-2" style={{ fontSize: "13px", color: "white", background: COLORS.error, border: "none", cursor: "pointer" }}>
               Delete
             </button>
             <button onClick={() => { setMode("view"); setError(null); }} disabled={busy}
@@ -264,7 +265,7 @@ function ChildRow({
         </div>
       )}
 
-      {error && <p className="fn font-bold mt-2" style={{ color: "#EF5350", fontSize: "13px" }}>{error}</p>}
+      {error && <p className="fn font-bold mt-2" style={{ color: COLORS.error, fontSize: "13px" }}>{error}</p>}
     </div>
   );
 }
@@ -380,7 +381,7 @@ export function ParentScreen({
         <div className="flex justify-between items-start mb-6 max-md:flex-wrap max-md:gap-3 max-md:mb-4">
           <h1 className="fn font-bold mb-1 text-[32px] max-md:text-[24px]" style={{ color: "#212121" }}>{heading}</h1>
           <button onClick={onBack} className="fn font-bold rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer"
-            style={{ background: "#00BCD4", fontSize: "16px", boxShadow: "0 4px 14px rgba(0,188,212,.4)" }}>
+            style={{ background: COLORS.tealButton, fontSize: "16px", boxShadow: "0 4px 14px rgba(0,188,212,.4)" }}>
             Back to Game
           </button>
         </div>
@@ -442,21 +443,21 @@ function OverviewView({
   pin: string; onPinRejected: () => void;
 }) {
   if (playersStatus === "loading") {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading...</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading...</p>;
   }
   if (playersStatus === "error") {
     return (
       <div>
-        <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "16px" }}>{CANT_CONNECT}</p>
+        <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "16px" }}>{CANT_CONNECT}</p>
         <button onClick={onReloadPlayers} className="fn font-bold rounded-full px-5 py-2 text-white"
-          style={{ background: "#00BCD4", border: "none", cursor: "pointer" }}>
+          style={{ background: COLORS.tealButton, border: "none", cursor: "pointer" }}>
           Try again
         </button>
       </div>
     );
   }
   if (players.length === 0) {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>No children yet.</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>No children yet.</p>;
   }
 
   return (
@@ -464,14 +465,14 @@ function OverviewView({
       <ChildSelector players={players} selectedPlayerId={selectedPlayerId} onSelect={onSelectPlayer} />
 
       {dashboardStatus === "loading" && (
-        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading dashboard...</p>
+        <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading dashboard...</p>
       )}
 
       {dashboardStatus === "error" && (
         <div>
-          <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "16px" }}>{CANT_CONNECT}</p>
+          <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "16px" }}>{CANT_CONNECT}</p>
           <button onClick={onReloadDashboard} className="fn font-bold rounded-full px-5 py-2 text-white"
-            style={{ background: "#00BCD4", border: "none", cursor: "pointer" }}>
+            style={{ background: COLORS.tealButton, border: "none", cursor: "pointer" }}>
             Try again
           </button>
         </div>
@@ -479,7 +480,7 @@ function OverviewView({
 
       {dashboardStatus === "loaded" && dashboardData && (
         <>
-          <p className="fn font-semibold mb-6" style={{ fontSize: "16px", color: "#757575" }}>
+          <p className="fn font-semibold mb-6" style={{ fontSize: "16px", color: COLORS.labelMuted }}>
             {dashboardData.player.nickname} · {dashboardData.total_sessions} session{dashboardData.total_sessions === 1 ? "" : "s"}
           </p>
 
@@ -493,15 +494,15 @@ function OverviewView({
                 ? "All equal ⭐"
                 : dashboardData.needs_practice ? `${EI[dashboardData.needs_practice].label} ${EI[dashboardData.needs_practice].emoji}` : "-";
               const cards = [
-                { label: "Total Sessions", value: String(dashboardData.total_sessions), color: "#4CAF50", bg: "#E8F5E9" },
-                { label: "Average Score", value: dashboardData.average_score !== null ? `${dashboardData.average_score}/4` : "-", color: "#FFC107", bg: "#FFF9C4" },
-                { label: "Best Emotion", value: bestLabel, color: "#00BCD4", bg: "#E0F7FA" },
-                { label: "Needs Practice", value: worstLabel, color: "#E91E63", bg: "#FCE4EC" },
+                { label: "Total Sessions", value: String(dashboardData.total_sessions), color: COLORS.success, bg: "#E8F5E9" },
+                { label: "Average Score", value: dashboardData.average_score !== null ? `${dashboardData.average_score}/4` : "-", color: COLORS.orangeText, bg: "#FFF9C4" },
+                { label: "Best Emotion", value: bestLabel, color: COLORS.tealText, bg: "#E0F7FA" },
+                { label: "Needs Practice", value: worstLabel, color: COLORS.encourage, bg: "#FCE4EC" },
                 { label: "Feelings Explored", value: `${dashboardData.dictionary_completed}/4 📖`, color: "#5C6BC0", bg: "#E8EAF6" },
               ];
               return cards.map(c => (
                 <div key={c.label} className="rounded-2xl p-5 fn font-bold" style={{ background: c.bg, border: `2px solid ${c.color}` }}>
-                  <div style={{ fontSize: "13px", color: "#757575", marginBottom: "6px" }}>{c.label}</div>
+                  <div style={{ fontSize: "13px", color: COLORS.labelMuted, marginBottom: "6px" }}>{c.label}</div>
                   <div style={{ fontSize: "22px", color: c.color }}>{c.value}</div>
                 </div>
               ));
@@ -549,7 +550,7 @@ function OverviewView({
           <div className="rounded-2xl p-6 bg-white mb-8" style={{ border: "1.5px solid #E0E0E0", boxShadow: "0 4px 15px rgba(0,0,0,.05)" }}>
             <h2 className="fn font-bold mb-4" style={{ fontSize: "20px", color: "#212121" }}>Badges Earned</h2>
             {dashboardData.badges.length === 0 ? (
-              <p className="fn" style={{ color: "#757575", fontSize: "15px" }}>No badges yet</p>
+              <p className="fn" style={{ color: COLORS.labelMuted, fontSize: "15px" }}>No badges yet</p>
             ) : (
               <div className="flex flex-wrap gap-3">
                 {dashboardData.badges.map(b => {
@@ -577,7 +578,7 @@ function OverviewView({
                     style={{ background: "#ccc", fontSize: "14px", border: "none", cursor: "not-allowed" }}>
                     Download Report CSV
                   </button>
-                  <span className="fn" style={{ fontSize: "12px", color: "#9E9E9E" }}>No sessions yet</span>
+                  <span className="fn" style={{ fontSize: "12px", color: COLORS.navMuted }}>No sessions yet</span>
                 </div>
               )}
             </div>
@@ -637,21 +638,21 @@ function ChildrenView({
   pin: string; onPinRejected: () => void;
 }) {
   if (status === "loading") {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading...</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading...</p>;
   }
   if (status === "error") {
     return (
       <div>
-        <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "16px" }}>{CANT_CONNECT}</p>
+        <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "16px" }}>{CANT_CONNECT}</p>
         <button onClick={onReload} className="fn font-bold rounded-full px-5 py-2 text-white"
-          style={{ background: "#00BCD4", border: "none", cursor: "pointer" }}>
+          style={{ background: COLORS.tealButton, border: "none", cursor: "pointer" }}>
           Try again
         </button>
       </div>
     );
   }
   if (players.length === 0) {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>No children yet.</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>No children yet.</p>;
   }
 
   return (
@@ -678,11 +679,11 @@ function DownloadCsvButton({ playerId, pin, onPinRejected }: { playerId: string;
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
-      {state === "error" && <span className="fn font-bold" style={{ fontSize: "13px", color: "#EF5350" }}>{CANT_CONNECT}</span>}
+      {state === "error" && <span className="fn font-bold" style={{ fontSize: "13px", color: COLORS.error }}>{CANT_CONNECT}</span>}
       <button onClick={handleDownload} disabled={state === "downloading"}
-        className="fn font-bold rounded-full px-4 py-2 text-white"
+        className="fn font-bold rounded-full px-4 py-2"
         style={{
-          background: "#FF9800", fontSize: "14px", boxShadow: "0 3px 12px rgba(255,152,0,.4)", border: "none",
+          background: COLORS.orangeButton, color: COLORS.orangeButtonText, fontSize: "14px", boxShadow: "0 3px 12px rgba(255,152,0,.4)", border: "none",
           cursor: state === "downloading" ? "wait" : "pointer", opacity: state === "downloading" ? 0.8 : 1,
         }}>
         {state === "downloading" ? "Downloading..." : "Download Report CSV"}

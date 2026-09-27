@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { COLORS } from "../../styles/colors";
 import { EI } from "../../data/emotions";
 import { CONCERN_CATEGORY_TEXT, DIARY_CHIPS } from "../../data/diary";
 import { clearBuddyMessages, deleteBuddyMessage, deleteDiaryEntry, getBuddyMessages, getDiary, getDiaryTips } from "../../lib/api";
@@ -136,13 +137,13 @@ export function DiaryView({
   };
 
   if (playersStatus === "loading") {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading...</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading...</p>;
   }
   if (playersStatus === "error") {
     return <ErrorRetry onRetry={onReloadPlayers} />;
   }
   if (players.length === 0) {
-    return <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>No children yet.</p>;
+    return <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>No children yet.</p>;
   }
 
   const childName = players.find(p => p.id === selectedPlayerId)?.nickname ?? "your child";
@@ -165,13 +166,13 @@ export function DiaryView({
       )}
 
       {status === "loading" && (
-        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading diary...</p>
+        <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading diary...</p>
       )}
 
       {status === "error" && <ErrorRetry onRetry={() => setReloadTick(t => t + 1)} />}
 
       {status === "loaded" && entries.length === 0 && (
-        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>
+        <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>
           No diary entries yet. They'll appear after {childName} checks in their mood.
         </p>
       )}
@@ -197,7 +198,7 @@ export function DiaryView({
         {questionsStatus === "loaded" && questions.length > 0 && clearState === "idle" && (
           <button onClick={() => setClearState("confirm")}
             className="fn font-bold rounded-full px-4 py-2"
-            style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#78909C", cursor: "pointer", fontSize: "14px" }}>
+            style={{ background: "white", border: "1.5px solid #CFD8DC", color: COLORS.textMuted, cursor: "pointer", fontSize: "14px" }}>
             🗑️ Clear all questions
           </button>
         )}
@@ -208,7 +209,7 @@ export function DiaryView({
           <p className="font-bold mb-2" style={{ color: "#B71C1C", fontSize: "14px" }}>
             Delete all of {childName}'s questions to Emo? This can't be undone.
           </p>
-          {clearState === "error" && <p className="font-bold mb-2" style={{ color: "#EF5350", fontSize: "13px" }}>{CANT_CONNECT}</p>}
+          {clearState === "error" && <p className="font-bold mb-2" style={{ color: COLORS.error, fontSize: "13px" }}>{CANT_CONNECT}</p>}
           <div className="flex gap-2">
             <button onClick={confirmClearQuestions} disabled={clearState === "clearing"}
               className="font-bold rounded-full px-4 py-2 text-white"
@@ -225,13 +226,13 @@ export function DiaryView({
       )}
 
       {questionsStatus === "loading" && (
-        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>Loading questions...</p>
+        <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>Loading questions...</p>
       )}
 
       {questionsStatus === "error" && <ErrorRetry onRetry={() => setQuestionsReloadTick(t => t + 1)} />}
 
       {questionsStatus === "loaded" && questions.length === 0 && (
-        <p className="fn font-bold" style={{ color: "#757575", fontSize: "16px" }}>{childName} hasn't asked Emo anything yet.</p>
+        <p className="fn font-bold" style={{ color: COLORS.labelMuted, fontSize: "16px" }}>{childName} hasn't asked Emo anything yet.</p>
       )}
 
       {questionsStatus === "loaded" && questions.length > 0 && (
@@ -284,14 +285,14 @@ function QuestionCard({
         <p className="font-bold flex-1" style={{ color: "#212121", fontSize: "16px", overflowWrap: "anywhere" }}>
           "{message.question}"
         </p>
-        <span style={{ color: "#78909C", fontSize: "13px" }}>{formatEntryDate(message.created_at)}</span>
+        <span style={{ color: COLORS.textMuted, fontSize: "13px" }}>{formatEntryDate(message.created_at)}</span>
       </div>
-      <p className="mb-3" style={{ color: "#90A4AE", fontSize: "13px" }}>Emo answered: {message.answer}</p>
+      <p className="mb-3" style={{ color: COLORS.textMuted, fontSize: "13px" }}>Emo answered: {message.answer}</p>
 
       {confirming ? (
         <div className="rounded-xl p-3" style={{ background: "#FFF3F3", border: "1.5px solid #FFCDD2" }}>
           <p className="font-bold mb-2" style={{ color: "#B71C1C", fontSize: "14px" }}>Delete this question? This can't be undone.</p>
-          {deleteFailed && <p className="font-bold mb-2" style={{ color: "#EF5350", fontSize: "13px" }}>{CANT_CONNECT}</p>}
+          {deleteFailed && <p className="font-bold mb-2" style={{ color: COLORS.error, fontSize: "13px" }}>{CANT_CONNECT}</p>}
           <div className="flex gap-2">
             <button onClick={onConfirmDelete} disabled={deleting}
               className="font-bold rounded-full px-4 py-2 text-white"
@@ -308,7 +309,7 @@ function QuestionCard({
       ) : (
         <button onClick={onAskDelete} aria-label="Delete this question"
           className="font-bold rounded-full px-4 py-2"
-          style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#78909C", cursor: "pointer", fontSize: "14px" }}>
+          style={{ background: "white", border: "1.5px solid #CFD8DC", color: COLORS.textMuted, cursor: "pointer", fontSize: "14px" }}>
           🗑️ Delete
         </button>
       )}
@@ -319,9 +320,9 @@ function QuestionCard({
 function ErrorRetry({ onRetry }: { onRetry: () => void }) {
   return (
     <div>
-      <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "16px" }}>{CANT_CONNECT}</p>
+      <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "16px" }}>{CANT_CONNECT}</p>
       <button onClick={onRetry} className="fn font-bold rounded-full px-5 py-2 text-white"
-        style={{ background: "#00BCD4", border: "none", cursor: "pointer" }}>
+        style={{ background: COLORS.tealButton, border: "none", cursor: "pointer" }}>
         Try again
       </button>
     </div>
@@ -362,12 +363,12 @@ function EntryCard({
             {surprise}
           </span>
         )}
-        <span className="ml-auto" style={{ color: "#78909C", fontSize: "13px" }}>{formatEntryDate(entry.created_at)}</span>
+        <span className="ml-auto" style={{ color: COLORS.textMuted, fontSize: "13px" }}>{formatEntryDate(entry.created_at)}</span>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-3">
         {entry.reason_tags.length === 0 ? (
-          <span style={{ color: "#90A4AE", fontSize: "14px" }}>No reason picked</span>
+          <span style={{ color: COLORS.textMuted, fontSize: "14px" }}>No reason picked</span>
         ) : (
           entry.reason_tags.map(r => {
             const chip = DIARY_CHIPS.find(c => c.reason === r);
@@ -381,24 +382,24 @@ function EntryCard({
         )}
       </div>
 
-      <p className="mb-2" style={{ color: entry.note ? "#212121" : "#90A4AE", fontSize: "16px", fontStyle: entry.note ? "normal" : "italic" }}>
+      <p className="mb-2" style={{ color: entry.note ? "#212121" : COLORS.textMuted, fontSize: "16px", fontStyle: entry.note ? "normal" : "italic" }}>
         {entry.note ?? "No note"}
       </p>
 
       {entry.bot_reply && (
-        <p className="mb-4" style={{ color: "#90A4AE", fontSize: "13px" }}>Emo replied: {entry.bot_reply}</p>
+        <p className="mb-4" style={{ color: COLORS.textMuted, fontSize: "13px" }}>Emo replied: {entry.bot_reply}</p>
       )}
 
       {tip?.status === "loaded" && <TipsBox tips={tip.data} high={high} />}
 
       {tip?.status === "error" && (
-        <p className="font-bold mb-3" style={{ color: "#EF5350", fontSize: "14px" }}>{CANT_CONNECT}</p>
+        <p className="font-bold mb-3" style={{ color: COLORS.error, fontSize: "14px" }}>{CANT_CONNECT}</p>
       )}
 
       {confirming ? (
         <div className="rounded-xl p-3" style={{ background: "#FFF3F3", border: "1.5px solid #FFCDD2" }}>
           <p className="font-bold mb-2" style={{ color: "#B71C1C", fontSize: "14px" }}>Delete this diary entry? This can't be undone.</p>
-          {deleteFailed && <p className="font-bold mb-2" style={{ color: "#EF5350", fontSize: "13px" }}>{CANT_CONNECT}</p>}
+          {deleteFailed && <p className="font-bold mb-2" style={{ color: COLORS.error, fontSize: "13px" }}>{CANT_CONNECT}</p>}
           <div className="flex gap-2">
             <button onClick={onConfirmDelete} disabled={deleting}
               className="font-bold rounded-full px-4 py-2 text-white"
@@ -426,7 +427,7 @@ function EntryCard({
           )}
           <button onClick={onAskDelete} aria-label="Delete this diary entry"
             className="font-bold rounded-full px-4 py-2"
-            style={{ background: "white", border: "1.5px solid #CFD8DC", color: "#78909C", cursor: "pointer", fontSize: "14px" }}>
+            style={{ background: "white", border: "1.5px solid #CFD8DC", color: COLORS.textMuted, cursor: "pointer", fontSize: "14px" }}>
             🗑️ Delete
           </button>
         </div>
@@ -444,7 +445,7 @@ function TipsBox({ tips, high }: { tips: DiaryTips; high: boolean }) {
         {tips.tips.map((t, i) => <li key={i} className="mb-1">{t}</li>)}
       </ol>
       <p className="font-semibold mb-2" style={{ color: "#37474F", fontSize: "14px" }}>Try saying: "{tips.talk_starter}"</p>
-      <p style={{ color: "#78909C", fontSize: "12px" }}>General tips, not professional advice.</p>
+      <p style={{ color: COLORS.textMuted, fontSize: "12px" }}>General tips, not professional advice.</p>
     </div>
   );
 }

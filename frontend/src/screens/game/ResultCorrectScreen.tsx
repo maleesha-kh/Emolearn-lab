@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { COLORS } from "../../styles/colors";
 import type { Mood, GameRound } from "../../types";
 import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
@@ -29,12 +30,12 @@ export function ResultCorrectScreen({round:r,roundIndex,totalRounds,score,select
       <BgDeco items={["✅","⭐","🎉","✨","💚","⭐","🎊"]} opacity={.3}/>
       <TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/>
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
-        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2 text-white"
-          style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
+        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2"
+          style={{color:COLORS.ink,background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
           ⭐ {score}/{totalRounds}
         </div>
         <h1 className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
-          style={{background:"#4CAF50",fontSize:"clamp(20px,3vw,36px)",boxShadow:"0 6px 25px rgba(76,175,80,.4)",width:"90%",maxWidth:"700px"}}>
+          style={{background:COLORS.success,fontSize:"clamp(20px,3vw,36px)",boxShadow:"0 6px 25px rgba(76,175,80,.4)",width:"90%",maxWidth:"700px"}}>
           ✅ CORRECT! ⭐ Amazing teaching!
         </h1>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
@@ -45,14 +46,14 @@ export function ResultCorrectScreen({round:r,roundIndex,totalRounds,score,select
               <AiReason prediction={prediction} accent="#00838F"/>
             </div>
             {aiAgrees
-              ?<div className="fn font-bold mt-2" style={{fontSize:"18px",color:"#E91E63"}}>The AI agrees with you — you are such a great AI teacher! 🌟</div>
+              ?<div className="fn font-bold mt-2" style={{fontSize:"18px",color:COLORS.encourage}}>The AI agrees with you — you are such a great AI teacher! 🌟</div>
               :<div className="fn font-bold mt-2" style={{fontSize:"17px",color:"#4E342E",lineHeight:1.4}}>
                 You were right — it's <b style={{color:EI[emotion].text}}>{emotion.toUpperCase()}</b>! The AI thought it looked <b style={{color:EI[prediction.emotion].text}}>{prediction.emotion.toUpperCase()}</b>. Thanks for teaching it! 🌟
               </div>}
             {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
-                style={{background:"#E0F7FA",color:"#00838F",border:"2px solid #00BCD4",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
+                style={{background:"#E0F7FA",color:COLORS.tealText,border:"2px solid #00BCD4",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
                 {showHeat?"Hide AI Vision":"Show AI Vision 🔍"}
               </button>
             </div>}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 import type { GirlP, GameRound } from "../../types";
 import { TopBar, Btn } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
@@ -23,8 +24,8 @@ export function GameRoundScreen({round:r,roundIndex,totalRounds,score,onSelect,o
         <p className="ff mb-3" style={{fontSize:"22px",color:"#00838F"}}>Round {roundIndex+1} of {totalRounds}</p>
 
         {/* Speech bubble */}
-        <div className="relative mb-4 rounded-3xl px-8 py-5 text-white ff text-center"
-          style={{background:"#FF9800",fontSize:"32px",boxShadow:"0 8px 30px rgba(255,152,0,.4)",maxWidth:"520px",width:"90%"}}>
+        <div className="relative mb-4 rounded-3xl px-8 py-5 ff text-center"
+          style={{color:COLORS.ink,background:"#FF9800",fontSize:"32px",boxShadow:"0 8px 30px rgba(255,152,0,.4)",maxWidth:"520px",width:"90%"}}>
           <h1>Find the <span style={{textDecoration:"underline"}}>{r.find}</span> character! {r.emoji}</h1>
           <div className="absolute left-1/2 -bottom-4 -translate-x-1/2 w-0 h-0"
             style={{borderLeft:"18px solid transparent",borderRight:"18px solid transparent",borderTop:`18px solid #FF9800`}}/>
@@ -47,14 +48,14 @@ export function GameRoundScreen({round:r,roundIndex,totalRounds,score,onSelect,o
                   border:isSel?"4px solid #FF9800":"2.5px solid #E0E0E0",
                   boxShadow:isSel?"0 0 0 4px rgba(255,152,0,.25),0 12px 40px rgba(255,152,0,.2)":"0 4px 20px rgba(0,0,0,.08)"}}>
                 <CharacterImage pose={pose} width={185} src={r.images[i]}/>
-                {isSel&&<span aria-hidden="true" className="absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center text-white api"
-                  style={{background:"#FF9800",fontSize:"14px"}}>✓</span>}
+                {isSel&&<span aria-hidden="true" className="absolute top-2 right-2 w-7 h-7 rounded-full flex items-center justify-center api"
+                  style={{background:COLORS.orangeButton,color:COLORS.orangeButtonText,fontSize:"14px"}}>✓</span>}
               </button>
             );
           })}
         </div>
 
-        <Btn ch="Tell the AI! ✨" onClick={()=>sel!==null&&onSelect(sel)} disabled={sel===null} w="300px" color="#00BCD4"/>
+        <Btn ch="Tell the AI! ✨" onClick={()=>sel!==null&&onSelect(sel)} disabled={sel===null} w="300px" color={COLORS.tealButton}/>
         <p className="fn mt-3 font-semibold" style={{color:"#00838F",fontSize:"16px"}}>Tap a character to select! 👆</p>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { COLORS } from "../styles/colors";
 import type { Mood } from "../types";
 import { EMOTION_DICTIONARY } from "../data/emotionDictionary";
 import { TopBar, BgDeco } from "../components/common/UI";
@@ -94,7 +95,7 @@ export function DictionaryScreen({playerId,onHome,soundOn,onSound,onPractice,onN
             <FeelingPicker completed={completed} onPick={pick}/>
             <button onClick={onAskEmo}
               className="ff rounded-full mt-8 px-8 text-white transition-transform hover:scale-105 active:scale-95"
-              style={{minHeight:"64px",fontSize:"24px",background:"#00BCD4",boxShadow:"0 8px 24px rgba(0,188,212,.35)"}}>
+              style={{minHeight:"64px",fontSize:"24px",background:COLORS.tealButton,boxShadow:"0 8px 24px rgba(0,188,212,.35)"}}>
               Ask Emo 🤖
             </button>
           </>}

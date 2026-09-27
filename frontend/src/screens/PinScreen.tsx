@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { COLORS } from "../styles/colors";
 import { getPinStatus, recoverPin, regenerateRecoveryCode, setupPin, verifyPin } from "../lib/api";
 import { safeGet, safeSet } from "../lib/storage";
 import { clearPinLock, LOCKED_UNTIL_KEY, WRONG_COUNT_KEY } from "../lib/pinLock";
@@ -283,19 +284,19 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
         <div className="flex flex-col items-center" style={{ maxWidth: "360px", width: "90%" }}>
           <span className="text-5xl mb-4" style={{ color: "#00838F" }}>🔑</span>
           <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "26px", fontWeight: 600, color: "#37474F" }}>One more thing</h1>
-          <p className="text-center mb-8" style={{ fontFamily: "system-ui,sans-serif", fontSize: "16px", color: "#78909C" }}>
+          <p className="text-center mb-8" style={{ fontFamily: "system-ui,sans-serif", fontSize: "16px", color: COLORS.textMuted }}>
             Create a recovery code in case you forget your PIN
           </p>
           {promptMessage && (
-            <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "15px" }}>{promptMessage}</p>
+            <p className="fn font-bold mb-4 text-center" style={{ color: COLORS.error, fontSize: "15px" }}>{promptMessage}</p>
           )}
           <button onClick={handleCreateRecoveryNow} disabled={promptBusy}
             className="fn font-bold rounded-full w-full mb-3"
-            style={{ height: "52px", background: "#00BCD4", color: "white", border: "none", cursor: promptBusy ? "default" : "pointer" }}>
+            style={{ height: "52px", background: COLORS.tealButton, color: "white", border: "none", cursor: promptBusy ? "default" : "pointer" }}>
             {promptBusy ? "Creating..." : "Create now"}
           </button>
           <button onClick={handleSkipRecoveryPrompt} disabled={promptBusy}
-            className="fn font-bold" style={{ color: "#78909C", fontSize: "15px", background: "none", border: "none", cursor: "pointer" }}>
+            className="fn font-bold" style={{ color: COLORS.textMuted, fontSize: "15px", background: "none", border: "none", cursor: "pointer" }}>
             Later
           </button>
         </div>
@@ -312,7 +313,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
             style={{ color: "#00BCD4", fontSize: "16px", background: "none", border: "none", cursor: "pointer" }}>← Back</button>
           <span className="text-5xl mb-4" style={{ color: "#00838F" }}>🔑</span>
           <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "26px", fontWeight: 600, color: "#37474F" }}>Recover with your code</h1>
-          <p className="text-center mb-6" style={{ fontFamily: "system-ui,sans-serif", fontSize: "15px", color: "#78909C" }}>
+          <p className="text-center mb-6" style={{ fontFamily: "system-ui,sans-serif", fontSize: "15px", color: COLORS.textMuted }}>
             Enter your recovery code and choose a new PIN
           </p>
 
@@ -341,12 +342,12 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
           </div>
 
           {recoverMessage && (
-            <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "14px" }}>{recoverMessage}</p>
+            <p className="fn font-bold mb-4 text-center" style={{ color: COLORS.error, fontSize: "14px" }}>{recoverMessage}</p>
           )}
 
           <button onClick={handleRecoverSubmit} disabled={!canSubmit}
             className="fn font-bold rounded-full w-full"
-            style={{ height: "52px", background: canSubmit ? "#00BCD4" : "#ccc", color: "white", border: "none", cursor: canSubmit ? "pointer" : "not-allowed" }}>
+            style={{ height: "52px", background: canSubmit ? COLORS.tealButton : "#ccc", color: "white", border: "none", cursor: canSubmit ? "pointer" : "not-allowed" }}>
             {recoverBusy ? "Checking..." : "Reset PIN"}
           </button>
         </div>
@@ -369,10 +370,10 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
           style={{ color: "#00BCD4", fontSize: "16px", background: "none", border: "none", cursor: "pointer" }}>← Back</button>
         <span className="text-5xl mb-4" style={{ color: "#00838F" }}>🔒</span>
         <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "28px", fontWeight: "600", color: "#37474F" }}>{title}</h1>
-        <p className="text-center mb-8" style={{ fontFamily: "system-ui,sans-serif", fontSize: "16px", color: "#78909C" }}>{subtitle}</p>
+        <p className="text-center mb-8" style={{ fontFamily: "system-ui,sans-serif", fontSize: "16px", color: COLORS.textMuted }}>{subtitle}</p>
 
         {mode === "error" && (
-          <p className="fn font-bold mb-4" style={{ color: "#EF5350", fontSize: "15px" }}>Emo can't connect right now 🔌</p>
+          <p className="fn font-bold mb-4" style={{ color: COLORS.error, fontSize: "15px" }}>Emo can't connect right now 🔌</p>
         )}
 
         {showKeypad && (
@@ -390,7 +391,7 @@ export function PinScreen({ onSuccess, onBack }: { onSuccess: (pin: string) => v
             </div>
 
             {displayMessage && (
-              <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "15px" }}>{displayMessage}</p>
+              <p className="fn font-bold mb-4 text-center" style={{ color: COLORS.error, fontSize: "15px" }}>{displayMessage}</p>
             )}
 
             {/* Keypad */}

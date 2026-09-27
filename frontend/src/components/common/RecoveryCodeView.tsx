@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 
 export function RecoveryCodeView({ code, onContinue }: { code: string; onContinue: () => void }) {
   const [checked, setChecked] = useState(false);
@@ -21,7 +22,7 @@ export function RecoveryCodeView({ code, onContinue }: { code: string; onContinu
         <h1 className="text-center mb-2" style={{ fontFamily: "system-ui,sans-serif", fontSize: "26px", fontWeight: "600", color: "#37474F" }}>
           Save your recovery code
         </h1>
-        <p className="text-center mb-6" style={{ fontFamily: "system-ui,sans-serif", fontSize: "15px", color: "#78909C", lineHeight: 1.5 }}>
+        <p className="text-center mb-6" style={{ fontFamily: "system-ui,sans-serif", fontSize: "15px", color: COLORS.textMuted, lineHeight: 1.5 }}>
           Write this down or take a photo. You'll need it if you forget your PIN. It is shown only once.
         </p>
 
@@ -35,7 +36,7 @@ export function RecoveryCodeView({ code, onContinue }: { code: string; onContinu
           {copyStatus === "copied" ? "Copied! ✅" : "Copy"}
         </button>
         {copyStatus === "failed" && (
-          <p className="fn font-bold mb-4 text-center" style={{ color: "#EF5350", fontSize: "14px" }}>
+          <p className="fn font-bold mb-4 text-center" style={{ color: COLORS.error, fontSize: "14px" }}>
             Couldn't copy. Please write it down.
           </p>
         )}
@@ -48,7 +49,7 @@ export function RecoveryCodeView({ code, onContinue }: { code: string; onContinu
 
         <button onClick={onContinue} disabled={!checked}
           className="fn font-bold rounded-full w-full"
-          style={{ height: "52px", background: checked ? "#00BCD4" : "#ccc", color: "white", border: "none", cursor: checked ? "pointer" : "not-allowed" }}>
+          style={{ height: "52px", background: checked ? COLORS.tealButton : "#ccc", color: "white", border: "none", cursor: checked ? "pointer" : "not-allowed" }}>
           Continue
         </button>
       </div>

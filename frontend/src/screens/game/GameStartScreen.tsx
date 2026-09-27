@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 import { TopBar, Btn, BgDeco, Confetti } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 
@@ -22,7 +23,7 @@ export function GameStartScreen({onStart,onHome,soundOn,onSound}:{onStart:()=>vo
             <span key={i} className="text-5xl animate-bounce" style={{animationDelay:`${i*.15}s`}}>{e}</span>
           ))}
         </div>
-        <Btn ch="Start the Game! 🎮" onClick={()=>{setGo(true);setTimeout(onStart,600)}} color="#FF9800" w="340px"/>
+        <Btn ch="Start the Game! 🎮" onClick={()=>{setGo(true);setTimeout(onStart,600)}} color={COLORS.orangeButton} w="340px"/>
       </div>
     </div>
   );

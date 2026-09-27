@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { COLORS } from "../styles/colors";
 import { BgDeco } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
 import { Avatar } from "../components/common/Avatar";
@@ -84,7 +85,7 @@ export function WelcomeScreen({
                 onClick={() => onLogin(savedPlayer)}
                 className="ff font-bold rounded-full mb-1 transition-all hover:brightness-110 active:scale-95"
                 style={{
-                  width: "100%", height: "68px", background: "#FF9800", color: "white",
+                  width: "100%", height: "68px", background: COLORS.orangeButton, color: COLORS.orangeButtonText,
                   boxShadow: "0 8px 28px rgba(255,152,0,.45), 0 4px 0 #E65100", fontSize: "clamp(18px,2vw,22px)", cursor: "pointer",
                 }}
               >
@@ -127,12 +128,12 @@ export function WelcomeScreen({
 
               {playersState.status === "error" && (
                 <div className="mb-6" style={{ maxWidth: "420px" }}>
-                  <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "16px" }}>Emo can't connect right now 🔌</p>
+                  <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "16px" }}>Emo can't connect right now 🔌</p>
                   <div className="flex gap-3">
                     <button
                       onClick={() => setReloadTick((t) => t + 1)}
                       className="fn font-bold rounded-full px-5"
-                      style={{ height: "52px", background: "#00BCD4", color: "white", border: "none", cursor: "pointer" }}
+                      style={{ height: "52px", background: COLORS.tealButton, color: "white", border: "none", cursor: "pointer" }}
                     >
                       Try again
                     </button>
@@ -166,7 +167,7 @@ export function WelcomeScreen({
                     style={{ width: "110px", background: "#FFF3E0", border: "3px dashed #FF9800", cursor: "pointer" }}
                   >
                     <span className="text-3xl">➕</span>
-                    <span className="fn font-bold" style={{ fontSize: "13px", color: "#E65100", textAlign: "center" }}>New Player</span>
+                    <span className="fn font-bold" style={{ fontSize: "13px", color: COLORS.orangeText, textAlign: "center" }}>New Player</span>
                   </button>
                 </div>
               )}
@@ -196,7 +197,7 @@ export function WelcomeScreen({
                   style={{ height: "64px", paddingLeft: "24px", paddingRight: "20px", border: "3px solid #00BCD4", background: "white", color: "#004D40", fontSize: "18px", boxShadow: "0 4px 20px rgba(0,188,212,.2)", fontFamily: "'Nunito',sans-serif" }}
                 />
               </div>
-              <p className="fn mb-4" style={{ fontSize: "14px", color: "#78909C" }}>You can use a fun nickname!</p>
+              <p className="fn mb-4" style={{ fontSize: "14px", color: COLORS.textMuted }}>You can use a fun nickname!</p>
 
               <div className="flex flex-wrap gap-3 mb-4" style={{ maxWidth: "420px" }}>
                 {AVATARS.map((a) => (
@@ -211,7 +212,7 @@ export function WelcomeScreen({
                 ))}
               </div>
 
-              {error && <p className="fn font-bold mb-3" style={{ color: "#EF5350", fontSize: "14px" }}>{error}</p>}
+              {error && <p className="fn font-bold mb-3" style={{ color: COLORS.error, fontSize: "14px" }}>{error}</p>}
 
               <div className="flex gap-3 mb-2" style={{ maxWidth: "420px" }}>
                 <button
@@ -225,7 +226,7 @@ export function WelcomeScreen({
                   onClick={handleCreate} disabled={!nickname.trim() || saving}
                   className="ff font-bold rounded-full transition-all hover:brightness-110 active:scale-95"
                   style={{
-                    flex: 1, height: "64px", background: nickname.trim() ? "#FF9800" : "#ccc", color: "white",
+                    flex: 1, height: "64px", background: nickname.trim() ? COLORS.orangeButton : "#ccc", color: nickname.trim() ? COLORS.orangeButtonText : "white",
                     boxShadow: nickname.trim() ? "0 8px 28px rgba(255,152,0,.45), 0 4px 0 #E65100" : "none",
                     fontSize: "clamp(18px,2vw,22px)", cursor: nickname.trim() ? "pointer" : "not-allowed",
                   }}
@@ -260,7 +261,7 @@ export function WelcomeScreen({
 
       {/* bottom emotion strip */}
       <div className="absolute bottom-0 left-0 right-0 py-3" style={{ borderTop: "1px solid rgba(0,188,212,.18)", background: "rgba(255,255,255,.25)" }}>
-        <p className="fn text-center px-4 mb-1" style={{ fontSize: "12px", color: "#78909C" }}>
+        <p className="fn text-center px-4 mb-1" style={{ fontSize: "12px", color: COLORS.textMuted }}>
           🔒 No camera, no photos, nothing shared · EmoLearn Lab v{APP_VERSION}
         </p>
         <div className="flex gap-8 justify-center opacity-20 overflow-hidden">

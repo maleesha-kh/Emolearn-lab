@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { COLORS } from "../../styles/colors";
 import type { Mood } from "../../types";
 import { getPrediction, PredictionError, type PredictionResult } from "../../lib/predictionClient";
 import { EmoRobot } from "../../components/common/EmoRobot";
@@ -35,10 +36,10 @@ export function LoadingScreen({imageUrl,trueEmotion,onDone,onBack}:{imageUrl:str
     return(
       <div className="min-h-screen w-full flex flex-col items-center justify-center px-6 text-center" style={{background:"linear-gradient(140deg,#FFF3E0 0%,#FFE0B2 100%)"}}>
         <EmoRobot expression="caring" width={140}/>
-        <h1 className="ff mt-4" style={{fontSize:"24px",color:"#E65100"}}>{error.message}</h1>
+        <h1 className="ff mt-4" style={{fontSize:"24px",color:COLORS.orangeText}}>{error.message}</h1>
         <div className="flex gap-3 mt-6">
-          <Btn ch="Try Again" onClick={()=>setAttempt(a=>a+1)} color="#00BCD4" w="160px"/>
-          <Btn ch="Pick Again" onClick={onBack} color="#FF9800" w="160px"/>
+          <Btn ch="Try Again" onClick={()=>setAttempt(a=>a+1)} color={COLORS.tealButton} w="160px"/>
+          <Btn ch="Pick Again" onClick={onBack} color={COLORS.orangeButton} w="160px"/>
         </div>
       </div>
     );
@@ -60,7 +61,7 @@ export function LoadingScreen({imageUrl,trueEmotion,onDone,onBack}:{imageUrl:str
         ))}
       </div>
       <h1 className="ff text-center" style={{fontSize:"28px",color:"#00838F"}}>Emo is thinking... 🤔</h1>
-      <p className="fn text-center mt-2 font-semibold" style={{fontSize:"16px",color:"#78909C"}}>Teaching the AI to understand feelings!</p>
+      <p className="fn text-center mt-2 font-semibold" style={{fontSize:"16px",color:COLORS.textMuted}}>Teaching the AI to understand feelings!</p>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 import { TopBar, Btn, BgDeco, Confetti } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 import { CharacterImage } from "../../components/character/CharacterImage";
@@ -52,7 +53,7 @@ export function HappyResponseScreen({playerName,onReady,onHome,soundOn,onSound}:
           <p className="fn text-center mb-4 font-semibold" style={{fontSize:"22px",color:"#546E7A"}}>Let's make your happy feeling even BIGGER!</p>
 
           <div className="w-full mb-6 flex flex-col gap-1">
-            <span className="fn font-bold" style={{fontSize:"13px",color:"#E65100"}}>{doneCount}/{ACTIVITIES.length} activities done</span>
+            <span className="fn font-bold" style={{fontSize:"13px",color:COLORS.orangeText}}>{doneCount}/{ACTIVITIES.length} activities done</span>
             <div className="w-full rounded-full" style={{height:"14px",background:"#FFF3E0",overflow:"hidden"}}>
               <div className="h-full rounded-full transition-all duration-500" style={{width:`${(doneCount/ACTIVITIES.length)*100}%`,background:"linear-gradient(90deg,#FFCA28,#FF9800)"}}/>
             </div>
@@ -70,7 +71,7 @@ export function HappyResponseScreen({playerName,onReady,onHome,soundOn,onSound}:
             </div>
           ):(
             <div className="api flex flex-col items-center mb-6 w-full">
-              <p className="ff text-center mb-4" style={{fontSize:"22px",color:"#E65100"}}>Which one looks like YOU right now? 😊</p>
+              <p className="ff text-center mb-4" style={{fontSize:"22px",color:COLORS.orangeText}}>Which one looks like YOU right now? 😊</p>
               <div className="flex flex-wrap gap-4 justify-center">
                 {MINI_GAME_IMAGES.map((src,i)=>(
                   <button key={i} onClick={pickImage} className="rounded-2xl overflow-hidden transition-transform hover:scale-105 active:scale-95"

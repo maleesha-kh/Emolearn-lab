@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { COLORS } from "../styles/colors";
 import { TopBar, Btn, BgDeco, Stars } from "../components/common/UI";
 import { Avatar } from "../components/common/Avatar";
 import { EI } from "../data/emotions";
@@ -46,9 +47,9 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
 
           {status==="error"&&(
             <div className="flex flex-col items-center mb-6">
-              <p className="fn font-bold mb-3" style={{color:"#EF5350",fontSize:"16px"}}>Emo can't connect right now 🔌</p>
+              <p className="fn font-bold mb-3" style={{color:COLORS.error,fontSize:"16px"}}>Emo can't connect right now 🔌</p>
               <button onClick={()=>setReloadTick(t=>t+1)}
-                className="fn font-bold rounded-full px-5" style={{height:"48px",background:"#00BCD4",color:"white",border:"none",cursor:"pointer"}}>
+                className="fn font-bold rounded-full px-5" style={{height:"48px",background:COLORS.tealButton,color:"white",border:"none",cursor:"pointer"}}>
                 Try again
               </button>
             </div>
@@ -56,7 +57,7 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
 
           {status==="loaded"&&profile&&(
             <>
-              <div className="ff rounded-full px-5 py-2 text-white mb-6" style={{background:"#00BCD4",fontSize:"18px"}}>
+              <div className="ff rounded-full px-5 py-2 text-white mb-6" style={{background:COLORS.tealButton,fontSize:"18px"}}>
                 Learning Stars ⭐ {profile.total_stars} total
               </div>
 
@@ -69,9 +70,9 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
                       const stat=profile.emotion_stats[mood];
                       return(
                         <div key={mood} className="rounded-2xl p-3 text-center fn font-bold"
-                          style={{background:e.bg,border:`2px solid ${e.color}`,fontSize:"15px",color:e.color}}>
+                          style={{background:e.bg,border:`2px solid ${e.color}`,fontSize:"15px",color:e.text}}>
                           {e.label} {e.emoji}<br/>
-                          <span className="ff text-2xl" style={{color:e.color}}>
+                          <span className="ff text-2xl" style={{color:e.text}}>
                             {stat.attempts===0?"Not tried yet":`${stat.correct}/${stat.attempts}`}
                           </span>
                         </div>
@@ -84,7 +85,7 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
               {/* Sessions played */}
               <div className="w-full mb-4">
                 <div className="ff mb-2" style={{fontSize:"20px",color:"#00838F"}}>Sessions Played</div>
-                <div className="ff text-center" style={{fontSize:"56px",color:"#00BCD4"}}>{profile.sessions_played}</div>
+                <div className="ff text-center" style={{fontSize:"56px",color:COLORS.tealText}}>{profile.sessions_played}</div>
               </div>
 
               {profile.sessions_played>0&&(
@@ -119,7 +120,7 @@ export function ProfileScreen({playerId,playerName,avatarId,onNewGame,onHome,sou
             View Achievements 🏆
           </button>
           <div className="flex justify-between items-center w-full">
-            <button onClick={onSwitchPlayer} className="fn font-bold" style={{color:"#9E9E9E",fontSize:"14px",minHeight:"44px",paddingRight:"8px",background:"none",border:"none",cursor:"pointer"}}>
+            <button onClick={onSwitchPlayer} className="fn font-bold" style={{color:COLORS.navMuted,fontSize:"14px",minHeight:"44px",paddingRight:"8px",background:"none",border:"none",cursor:"pointer"}}>
               Switch Player
             </button>
             <button onClick={onParent} className="text-2xl hover:scale-110 transition-transform inline-flex items-center justify-center" title="Parent/Teacher"

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { COLORS } from "../styles/colors";
 import type { DiaryIntensity, DiaryReason, EmoE, Mood } from "../types";
 import { EI } from "../data/emotions";
 import { DIARY_CHIPS } from "../data/diary";
@@ -112,7 +113,7 @@ export function DiaryScreen({playerId,mood,onDone,onBack,onHome,soundOn,onSound}
                   aria-describedby="diary-note-count"
                   className="fn w-full rounded-2xl px-4 py-3 outline-none focus:ring-4"
                   style={{fontSize:"19px",border:`3px solid ${e.border}`,resize:"vertical",color:"#37474F"}}/>
-                <div id="diary-note-count" className="fn self-end mt-1 mb-6" style={{fontSize:"15px",color:"#78909C"}}>
+                <div id="diary-note-count" className="fn self-end mt-1 mb-6" style={{fontSize:"15px",color:COLORS.textMuted}}>
                   {note.length}/{NOTE_MAX}
                 </div>
 
@@ -125,7 +126,7 @@ export function DiaryScreen({playerId,mood,onDone,onBack,onHome,soundOn,onSound}
                         <button key={i.value} onClick={()=>setIntensity(i.value)} aria-pressed={on}
                           className="ff rounded-2xl transition-all hover:scale-105 active:scale-95"
                           style={{minHeight:"64px",fontSize:"22px",color:on?"white":e.text,
-                            background:on?e.border:e.bg,border:`3px solid ${e.border}`}}>
+                            background:on?e.text:e.bg,border:`3px solid ${e.border}`}}>
                           {i.label}
                         </button>
                       );
@@ -133,11 +134,11 @@ export function DiaryScreen({playerId,mood,onDone,onBack,onHome,soundOn,onSound}
                   </div>
                 </div>
 
-                <p className="fn text-center mb-5" style={{fontSize:"16px",color:"#78909C"}}>Your grown-up can read your diary 💛</p>
+                <p className="fn text-center mb-5" style={{fontSize:"16px",color:COLORS.textMuted}}>Your grown-up can read your diary 💛</p>
 
                 <div className="flex flex-col sm:flex-row gap-3 w-full justify-center items-center">
                   <Btn ch={saving?"Saving...":"Save"} onClick={save} disabled={!canSave} w="min(100%,260px)"/>
-                  <Btn ch="Skip" onClick={onDone} color="#90A4AE" w="min(100%,200px)"/>
+                  <Btn ch="Skip" onClick={onDone} color={COLORS.neutralButton} w="min(100%,200px)"/>
                 </div>
               </>
             ):(

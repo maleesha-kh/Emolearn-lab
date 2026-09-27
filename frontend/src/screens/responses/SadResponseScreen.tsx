@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 import { playSound } from "../../lib/sounds";
@@ -40,7 +41,7 @@ export function SadResponseScreen({onReady,onHome,soundOn,onSound}:{onReady:()=>
           <h1 className="ff text-center mb-2" style={{fontSize:"36px",color:"#00838F"}}>It is okay to feel sad 💛</h1>
           <p className="fn text-center mb-4 font-semibold" style={{fontSize:"22px",color:"#546E7A"}}>We are here for you! Let us cheer you up!</p>
 
-          <div className="w-full mb-2 flex justify-between fn font-bold" style={{fontSize:"13px",color:"#E65100"}}>
+          <div className="w-full mb-2 flex justify-between fn font-bold" style={{fontSize:"13px",color:COLORS.orangeText}}>
             <span>Step {activeStep+1} of {STEPS.length}</span><span>{doneCount}/{STEPS.length} done</span>
           </div>
           <div className="w-full rounded-full mb-2" style={{height:"14px",background:"#FFE0B2",overflow:"hidden"}}>
@@ -69,7 +70,7 @@ export function SadResponseScreen({onReady,onHome,soundOn,onSound}:{onReady:()=>
           </div>
 
           {allDone&&(
-            <div className="api rounded-2xl px-5 py-4 mb-6 text-center fn font-bold" style={{background:"#FFF3E0",border:"2px solid #FFB74D",color:"#E65100",fontSize:"16px"}}>
+            <div className="api rounded-2xl px-5 py-4 mb-6 text-center fn font-bold" style={{background:"#FFF3E0",border:"2px solid #FFB74D",color:COLORS.orangeText,fontSize:"16px"}}>
               You are loved, and it is okay to feel this way. 💛
             </div>
           )}

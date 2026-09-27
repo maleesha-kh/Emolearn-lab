@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../styles/colors";
 import type { GameRound } from "../types";
 import { TopBar, Btn, BgDeco, Confetti, Stars } from "../components/common/UI";
 import { EmoRobot } from "../components/common/EmoRobot";
@@ -33,7 +34,7 @@ export function SummaryScreen({playerName,score,rounds,roundResults,onPlayAgain,
                 <div className="rounded-full h-full transition-all"
                   style={{width:e.correct_ans?"100%":"20%",background:e.color,transition:"width 1s ease"}}/>
               </div>
-              <span className="fn font-bold" style={{minWidth:"40px",fontSize:"16px",color:e.correct_ans?"#4CAF50":"#EF5350"}}>
+              <span className="fn font-bold" style={{minWidth:"40px",fontSize:"16px",color:e.correct_ans?COLORS.success:COLORS.error}}>
                 {e.correct_ans?"1/1":"0/1"}
               </span>
             </div>
@@ -44,13 +45,13 @@ export function SummaryScreen({playerName,score,rounds,roundResults,onPlayAgain,
         <div className="rounded-2xl p-5 bg-white mb-6 flex items-center gap-4" style={{maxWidth:"520px",width:"95%",border:"3px solid #E91E63",boxShadow:"0 6px 20px rgba(233,30,99,.12)"}}>
           <div className="afb flex-shrink-0"><EmoRobot expression="peek" width={90}/></div>
           <div>
-            <div className="ff mb-2" style={{fontSize:"20px",color:"#E91E63"}}>Emo has a funny surprise for you! 😄</div>
+            <div className="ff mb-2" style={{fontSize:"20px",color:COLORS.encourage}}>Emo has a funny surprise for you! 😄</div>
             {moodBooster?(
               <div className="fn font-bold" style={{fontSize:"16px",color:"#546E7A"}}>🌟 You are a SUPERSTAR emotion detective! Emo is SO proud of you! 🤖❤️</div>
             ):(
               <button onClick={()=>setMoodBooster(true)}
                 className="ff rounded-full px-5 py-2 text-white transition-all hover:brightness-110 cursor-pointer"
-                style={{background:"#00BCD4",fontSize:"16px",boxShadow:"0 4px 14px rgba(0,188,212,.4)"}}>
+                style={{background:COLORS.tealButton,fontSize:"16px",boxShadow:"0 4px 14px rgba(0,188,212,.4)"}}>
                 Show me! ✨
               </button>
             )}
@@ -60,7 +61,7 @@ export function SummaryScreen({playerName,score,rounds,roundResults,onPlayAgain,
         {/* Action buttons */}
         <div className="flex gap-4 flex-wrap justify-center">
           <Btn ch="Play Again 🔄" onClick={onPlayAgain} color="#006064" w="220px"/>
-          <Btn ch="Bye bye! 👋" onClick={onBye} color="#FF9800" w="220px"/>
+          <Btn ch="Bye bye! 👋" onClick={onBye} color={COLORS.orangeButton} w="220px"/>
         </div>
       </div>
     </div>

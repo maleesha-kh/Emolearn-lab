@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { COLORS } from "../../styles/colors";
 import type { Mood, GirlP, GameRound } from "../../types";
 import { EI } from "../../data/emotions";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
@@ -38,12 +39,12 @@ export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selected
       <BgDeco items={["💛","❤️","✨","💕","💛","⭐","💕"]} opacity={.28}/>
       <TopBar onHome={onHome} onSound={onSound} soundOn={soundOn}/>
       <div className="relative z-10 flex flex-col items-center px-4 pb-10">
-        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2 text-white"
-          style={{background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
+        <div className="absolute top-4 right-20 max-sm:static max-sm:self-end max-sm:mb-3 ff rounded-full px-5 py-2"
+          style={{color:COLORS.ink,background:"#FF9800",fontSize:"18px",boxShadow:"0 4px 15px rgba(255,152,0,.4)"}}>
           ⭐ {score}/{totalRounds}
         </div>
-        <h1 className="rounded-2xl py-4 px-8 mb-8 ff text-white text-center"
-          style={{background:"#FF9800",fontSize:"clamp(18px,2.5vw,32px)",boxShadow:"0 6px 25px rgba(255,152,0,.4)",width:"90%",maxWidth:"700px"}}>
+        <h1 className="rounded-2xl py-4 px-8 mb-8 ff text-center"
+          style={{color:COLORS.ink,background:"#FF9800",fontSize:"clamp(18px,2.5vw,32px)",boxShadow:"0 6px 25px rgba(255,152,0,.4)",width:"90%",maxWidth:"700px"}}>
           💛 Good try! Let us learn together!
         </h1>
         <div className="flex flex-wrap justify-center gap-6" style={{maxWidth:"780px",width:"95%"}}>
@@ -54,7 +55,7 @@ export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selected
           <div className="rounded-2xl p-6 bg-white flex flex-col" style={{flex:1,minWidth:"260px",maxWidth:"420px",border:"3px solid #FF9800",boxShadow:"0 8px 30px rgba(255,152,0,.12)"}}>
             <div className="flex items-start gap-3 mb-3">
               <div className="afb flex-shrink-0"><EmoRobot expression="caring" width={80}/></div>
-              <AiReason prediction={prediction} accent="#FF9800"/>
+              <AiReason prediction={prediction} accent={COLORS.orangeText}/>
             </div>
             <div className="fn font-bold" style={{fontSize:"17px",color:"#4E342E",lineHeight:1.4}}>{teach}</div>
             <div className="flex items-center gap-3 mt-3 rounded-xl p-2" style={{background:EI[targetEmotion].bg,border:`2px dashed ${EI[targetEmotion].border}`}}>
@@ -65,11 +66,11 @@ export function ResultWrongScreen({round:r,roundIndex,totalRounds,score,selected
                 The {targetEmotion.toUpperCase()} {EI[targetEmotion].emoji} character was this one!
               </div>
             </div>
-            <div className="fn font-bold mt-3" style={{fontSize:"16px",color:"#E91E63"}}>You are getting better! Keep going! 💪</div>
+            <div className="fn font-bold mt-3" style={{fontSize:"16px",color:COLORS.encourage}}>You are getting better! Keep going! 💪</div>
             {prediction.heatmapBase64&&<div className="mt-3">
               <button onClick={()=>setShowHeat(h=>!h)}
                 className="fn font-bold rounded-full px-4 py-2 transition-all hover:brightness-110"
-                style={{background:"#FFF3E0",color:"#E65100",border:"2px solid #FF9800",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
+                style={{background:"#FFF3E0",color:COLORS.orangeText,border:"2px solid #FF9800",fontSize:"14px",minHeight:"44px",cursor:"pointer"}}>
                 {showHeat?"Hide AI Vision":"Show AI Vision 🔍"}
               </button>
             </div>}

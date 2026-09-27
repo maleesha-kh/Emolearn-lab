@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef } from "react";
+import { COLORS } from "../../styles/colors";
 import type { Badge } from "../../types";
 import { EmoRobot } from "./EmoRobot";
 import { Confetti, Btn } from "./UI";
@@ -79,15 +80,15 @@ export function BadgeModal({badge,onClose}:{badge:Badge;onClose:()=>void}){
           {badge.emoji}
         </div>
 
-        <div id={titleId} className="ff text-center mb-1" style={{fontSize:"26px",color:"#FFD700"}}>New Badge Unlocked! 🎉</div>
-        <div id={nameId} className="ff text-center mb-4" style={{fontSize:"22px",color:badge.color}}>{badge.name} {badge.emoji}</div>
+        <div id={titleId} className="ff text-center mb-1" style={{fontSize:"26px",color:COLORS.orangeText}}>New Badge Unlocked! 🎉</div>
+        <div id={nameId} className="ff text-center mb-4" style={{fontSize:"22px",color:COLORS.badgeTitle}}>{badge.name} {badge.emoji}</div>
 
         <div className="absolute bottom-4 right-4">
           <div className="afb"><EmoRobot expression="excited" width={70}/></div>
         </div>
 
         <Confetti count={30}/>
-        <Btn ch="Nice! ✨" onClick={onClose} color="#FF9800" w="200px"/>
+        <Btn ch="Nice! ✨" onClick={onClose} color={COLORS.orangeButton} w="200px"/>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import type { Scr } from "../../types";
+import { COLORS } from "../../styles/colors";
 
 const NAV_ITEMS: { s: Scr; label: string; emoji: string }[] = [
   { s: "moodcheckin", label: "Mood", emoji: "🌞" },
@@ -27,7 +28,7 @@ export function BottomNav({ screen, onNavigate }: { screen: Scr; onNavigate: (s:
           className="fn font-bold flex flex-col items-center px-4 py-1 rounded-2xl transition-all hover:bg-cyan-50"
           style={{
             fontSize: "11px",
-            color: screen === item.s ? "#00BCD4" : "#9E9E9E",
+            color: screen === item.s ? COLORS.tealText : COLORS.navMuted,
             background: screen === item.s ? "#E0F7FA" : "transparent",
             minWidth: "60px",
           }}

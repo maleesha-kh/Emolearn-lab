@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { COLORS } from "../../styles/colors";
 import type { EmotionDictionaryEntry } from "../../data/emotionDictionary";
 import { playSound } from "../../lib/sounds";
 import { useSpeech } from "../../lib/speech";
@@ -38,7 +39,7 @@ export function MeetTheFeeling({entry,soundOn}:{entry:EmotionDictionaryEntry;sou
       {supported&&(
         <button onClick={toggleReading} disabled={!soundOn}
           className="fn font-bold rounded-full px-6 transition-all hover:brightness-110 active:scale-95"
-          style={{minHeight:"56px",fontSize:"18px",background:soundOn?"white":"#ECEFF1",color:soundOn?info.text:"#90A4AE",
+          style={{minHeight:"56px",fontSize:"18px",background:soundOn?"white":"#ECEFF1",color:soundOn?info.text:COLORS.textMuted,
             border:`3px solid ${soundOn?info.border:"#CFD8DC"}`,cursor:soundOn?"pointer":"not-allowed"}}>
           {!soundOn?"🔇 Sound is off":speaking?"⏹ Stop":"🔊 Read to me"}
         </button>

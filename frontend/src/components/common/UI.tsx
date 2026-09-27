@@ -1,3 +1,4 @@
+import { COLORS } from "../../styles/colors";
 export function TopBar({onHome,onSound,soundOn}:{onHome:()=>void;onSound:()=>void;soundOn:boolean}){
   return(
     <div className="flex justify-between items-center px-6 py-4 relative z-20">
@@ -16,7 +17,7 @@ export function TopBar({onHome,onSound,soundOn}:{onHome:()=>void;onSound:()=>voi
 }
 
 
-export function Btn({ch,onClick,color="#FF9800",textColor="white",w="100%",disabled=false,className=""}:{ch:React.ReactNode;onClick?:()=>void;color?:string;textColor?:string;w?:string;disabled?:boolean;className?:string}){
+export function Btn({ch,onClick,color=COLORS.orangeButton,textColor=color===COLORS.orangeButton?COLORS.orangeButtonText:"white",w="100%",disabled=false,className=""}:{ch:React.ReactNode;onClick?:()=>void;color?:string;textColor?:string;w?:string;disabled?:boolean;className?:string}){
   return(
     <button onClick={onClick} disabled={disabled}
       className={`ff text-xl font-bold rounded-full transition-all hover:brightness-110 active:scale-95 ${disabled?"opacity-50 cursor-not-allowed":"cursor-pointer"} ${className}`}

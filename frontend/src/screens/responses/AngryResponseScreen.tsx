@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COLORS } from "../../styles/colors";
 import { TopBar, Btn, BgDeco } from "../../components/common/UI";
 import { EmoRobot } from "../../components/common/EmoRobot";
 import { playSound } from "../../lib/sounds";
@@ -60,7 +61,7 @@ export function AngryResponseScreen({onReady,onHome,soundOn,onSound}:{onReady:()
                   style={{background:isDone?"#E8F5E9":s.bg,border:`2.5px solid ${isDone?"#66BB6A":s.border}`,fontSize:"18px",color:"#004D40",opacity:isLocked?.45:1}}>
                   <span className="text-3xl">{isDone?"✅":`${s.num}️⃣`}</span>
                   <span className="flex-1">{s.text}</span>
-                  {isActive&&<button onClick={()=>completeStep(i)} className="ff rounded-full px-4 py-2 text-white transition-transform hover:scale-105 active:scale-95" style={{background:"#00BCD4",fontSize:"14px",whiteSpace:"nowrap"}}>I did it! ✓</button>}
+                  {isActive&&<button onClick={()=>completeStep(i)} className="ff rounded-full px-4 py-2 text-white transition-transform hover:scale-105 active:scale-95" style={{background:COLORS.tealButton,fontSize:"14px",whiteSpace:"nowrap"}}>I did it! ✓</button>}
                 </div>
               );
             })}

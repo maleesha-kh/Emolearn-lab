@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { COLORS } from "../styles/colors";
 import type { BuddySuggestion } from "../types";
 import { askEmo } from "../lib/api";
 import { playSound } from "../lib/sounds";
@@ -98,7 +99,7 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
                 ?<ChildBubble key={i} text={m.text}/>
                 :<EmoBubble key={i} text={m.text} chips={m.chips} chipsLabel={m.chipsLabel} disabled={sending} onChip={ask}/>)}
               {sending&&(
-                <div className="fn font-bold self-start" style={{fontSize:"18px",color:"#78909C",paddingLeft:"56px"}}>
+                <div className="fn font-bold self-start" style={{fontSize:"18px",color:COLORS.textMuted,paddingLeft:"56px"}}>
                   Emo is thinking... 💭
                 </div>
               )}
@@ -111,7 +112,7 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
                 <label htmlFor="ask-emo-input" className="fn font-bold" style={{fontSize:"16px",color:"#455A64"}}>
                   Type your question
                 </label>
-                <span id="ask-emo-count" className="fn" style={{fontSize:"13px",color:"#78909C"}}>
+                <span id="ask-emo-count" className="fn" style={{fontSize:"13px",color:COLORS.textMuted}}>
                   {input.length}/{QUESTION_MAX}
                 </span>
               </div>
@@ -121,9 +122,9 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
                   className="fn flex-1 min-w-0 rounded-2xl px-3 outline-none focus:ring-4"
                   style={{minHeight:"56px",fontSize:"18px",border:"3px solid #00BCD4",color:"#37474F"}}/>
                 <button type="submit" disabled={!canSend}
-                  className="ff flex-shrink-0 rounded-full text-white px-5 transition-all active:scale-95"
+                  className="ff flex-shrink-0 rounded-full px-5 transition-all active:scale-95"
                   style={{minHeight:"56px",fontSize:"20px",
-                    background:canSend?"#FF9800":"#ccc",cursor:canSend?"pointer":"not-allowed",
+                    background:canSend?COLORS.orangeButton:"#ccc",color:canSend?COLORS.orangeButtonText:"white",cursor:canSend?"pointer":"not-allowed",
                     boxShadow:canSend?"0 6px 22px rgba(255,152,0,.35)":"none"}}>
                   {sending?"...":"Send"}
                 </button>
@@ -131,7 +132,7 @@ export function AskEmoScreen({playerId,onBack,onHome,soundOn,onSound}:{
               {resting?(
                 <p className="fn font-bold text-center" style={{fontSize:"14px",color:"#6A1B9A"}}>{RESTING_NOTE}</p>
               ):remaining!==null&&(
-                <p className="fn text-center" style={{fontSize:"14px",color:"#78909C"}}>
+                <p className="fn text-center" style={{fontSize:"14px",color:COLORS.textMuted}}>
                   Emo can answer {remaining} more question{remaining===1?"":"s"} today
                 </p>
               )}
@@ -156,7 +157,7 @@ function EmoBubble({text,chips,chipsLabel,disabled,onChip}:{
         </div>
         {chips.length>0&&chipsLabel&&(
           <div className="flex flex-col gap-2">
-            <span className="fn font-bold" style={{fontSize:"14px",color:"#78909C"}}>{chipsLabel}</span>
+            <span className="fn font-bold" style={{fontSize:"14px",color:COLORS.textMuted}}>{chipsLabel}</span>
             <div className="flex flex-wrap gap-2">
               {chips.map(c=>(
                 <button key={c.id} type="button" onClick={()=>onChip(c.question)} disabled={disabled}
