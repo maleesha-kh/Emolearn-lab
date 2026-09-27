@@ -1,0 +1,80 @@
+[WebServer] 2026-09-27 07:51:29.754047: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[WebServer] 2026-09-27 07:51:30.788580: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[WebServer] INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+[WebServer] INFO:     Started server process [28024]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+[WebServer] W0000 00:00:1790475694.659787    7536 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[WebServer] W0000 00:00:1790475694.676708    7536 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+[WebServer] 2026-09-27 07:51:36.241527: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+[WebServer] To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] INFO:     Warm-up prediction took 2.1 s
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+
+Running 2 tests using 1 worker
+
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+  ✓  1 [chromium] › e2e\nfr3-screens.spec.ts:23:3 › NFR3 screens at 375x812 (44.6s)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\google\protobuf\symbol_database.py:55: UserWarning: SymbolDatabase.GetPrototype() is deprecated. Please use message_factory.GetMessageClass() instead. SymbolDatabase.GetPrototype() will be removed soon.
+[WebServer]   warnings.warn('SymbolDatabase.GetPrototype() is deprecated. Please '
+[WebServer] D:\Emolearn-lab\backend\venv\lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+[WebServer] Expected: ['keras_tensor']
+[WebServer] Received: inputs=Tensor(shape=(1, 224, 224, 3))
+[WebServer]   warnings.warn(msg)
+  ✓  2 [chromium] › e2e\nfr3-screens.spec.ts:23:3 › NFR3 screens at 1280x800 (47.3s)
+
+  2 passed (1.8m)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m
+[cleanup] All tests passed; deleted D:\Emolearn-lab\backend\data\e2e\run-20260927022127-65ec487e

@@ -1,0 +1,487 @@
+{
+ "welcome": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "mood-selection": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 9,
+  "modalOnly": false
+ },
+ "diary": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 19,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 14,
+  "modalOnly": false
+ },
+ "mood-activity": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 49,
+  "modalOnly": false
+ },
+ "game-round": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "feedback-correct": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "feedback-wrong": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "summary-badge": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 1,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [
+   {
+    "label": "button.ff.text-xl.font-bold \"Nice! ✨\"",
+    "tag": "button",
+    "x": 540,
+    "y": 496.5,
+    "width": 200,
+    "height": 64,
+    "paintedBy": "div.fixed.inset-0.overflow-hidden \"● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ ● ■ ▲ ♦ ✦ \"",
+    "opacity": 1
+   }
+  ],
+  "textOverlaps": [],
+  "decorativeTextElements": 30,
+  "modalOnly": true
+ },
+ "learn": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 12,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 7,
+  "modalOnly": false
+ },
+ "learn-feeling": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 21,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "ask-emo": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 15,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 8,
+  "modalOnly": false
+ },
+ "me": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 11,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 6,
+  "modalOnly": false
+ },
+ "badges": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 7,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 12,
+  "modalOnly": false
+ },
+ "welcome-remembered": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 3,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 18,
+  "modalOnly": false
+ },
+ "pin-keypad": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 13,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.self-start \"← Back\"",
+    "tag": "button",
+    "x": 460,
+    "y": 85,
+    "width": 56.2,
+    "height": 24
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 0,
+  "modalOnly": false
+ },
+ "parent-overview": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"Download Report CSV\"",
+    "tag": "button",
+    "x": 1047.5,
+    "y": 946.5,
+    "width": 179.5,
+    "height": 37
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-diary": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 10,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   },
+   {
+    "label": "button.fn.font-bold.rounded-full \"🗑️ Clear all questions\"",
+    "tag": "button",
+    "x": 853.1,
+    "y": 282,
+    "width": 178.9,
+    "height": 39
+   },
+   {
+    "label": "button.font-bold.rounded-full.px-4 \"Delete this question\"",
+    "tag": "button",
+    "x": 289,
+    "y": 433,
+    "width": 100.1,
+    "height": 39
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ },
+ "parent-about": {
+  "viewport": {
+   "width": 1280,
+   "height": 800
+  },
+  "horizontalScroll": {
+   "scrollWidth": 1280,
+   "clientWidth": 1280,
+   "overflows": false,
+   "widestOffenders": []
+  },
+  "controls": 6,
+  "outOfView": [],
+  "cutOff": [],
+  "reachableByScrolling": [],
+  "under24": [],
+  "under44": [
+   {
+    "label": "button.fn.font-bold.rounded-full \"Back to Game\"",
+    "tag": "button",
+    "x": 1104.9,
+    "y": 32,
+    "width": 143.1,
+    "height": 40
+   }
+  ],
+  "covered": [],
+  "paintedOver": [],
+  "textOverlaps": [],
+  "decorativeTextElements": 1,
+  "modalOnly": false
+ }
+}
